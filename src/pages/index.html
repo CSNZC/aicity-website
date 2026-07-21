@@ -1,17 +1,127 @@
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾城市有限公司 | AI CITY COMPANY</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-		<h1> 2026/07/21 </h1>
-		<p> 測試功能 <p>
-		<img src="../img/logo.webp" width="800" heigth="400"> 
-	</body>
+    <!-- 頂部導覽列 Navbar -->
+    <header class="navbar">
+        <!-- 左上角 Logo 圖片及名稱 -->
+        <a href="#" class="navbar-brand">
+            <!-- 可將 src 替換為您的實體 Logo 圖檔位址 -->
+            <img src="https://via.placeholder.com/150x50/0d9488/FFFFFF?text=AI+CITY" alt="艾城市 Logo">
+            <span class="brand-text">艾城市有限公司</span>
+        </a>
+
+        <!-- 右上角 導覽選單 -->
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about">關於我們</a></li>
+                <li class="nav-item"><a href="#services">服務內容</a></li>
+                <li class="nav-item"><a href="#news">新知</a></li>
+                <li class="nav-item"><a href="#contact">聯絡我們</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero 主視覺區塊 -->
+    <section class="hero">
+        <h1>攜手打造永續綠色未來</h1>
+        <p>提供專業企業碳盤查、減排工程與 ESG 制度輔導，協助企業邁向永續經營。</p>
+        <a href="#contact" class="btn">立即諮詢</a>
+    </section>
+
+    <!-- 1. 關於我們 Section -->
+    <section id="about">
+        <h2 class="section-title">關於我們</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>艾城市有限公司成立於西元 2022 年 05 月，積極發展產、官、學界建構專業及完整的服務團隊。</p>
+                <p>我們持續協助企業運用 GHG（溫室氣體）管理來提升生產效率與能源使用效率。從碳盤查開始，讓企業願意接觸「碳」，以實現企業永續經營的終極目標。</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="關於我們圖片">
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 服務內容 Section -->
+    <section id="services">
+        <h2 class="section-title">服務內容</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>企業輔導</h3>
+                <p>溫室氣體盤查（碳盤查）、碳足跡計算、ESG 制度建構，並協助媒合第三方查驗證機構。</p>
+            </div>
+            <div class="service-card">
+                <h3>減排工程</h3>
+                <p>再生能源建置、綠能場域規劃設計、節能電器安裝及儲能系統規劃承攬服務。</p>
+            </div>
+            <div class="service-card">
+                <h3>人員培訓</h3>
+                <p>協助企業內部培訓碳盤查專責人員與組建盤查小組，提升內部自主管理能力。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 新知 Section -->
+    <section id="news">
+        <h2 class="section-title">最新新知</h2>
+        <div class="news-grid">
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=500&q=80" alt="新知封面">
+                <div class="news-body">
+                    <div class="news-date">2026-07-15</div>
+                    <h3 class="news-title">企業碳盤查入門指南：第一步該怎麼做？</h3>
+                    <p class="news-excerpt">了解企業溫室氣體排放量化的關鍵步驟與國際規範標準...</p>
+                </div>
+            </article>
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=500&q=80" alt="新知封面">
+                <div class="news-body">
+                    <div class="news-date">2026-06-28</div>
+                    <h3 class="news-title">再生能源與綠電儲能的未來趨勢</h3>
+                    <p class="news-excerpt">探討企業如何透過建置儲能系統與再生能源降低營運風險...</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 4. 聯絡我們 Section -->
+    <section id="contact">
+        <h2 class="section-title">聯絡我們</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>與我們取得聯繫</h3>
+                <p>如有任何碳盤查、綠能工程或永續諮詢需求，歡迎隨時與我們聯絡。</p>
+                <p><strong>公司名稱：</strong>艾城市有限公司 AI CITY COMPANY</p>
+                <p><strong>服務專線：</strong>歡迎透過表單留下您的資訊，我們將儘速回覆。</p>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="您的電子郵件" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="諮詢事項或需求說明" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">送出訊息</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 艾城市有限公司 AI CITY COMPANY. All Rights Reserved.</p>
+    </footer>
+
+</body>
 </html>
