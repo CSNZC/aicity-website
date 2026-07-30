@@ -3,34 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>艾城市有限公司</title>
+  <title>艾城市有限公司 - 永續發展顧問</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link href="index.css">
+
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
-  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(27,67,50,0.1);">
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between;">
+  <header class="navbar-header">
+    <div class="navbar-container">
       
-      <a href="#home" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="https://via.placeholder.com/150x44?text=AI+City+Logo" alt="艾城市有限公司" style="height: 44px; object-fit: contain;">
+      <a href="#home" class="logo-link">
+        <img src="img/logo_L.png" alt="艾城市有限公司" class="logo-img">
       </a>
 
-      <nav style="display: flex; gap: 36px; align-items: center;">
-        <a href="#home" class="desktop-only" style="font-size: 15px; font-weight: 500; color: #1B4332; text-decoration: none; padding: 4px 0;">首頁</a>
-        <a href="#about" class="desktop-only" style="font-size: 15px; font-weight: 500; color: #1B4332; text-decoration: none; padding: 4px 0;">關於我們</a>
-        <a href="#services" class="desktop-only" style="font-size: 15px; font-weight: 500; color: #1B4332; text-decoration: none; padding: 4px 0;">核心服務</a>
-        <a href="#news" class="desktop-only" style="font-size: 15px; font-weight: 500; color: #1B4332; text-decoration: none; padding: 4px 0;">最新消息</a>
-        <a href="#training" class="desktop-only" style="font-size: 15px; font-weight: 500; color: #1B4332; text-decoration: none; padding: 4px 0;">課程培訓</a>
-        <a href="#contact" class="desktop-only" style="font-size: 15px; font-weight: 500; color: #1B4332; text-decoration: none; padding: 4px 0;">聯絡我們</a>
+      <nav class="desktop-nav">
+        <a href="#home" class="nav-link desktop-only">首頁</a>
+        <a href="#about" class="nav-link desktop-only">關於我們</a>
+        <a href="#services" class="nav-link desktop-only">核心服務</a>
+        <a href="#news" class="nav-link desktop-only">最新消息</a>
+        <a href="#training" class="nav-link desktop-only">課程培訓</a>
+        <a href="#contact" class="nav-link desktop-only">聯絡我們</a>
         
-        <a href="#contact" class="desktop-only" style="background: #1B4332; color: #fff; padding: 10px 24px; font-size: 14px; font-weight: 600; text-decoration: none;">立即諮詢</a>
+        <a href="#contact" class="btn-consult desktop-only">立即諮詢</a>
       </nav>
 
-      <button id="mobile-menu-btn" class="mobile-only" style="background: none; border: none; cursor: pointer; padding: 8px; color: #1B4332;" aria-label="選單">
+      <button id="mobile-menu-btn" class="mobile-menu-btn mobile-only" aria-label="選單">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="4" y1="7" x2="20" y2="7" />
           <line x1="4" y1="12" x2="20" y2="12" />
@@ -39,86 +40,86 @@
       </button>
     </div>
 
-    <div id="mobile-menu" style="display: none; background: #fff; border-top: 1px solid rgba(27,67,50,0.1); padding: 16px 24px 24px;">
-      <a href="#home" class="mobile-nav-link" style="display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: #1B4332; text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.08);">首頁</a>
-      <a href="#about" class="mobile-nav-link" style="display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: #1B4332; text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.08);">關於我們</a>
-      <a href="#services" class="mobile-nav-link" style="display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: #1B4332; text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.08);">核心服務</a>
-      <a href="#news" class="mobile-nav-link" style="display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: #1B4332; text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.08);">最新消息</a>
-      <a href="#training" class="mobile-nav-link" style="display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: #1B4332; text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.08);">課程培訓</a>
-      <a href="#contact" class="mobile-nav-link" style="display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: #1B4332; text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.08);">聯絡我們</a>
-      <a href="#contact" class="mobile-nav-link" style="display: block; margin-top: 16px; background: #1B4332; color: #fff; padding: 12px 24px; text-align: center; text-decoration: none; font-weight: 600; font-size: 15px;">立即諮詢</a>
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="#home" class="mobile-nav-link">首頁</a>
+      <a href="#about" class="mobile-nav-link">關於我們</a>
+      <a href="#services" class="mobile-nav-link">核心服務</a>
+      <a href="#news" class="mobile-nav-link">最新消息</a>
+      <a href="#training" class="mobile-nav-link">課程培訓</a>
+      <a href="#contact" class="mobile-nav-link">聯絡我們</a>
+      <a href="#contact" class="mobile-nav-link mobile-btn-consult">立即諮詢</a>
     </div>
   </header>
 
-  <section id="home" style="position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background: #0d2b1f;">
-    <div style="position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1768839722298-0491a671634d?w=1600&h=900&fit=crop&auto=format'); background-size: cover; background-position: center; opacity: 0.35;"></div>
-    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,43,31,0.95) 0%, rgba(27,67,50,0.7) 60%, rgba(13,43,31,0.8) 100%);"></div>
+  <section id="home" class="hero-section">
+    <div class="hero-bg-img"></div>
+    <div class="hero-bg-overlay"></div>
 
-    <div style="position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 120px 24px 80px; width: 100%;">
-      <div style="max-width: 720px;">
-        <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 32px; padding: 8px 16px; border: 1px solid rgba(212,160,23,0.4); background: rgba(212,160,23,0.08);">
-          <div style="width: 8px; height: 8px; border-radius: 50%; background: #D4A017;"></div>
-          <span style="color: #D4A017; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; font-family: Inter, sans-serif;">SUSTAINABILITY CONSULTING</span>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span class="hero-badge-text">SUSTAINABILITY CONSULTING</span>
         </div>
 
-        <h1 style="font-family: 'Noto Serif TC', serif; font-size: clamp(36px, 6vw, 72px); font-weight: 700; color: #ffffff; line-height: 1.2; margin: 0 0 24px;">
+        <h1 class="hero-title">
           永續發展，<br>從現在開始
         </h1>
 
-        <p style="font-size: clamp(15px, 2vw, 18px); color: rgba(255,255,255,0.75); line-height: 1.8; margin: 0 0 48px; max-width: 540px;">
+        <p class="hero-desc">
           艾城市有限公司提供溫室氣體盤查、ESG 報告輔導、再生能源規劃及 AI 數位轉型服務，協助企業在淨零碳排的道路上，走得更穩、更遠。
         </p>
 
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <a href="#services" style="background: #D4A017; color: #0d2b1f; padding: 16px 36px; font-size: 15px; font-weight: 700; text-decoration: none; display: inline-block;">探索服務項目</a>
-          <a href="#contact" style="border: 1px solid rgba(255,255,255,0.4); color: #fff; padding: 16px 36px; font-size: 15px; font-weight: 500; text-decoration: none; display: inline-block;">免費諮詢</a>
+        <div class="hero-actions">
+          <a href="#services" class="btn-primary">探索服務項目</a>
+          <a href="#contact" class="btn-outline">免費諮詢</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section style="background: #1B4332; height: 52px; overflow: hidden; display: flex; align-items: center; position: relative;">
-    <div style="position: absolute; left: 0; top: 0; bottom: 0; z-index: 3; background: #D4A017; display: flex; align-items: center; padding: 0 20px;">
-      <span style="font-size: 10px; font-weight: 800; letter-spacing: 0.15em; color: #0d2b1f; font-family: Inter, sans-serif; white-space: nowrap;">● 最新消息</span>
+  <section class="ticker-section">
+    <div class="ticker-badge">
+      <span class="ticker-badge-text">● 最新消息</span>
     </div>
-    <div style="overflow: hidden; width: 100%; padding-left: 120px;">
+    <div class="ticker-container">
       <div class="ticker-track">
         </div>
     </div>
   </section>
 
-  <section id="contact" style="background: #0d2b1f; padding: 100px 24px;">
-    <div style="max-width: 1280px; margin: 0 auto;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 80px;">
+  <section id="contact" class="contact-section">
+    <div class="contact-container">
+      <div class="contact-grid">
         
-        <div>
-          <div style="color: #D4A017; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; margin-bottom: 16px; font-family: Inter, sans-serif;">CONTACT US</div>
-          <h2 style="font-family: 'Noto Serif TC', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: #fff; margin: 0 0 24px;">開啟您的<br>永續轉型旅程</h2>
-          <p style="color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.9; margin: 0 0 48px;">
+        <div class="contact-info">
+          <div class="section-label">CONTACT US</div>
+          <h2 class="contact-title">開啟您的<br>永續轉型旅程</h2>
+          <p class="contact-desc">
             無論您是剛開始接觸 ESG，還是已在推動減碳計畫，我們的專業顧問團隊隨時歡迎您的諮詢。
           </p>
-          <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div style="display: flex; gap: 16px;"><span style="color: #D4A017;">📞</span> <span style="color: #fff;">04-23763215</span></div>
-            <div style="display: flex; gap: 16px;"><span style="color: #D4A017;">📠</span> <span style="color: #fff;">04-23763213</span></div>
-            <div style="display: flex; gap: 16px;"><span style="color: #D4A017;">📍</span> <span style="color: #fff;">台中市西區五權五街151號A棟5樓1-2室</span></div>
+          <div class="contact-list">
+            <div class="contact-item"><span class="contact-icon">📞</span> <span class="contact-text">04-23763215</span></div>
+            <div class="contact-item"><span class="contact-icon">📠</span> <span class="contact-text">04-23763213</span></div>
+            <div class="contact-item"><span class="contact-icon">📍</span> <span class="contact-text">台中市西區五權五街151號A棟5樓1-2室</span></div>
           </div>
         </div>
 
-        <div>
-          <form id="contact-form" style="display: flex; flex-direction: column; gap: 16px;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-              <input type="text" placeholder="姓名 *" required style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 14px 18px;">
-              <input type="text" placeholder="公司名稱" style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 14px 18px;">
+        <div class="contact-form-wrapper">
+          <form id="contact-form" class="contact-form">
+            <div class="form-row">
+              <input type="text" class="form-input" placeholder="姓名 *" required>
+              <input type="text" class="form-input" placeholder="公司名稱">
             </div>
-            <input type="tel" placeholder="聯絡電話 *" required style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 14px 18px;">
-            <input type="email" placeholder="Email *" required style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 14px 18px;">
-            <textarea placeholder="諮詢需求" style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 14px 18px; min-height: 120px;"></textarea>
-            <button type="submit" style="background: #D4A017; color: #0d2b1f; border: none; padding: 16px 36px; font-weight: 700; cursor: pointer;">送出諮詢表單</button>
+            <input type="tel" class="form-input" placeholder="聯絡電話 *" required>
+            <input type="email" class="form-input" placeholder="Email *" required>
+            <textarea class="form-input form-textarea" placeholder="諮詢需求"></textarea>
+            <button type="submit" class="btn-submit">送出諮詢表單</button>
           </form>
           
-          <div id="form-success" style="display: none; padding: 48px; background: rgba(212,160,23,0.08); border: 1px solid rgba(212,160,23,0.25); text-align: center; color: #fff;">
-            <h3>✅ 感謝您的來信！</h3>
-            <p style="color: rgba(255,255,255,0.6);">我們的顧問將於 1-2 個工作天內與您聯繫。</p>
+          <div id="form-success" class="form-success">
+            <h3 class="success-title">✅ 感謝您的來信！</h3>
+            <p class="success-desc">我們的顧問將於 1-2 個工作天內與您聯繫。</p>
           </div>
         </div>
 
@@ -126,48 +127,6 @@
     </div>
   </section>
 
-  <script>
-    // 1. 手機版選單切換 (Hamburger Menu)
-    const mobileBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-    mobileBtn.addEventListener('click', () => {
-      const isHidden = mobileMenu.style.display === 'none';
-      mobileMenu.style.display = isHidden ? 'block' : 'none';
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.style.display = 'none';
-      });
-    });
-
-    // 2. 自動生成跑馬燈內容 (Ticker Items)
-    const tickerItems = [
-      '【政策動態】環境部公告 2025 年碳費徵收費率，每噸 CO₂e 新台幣 300 元',
-      '【公司公告】艾城市 2026 年 iPAS 淨零碳規劃管理師初級班即日起開放報名',
-      '【新聞轉載】台灣 2030 年再生能源占比目標上調至 30%，太陽光電裝置量持續擴大'
-    ];
-    
-    const tickerContainer = document.querySelector('.ticker-track');
-    // 重複兩次以達到無縫滾動
-    const fullItems = [...tickerItems, ...tickerItems]; 
-    tickerContainer.innerHTML = fullItems.map(item => `
-      <span style="display: inline-flex; align-items: center; white-space: nowrap; font-size: 13px; color: rgba(255,255,255,0.85); padding: 0 40px; gap: 12px;">
-        ${item} <span style="color: #D4A017; opacity: 0.5;">◆</span>
-      </span>
-    `).join('');
-
-    // 3. 表單送出處理
-    const contactForm = document.getElementById('contact-form');
-    const formSuccess = document.getElementById('form-success');
-
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      contactForm.style.display = 'none';
-      formSuccess.style.display = 'block';
-    });
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>

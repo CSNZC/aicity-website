@@ -1,0 +1,451 @@
+/* ==========================================================================
+   1. 全域與重置樣式 (Global & Reset)
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* ==========================================================================
+   2. 響應式控制類別 (RWD Display Utilities)
+   ========================================================================== */
+.desktop-only {
+  display: none;
+}
+
+.mobile-only {
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .desktop-only {
+    display: inline-block !important;
+  }
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   3. 導覽列 (Navbar)
+   ========================================================================== */
+.navbar-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(27, 67, 50, 0.1);
+}
+
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 44px;
+  object-fit: contain;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1B4332;
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #D4A017;
+}
+
+.btn-consult {
+  background: #1B4332;
+  color: #ffffff;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-consult:hover {
+  background: #D4A017;
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #1B4332;
+}
+
+.mobile-menu {
+  display: none;
+  background: #ffffff;
+  border-top: 1px solid rgba(27, 67, 50, 0.1);
+  padding: 16px 24px 24px;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1B4332;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(27, 67, 50, 0.08);
+}
+
+.mobile-btn-consult {
+  margin-top: 16px;
+  background: #1B4332;
+  color: #ffffff;
+  padding: 12px 24px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   4. 主視覺區塊 (Hero Section)
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #0d2b1f;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1768839722298-0491a671634d?w=1600&h=900&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(13,43,31,0.95) 0%, rgba(27,67,50,0.7) 60%, rgba(13,43,31,0.8) 100%);
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
+  width: 100%;
+}
+
+.hero-content {
+  max-width: 720px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  padding: 8px 16px;
+  border: 1px solid rgba(212, 160, 23, 0.4);
+  background: rgba(212, 160, 23, 0.08);
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #D4A017;
+}
+
+.hero-badge-text {
+  color: #D4A017;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-family: Inter, sans-serif;
+}
+
+.hero-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0 0 24px;
+}
+
+.hero-desc {
+  font-size: clamp(15px, 2vw, 18px);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.8;
+  margin: 0 0 48px;
+  max-width: 540px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #D4A017;
+  color: #0d2b1f;
+  padding: 16px 36px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  padding: 16px 36px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   5. 跑馬燈區塊 (News Ticker)
+   ========================================================================== */
+.ticker-section {
+  background: #1B4332;
+  height: 52px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ticker-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  background: #D4A017;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.ticker-badge-text {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #0d2b1f;
+  font-family: Inter, sans-serif;
+  white-space: nowrap;
+}
+
+.ticker-container {
+  overflow: hidden;
+  width: 100%;
+  padding-left: 120px;
+}
+
+.ticker-track {
+  display: flex;
+  animation: ticker-scroll 60s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0 40px;
+  gap: 12px;
+}
+
+.ticker-symbol {
+  color: #D4A017;
+  opacity: 0.5;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   6. 聯絡我們區塊 (Contact Section)
+   ========================================================================== */
+.contact-section {
+  background: #0d2b1f;
+  padding: 100px 24px;
+}
+
+.contact-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 80px;
+}
+
+.section-label {
+  color: #D4A017;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
+  font-family: Inter, sans-serif;
+}
+
+.contact-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 24px;
+}
+
+.contact-desc {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 15px;
+  line-height: 1.9;
+  margin: 0 0 48px;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 16px;
+}
+
+.contact-icon {
+  color: #D4A017;
+}
+
+.contact-text {
+  color: #ffffff;
+}
+
+/* 表單樣式 */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 14px 18px;
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-input:focus {
+  border-color: #D4A017;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.btn-submit {
+  background: #D4A017;
+  color: #0d2b1f;
+  border: none;
+  padding: 16px 36px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 15px;
+  transition: opacity 0.2s;
+}
+
+.btn-submit:hover {
+  opacity: 0.85;
+}
+
+.form-success {
+  display: none;
+  padding: 48px;
+  background: rgba(212, 160, 23, 0.08);
+  border: 1px solid rgba(212, 160, 23, 0.25);
+  text-align: center;
+  color: #ffffff;
+}
+
+.success-title {
+  margin: 0 0 8px;
+}
+
+.success-desc {
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
