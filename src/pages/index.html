@@ -3,47 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>艾城市有限公司 - 永續發展顧問</title>
+  <title>艾城市有限公司</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    /* 全域基礎設定 */
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Noto Sans TC', sans-serif;
-      background-color: #ffffff;
-      color: #333;
-    }
-
-    /* 處理原本 Tailwind CSS 的 RWD 顯示類別 */
-    .desktop-only { display: none; }
-    @media (min-width: 768px) {
-      .desktop-only { display: inline-block !important; }
-      .mobile-only { display: none !important; }
-    }
-
-    /* News Ticker 動畫 */
-    @keyframes ticker-scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    .ticker-track {
-      display: flex;
-      animation: ticker-scroll 60s linear infinite;
-    }
-    .ticker-track:hover {
-      animation-play-state: paused;
-    }
-
-    /* 卡片懸停通用過渡效果 */
-    .hover-card {
-      transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
-    }
-  </style>
+  <link href="index.css">
 </head>
 <body>
 
