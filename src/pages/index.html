@@ -15,38 +15,38 @@
 
   <header class="navbar-header">
     <div class="navbar-container">
-      <a href="/" class="logo-link">
-        <img src="/img/logo_L.png" alt="艾城市有限公司Logo" class="logo-img">
+      <a href="#home" class="logo-link">
+        <img src="../img/logo_L.png" alt="艾城市有限公司Logo" class="logo-img">
       </a>
       
       <nav class="desktop-nav">
         <div class="nav-dropdown">
-          <a class="nav-link" href="/about">關於我們 ▾</a>
+          <a class="nav-link" href="#about">關於我們 ▾</a>
           <div class="dropdown-menu">
-            <a href="/about/intro">公司介紹</a>
-            <a href="/about/partners">企業夥伴</a>
-            <a href="/about/traffic">交通資訊</a>
-            <a href="/contact">聯絡方式</a>
+            <a href="#about-intro">公司介紹</a>
+            <a href="#about-partners">企業夥伴</a>
+            <a href="#about-traffic">交通資訊</a>
+            <a href="#contact">聯絡方式</a>
           </div>
         </div>
         <div class="nav-dropdown">
-          <a class="nav-link" href="/consulting">企業輔導 ▾</a>
+          <a class="nav-link" href="#consulting">企業輔導 ▾</a>
           <div class="dropdown-menu">
-            <a href="/consulting/apply">輔導申請</a>
-            <a href="/consulting/process">流程內容</a>
-            <a href="/consulting/cases">實際案例</a>
-            <a href="/consulting/links">相關連結</a>
+            <a href="#consult-apply">輔導申請</a>
+            <a href="#consult-process">流程內容</a>
+            <a href="#consult-cases">實際案例</a>
+            <a href="#consult-links">相關連結</a>
           </div>
         </div>
         <div class="nav-dropdown">
-          <a class="nav-link" href="/courses">課程資訊 ▾</a>
+          <a class="nav-link" href="#courses">課程資訊 ▾</a>
           <div class="dropdown-menu">
-            <a href="/courses/ipas">iPAS 淨零碳規劃管理師</a>
-            <a href="/courses/iso">ISO 國際證照學程</a>
-            <a href="/courses/results">開課成果</a>
+            <a href="#course-ipas">iPAS 淨零碳規劃管理師</a>
+            <a href="#course-iso">ISO 國際證照學程</a>
+            <a href="#course-results">開課成果</a>
           </div>
         </div>
-        <a class="nav-link" href="/solar">太陽能光電專區</a>
+        <a class="nav-link" href="#solar">太陽能光電專區</a>
       </nav>
 
       <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
@@ -59,36 +59,10 @@
     </div>
 
     <div id="mobile-menu" class="mobile-menu">
-      <div class="mobile-nav-group">
-        <a href="/about" class="mobile-nav-link">關於我們 ▾</a>
-        <div class="mobile-submenu">
-          <a href="/about/intro">公司介紹</a>
-          <a href="/about/partners">企業夥伴</a>
-          <a href="/about/traffic">交通資訊</a>
-          <a href="/contact">聯絡方式</a>
-        </div>
-      </div>
-
-      <div class="mobile-nav-group">
-        <a href="/consulting" class="mobile-nav-link">企業輔導 ▾</a>
-        <div class="mobile-submenu">
-          <a href="/consulting/apply">輔導申請</a>
-          <a href="/consulting/process">流程內容</a>
-          <a href="/consulting/cases">實際案例</a>
-          <a href="/consulting/links">相關連結</a>
-        </div>
-      </div>
-
-      <div class="mobile-nav-group">
-        <a href="/courses" class="mobile-nav-link">課程資訊 ▾</a>
-        <div class="mobile-submenu">
-          <a href="/courses/ipas">iPAS 淨零碳規劃管理師</a>
-          <a href="/courses/iso">ISO 國際證照學程</a>
-          <a href="/courses/results">開課成果</a>
-        </div>
-      </div>
-
-      <a href="/solar" class="mobile-nav-link">太陽能光電專區</a>
+      <a href="#about" class="mobile-nav-link">關於我們</a>
+      <a href="#consulting" class="mobile-nav-link">企業輔導</a>
+      <a href="#courses" class="mobile-nav-link">課程資訊</a>
+      <a href="#solar" class="mobile-nav-link">太陽能光電專區</a>
     </div>
   </header>
 
@@ -97,7 +71,8 @@
       <span class="ticker-badge-text">最新消息</span>
     </div>
     <div class="ticker-container">
-      <div id="ticker-track" class="ticker-track"></div>
+      <div id="ticker-track" class="ticker-track">
+        </div>
     </div>
   </section>
 
@@ -105,16 +80,16 @@
     <div class="carousel-container">
       <div class="carousel-track" id="carousel-track">
         <div class="carousel-slide active">
-          <img src="/img/run1.jpg" alt="輪播圖1" width="1920" height="1080">
+          <img src="../img/run1.jpg" alt="1">
         </div>
         <div class="carousel-slide">
-          <img src="/img/run2.jpg" alt="輪播圖2" width="1920" height="1080">
+          <img src="../img/run2.jpg" alt="2">
         </div>
         <div class="carousel-slide">
-          <img src="/img/run3.jpg" alt="輪播圖3" width="1920" height="1080">
+          <img src="../img/run3.jpg" alt="3">
         </div>
-        <div class="carousel-slide">
-          <img src="/img/homebg.png" alt="輪播圖4" width="1920" height="1080">
+        <div class="carousel-slide active">
+          <img src="../img/homebg.png" alt="4">
         </div>
       </div>
 
@@ -125,7 +100,6 @@
         <span class="dot active" data-slide="0"></span>
         <span class="dot" data-slide="1"></span>
         <span class="dot" data-slide="2"></span>
-        <span class="dot" data-slide="3"></span>
       </div>
     </div>
   </section>
@@ -162,7 +136,7 @@
     </div>
   </section>
 
-  <footer class="site-footer">
+  <footer id="contact" class="site-footer">
     <div class="footer-container">
       <div class="footer-info">
         <h3 class="footer-company">艾城市有限公司</h3>
@@ -174,10 +148,10 @@
       <div class="footer-links">
         <h4>快速連結</h4>
         <ul>
-          <li><a href="/about">關於我們</a></li>
-          <li><a href="/consulting">企業輔導</a></li>
-          <li><a href="/courses">課程資訊</a></li>
-          <li><a href="/solar">太陽能光電專區</a></li>
+          <li><a href="#about">關於我們</a></li>
+          <li><a href="#consulting">企業輔導</a></li>
+          <li><a href="#courses">課程資訊</a></li>
+          <li><a href="#solar">太陽能光電專區</a></li>
         </ul>
       </div>
     </div>
