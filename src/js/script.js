@@ -1,28 +1,32 @@
-// 修改後的獨立 JS 檔案 (例如 script.js)
-
-// 加上這行檢查：只有在瀏覽器環境下才執行
+//有判斷式才能夠顯示在網站上
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
   document.addEventListener('DOMContentLoaded', () => {
-
-    // 1. 手機版選單切換邏輯
-    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-    if (mobileBtn && mobileMenu) {
-      mobileBtn.addEventListener('click', () => {
-        const isHidden = getComputedStyle(mobileMenu).display === 'none';
-        mobileMenu.style.display = isHidden ? 'block' : 'none';
-      });
-
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.style.display = 'none';
+    if (menuBtn && mobileMenu) {
+        // 點擊右上角漢堡圖示：切換展開 / 隱藏
+        menuBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('is-active');
         });
-      });
-    }
 
+        // 點擊選單項目後自動收合選單
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            mobileMenu.classList.remove('is-active');
+        });
+        });
+
+        // 點擊頁面其他空白區域時自動收合選單
+        document.addEventListener('click', function (e) {
+        if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+            mobileMenu.classList.remove('is-active');
+        }
+        });
+    }
     // 2. 跑馬燈內容渲染
     const tickerItems = [
       '【政策動態】環境部公告 2025 年碳費徵收費率，每噸 CO₂e 新台幣 300 元',
@@ -54,7 +58,5 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         formSuccess.style.display = 'block';
       });
     }
-
   });
-
 }

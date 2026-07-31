@@ -4,105 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>艾城市有限公司</title>
-  <link rel="stylesheet" href="../css/index.css"></head>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/index.css">
+</head>
 <body>
+    <header class="navbar-header">
+        <div class="navbar-container">
+            <a href="#home" class="logo-link">
+            <img src="../img/logo_L.png" alt="艾城市有限公司" class="logo-img">
+            </a>
+            <nav class="desktop-nav desktop-only">
+            <a href="#home" class="nav-link">首頁</a>
+            <a href="#about" class="nav-link">關於我們</a>
+            <a href="#services" class="nav-link">核心服務</a>
+            <a href="#news" class="nav-link">最新消息</a>
+            <a href="#training" class="nav-link">課程培訓</a>
+            <a href="#contact" class="btn-consult">立即諮詢</a>
+            </nav>
 
-  <header class="navbar-header">
-    <div class="navbar-container">
-      
-      <a href="#home" class="logo-link">
-        <!-- 使用相對於 index.html 的相對路徑 -->
-        <img src="../img/logo_L.png" alt="艾城市有限公司" class="logo-img">
-      </a>
-
-      <nav class="desktop-nav">
-        <a href="#home" class="nav-link desktop-only">首頁</a>
-        <a href="#about" class="nav-link desktop-only">關於我們</a>
-        <a href="#services" class="nav-link desktop-only">核心服務</a>
-        <a href="#news" class="nav-link desktop-only">最新消息</a>
-        <a href="#training" class="nav-link desktop-only">課程培訓</a>
-        <a href="#contact" class="btn-consult desktop-only">立即諮詢</a>
-      </nav>
-
-      <button id="mobile-menu-btn" class="mobile-menu-btn mobile-only" aria-label="選單">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="7" x2="20" y2="7" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="17" x2="20" y2="17" />
-        </svg>
-      </button>
-    </div>
-  </header>
-
-  <section id="home" class="hero-section">
-    <div class="hero-bg-img"></div>
-    <div class="hero-bg-overlay"></div>
-
-    <div class="hero-container">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <div class="hero-badge-dot"></div>
-          <span class="hero-badge-text">SUSTAINABILITY CONSULTING</span>
+            <button id="mobile-menu-btn" class="mobile-menu-btn mobile-only" aria-label="選單">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="7" x2="24" y2="7" />
+                <line x1="4" y1="14" x2="24" y2="14" />
+                <line x1="4" y1="21" x2="24" y2="21" />
+            </svg>
+            </button>
         </div>
 
-        <h1 class="hero-title">
-          永續發展，<br>從現在開始
-        </h1>
-
-        <p class="hero-desc">
-          艾城市有限公司提供溫室氣體盤查、ESG 報告輔導、再生能源規劃及 AI 數位轉型服務，協助企業在淨零碳排的道路上，走得更穩、更遠。
-        </p>
-
-        <div class="hero-actions">
-          <a href="#services" class="btn-primary">探索服務項目</a>
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#home" class="mobile-nav-link">首頁</a>
+            <a href="#about" class="mobile-nav-link">關於我們</a>
+            <a href="#services" class="mobile-nav-link">核心服務</a>
+            <a href="#news" class="mobile-nav-link">最新消息</a>
+            <a href="#training" class="mobile-nav-link">課程培訓</a>
+            <a href="#contact" class="mobile-btn-consult">立即諮詢</a>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
   <section class="ticker-section">
     <div class="ticker-badge">
       <span class="ticker-badge-text">● 最新消息</span>
     </div>
     <div class="ticker-container">
-      <div class="ticker-track">
-        </div>
+      <div class="ticker-track"></div>
     </div>
   </section>
-
-  <section id="contact" class="contact-section">
-    <div class="contact-container">
-      <div class="contact-grid">
-        
-        <div class="contact-info">
-          <div class="section-label">CONTACT US</div>
-          <h2 class="contact-title">開啟您的<br>永續轉型旅程</h2>
-          <p class="contact-desc">
-            無論您是剛開始接觸 ESG，還是已在推動減碳計畫，我們的專業顧問團隊隨時歡迎您的諮詢。
-          </p>
-          <div class="contact-list">
-            <p>電話：04-23763215</p>
-            <p>地址：台中市西區五權五街151號A棟5樓1-2室</p>
-          </div>
-        </div>
-
-        <div class="contact-form-wrapper">
-          <form id="contact-form" class="contact-form">
-            <div class="form-row">
-              <input type="text" class="form-input" placeholder="姓名 *" required>
-              <input type="text" class="form-input" placeholder="公司名稱">
-            </div>
-            <input type="tel" class="form-input" placeholder="聯絡電話 *" required>
-            <input type="email" class="form-input" placeholder="Email *" required>
-            <textarea class="form-input form-textarea" placeholder="諮詢需求"></textarea>
-            <button type="submit" class="btn-submit">送出諮詢表單</button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <script src="js/script.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>
