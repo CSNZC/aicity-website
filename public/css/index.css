@@ -1,13 +1,13 @@
 /* ==========================================================================
-   1. 全域重置與基礎樣式 (Global Reset & Standard Styles)
+   1. 全域重置與基礎樣式 (網頁底層背景、文字字型與預設外距重置)
    ========================================================================== */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* 確保 padding 與 border 不會撐大元素的寬高 */
 }
 
 body {
   margin: 0;
-  padding-top: 80px; /* 留出抬頭列的高度，避免內容被遮擋 */
+  padding-top: 80px; /* 留出置頂抬頭列的高度，防止上方內容被遮擋 */
   font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: #fcfcfc;
   color: #2d3748;
@@ -15,8 +15,9 @@ body {
 }
 
 /* ==========================================================================
-   2. 置頂抬頭列 (Navbar Header & Responsive Menu)
+   2. 置頂抬頭列 (頁首 Navbar、Logo 與電腦版/手機版選單)
    ========================================================================== */
+/* 頂部固定列外框：毛玻璃半透明效果 */
 .navbar-header {
   position: fixed;
   top: 0;
@@ -31,6 +32,7 @@ body {
   align-items: center;
 }
 
+/* 抬頭列內容容器：最大寬度與兩端對齊 */
 .navbar-container {
   max-width: 1280px;
   width: 100%;
@@ -41,11 +43,9 @@ body {
   justify-content: space-between;
 }
 
-/* Logo 區域防壓縮機制 */
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+/* 品牌 Logo：設定固定尺寸並防止擠壓變形 */
+.logo-link,
+.logo-img {
   flex-shrink: 0; /* 絕不允許被 Flexbox 壓縮 */
 }
 
@@ -53,10 +53,9 @@ body {
   height: 52px;
   width: auto;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
-/* 電腦版選單導覽 */
+/* 電腦版選單：橫向排列與字體樣式 */
 .desktop-nav {
   display: flex;
   gap: 28px;
@@ -74,10 +73,10 @@ body {
 }
 
 .nav-link:hover {
-  color: #D4A017;
+  color: #D4A017; /* 懸停時轉換為琥珀金 */
 }
 
-/* 下拉選單樣式 */
+/* 電腦版下拉選單：定位與預設隱藏 */
 .nav-dropdown {
   position: relative;
 }
@@ -96,7 +95,7 @@ body {
 }
 
 .nav-dropdown:hover .dropdown-menu {
-  display: block;
+  display: block; /* 滑鼠移入時顯示子選單 */
 }
 
 .dropdown-menu a {
@@ -113,7 +112,7 @@ body {
   color: #D4A017;
 }
 
-/* 手機版選單按鈕 */
+/* 手機版漢堡按鈕：預設隱藏，小螢幕顯示 */
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -123,7 +122,7 @@ body {
   padding: 6px;
 }
 
-/* 手機版展開面板 */
+/* 手機版下拉選單面板與子項目 */
 .mobile-menu {
   display: none !important;
   position: absolute;
@@ -138,17 +137,31 @@ body {
 }
 
 .mobile-menu.is-active {
-  display: flex !important;
+  display: flex !important; /* JS 切換 .is-active 時展開選單 */
   flex-direction: column;
 }
 
 .mobile-nav-link {
-  padding: 14px 0;
+  padding: 12px 0;
   color: #1B4332;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid #edf2f0;
+}
+
+/* 手機版子選單縮排 */
+.mobile-submenu {
+  padding-left: 16px;
+  background: #f8faf9;
+}
+
+.mobile-submenu a {
+  display: block;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #52796F;
+  text-decoration: none;
 }
 
 .mobile-btn-consult {
@@ -162,7 +175,7 @@ body {
   border-radius: 4px;
 }
 
-/* 響應式斷點：螢幕寬度 < 991px 切換為手機選單 */
+/* 響應式切換：螢幕寬度 < 991px 時切換為手機版選單 */
 @media (max-width: 991px) {
   .desktop-nav {
     display: none;
@@ -173,8 +186,9 @@ body {
 }
 
 /* ==========================================================================
-   3. 最新消息跑馬燈區塊 (News Ticker)
+   3. 最新消息跑馬燈 (News Ticker)
    ========================================================================== */
+/* 跑馬燈外框與深綠底色 */
 .ticker-section {
   background: #1B4332;
   height: 52px;
@@ -184,6 +198,7 @@ body {
   position: relative;
 }
 
+/* 左側金黃色「最新消息」固定標籤 */
 .ticker-badge {
   position: absolute;
   left: 0;
@@ -205,6 +220,7 @@ body {
   white-space: nowrap;
 }
 
+/* 水平滾動軌道與無限循環動畫 */
 .ticker-container {
   overflow: hidden;
   width: 100%;
@@ -219,7 +235,7 @@ body {
 }
 
 .ticker-track:hover {
-  animation-play-state: paused;
+  animation-play-state: paused; /* 滑鼠懸停時暫停滾動 */
 }
 
 .ticker-item {
@@ -231,19 +247,15 @@ body {
   gap: 10px;
 }
 
-.ticker-symbol {
-  color: #D4A017;
-  margin-left: 10px;
-}
-
 @keyframes ticker-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
 /* ==========================================================================
-   4. 自動圖片輪播區塊 (Hero Carousel)
+   4. 英雄大圖輪播區塊 (Hero Carousel)
    ========================================================================== */
+/* 輪播整體容器與 16:9 比例強制固定 */
 .hero-carousel {
   position: relative;
   width: 100%;
@@ -262,22 +274,21 @@ body {
 .carousel-track {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform;
 }
 
 .carousel-slide {
   min-width: 100%;
-  box-sizing: border-box;
 }
 
+/* 強制輪播圖以 16:9 顯示且防止縮放變形 */
 .carousel-slide img {
   width: 100%;
-  height: 480px;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
 }
 
-/* 輪播左右箭頭按鈕 */
+/* 輪播左右懸浮切換按鈕 */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -301,13 +312,12 @@ body {
 .carousel-btn:hover {
   background: rgba(212, 160, 23, 0.9);
   color: #0d2b1f;
-  transform: translateY(-50%) scale(1.08);
 }
 
 .prev-btn { left: 16px; }
 .next-btn { right: 16px; }
 
-/* 輪播底部圓點指示器 */
+/* 底部圓點指示器 */
 .carousel-dots {
   position: absolute;
   bottom: 20px;
@@ -333,10 +343,8 @@ body {
   border-radius: 12px;
 }
 
+/* 手機版輪播按鈕微調 */
 @media (max-width: 768px) {
-  .carousel-slide img {
-    height: 260px;
-  }
   .carousel-btn {
     width: 36px;
     height: 36px;
@@ -345,7 +353,7 @@ body {
 }
 
 /* ==========================================================================
-   5. 最新消息內容區塊 (Content Section)
+   5. 最新消息卡片區塊 (Content Section & News Grid)
    ========================================================================== */
 .content-section {
   padding: 60px 24px 80px;
@@ -354,10 +362,6 @@ body {
 .section-container {
   max-width: 1280px;
   margin: 0 auto;
-}
-
-.section-header {
-  margin-bottom: 40px;
 }
 
 .section-subtitle {
@@ -375,10 +379,12 @@ body {
   margin: 8px 0 0;
 }
 
+/* 卡片網格：自動適應欄位 */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
+  margin-top: 32px;
 }
 
 .news-card {
@@ -432,7 +438,7 @@ body {
 }
 
 /* ==========================================================================
-   6. 頁尾區塊 (Footer Optimization)
+   6. 頁尾區塊 (Footer - 聯絡資訊與快速連結緊鄰排版)
    ========================================================================== */
 .site-footer {
   background: #060f0a;
@@ -440,26 +446,21 @@ body {
   padding: 60px 24px 20px;
 }
 
+/* 將 justify-content 設為 flex-start，讓「快速連結」自然緊鄰「聯絡資訊」 */
 .footer-container {
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-start; /* 改為靠左排列，避免快速連結被推到最右邊 */
+  justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 60px; /* 控制聯絡資訊與快速連結之間的適當間距 */
-}
-
-.footer-info {
-  flex: 0 1 auto;
-  min-width: 280px;
+  gap: 60px; /* 兩大區域之間的間距 */
 }
 
 .footer-company {
   color: #ffffff;
   font-size: 20px;
-  margin-bottom: 20px;
-  margin-top: 0;
+  margin: 0 0 20px;
 }
 
 .footer-detail {
@@ -467,15 +468,9 @@ body {
   font-size: 14px;
 }
 
-.footer-links {
-  flex: 0 1 auto;
-  min-width: 160px;
-}
-
 .footer-links h4 {
   color: #ffffff;
-  margin-bottom: 16px;
-  margin-top: 0;
+  margin: 0 0 16px;
   font-size: 16px;
 }
 
