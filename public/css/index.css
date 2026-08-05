@@ -5,9 +5,13 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  padding-top: 80px;
+  padding-top: 80px; /* 留出頂部列高度，避免內容被遮擋 */
   font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: #fcfcfc;
   color: #2d3748;
@@ -23,7 +27,7 @@ body {
   left: 0;
   right: 0;
   height: 80px;
-  z-index: 100;
+  z-index: 1000;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(27, 67, 50, 0.12);
@@ -44,6 +48,8 @@ body {
 .logo-link,
 .logo-img {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
 .logo-img {
@@ -55,7 +61,7 @@ body {
 /* 電腦版選單 */
 .desktop-nav {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   align-items: center;
 }
 
@@ -64,9 +70,10 @@ body {
   font-weight: 500;
   color: #1B4332;
   text-decoration: none;
-  padding: 8px 0;
+  padding: 10px 4px;
   transition: color 0.2s;
   cursor: pointer;
+  display: inline-block;
 }
 
 .nav-link:hover {
@@ -90,7 +97,7 @@ body {
   color: #0d2b1f;
 }
 
-/* 電腦版下拉選單 */
+/* 電腦版下拉選單 (Dropdown) */
 .nav-dropdown {
   position: relative;
 }
@@ -101,11 +108,12 @@ body {
   top: 100%;
   left: 0;
   background: #ffffff;
-  min-width: 180px;
+  min-width: 160px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   border-radius: 4px;
   padding: 8px 0;
-  z-index: 110;
+  z-index: 1100;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .nav-dropdown:hover .dropdown-menu {
@@ -126,7 +134,7 @@ body {
   color: #D4A017;
 }
 
-/* 手機版選單按鈕與展開面板 */
+/* 手機版漢堡按鈕與展開選單 */
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -144,9 +152,9 @@ body {
   right: 0;
   background: #ffffff;
   border-bottom: 1px solid rgba(27, 67, 50, 0.12);
-  padding: 16px 24px;
+  padding: 16px 24px 24px;
   box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-  z-index: 99;
+  z-index: 999;
 }
 
 .mobile-menu.is-active {
@@ -168,7 +176,7 @@ body {
   margin-top: 14px;
   background: #1B4332;
   color: #ffffff;
-  padding: 10px;
+  padding: 12px;
   text-align: center;
   font-weight: 600;
   text-decoration: none;
@@ -181,70 +189,7 @@ body {
 }
 
 /* ==========================================================================
-   3. 最新消息跑馬燈 (News Ticker)
-   ========================================================================== */
-.ticker-section {
-  background: #1B4332;
-  height: 48px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.ticker-badge {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 10;
-  background: #D4A017;
-  display: flex;
-  align-items: center;
-  padding: 0 18px;
-}
-
-.ticker-badge-text {
-  font-size: 11px;
-  font-weight: 800;
-  color: #0d2b1f;
-  font-family: 'Inter', sans-serif;
-  white-space: nowrap;
-}
-
-.ticker-container {
-  overflow: hidden;
-  width: 100%;
-  padding-left: 115px;
-}
-
-.ticker-track {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  animation: ticker-scroll 45s linear infinite;
-}
-
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-.ticker-item {
-  display: inline-flex;
-  align-items: center;
-  font-size: 13.5px;
-  color: rgba(255, 255, 255, 0.9);
-  padding: 0 25px;
-  gap: 10px;
-}
-
-@keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* ==========================================================================
-   4. 英雄大圖輪播區塊 (Hero Carousel)
+   3. 自動輪播區塊 (Hero Carousel)
    ========================================================================== */
 .hero-carousel {
   position: relative;
@@ -330,15 +275,90 @@ body {
 }
 
 /* ==========================================================================
+   4. 最新消息跑馬燈 (News Ticker)
+   ========================================================================== */
+.ticker-section {
+  background: #1B4332;
+  height: 48px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ticker-badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  background: #D4A017;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+}
+
+.ticker-badge-text {
+  font-size: 11px;
+  font-weight: 800;
+  color: #0d2b1f;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.ticker-container {
+  overflow: hidden;
+  width: 100%;
+  padding-left: 115px;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: ticker-scroll 45s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0 25px;
+  gap: 10px;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
    5. 通用內容區塊與卡片網格 (Content Section & Grid)
    ========================================================================== */
 .content-section {
   padding: 50px 24px;
 }
 
+.bg-light {
+  background-color: #f4f7f5;
+}
+
 .section-container {
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .section-subtitle {
@@ -360,7 +380,7 @@ body {
 /* 電腦版預設：平行排列為 3 欄 */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 強制電腦版平均分三欄 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 28px;
 }
@@ -395,6 +415,11 @@ body {
   color: #0d2b1f;
 }
 
+.news-date {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
 .news-title {
   font-size: 17px;
   color: #1a202c;
@@ -409,29 +434,23 @@ body {
   line-height: 1.6;
 }
 
-/* 📱 響應式 RWD 關鍵控制：螢幕寬度低於 991px（平板與手機）時，三個區塊自動變單欄直排 */
 @media (max-width: 991px) {
   .news-grid {
-    grid-template-columns: 1fr; /* 強制變為單欄垂直排列 */
-    gap: 16px; /* 縮減卡片上下間距，讓手機版更精簡 */
-  }
-
-  .news-card {
-    padding: 20px; /* 手機版內距稍微調小 */
+    grid-template-columns: 1fr; /* 平板與手機轉為單欄直排 */
+    gap: 16px;
   }
 }
 
 /* ==========================================================================
-   6. 頁尾三分欄緊湊精簡樣式 (Footer - Compact 3-Column Layout)
+   6. 頁尾 Layout (Footer)
    ========================================================================== */
 .site-footer {
-  background: #09130d; /* 極深質感黑綠背景 */
+  background: #09130d;
   color: rgba(255, 255, 255, 0.85);
-  padding: 40px 24px 20px; /* 控制上下外距，保持整體小巧緊湊 */
-  border-top: 3px solid #D4A017; /* 頂部琥珀金精緻壓條 */
+  padding: 40px 24px 20px;
+  border-top: 3px solid #D4A017;
 }
 
-/* 頁尾 3 欄式 Flex 佈局 */
 .footer-container {
   max-width: 1280px;
   margin: 0 auto;
@@ -441,29 +460,11 @@ body {
   gap: 36px;
 }
 
-.footer-col {
-  flex: 1;
-}
+.footer-col { flex: 1; }
+.footer-col-form { flex: 1.2; min-width: 280px; }
+.footer-col-info { flex: 1.1; min-width: 250px; }
+.footer-col-links { flex: 0.8; min-width: 160px; }
 
-/* 1. 最左側：表單 */
-.footer-col-form {
-  flex: 1.2; /* 表單稍微寬一點點以利填寫 */
-  min-width: 280px;
-}
-
-/* 2. 中間：公司資訊 */
-.footer-col-info {
-  flex: 1.1;
-  min-width: 250px;
-}
-
-/* 3. 最右側：快速連結 */
-.footer-col-links {
-  flex: 0.8;
-  min-width: 160px;
-}
-
-/* 通用標題 */
 .footer-title {
   color: #D4A017;
   font-size: 15px;
@@ -478,25 +479,11 @@ body {
   color: #ffffff;
   font-size: 18px;
   font-weight: 700;
-  margin: 0 0 2px;
-}
-
-.footer-subtitle-sm {
-  color: #D4A017;
-  font-size: 12px;
   margin: 0 0 10px;
-  font-family: 'Inter', sans-serif;
-}
-
-.footer-desc {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.65);
-  margin: 0 0 14px;
-  line-height: 1.5;
 }
 
 .contact-list .footer-detail {
-  margin: 4px 0;
+  margin: 6px 0;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.85);
 }
@@ -505,7 +492,7 @@ body {
   color: #D4A017;
 }
 
-/* 線上表單樣式 (精簡版) */
+/* 線上表單樣式 */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -517,10 +504,6 @@ body {
   gap: 10px;
 }
 
-.form-row .form-input {
-  flex: 1;
-}
-
 .form-input {
   width: 100%;
   padding: 8px 12px;
@@ -530,11 +513,6 @@ body {
   color: #ffffff;
   font-size: 13px;
   outline: none;
-  transition: border-color 0.2s, background-color 0.2s;
-}
-
-.form-input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
 }
 
 .form-input:focus {
@@ -543,7 +521,7 @@ body {
 }
 
 .form-textarea {
-  min-height: 65px; /* 控制表單高度小巧精緻 */
+  min-height: 65px;
   resize: vertical;
 }
 
@@ -556,59 +534,29 @@ body {
   font-weight: 700;
   font-size: 13.5px;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-  align-self: flex-start;
 }
 
 .btn-submit:hover {
   background-color: #f1b720;
-  transform: translateY(-1px);
 }
 
-.form-success {
-  padding: 12px 16px;
-  background: rgba(212, 160, 23, 0.12);
-  border: 1px solid #D4A017;
-  border-radius: 4px;
-  color: #ffffff;
-}
-
-.form-success .success-title {
-  margin: 0 0 4px;
-  color: #D4A017;
-  font-size: 14px;
-}
-
-.form-success .success-desc {
-  margin: 0;
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* 快速連結列表 */
 .footer-links {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footer-links li {
-  margin-bottom: 8px;
-}
+.footer-links li { margin-bottom: 8px; }
 
 .footer-links a {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 13.5px;
-  transition: color 0.2s, padding-left 0.2s;
+  transition: color 0.2s;
 }
 
-.footer-links a:hover {
-  color: #D4A017;
-  padding-left: 4px;
-}
+.footer-links a:hover { color: #D4A017; }
 
-/* 頁尾底欄版權宣告 */
 .footer-bottom {
   max-width: 1280px;
   margin: 30px auto 0;
@@ -619,26 +567,14 @@ body {
   color: rgba(255, 255, 255, 0.45);
 }
 
-/* RWD 響應式：平板與手機螢幕調整為單欄直排 */
 @media (max-width: 991px) {
   .footer-container {
     flex-direction: column;
     gap: 30px;
   }
-
-  .footer-col-form,
-  .footer-col-info,
-  .footer-col-links {
+  .footer-col-form, .footer-col-info, .footer-col-links {
     width: 100%;
     min-width: unset;
   }
-
-  .form-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .btn-submit {
-    width: 100%;
-  }
+  .form-row { flex-direction: column; }
 }
