@@ -1,13 +1,13 @@
 /* ==========================================================================
-   1. 全域重置與基礎樣式 (網頁底層背景、文字字型與預設外距重置)
+   1. 全域重置與基礎樣式 (Global Resets & Base Styles)
    ========================================================================== */
 * {
-  box-sizing: border-box; /* 確保 padding 與 border 不會撐大元素的寬高 */
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  padding-top: 80px; /* 留出置頂抬頭列的高度，防止上方內容被遮擋 */
+  padding-top: 80px;
   font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: #fcfcfc;
   color: #2d3748;
@@ -15,9 +15,8 @@ body {
 }
 
 /* ==========================================================================
-   2. 置頂抬頭列 (頁首 Navbar、Logo 與電腦版/手機版選單)
+   2. 置頂抬頭列 (Navbar, Logo & Dropdown Menu)
    ========================================================================== */
-/* 頂部固定列外框：毛玻璃半透明效果 */
 .navbar-header {
   position: fixed;
   top: 0;
@@ -32,7 +31,6 @@ body {
   align-items: center;
 }
 
-/* 抬頭列內容容器：最大寬度與兩端對齊 */
 .navbar-container {
   max-width: 1280px;
   width: 100%;
@@ -43,10 +41,9 @@ body {
   justify-content: space-between;
 }
 
-/* 品牌 Logo：設定固定尺寸並防止擠壓變形 */
 .logo-link,
 .logo-img {
-  flex-shrink: 0; /* 絕不允許被 Flexbox 壓縮 */
+  flex-shrink: 0;
 }
 
 .logo-img {
@@ -55,10 +52,10 @@ body {
   object-fit: contain;
 }
 
-/* 電腦版選單：橫向排列與字體樣式 */
+/* 電腦版選單 */
 .desktop-nav {
   display: flex;
-  gap: 28px;
+  gap: 24px;
   align-items: center;
 }
 
@@ -73,10 +70,27 @@ body {
 }
 
 .nav-link:hover {
-  color: #D4A017; /* 懸停時轉換為琥珀金 */
+  color: #D4A017;
 }
 
-/* 電腦版下拉選單：定位與預設隱藏 */
+.btn-consult {
+  background: #1B4332;
+  color: #ffffff;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
+}
+
+.btn-consult:hover {
+  background: #D4A017;
+  color: #0d2b1f;
+}
+
+/* 電腦版下拉選單 */
 .nav-dropdown {
   position: relative;
 }
@@ -87,7 +101,7 @@ body {
   top: 100%;
   left: 0;
   background: #ffffff;
-  min-width: 200px;
+  min-width: 180px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   border-radius: 4px;
   padding: 8px 0;
@@ -95,12 +109,12 @@ body {
 }
 
 .nav-dropdown:hover .dropdown-menu {
-  display: block; /* 滑鼠移入時顯示子選單 */
+  display: block;
 }
 
 .dropdown-menu a {
   display: block;
-  padding: 10px 20px;
+  padding: 10px 18px;
   color: #1B4332;
   font-size: 14px;
   text-decoration: none;
@@ -112,7 +126,7 @@ body {
   color: #D4A017;
 }
 
-/* 手機版漢堡按鈕：預設隱藏，小螢幕顯示 */
+/* 手機版選單按鈕與展開面板 */
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -122,7 +136,6 @@ body {
   padding: 6px;
 }
 
-/* 手機版下拉選單面板與子項目 */
 .mobile-menu {
   display: none !important;
   position: absolute;
@@ -137,89 +150,48 @@ body {
 }
 
 .mobile-menu.is-active {
-  display: flex !important; /* JS 切換 .is-active 時展開選單 */
+  display: flex !important;
   flex-direction: column;
 }
 
 .mobile-nav-link {
+  display: block;
   padding: 12px 0;
   color: #1B4332;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid #edf2f0;
 }
 
-/* ==========================================================================
-   手機版子選單 (預設隱藏，點擊父項目時展開)
-   ========================================================================== */
-.mobile-nav-group {
-  border-bottom: 1px solid #edf2f0;
-}
-
-.mobile-nav-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
-  color: #1B4332;
-  font-size: 16px;
+.mobile-btn-consult {
+  margin-top: 14px;
+  background: #1B4332;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
   font-weight: 600;
   text-decoration: none;
-  cursor: pointer;
+  border-radius: 4px;
 }
 
-/* 子選單預設隱藏 */
-.mobile-submenu {
-  display: none;
-  padding-left: 16px;
-  background: #f8faf9;
-  border-left: 3px solid #1B4332;
-  margin-bottom: 8px;
-}
-
-/* 當 JS 加上 .is-open 時，才顯示子選單 */
-.mobile-submenu.is-open {
-  display: block;
-}
-
-.mobile-submenu a {
-  display: block;
-  padding: 10px 0;
-  font-size: 14px;
-  color: #52796F;
-  text-decoration: none;
-  border-bottom: 1px dashed #e2e8f0;
-}
-
-.mobile-submenu a:last-child {
-  border-bottom: none;
-}
-
-/* 響應式切換：螢幕寬度 < 991px 時切換為手機版選單 */
 @media (max-width: 991px) {
-  .desktop-nav {
-    display: none;
-  }
-  .mobile-menu-btn {
-    display: block;
-  }
+  .desktop-nav { display: none; }
+  .mobile-menu-btn { display: block; }
 }
 
 /* ==========================================================================
    3. 最新消息跑馬燈 (News Ticker)
    ========================================================================== */
-/* 跑馬燈外框與深綠底色 */
 .ticker-section {
   background: #1B4332;
-  height: 52px;
+  height: 48px;
   overflow: hidden;
   display: flex;
   align-items: center;
   position: relative;
 }
 
-/* 左側金黃色「最新消息」固定標籤 */
 .ticker-badge {
   position: absolute;
   left: 0;
@@ -229,23 +201,21 @@ body {
   background: #D4A017;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 18px;
 }
 
 .ticker-badge-text {
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.12em;
   color: #0d2b1f;
   font-family: 'Inter', sans-serif;
   white-space: nowrap;
 }
 
-/* 水平滾動軌道與無限循環動畫 */
 .ticker-container {
   overflow: hidden;
   width: 100%;
-  padding-left: 120px;
+  padding-left: 115px;
 }
 
 .ticker-track {
@@ -256,15 +226,15 @@ body {
 }
 
 .ticker-track:hover {
-  animation-play-state: paused; /* 滑鼠懸停時暫停滾動 */
+  animation-play-state: paused;
 }
 
 .ticker-item {
   display: inline-flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 13.5px;
   color: rgba(255, 255, 255, 0.9);
-  padding: 0 30px;
+  padding: 0 25px;
   gap: 10px;
 }
 
@@ -276,20 +246,19 @@ body {
 /* ==========================================================================
    4. 英雄大圖輪播區塊 (Hero Carousel)
    ========================================================================== */
-/* 輪播整體容器與 16:9 比例強制固定 */
 .hero-carousel {
   position: relative;
   width: 100%;
   max-width: 1280px;
-  margin: 24px auto;
+  margin: 20px auto;
   padding: 0 24px;
 }
 
 .carousel-container {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 .carousel-track {
@@ -301,7 +270,6 @@ body {
   min-width: 100%;
 }
 
-/* 強制輪播圖以 16:9 顯示且防止縮放變形 */
 .carousel-slide img {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -309,7 +277,6 @@ body {
   display: block;
 }
 
-/* 輪播左右懸浮切換按鈕 */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -317,17 +284,16 @@ body {
   background: rgba(13, 43, 31, 0.5);
   color: #ffffff;
   border: none;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s, transform 0.2s;
-  backdrop-filter: blur(4px);
+  transition: background 0.3s;
 }
 
 .carousel-btn:hover {
@@ -335,23 +301,22 @@ body {
   color: #0d2b1f;
 }
 
-.prev-btn { left: 16px; }
-.next-btn { right: 16px; }
+.prev-btn { left: 14px; }
+.next-btn { right: 14px; }
 
-/* 底部圓點指示器 */
 .carousel-dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  gap: 8px;
   z-index: 10;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   cursor: pointer;
@@ -360,24 +325,15 @@ body {
 
 .dot.active {
   background-color: #D4A017;
-  width: 28px;
-  border-radius: 12px;
-}
-
-/* 手機版輪播按鈕微調 */
-@media (max-width: 768px) {
-  .carousel-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
-  }
+  width: 24px;
+  border-radius: 10px;
 }
 
 /* ==========================================================================
-   5. 最新消息卡片區塊 (Content Section & News Grid)
+   5. 通用內容區塊與卡片網格 (Content Section & Grid)
    ========================================================================== */
 .content-section {
-  padding: 60px 24px 80px;
+  padding: 50px 24px;
 }
 
 .section-container {
@@ -391,26 +347,27 @@ body {
   font-weight: 800;
   letter-spacing: 0.15em;
   font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
 }
 
 .section-title {
   font-family: 'Noto Serif TC', serif;
-  font-size: 32px;
+  font-size: 28px;
   color: #0d2b1f;
-  margin: 8px 0 0;
+  margin: 6px 0 0;
 }
 
-/* 卡片網格：自動適應欄位 */
+/* 電腦版預設：平行排列為 3 欄 */
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 強制電腦版平均分三欄 */
   gap: 24px;
-  margin-top: 32px;
+  margin-top: 28px;
 }
 
 .news-card {
   background: #ffffff;
-  padding: 28px;
+  padding: 24px;
   border: 1px solid #e2e8f0;
   border-left: 4px solid #1B4332;
   border-radius: 6px;
@@ -418,18 +375,18 @@ body {
 }
 
 .news-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .news-tag {
   display: inline-block;
   background: #f0f4f2;
   color: #1B4332;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  padding: 4px 10px;
-  margin-right: 12px;
+  padding: 3px 8px;
+  margin-right: 10px;
   border-radius: 4px;
 }
 
@@ -438,64 +395,198 @@ body {
   color: #0d2b1f;
 }
 
-.news-date {
-  font-size: 13px;
-  color: #a0aec0;
-  font-family: 'Inter', sans-serif;
-}
-
 .news-title {
-  font-size: 18px;
+  font-size: 17px;
   color: #1a202c;
-  margin: 14px 0 10px;
+  margin: 12px 0 8px;
   line-height: 1.4;
 }
 
 .news-summary {
-  font-size: 14px;
+  font-size: 13.5px;
   color: #718096;
   margin: 0;
   line-height: 1.6;
 }
 
-/* ==========================================================================
-   6. 頁尾區塊 (Footer - 聯絡資訊與快速連結緊鄰排版)
-   ========================================================================== */
-.site-footer {
-  background: #060f0a;
-  color: rgba(255, 255, 255, 0.7);
-  padding: 60px 24px 20px;
+/* 📱 響應式 RWD 關鍵控制：螢幕寬度低於 991px（平板與手機）時，三個區塊自動變單欄直排 */
+@media (max-width: 991px) {
+  .news-grid {
+    grid-template-columns: 1fr; /* 強制變為單欄垂直排列 */
+    gap: 16px; /* 縮減卡片上下間距，讓手機版更精簡 */
+  }
+
+  .news-card {
+    padding: 20px; /* 手機版內距稍微調小 */
+  }
 }
 
-/* 將 justify-content 設為 flex-start，讓「快速連結」自然緊鄰「聯絡資訊」 */
+/* ==========================================================================
+   6. 頁尾三分欄緊湊精簡樣式 (Footer - Compact 3-Column Layout)
+   ========================================================================== */
+.site-footer {
+  background: #09130d; /* 極深質感黑綠背景 */
+  color: rgba(255, 255, 255, 0.85);
+  padding: 40px 24px 20px; /* 控制上下外距，保持整體小巧緊湊 */
+  border-top: 3px solid #D4A017; /* 頂部琥珀金精緻壓條 */
+}
+
+/* 頁尾 3 欄式 Flex 佈局 */
 .footer-container {
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 60px; /* 兩大區域之間的間距 */
+  gap: 36px;
+}
+
+.footer-col {
+  flex: 1;
+}
+
+/* 1. 最左側：表單 */
+.footer-col-form {
+  flex: 1.2; /* 表單稍微寬一點點以利填寫 */
+  min-width: 280px;
+}
+
+/* 2. 中間：公司資訊 */
+.footer-col-info {
+  flex: 1.1;
+  min-width: 250px;
+}
+
+/* 3. 最右側：快速連結 */
+.footer-col-links {
+  flex: 0.8;
+  min-width: 160px;
+}
+
+/* 通用標題 */
+.footer-title {
+  color: #D4A017;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(212, 160, 23, 0.3);
+  display: inline-block;
 }
 
 .footer-company {
   color: #ffffff;
-  font-size: 20px;
-  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 2px;
 }
 
-.footer-detail {
-  margin: 6px 0;
+.footer-subtitle-sm {
+  color: #D4A017;
+  font-size: 12px;
+  margin: 0 0 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.contact-list .footer-detail {
+  margin: 4px 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.contact-list .footer-detail strong {
+  color: #D4A017;
+}
+
+/* 線上表單樣式 (精簡版) */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row .form-input {
+  flex: 1;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.form-input:focus {
+  border-color: #D4A017;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-textarea {
+  min-height: 65px; /* 控制表單高度小巧精緻 */
+  resize: vertical;
+}
+
+.btn-submit {
+  background-color: #D4A017;
+  color: #0d2b1f;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  align-self: flex-start;
+}
+
+.btn-submit:hover {
+  background-color: #f1b720;
+  transform: translateY(-1px);
+}
+
+.form-success {
+  padding: 12px 16px;
+  background: rgba(212, 160, 23, 0.12);
+  border: 1px solid #D4A017;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.form-success .success-title {
+  margin: 0 0 4px;
+  color: #D4A017;
   font-size: 14px;
 }
 
-.footer-links h4 {
-  color: #ffffff;
-  margin: 0 0 16px;
-  font-size: 16px;
+.form-success .success-desc {
+  margin: 0;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.footer-links ul {
+/* 快速連結列表 */
+.footer-links {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -508,19 +599,46 @@ body {
 .footer-links a {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  font-size: 14px;
-  transition: color 0.2s;
+  font-size: 13.5px;
+  transition: color 0.2s, padding-left 0.2s;
 }
 
 .footer-links a:hover {
   color: #D4A017;
+  padding-left: 4px;
 }
 
+/* 頁尾底欄版權宣告 */
 .footer-bottom {
   max-width: 1280px;
-  margin: 40px auto 0;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 30px auto 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* RWD 響應式：平板與手機螢幕調整為單欄直排 */
+@media (max-width: 991px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-col-form,
+  .footer-col-info,
+  .footer-col-links {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-submit {
+    width: 100%;
+  }
 }
