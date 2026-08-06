@@ -1,17 +1,18 @@
 /* ==========================================================================
    1. 全域變數與重置 (Global Variables & Base Resets)
-   涵義：定義品牌色盤（森林綠、琥珀金、鼠尾草綠、海洋藍）與全站基礎設定
+   涵義：定義沉穩顧問風格色盤（森林綠、琥珀金、海洋藍、鼠尾草綠）與通用邊距
    ========================================================================== */
 :root {
   --primary-green: #1B4332;   /* 品牌主色：深森林綠 */
-  --accent-gold: #D4A017;     /* 品牌點綴色：琥珀金 */
-  --accent-blue: #0284c7;     /* 輔助標示色：湛藍 */
-  --bg-light-gray: #f8fafc;   /* 區塊背景：高質感淺灰 */
-  --dark-green-bg: #0b1510;   /* 表單區塊背景：極深翡翠綠 */
-  --text-dark: #0f172a;       /* 主要標題文字色 */
-  --text-body: #334155;       /* 內文描述文字色 */
-  --text-muted: #64748b;      /* 次要/日期文字色 */
-  --border-color: #cbd5e1;    /* 通用柔和邊界線 */
+  --accent-gold: #D4A017;     /* 品牌點綴：琥珀金 */
+  --accent-blue: #0284c7;     /* 輔助標籤：海洋藍 */
+  --bg-light-gray: #f8fafc;   /* 區塊背景：高質感柔灰 */
+  --bg-light-green: #f2f7f4;  /* 區塊背景：鼠尾草綠 */
+  --dark-green-bg: #0b1510;   /* 表單背景：極深翡翠綠 */
+  --text-dark: #0f172a;       /* 主要標題色 */
+  --text-body: #334155;       /* 內文描述色 */
+  --text-muted: #64748b;      /* 日期與次要文字 */
+  --border-color: #cbd5e1;    /* 通用細微線條 */
 }
 
 * {
@@ -32,15 +33,15 @@ body {
 }
 
 /* ==========================================================================
-   2. 通用容器與標題 (Common Layout & Typography)
-   涵義：需求 1，預設容器上限 1140px，內距舒適不壓迫
+   2. 通用容器與標題 (Common Containers & Typography)
+   涵義：控制區塊黃金上限 1140px，上下保持 72px 呼吸空間，不擠壓角落
    ========================================================================== */
 .content-section {
-  padding: 72px 24px; /* 上下留出充裕的呼吸空間 */
+  padding: 72px 24px;
 }
 
 .section-container {
-  max-width: 1140px; /* 控制在黃金舒適寬度，不擠滿螢幕邊緣 */
+  max-width: 1140px;
   margin: 0 auto;
 }
 
@@ -77,8 +78,8 @@ body {
 }
 
 /* ==========================================================================
-   3. 置頂導覽列 (Navbar)
-   涵義：固定 64px 高度，含地圖連結與預約按鈕
+   3. 置頂精緻導覽列 (Navbar)
+   涵義：固定 64px 高度，橫向對齊，含地圖按鈕與預約健檢 CTA
    ========================================================================== */
 .navbar-header {
   position: fixed;
@@ -174,10 +175,10 @@ body {
 
 /* ==========================================================================
    4. 英雄大圖輪播區塊 (Hero Carousel)
-   涵義：需求 2，維持 16:9 黃金比例，最大寬度 1140px，置中對齊
+   涵義：維持 16:9 黃金比例，上限 1140px，置中適當大視野
    ========================================================================== */
 .hero-section {
-  padding-top: 84px; /* 預留給 Navbar 高度與間距 */
+  padding-top: 84px;
   padding-bottom: 20px;
 }
 
@@ -185,7 +186,7 @@ body {
   max-width: 1140px;
   width: 100%;
   margin: 0 auto;
-  aspect-ratio: 16 / 9; /* 強制保持 1920*1080 (16:9) 比例 */
+  aspect-ratio: 16 / 9;
   max-height: 580px;
   position: relative;
   overflow: hidden;
@@ -212,7 +213,10 @@ body {
 .dot { width: 10px; height: 10px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; }
 .dot.active { background: var(--accent-gold); width: 24px; border-radius: 12px; }
 
-/* 最新消息跑馬燈 (News Ticker) */
+/* ==========================================================================
+   5. 最新消息跑馬燈 (News Ticker)
+   涵義：字體放大至 15px，且與後續的痛點區塊保持 40px 距離
+   ========================================================================== */
 .ticker-section {
   background: var(--primary-green);
   height: 48px;
@@ -240,7 +244,7 @@ body {
 .ticker-track { display: flex; white-space: nowrap; animation: tick 35s linear infinite; }
 
 .ticker-item {
-  font-size: 15px; 
+  font-size: 15px;
   color: rgba(255,255,255,0.95);
   padding: 0 32px;
   font-weight: 500;
@@ -248,14 +252,17 @@ body {
 
 @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* 企業痛點挑戰  */
+/* ==========================================================================
+   6. 企業痛點挑戰 (Pain Points - 左右對比 & RWD 直式轉換)
+   涵義：電腦版左邊標語說明、右邊三痛點；手機版 (@media) 自動改直式單欄
+   ========================================================================== */
 .pain-section {
   padding-top: 48px;
 }
 
 .pain-split-grid {
   display: grid;
-  grid-template-columns: 1fr 1.3fr; /* 左右對比比例 */
+  grid-template-columns: 1fr 1.3fr;
   gap: 48px;
   align-items: center;
 }
@@ -317,7 +324,10 @@ body {
   line-height: 1.55;
 }
 
-/*  艾城市核心服務項目  */
+/* ==========================================================================
+   7. 艾城市核心服務項目 (Core Services)
+   涵義：三項服務採用階層式（Staggered Offset）排開
+   ========================================================================== */
 .services-staggered-list {
   display: flex;
   flex-direction: column;
@@ -340,7 +350,7 @@ body {
   transform: translateY(-3px);
 }
 
-.service-row-card.step-1 { width: 92%; margin-right: auto;  border-left: 5px solid var(--primary-green);}
+.service-row-card.step-1 { width: 92%; margin-right: auto; }
 .service-row-card.step-2 { width: 92%; margin: 0 auto; border-left: 5px solid var(--accent-gold); }
 .service-row-card.step-3 { width: 92%; margin-left: auto; border-left: 5px solid var(--accent-blue); }
 
@@ -372,10 +382,13 @@ body {
   line-height: 1.55;
 }
 
-/* 實際績效與成果數據 */
+/* ==========================================================================
+   8. 實際績效與成果數據 (Track Record)
+   涵義：三個獨立框卡排成一橫條，小螢幕自動疊加為單欄
+   ========================================================================== */
 .stats-boxes-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 平行排成一條 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
@@ -418,7 +431,10 @@ body {
   line-height: 1.5;
 }
 
-/* 最新消息與公告  */
+/* ==========================================================================
+   9. 最新消息與公告 (News Section)
+   涵義：展現 6 個卡片 (2x3)，並附帶更多資訊按鈕
+   ========================================================================== */
 .btn-more-info {
   font-size: 13.5px;
   font-weight: 700;
@@ -438,7 +454,7 @@ body {
 
 .news-grid-6 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 2 行 x 3 欄 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
@@ -490,7 +506,7 @@ body {
 
 /* ==========================================================================
    10. 預約免費健檢表單 (Form Section)
-   涵義：需求 9，選項「其他」可以點擊並直接填寫需求文字內容
+   涵義：選項「其他」可以點擊並直接填寫需求文字內容
    ========================================================================== */
 .consult-section {
   background-color: var(--dark-green-bg);
@@ -558,7 +574,6 @@ body {
 
 .form-input:focus { border-color: var(--accent-gold); }
 
-/* 複選框網格 */
 .checkbox-options-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -614,7 +629,10 @@ body {
 
 .btn-submit-form:hover { background: #f1b720; }
 
-/* 頁尾資訊 */
+/* ==========================================================================
+   11. 頁尾資訊 (Footer)
+   涵義：縮窄寬度（1000px）居中，快速連結改為 3 個一排橫向佈局
+   ========================================================================== */
 .site-footer {
   background: #050b07;
   color: #94a3b8;
@@ -622,7 +640,6 @@ body {
   border-top: 3px solid var(--accent-gold);
 }
 
-/* 需求 10：控制在小巧精緻的寬度，不分散過寬 */
 .footer-compact-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -657,7 +674,7 @@ body {
 
 .footer-links-3cols {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 個一排 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px 16px;
 }
 
@@ -669,7 +686,7 @@ body {
 
 .qr-code-group { display: flex; gap: 14px; }
 .qr-code-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; }
-.qr-img { width: 80px; height: 80px; background: #fff; padding: 2px; border-radius: 4px; }
+.qr-img { width: 50px; height: 50px; background: #fff; padding: 2px; border-radius: 4px; }
 
 .footer-copyright {
   max-width: 1000px;
@@ -683,12 +700,13 @@ body {
 
 /* ==========================================================================
    12. RWD 響應式佈局設定
-   涵義：當手機或平板寬度小於 991px 時，自動過渡為順暢的單欄樣式
+   涵義：手機/小螢幕 (<= 991px) 自動過渡成順暢的單欄直排
    ========================================================================== */
 @media (max-width: 991px) {
   .desktop-nav { display: none; }
   .mobile-menu-btn { display: block; }
   
+  /* 企業痛點與各大區塊切換為直式排列 */
   .pain-split-grid,
   .news-grid-6,
   .stats-boxes-grid,
@@ -697,6 +715,10 @@ body {
   .footer-compact-container {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .pain-left-header {
+    text-align: center;
   }
 
   .service-row-card.step-1,
