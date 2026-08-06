@@ -7,7 +7,6 @@
   --accent-gold: #D4A017;     /* 品牌點綴色：琥珀金 */
   --accent-blue: #0284c7;     /* 輔助標示色：湛藍 */
   --bg-light-gray: #f8fafc;   /* 區塊背景：高質感淺灰 */
-  --bg-light-green: #f2f7f4;  /* 區塊背景：溫和鼠尾草綠 */
   --dark-green-bg: #0b1510;   /* 表單區塊背景：極深翡翠綠 */
   --text-dark: #0f172a;       /* 主要標題文字色 */
   --text-body: #334155;       /* 內文描述文字色 */
@@ -213,10 +212,7 @@ body {
 .dot { width: 10px; height: 10px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; }
 .dot.active { background: var(--accent-gold); width: 24px; border-radius: 12px; }
 
-/* ==========================================================================
-   5. 最新消息跑馬燈 (News Ticker)
-   涵義：需求 3, 4，字體放大 (15px)，與後續痛點區塊保持寬裕距離
-   ========================================================================== */
+/* 最新消息跑馬燈 (News Ticker) */
 .ticker-section {
   background: var(--primary-green);
   height: 48px;
@@ -224,7 +220,7 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
-  margin-bottom: 40px; /* 需求 4：增加與企業痛點之間的間距 */
+  margin-bottom: 40px;
 }
 
 .ticker-badge {
@@ -244,7 +240,7 @@ body {
 .ticker-track { display: flex; white-space: nowrap; animation: tick 35s linear infinite; }
 
 .ticker-item {
-  font-size: 15px; /* 需求 3：放大字體提升閱讀性 */
+  font-size: 15px; 
   color: rgba(255,255,255,0.95);
   padding: 0 32px;
   font-weight: 500;
@@ -252,10 +248,7 @@ body {
 
 @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* ==========================================================================
-   6. 企業痛點挑戰 (Pain Points)
-   涵義：需求 5，改為左側標語、右側三項痛點說明的左右對比視覺
-   ========================================================================== */
+/* 企業痛點挑戰  */
 .pain-section {
   padding-top: 48px;
 }
@@ -324,10 +317,7 @@ body {
   line-height: 1.55;
 }
 
-/* ==========================================================================
-   7. 艾城市核心服務項目 (Core Services)
-   涵義：需求 6，三項服務採用階層式（Staggered Row）錯落排開
-   ========================================================================== */
+/*  艾城市核心服務項目  */
 .services-staggered-list {
   display: flex;
   flex-direction: column;
@@ -350,8 +340,7 @@ body {
   transform: translateY(-3px);
 }
 
-/* 階層錯落偏移效果 (Staggered Layout) */
-.service-row-card.step-1 { width: 92%; margin-right: auto; }
+.service-row-card.step-1 { width: 92%; margin-right: auto;  border-left: 5px solid var(--primary-green);}
 .service-row-card.step-2 { width: 92%; margin: 0 auto; border-left: 5px solid var(--accent-gold); }
 .service-row-card.step-3 { width: 92%; margin-left: auto; border-left: 5px solid var(--accent-blue); }
 
@@ -383,10 +372,7 @@ body {
   line-height: 1.55;
 }
 
-/* ==========================================================================
-   8. 實際績效與成果數據 (Track Record)
-   涵義：需求 7，三個獨立框卡排成一條，手機版自動疊加
-   ========================================================================== */
+/* 實際績效與成果數據 */
 .stats-boxes-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 平行排成一條 */
@@ -432,10 +418,7 @@ body {
   line-height: 1.5;
 }
 
-/* ==========================================================================
-   9. 最新消息與公告 (News Section)
-   涵義：需求 8，網格改為 6 個卡片，並提供「更多資訊 ➔」按鈕
-   ========================================================================== */
+/* 最新消息與公告  */
 .btn-more-info {
   font-size: 13.5px;
   font-weight: 700;
@@ -601,7 +584,6 @@ body {
   width: 16px; height: 16px;
 }
 
-/* 需求 9：「其他」文字輸入欄位 */
 .other-input-wrap {
   display: flex;
   align-items: center;
@@ -632,10 +614,7 @@ body {
 
 .btn-submit-form:hover { background: #f1b720; }
 
-/* ==========================================================================
-   11. 頁尾資訊 (Footer)
-   涵義：需求 10，縮窄邊界居中，快速連結改為 3 個一排橫向排列
-   ========================================================================== */
+/* 頁尾資訊 */
 .site-footer {
   background: #050b07;
   color: #94a3b8;
@@ -676,7 +655,6 @@ body {
   margin-bottom: 12px;
 }
 
-/* 需求 10：快速連結 3 個一排橫向佈局 */
 .footer-links-3cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 個一排 */
@@ -691,7 +669,7 @@ body {
 
 .qr-code-group { display: flex; gap: 14px; }
 .qr-code-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; }
-.qr-img { width: 50px; height: 50px; background: #fff; padding: 2px; border-radius: 4px; }
+.qr-img { width: 80px; height: 80px; background: #fff; padding: 2px; border-radius: 4px; }
 
 .footer-copyright {
   max-width: 1000px;
