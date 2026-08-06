@@ -53,6 +53,8 @@
             <span>光電建置</span>
           </div>
         </div>
+        
+        <a href="https://www.google.com/maps/search/?api=1&query=台中市西區五權五街151號" target="_blank" class="btn-map" title="查看 Google 地圖">📍 地圖</a>
         <a href="#page5" class="btn-primary">預約健檢</a>
       </nav>
 
@@ -79,9 +81,9 @@
   <!-- 全頁滾動容器 -->
   <main class="snap-container">
 
-    <!-- PAGE 1: 輪播圖 (限制 1920x1080 內) -->
+    <!-- PAGE 1: 輪播圖 (1920*1080 比例、不滿版、適當置中) -->
     <section id="page1" class="snap-page hero-page">
-      <div class="carousel-box">
+      <div class="carousel-wrapper">
         <div class="carousel">
           <div class="track" id="carousel-track">
             <div class="slide active"><img src="/img/homebg.png" alt="介紹" /></div>
@@ -103,8 +105,9 @@
       </div>
     </section>
 
-    <!-- PAGE 2: 跑馬燈 + 企業痛點 (左右交錯對決佈局) -->
+    <!-- PAGE 2: 最新消息跑馬燈 + 企業痛點 (非對稱錯落佈局) -->
     <section id="page2" class="snap-page page-layout bg-gray">
+      <!-- 跑馬燈條 -->
       <div class="ticker-box">
         <div class="ticker-tag">最新消息</div>
         <div class="ticker-content">
@@ -116,41 +119,37 @@
         </div>
       </div>
 
+      <!-- 企業痛點內容區 (全新錯落排版) -->
       <div class="page-content">
-        <div class="pain-split-container">
-          <!-- 左側引言與大標 -->
-          <div class="pain-left">
-            <span class="subtitle">TRANSFORMATION CHALLENGES</span>
-            <h2 class="title">您的企業是否面臨<br/>以下雙軸轉型瓶頸？</h2>
-            <p class="pain-intro">永續減碳與 AI 數位轉型已非選擇題，而是企業生存的必修課。艾城市協助您克服法規、數據與資源三大關卡。</p>
+        <div class="sec-head text-center">
+          <span class="subtitle">TRANSFORMATION CHALLENGES</span>
+          <h2 class="title">您的企業是否面臨以下轉型挑戰？</h2>
+        </div>
+
+        <div class="pain-asymmetric-grid">
+          <!-- 左側主焦點痛點 -->
+          <div class="pain-featured-card">
+            <div class="pain-badge">主要挑戰 01</div>
+            <h3 class="card-title">法規與品牌要求雙重壓力？</h3>
+            <p class="card-desc">不知如何開始 ISO 14064-1 組織碳盤查與 ISO 14067 產品碳足跡計算，面臨國際品牌供應鏈稽核與抽查危機。</p>
+            <div class="pain-warning-bar">⚡ 優先等級：高合規風險</div>
           </div>
 
-          <!-- 右側 3 階層縱向錯落列表 -->
-          <div class="pain-right-list">
-            <div class="pain-item-row">
-              <div class="pain-num">01</div>
-              <div class="pain-info">
-                <span class="pain-tag">合規與供應鏈</span>
-                <h3 class="pain-item-title">法規與品牌要求的雙重壓力？</h3>
-                <p class="pain-item-desc">不知如何開始 ISO 14064-1 組織碳盤查與 ISO 14067 產品碳足跡計算，面臨供應鏈抽查危機。</p>
+          <!-- 右側次要痛點列表 -->
+          <div class="pain-sub-list">
+            <div class="pain-sub-card">
+              <span class="pain-badge bg-blue">挑戰 02</span>
+              <div class="pain-sub-text">
+                <h4 class="card-title-sm">數據收集繁瑣低效？</h4>
+                <p class="card-desc-sm">跨部門 Excel 整理耗時易錯，缺乏自動化整合工具（如 EI Bot）與 AI 客服輔助串接。</p>
               </div>
             </div>
 
-            <div class="pain-item-row">
-              <div class="pain-num">02</div>
-              <div class="pain-info">
-                <span class="pain-tag tag-blue">數據管理</span>
-                <h3 class="pain-item-title">數據收集繁瑣低效？</h3>
-                <p class="pain-item-desc">跨部門 Excel 整理耗時易錯，缺乏自動化整合工具與 AI 智慧客服輔助串接。</p>
-              </div>
-            </div>
-
-            <div class="pain-item-row">
-              <div class="pain-num">03</div>
-              <div class="pain-info">
-                <span class="pain-tag">資金補助</span>
-                <h3 class="pain-item-title">轉型資金與資源不足？</h3>
-                <p class="pain-item-desc">想引進低碳與智慧化設備，卻不熟悉政府升級轉型補助之申請與企劃流程。</p>
+            <div class="pain-sub-card">
+              <span class="pain-badge">挑戰 03</span>
+              <div class="pain-sub-text">
+                <h4 class="card-title-sm">轉型資金與資源不足？</h4>
+                <p class="card-desc-sm">想引進低碳與智慧化設備，卻不熟悉政府升級轉型補助（16+4 / 19+1）之申請與企劃流程。</p>
               </div>
             </div>
           </div>
@@ -158,50 +157,44 @@
       </div>
     </section>
 
-    <!-- PAGE 3: 核心項目 (1+2 異型主次網格) + 企業實績 (數值大字) -->
+    <!-- PAGE 3: 核心項目 (橫向階梯式) + 企業實績 (數值大字) -->
     <section id="page3" class="snap-page page-layout">
       <div class="page-content flex-split">
-        <!-- 上半部：核心服務 1大+2小異型 layout -->
+        <!-- 上半部分：核心項目 (橫向階梯式結構) -->
         <div class="split-top">
           <div class="sec-head text-center">
             <span class="subtitle">OUR CORE SERVICES</span>
             <h2 class="title">艾城市服務項目</h2>
           </div>
 
-          <div class="svc-bento-grid">
-            <!-- 左側主要服務卡片 (1大) -->
-            <div class="svc-bento-main">
-              <span class="svc-bento-tag">FLAGSHIP SERVICE</span>
-              <div class="svc-bento-num">01</div>
-              <h3 class="svc-bento-title">永續服務輔導</h3>
-              <p class="svc-bento-desc">提供全方位 ISO 14064-1 溫室氣體盤查與 ISO 14067 產品碳足跡輔導，協助完成第三方驗證，精準對接國際綠色供應鏈需求。</p>
-              <a href="#page5" class="svc-bento-btn">立即預約專人諮詢 ➔</a>
+          <div class="svc-horizontal-list">
+            <div class="svc-row-card">
+              <div class="svc-row-num">01</div>
+              <div class="svc-row-content">
+                <h3 class="svc-row-title">永續服務</h3>
+                <p class="svc-row-desc">協助企業進行 ISO 14064-1 / 14067 碳盤查輔導與驗證，對接綠色供應鏈需求。</p>
+              </div>
             </div>
 
-            <!-- 右側次要服務卡片 (2小上下堆疊) -->
-            <div class="svc-bento-side">
-              <div class="svc-sub-card">
-                <div class="svc-sub-header">
-                  <span class="svc-num-sm">02</span>
-                  <span class="svc-tag-sm tag-blue">人員培訓</span>
-                </div>
-                <h4 class="svc-sub-title">淨零人才培訓與考照班</h4>
-                <p class="svc-sub-desc">iPAS 淨零碳規劃管理師考照培訓與企業客製內訓，打造內部轉型實戰力。</p>
+            <div class="svc-row-card offset-right">
+              <div class="svc-row-num bg-blue-num">02</div>
+              <div class="svc-row-content">
+                <h3 class="svc-row-title">人員培訓</h3>
+                <p class="svc-row-desc">提供 iPAS 淨零碳規劃管理師考照培訓與企業內訓，提升企業雙軸轉型戰力。</p>
               </div>
+            </div>
 
-              <div class="svc-sub-card">
-                <div class="svc-sub-header">
-                  <span class="svc-num-sm">03</span>
-                  <span class="svc-tag-sm">光電建置</span>
-                </div>
-                <h4 class="svc-sub-title">太陽能光電與 EMS 系統</h4>
-                <p class="svc-sub-desc">廠房綠電創能評估與光電系統一站式建置，搭配 EMS 智慧能源管理。</p>
+            <div class="svc-row-card">
+              <div class="svc-row-num">03</div>
+              <div class="svc-row-content">
+                <h3 class="svc-row-title">光電建置</h3>
+                <p class="svc-row-desc">廠房綠電創能評估、太陽能光電系統興建，搭配智慧 EMS 能源管理系統。</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 下半部：企業實績 (數字大字) -->
+        <!-- 下半部分：企業實績 (數值大字) -->
         <div class="split-bottom">
           <div class="stats-container">
             <div class="stat-item">
@@ -260,9 +253,10 @@
       </div>
     </section>
 
-    <!-- PAGE 5: 諮詢表單 + 頁尾 -->
+    <!-- PAGE 5: 諮詢表單 + 頁尾 Footer -->
     <section id="page5" class="snap-page page-layout dark-page">
       <div class="page-content form-footer-flex">
+        <!-- 諮詢表單 -->
         <div class="form-wrapper">
           <div class="sec-head text-center">
             <h2 class="title light-title">預約專業永續與數位轉型健檢</h2>
@@ -278,8 +272,8 @@
               <input type="tel" placeholder="聯絡電話 *" class="input" required />
               <input type="email" placeholder="電子郵件 *" class="input" required />
             </div>
-            <div class="checkbox-row">
-             <label class="check-label"><input type="checkbox" /> 永續轉型輔導</label>
+            <div class="checkbox-row">  
+              <label class="check-label"><input type="checkbox" /> 永續轉型輔導</label>
               <label class="check-label"><input type="checkbox" /> 人員培訓</label>
               <label class="check-label"><input type="checkbox" /> 光電建置</label>
               <label class="check-label"><input type="checkbox" /> 其他</label>
@@ -288,6 +282,7 @@
           </form>
         </div>
 
+        <!-- 頁尾 Footer -->
         <footer class="site-footer">
           <div class="footer-container">
             <div class="f-info">
