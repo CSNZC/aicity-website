@@ -12,28 +12,26 @@
   <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-
-  <!-- 置頂導覽列 -->
-  <header class="navbar-header">
-    <div class="navbar-container">
-      <a href="/" class="logo-link">
-        <img src="/img/logo_L.png" alt="艾城市有限公司Logo" class="logo-img">
+  <!-- 導覽列 -->
+  <header class="nav-h">
+    <div class="nav-c">
+      <a class="logo-link">
+        <img src="/img/logo_L.png" alt="艾城市有限公司Logo" class="logo">
       </a>
-      
       <nav class="desktop-nav">
         <div class="nav-dropdown">
-          <a class="nav-link" href="javascript:void(0)">關於我們 ▾</a>
+          <a class="nav-l" >關於我們 ▾</a>
           <div class="dropdown-menu">
-            <a href="/about/intro">公司介紹</a>
-            <a href="/about/partners">團隊介紹</a>
-            <a href="javascript:void(0)">相關連結</a>
+            <a>公司介紹</a>
+            <a>團隊介紹</a>
+            <a>相關連結</a>
           </div>
         </div>
         <div class="nav-dropdown">
-          <a class="nav-link" href="#news">最新消息</a>
+          <a class="nav-l" href="#news">最新消息</a>
         </div>
         <div class="nav-dropdown">
-          <a class="nav-link" href="javascript:void(0)">永續服務 ▾</a>
+          <a class="nav-l" href="javascript:void(0)">永續服務 ▾</a>
           <div class="dropdown-menu">
             <a href="/consulting/apply">永續服務</a>
             <a href="/consulting/process">AI轉型</a>
@@ -43,10 +41,10 @@
           <a class="nav-link" href="#courses">人員培訓</a>
         </div>
         <div class="nav-dropdown">
-          <a class="nav-link" href="#solar">光電建置</a>
+          <a class="nav-l" href="#solar">光電建置</a>
         </div>
         <div class="nav-dropdown">
-          <a class="nav-link" href="javascript:void(0)">實績事例 ▾</a>
+          <a class="nav-l href="javascript:void(0)">實績事例 ▾</a>
           <div class="dropdown-menu">
             <a href="/consulting/apply">永續轉型</a>
             <a href="/consulting/process">人員培訓</a>
@@ -66,21 +64,19 @@
     </div>
 
     <div id="mobile-menu" class="mobile-menu">
-      <a href="/about/intro" class="mobile-nav-link">關於我們</a>
-      <a href="#news" class="mobile-nav-link">最新消息</a>
-      <a href="/consulting/apply" class="mobile-nav-link">永續服務</a>
-      <a href="#courses" class="mobile-nav-link">人員培訓</a>
-      <a href="#solar" class="mobile-nav-link">光電建置</a>
-      <a href="/consulting/apply" class="mobile-nav-link">實績事例</a>
-      <a href="https://www.google.com/maps/search/?api=1&query=台中市西區五權五街151號" target="_blank" class="mobile-nav-link">📍 公司地圖導航</a>
-      <a href="#contact" class="mobile-btn-consult">預約免費健檢</a>
+      <div class="mobile-nav-link">
+        <a>關於我們</a>
+        <a>永續服務</a>
+        <a>人員培訓</a>
+        <a>光電建置</a>
+        <a>實績事例</a>
+        <a>預約免費健檢</a>
+      </div>
     </div>
   </header>
 
-  <!-- 英雄輪播 -->
-  <section id="home" class="hero-carousel">
-    <div class="carousel-container">
-      <div class="carousel-track" id="carousel-track">
+  <!-- 輪播圖 
+    <div class="carousel-track" id="carousel-track">
         <div class="carousel-slide active">
           <img src="/img/homebg.png" alt="介紹">
         </div>
@@ -93,6 +89,17 @@
         <div class="carousel-slide">
           <img src="/img/run3.jpg" alt="iPAS 淨零碳規劃管理師認證培訓班">
         </div>
+      </div> 
+  -->
+  <section id="home" class="hero-carousel">
+    <div class="carousel-container">
+      <div class="carousel-track" id="carousel-track">
+        <div class="carousel-slide active">
+          <img src="/img/homebg.png" alt="介紹">
+          <img src="/img/run1.jpg">
+          <img src="/img/run2.jpg">
+          <img src="/img/run3.jpg">
+        </div>          
       </div>
 
       <button class="carousel-btn prev-btn" id="prev-btn" aria-label="上一張">&#10094;</button>
