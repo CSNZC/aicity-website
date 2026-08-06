@@ -1,45 +1,88 @@
 /* ==========================================================================
-   1. 全域變數與重置 (黃綠 LimeGreen + 活潑藍 Vibrant Blue)
+   1. 變數設定 (沉穩高質感雙軸色系)
    ========================================================================== */
 :root {
-  --primary: #84cc16;       /* 活力黃綠色 (Lime Green) */
-  --primary-dark: #65a30d;  /* 深黃綠 */
-  --blue: #0284c7;          /* 活潑海洋藍 */
-  --blue-light: #e0f2fe;    /* 淺天藍 */
-  --dark: #0f172a;          /* 質感深藍黑 */
-  --gray-bg: #f8fafc;       /* 淺灰色區塊底色 */
-  --gray-border: #e2e8f0;   /* 邊線顏色 */
-  --text-main: #334155;     /* 主文字色 */
+  --primary: #1B4332;       /* 森林深綠 */
+  --accent-gold: #D4A017;   /* 琥珀金 */
+  --accent-blue: #0284c7;   /* 湛藍 (輔助點綴) */
+  --accent-purple: #8b5cf6; /* 紫色 (數值大字) */
+  --bg-gray: #f8fafc;       /* 淺灰底色 */
+  --dark-bg: #09130d;       /* 極深綠黑背景 */
+  --text-dark: #1e293b;     /* 主文字色 */
+  --text-muted: #64748b;    /* 副文字色 */
+  --border-color: #e2e8f0;  /* 輕薄邊線 */
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  padding-top: 72px;
-  font-family: 'Noto Sans TC', sans-serif;
-  background-color: #ffffff;
-  color: var(--text-main);
-  line-height: 1.6;
+  padding: 0;
 }
-
-/* 區塊背景設定 (實現淺灰交替) */
-.bg-gray { background-color: var(--gray-bg); }
 
 /* ==========================================================================
-   2. 導覽列 (Header & Nav)
+   2. 純 CSS Fullpage Scroll Snap 滿版滾動設定
+   ========================================================================== */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  color: var(--text-dark);
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+.snap-container {
+  width: 100%;
+  height: 100dvh;
+}
+
+.snap-page {
+  width: 100%;
+  height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 頁面通用 Layout */
+.page-layout {
+  padding-top: 56px; /* 預留給薄型 Navbar */
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 24px;
+  height: calc(100dvh - 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bg-gray { background-color: var(--bg-gray); }
+
+/* ==========================================================================
+   3. 薄型極簡導覽列 Header (56px 高度)
    ========================================================================== */
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 72px;
+  height: 56px;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 1px solid rgba(27, 67, 50, 0.15);
 }
 
-.nav-box {
+.nav-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
@@ -49,7 +92,7 @@ body {
   justify-content: space-between;
 }
 
-.logo-img { height: 44px; width: auto; }
+.logo-img { height: 36px; width: auto; object-fit: contain; }
 
 .desktop-nav {
   display: flex;
@@ -58,16 +101,16 @@ body {
 }
 
 .nav-link {
-  font-size: 14.5px;
+  font-size: 13.5px;
   font-weight: 600;
-  color: var(--dark);
+  color: var(--primary);
   text-decoration: none;
+  padding: 4px 8px;
   cursor: pointer;
-  padding: 8px 4px;
   transition: color 0.2s;
 }
 
-.nav-link:hover { color: var(--blue); }
+.nav-link:hover { color: var(--accent-gold); }
 
 .dropdown { position: relative; }
 .menu {
@@ -75,287 +118,312 @@ body {
   position: absolute;
   top: 100%; left: 0;
   background: #ffffff;
-  min-width: 140px;
-  border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-  padding: 8px 0;
-  border: 1px solid var(--gray-border);
+  min-width: 130px;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  padding: 6px 0;
+  border: 1px solid var(--border-color);
 }
 
 .dropdown:hover .menu { display: block; }
-
 .menu span {
   display: block;
-  padding: 8px 16px;
-  font-size: 13.5px;
-  color: var(--dark);
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--primary);
   cursor: default;
 }
-
-.menu span:hover {
-  background: var(--blue-light);
-  color: var(--blue);
-}
+.menu span:hover { background: #f0f4f2; color: var(--accent-gold); }
 
 .btn-map {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: var(--blue);
-  background: var(--blue-light);
-  padding: 6px 12px;
-  border-radius: 20px;
+  color: var(--accent-blue);
+  background: #e0f2fe;
+  padding: 4px 10px;
+  border-radius: 16px;
   text-decoration: none;
 }
 
 .btn-primary {
   background: var(--primary);
-  color: var(--dark);
-  font-weight: 700;
-  padding: 8px 18px;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.btn-primary:hover {
-  background: var(--primary-dark);
   color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s;
 }
 
-.mobile-btn { display: none; background: none; border: none; cursor: pointer; }
+.btn-primary:hover { background: var(--accent-gold); color: var(--primary); }
+
+.mobile-btn { display: none; background: none; border: none; cursor: pointer; color: var(--primary); }
 .mobile-menu { display: none !important; }
 
-@media (max-width: 991px) {
-  .desktop-nav { display: none; }
-  .mobile-btn { display: block; }
-}
-
 /* ==========================================================================
-   3. 英雄輪播 (Hero)
+   4. Page 1: 英雄大圖輪播
    ========================================================================== */
-.hero { max-width: 1280px; margin: 16px auto; padding: 0 24px; }
-.carousel { position: relative; overflow: hidden; border-radius: 12px; }
-.track { display: flex; transition: transform 0.6s ease; }
-.slide { min-width: 100%; }
-.slide img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.hero-page { padding-top: 56px; }
+.carousel { width: 100%; height: calc(100dvh - 56px); position: relative; overflow: hidden; }
+.track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+.slide { min-width: 100%; height: 100%; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
 
 .c-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
-  background: rgba(15, 23, 42, 0.6); color: #fff;
-  border: none; width: 38px; height: 38px; border-radius: 50%;
-  cursor: pointer;
+  background: rgba(9, 19, 13, 0.5); color: #fff;
+  border: none; width: 36px; height: 36px; border-radius: 50%;
+  cursor: pointer; z-index: 10;
 }
-.prev { left: 12px; } .next { right: 12px; }
+.prev { left: 16px; } .next { right: 16px; }
 
 .dots {
-  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 6px;
+  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px; z-index: 10;
 }
-.dot { width: 8px; height: 8px; background: rgba(255,255,255,0.5); border-radius: 50%; }
-.dot.active { background: var(--primary); width: 20px; border-radius: 10px; }
+.dot { width: 8px; height: 8px; background: rgba(255,255,255,0.4); border-radius: 50%; cursor: pointer; }
+.dot.active { background: var(--accent-gold); width: 20px; border-radius: 10px; }
 
 /* ==========================================================================
-   4. 跑馬燈 (Ticker)
+   5. Page 2: 最新消息跑馬燈 + 企業痛點
    ========================================================================== */
-.ticker-sec {
-  height: 46px; overflow: hidden; display: flex; align-items: center; position: relative;
-  border-y: 1px solid var(--gray-border);
+.ticker-box {
+  background: var(--primary);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: auto;
 }
+
 .ticker-tag {
-  position: absolute; left: 0; top: 0; bottom: 0; z-index: 10;
-  background: var(--primary); color: var(--dark); font-weight: 800;
-  font-size: 12px; padding: 0 16px; display: flex; align-items: center;
+  background: var(--accent-gold);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0; top: 0; z-index: 10;
 }
-.ticker-box { overflow: hidden; width: 100%; padding-left: 100px; }
+
+.ticker-content { overflow: hidden; width: 100%; padding-left: 90px; }
 .ticker-track { display: flex; white-space: nowrap; animation: tick 35s linear infinite; }
-.ticker-item { font-size: 13.5px; padding: 0 24px; color: var(--dark); }
+.ticker-item { font-size: 13px; color: rgba(255,255,255,0.9); padding: 0 24px; }
 
 @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* ==========================================================================
-   5. 通用佈局與卡片 (Layout & Cards)
-   ========================================================================== */
-.sec { padding: 60px 24px; }
-.container { max-width: 1280px; margin: 0 auto; }
+.sec-head { margin-bottom: 24px; }
+.subtitle { color: var(--accent-gold); font-size: 11px; font-weight: 800; letter-spacing: 0.1em; }
+.title { font-family: 'Noto Serif TC', serif; font-size: 26px; color: var(--primary); margin-top: 4px; }
 .text-center { text-align: center; }
-
-.subtitle { color: var(--blue); font-size: 12px; font-weight: 800; letter-spacing: 0.1em; }
-.title { font-size: 26px; color: var(--dark); margin: 6px 0 0; }
 
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 32px;
+  gap: 20px;
 }
 
-.tag {
-  font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block;
-}
-.tag-green { background: #ecfccb; color: var(--primary-dark); }
-.tag-blue { background: var(--blue-light); color: var(--blue); }
-
-/* 5-1 企業痛點（警示圓弧卡片呈現方式） */
+/* 企業痛點卡片設計 */
 .pain-card {
   background: #ffffff;
-  border: 2px solid #fef08a; /* 亮黃色警示邊框 */
-  border-radius: 16px;
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 6px;
   padding: 24px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
 }
 
-.pain-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--blue);
-  box-shadow: 0 12px 24px rgba(2, 132, 199, 0.12);
+.pain-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #b45309;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
 }
+.pain-badge.bg-blue { background: #e0f2fe; color: var(--accent-blue); }
 
-.pain-icon { font-size: 24px; margin-bottom: 8px; }
-.card-title { font-size: 17px; color: var(--dark); margin: 10px 0 6px; }
-.card-desc { font-size: 13.5px; color: #64748b; margin: 0; }
+.card-title { font-size: 16.5px; color: var(--text-dark); margin-bottom: 8px; }
+.card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
-/* 5-2 核心服務項目（頂條幾何卡片呈現方式） */
-.svc-card {
-  background: #ffffff;
-  border-top: 4px solid var(--primary); /* 頂部黃綠亮條 */
-  border-radius: 8px;
-  padding: 28px 24px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: all 0.3s;
+/* ==========================================================================
+   6. Page 3: 核心項目 + 企業實績 (數字大字)
+   ========================================================================== */
+.flex-split {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
-.svc-card:hover {
-  transform: translateY(-6px);
-  border-top-color: var(--blue);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
-}
-
-.svc-num { font-size: 28px; font-weight: 800; color: var(--primary-dark); }
-.svc-title { font-size: 19px; color: var(--dark); margin: 8px 0; }
-.svc-desc { font-size: 13.5px; color: #64748b; margin: 0 0 20px; flex-grow: 1; }
-.svc-btn { font-size: 13.5px; font-weight: 700; color: var(--blue); }
-
-/* 5-3 公司實績 (Cases) */
-.case-card {
+.svc-card {
   background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--gray-border);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--primary);
+  border-radius: 6px;
+  padding: 20px;
 }
 
-.case-img-placeholder {
-  height: 140px;
-  background: linear-gradient(135deg, #e0f2fe, #ecfccb);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dark);
-  font-weight: 700;
+.svc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.svc-num { font-size: 22px; font-weight: 800; color: var(--accent-gold); }
+.svc-tag { font-size: 10.5px; background: #f0f4f2; color: var(--primary); padding: 2px 6px; border-radius: 4px; }
+.svc-tag.tag-blue { background: #e0f2fe; color: var(--accent-blue); }
+
+.svc-title { font-size: 16px; color: var(--primary); margin-bottom: 6px; }
+.svc-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+
+/* 企業實績：數值大字呈現 (復刻圖片樣式) */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #ffffff;
+  border-top: 1px solid var(--border-color);
+  padding: 30px 0;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 42px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.text-green { color: #10b981; }
+.text-blue { color: var(--accent-blue); }
+.text-purple { color: var(--accent-purple); }
+
+.stat-label {
   font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
 }
-
-.case-body { padding: 20px; }
-.case-title { font-size: 16px; color: var(--dark); margin: 8px 0; }
-.case-desc { font-size: 13px; color: #64748b; margin: 0; }
-
-/* 5-4 最新消息 (News) */
-.news-card {
-  background: #ffffff; padding: 20px; border-radius: 8px;
-  border: 1px solid var(--gray-border);
-}
-.card-meta { display: flex; justify-content: space-between; align-items: center; }
-.date { font-size: 12px; color: #94a3b8; }
-.news-title { font-size: 16px; color: var(--dark); margin: 10px 0 6px; }
-.news-summary { font-size: 13px; color: #64748b; margin: 0; }
 
 /* ==========================================================================
-   6. 預約健檢表單 (Contact - 鮮明活力黑綠調)
+   7. Page 4: 最新消息或公告
    ========================================================================== */
-.contact-sec {
-  background: #0f172a; /* 深藍黑 */
-  color: #ffffff;
-  padding: 60px 24px;
-}
-
-.contact-box { max-width: 800px; margin: 0 auto; }
-.contact-title { color: #ffffff; font-size: 26px; margin: 0 0 8px; }
-.contact-desc { color: #94a3b8; font-size: 14px; margin: 0 0 28px; }
-
-.form-card {
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  padding: 32px;
-  display: flex; flex-direction: column; gap: 16px;
-}
-
-.form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.form-group { display: flex; flex-direction: column; }
-.form-label { font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
-
-.form-input {
-  padding: 10px 14px;
-  background: #0f172a;
-  border: 1px solid #334155;
+.news-card {
+  background: #ffffff;
   border-radius: 6px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.card-meta { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.news-tag { background: #f0f4f2; color: var(--primary); font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+.news-tag.tag-blue { background: #e0f2fe; color: var(--accent-blue); }
+.date { font-size: 12px; color: var(--text-muted); }
+
+.news-title { font-size: 15.5px; color: var(--text-dark); margin-bottom: 8px; line-height: 1.4; }
+.news-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+
+/* ==========================================================================
+   8. Page 5: 表單 + 頁尾 Footer
+   ========================================================================== */
+.dark-page { background: var(--dark-bg); color: #ffffff; }
+
+.form-footer-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.light-title { color: #ffffff !important; }
+.form-sub { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+
+.form-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+.input {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
   color: #ffffff;
-  font-size: 13.5px;
+  font-size: 12.5px;
   outline: none;
 }
+.input:focus { border-color: var(--accent-gold); }
 
-.form-input:focus { border-color: var(--primary); }
-
-.check-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.check-item {
-  background: #0f172a; padding: 10px; border-radius: 6px;
-  border: 1px solid #334155; font-size: 12.5px; display: flex; align-items: center; gap: 6px;
-}
-.check-item input { accent-color: var(--primary); }
+.checkbox-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.check-label { font-size: 12px; color: #cbd5e1; display: flex; align-items: center; gap: 4px; }
 
 .btn-submit {
-  background: var(--primary);
-  color: var(--dark);
-  font-size: 15px; font-weight: 800;
-  padding: 14px; border: none; border-radius: 6px;
-  cursor: pointer; margin-top: 8px;
-  transition: background 0.2s;
+  background: var(--accent-gold);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.btn-submit:hover { background: #9fe835; }
+/* 頁尾 Footer */
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+  margin-top: 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.f-company { color: #ffffff; font-size: 15px; margin-bottom: 6px; }
+.f-info p { margin: 2px 0; }
+
+.f-links h4, .f-qr h4 { color: var(--accent-gold); margin-bottom: 6px; }
+.links-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 16px; }
+
+.qr-grid { display: flex; gap: 10px; }
+.qr-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.qr-item img { width: 42px; height: 42px; background: #fff; padding: 2px; border-radius: 4px; }
+
+.footer-copy {
+  text-align: center;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 12px;
+}
 
 /* ==========================================================================
-   7. 頁尾 (Footer)
+   9. RWD 防護 (手機與矮螢幕停用 Scroll Snap)
    ========================================================================== */
-.footer { background: #020617; color: #94a3b8; padding: 40px 24px 20px; }
-.footer-box {
-  max-width: 1280px; margin: 0 auto;
-  display: flex; justify-content: space-between; gap: 32px;
-}
-
-.f-col { flex: 1; }
-.f-company { color: #ffffff; font-size: 18px; margin: 0 0 12px; }
-.f-title { color: var(--primary); font-size: 14px; margin: 0 0 12px; }
-
-.contact-list p { margin: 6px 0; font-size: 13px; }
-.contact-list strong { color: #ffffff; }
-
-.f-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-.f-list span { font-size: 13px; color: #94a3b8; cursor: default; }
-
-.qr-group { display: flex; gap: 12px; }
-.qr-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; }
-.qr-img { width: 64px; height: 64px; background: #fff; padding: 4px; border-radius: 4px; }
-
-.footer-bottom {
-  max-width: 1280px; margin: 30px auto 0; padding-top: 16px;
-  border-top: 1px solid #1e293b; text-align: center; font-size: 12px;
-}
-
-@media (max-width: 991px) {
-  .grid-3, .form-row, .check-grid { grid-template-columns: 1fr; }
-  .footer-box { flex-direction: column; }
+@media (max-width: 991px), (max-height: 700px) {
+  html { scroll-snap-type: none; }
+  .snap-container { height: auto; }
+  .snap-page { height: auto; min-height: unset; scroll-snap-align: none; }
+  .page-content { height: auto; padding: 40px 20px; }
+  .carousel { height: 350px; }
+  .hero-page { padding-top: 56px; }
+  .grid-3, .form-row, .checkbox-row, .stats-container { grid-template-columns: 1fr; gap: 16px; }
+  .desktop-nav { display: none; }
+  .mobile-btn { display: block; }
+  .footer-container { flex-direction: column; gap: 16px; }
 }
