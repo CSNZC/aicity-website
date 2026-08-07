@@ -9,6 +9,7 @@
   --accent-gold-light: #FFF9E6;     /* 淺金色：用於需要柔和高光的背景 */
   --accent-blue: #0284c7;           /* 強調色：海洋藍，代表數位與科技轉型 */
   --bg-light-gray: #F8FAFC;         /* 淺色背景：高質感的柔和淺灰 */
+  --from-green: #28624a;        
   --bg-white: #FFFFFF;              /* 純白背景 */
   --text-dark: #0F172A;             /* 主要標題文字顏色：極深藍灰 */
   --text-body: #334155;             /* 內文描述顏色：深石板灰，易於閱讀 */
@@ -153,6 +154,8 @@ button {
   padding: 8px 6px;                 /* 增加點擊熱區範圍 */
   position: relative;               /* 設定相對定位，供底線動畫使用 */
   transition: color 0.2s ease;      /* 顏色變化過渡效果 */
+  white-space: nowrap; /* 強制文字不換行 */
+
 }
 
 /* 導覽列底線動畫特效 */
@@ -234,6 +237,8 @@ button {
   border-radius: 8px;               /* 8px 圓角 */
   box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2); /* 綠色調的按鈕陰影 */
   transition: var(--transition);    /* 過渡動畫 */
+  white-space: nowrap; /* 強制文字不換行 */
+
 }
 
 .btn-primary-cta:hover {
