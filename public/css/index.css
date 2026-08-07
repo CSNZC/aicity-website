@@ -8,7 +8,7 @@
   --accent-blue: #0284c7;     /* 輔助標籤：海洋藍 */
   --bg-light-gray: #f8fafc;   /* 區塊背景：高質感柔灰 */
   --bg-light-green: #f2f7f4;  /* 區塊背景：鼠尾草綠 */
-  --dark-green-bg: #0b1510;   /* 表單背景：極深翡翠綠 */
+  --dark-green-bg: #234f39f9;   /* 表單背景：極深翡翠綠 */
   --text-dark: #0f172a;       /* 主要標題色 */
   --text-body: #334155;       /* 內文描述色 */
   --text-muted: #64748b;      /* 日期與次要文字 */
@@ -215,11 +215,10 @@ body {
 
 /* ==========================================================================
    5. 最新消息跑馬燈 (News Ticker)
-   涵義：字體放大至 15px，且與後續的痛點區塊保持 40px 距離
    ========================================================================== */
 .ticker-section {
   background: var(--primary-green);
-  height: 48px;
+  height: 60px;
   display: flex;
   align-items: center;
   position: relative;
@@ -230,7 +229,7 @@ body {
 .ticker-badge {
   background: var(--accent-gold);
   color: var(--primary-green);
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 800;
   padding: 0 24px;
   height: 100%;
@@ -244,7 +243,7 @@ body {
 .ticker-track { display: flex; white-space: nowrap; animation: tick 35s linear infinite; }
 
 .ticker-item {
-  font-size: 15px;
+  font-size: 20px;
   color: rgba(255,255,255,0.95);
   padding: 0 32px;
   font-weight: 500;
