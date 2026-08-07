@@ -288,6 +288,9 @@ button {
 .hero-section {
   padding-top: calc(var(--nav-height) + 32px); /* 扣除導覽列高度，並保留 32px 上方留白 */
   padding-bottom: 32px;             /* 底部保留 32px 留白 */
+  padding-bottom: 80px;                  /* 【加大留白】將下方留白增加到 80px，把跑馬燈往下推 */
+  padding-left: 20px;                    /* 左右維持 20px */
+  padding-right: 20px;
   background: var(--bg-light-gray); /* 背景用淺灰襯托輪播圖 */
 }
 
@@ -317,7 +320,9 @@ button {
 .carousel-slide img {
   width: 100%;                      /* 圖片寬度滿滿 */
   height: 100%;                     /* 圖片高度滿滿 */
-  object-fit: cover;                /* 保持比例填滿，超出部分裁切，不變形 */
+  object-fit: contain;                   /* 【關鍵修改】改為 contain，保證圖片 100% 完整顯示絕不裁切 */
+  object-position: center;               /* 圖片永遠居中對齊 */
+  background-color: var(--bg-white);     /* 【新增】加上白底，這樣圖片未填滿的兩側或上下才不會是黑的或透明的 */
 }
 
 /* 輪播左右按鈕 */
@@ -951,10 +956,7 @@ button {
   color: #64748B;                   /* 深灰色避免干擾視覺 */
 }
 
-/* ========================================================================== 
-   12. RWD 響應式佈局 (Responsive Web Design) 
-   ========================================================================== */
-/* 平板與手機 (螢幕寬度 991px 以下) */
+/*  RWD 響應式佈局 平板與手機 (螢幕寬度 991px 以下) */
 @media (max-width: 991px) {
   /* 調整全域基礎設定 */
   body { font-size: 14px; }         /* 全域字級稍微縮小 */
@@ -999,6 +1001,7 @@ button {
   }
   .hero-section {
     padding-top: calc(var(--nav-height) + 16px); /* 縮小手機版頂部空間 */
+    padding-bottom: 40px
   }
 
   /* 所有主要的 Grid 網格佈局，在手機版全部重置為 1 欄垂直堆疊 (1fr) */
