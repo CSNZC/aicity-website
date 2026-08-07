@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tickerTrack.innerHTML = doubleItems.map(text => `
       <div class="ticker-item">
         <span>${text}</span>
-        <span class="ticker-symbol">◆</span>
       </div>
     `).join('');
   }
