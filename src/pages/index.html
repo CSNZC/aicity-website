@@ -7,19 +7,19 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
 
-  <header class="header">
+  <header class="navbar-header">
     <div class="nav-container">
-      <a href="#" class="logo">
-        <img src="/img/logo_L.png" alt="艾城市 Logo">
+      <a href="#" class="logo-link">
+        <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
       </a>
       
-      <nav class="nav-desktop">
+      <nav class="desktop-nav">
         <div class="nav-dropdown">
           <span class="nav-link">關於我們 ▾</span>
           <div class="dropdown-menu">
@@ -27,7 +27,9 @@
             <span>團隊介紹</span>
           </div>
         </div>
-        <a href="#news" class="nav-link">最新消息</a>
+        <div class="nav-dropdown">
+          <a href="#news" class="nav-link">最新消息</a>
+        </div>
         <div class="nav-dropdown">
           <span class="nav-link">永續服務 ▾</span>
           <div class="dropdown-menu">
@@ -43,7 +45,9 @@
             <span>永續課程</span>
           </div>
         </div>
-        <a href="#solar" class="nav-link">光電建置</a>
+        <div class="nav-dropdown">
+          <a href="#solar" class="nav-link">光電建置</a>
+        </div>
         <div class="nav-dropdown">
           <span class="nav-link">實績事例 ▾</span>
           <div class="dropdown-menu">
@@ -52,11 +56,13 @@
             <span>光電建置</span>
           </div>
         </div>
-        <a href="#links" class="nav-link">相關連結</a>
-        <a href="#contact" class="btn-cta">預約健檢</a>
+        <div class="nav-dropdown">
+          <a href="#solar" class="nav-link">相關連結</a>
+        </div>
+        <a href="#contact" class="btn-primary-cta">預約健檢</a>
       </nav>
 
-      <button id="mobile-menu-btn" class="nav-toggle" aria-label="開關選單">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="4" y1="6" x2="20" y2="6"></line>
           <line x1="4" y1="12" x2="20" y2="12"></line>
@@ -65,27 +71,29 @@
       </button>
     </div>
 
-    <div id="mobile-menu" class="nav-mobile">
+    <div id="mobile-menu" class="mobile-menu">
       <span class="mobile-link">關於我們</span>
       <a href="#news" class="mobile-link">最新消息</a>
       <span class="mobile-link">永續服務</span>
       <a href="#courses" class="mobile-link">人員培訓</a>
       <a href="#solar" class="mobile-link">光電建置</a>
       <span class="mobile-link">實績事例</span>
-      <a href="#contact" class="btn-cta mobile-cta">預約健檢</a>
+      <a href="#contact" class="btn-primary-cta mobile-cta">預約健檢</a>
     </div>
   </header>
 
-  <section id="hero" class="hero-section">
-    <div class="carousel">
+  <section id="home" class="hero-section">
+    <div class="carousel-container">
       <div class="carousel-track" id="carousel-track">
         <div class="carousel-slide active"><img src="/img/homebg.png" alt="艾城市簡介"></div>
         <div class="carousel-slide"><img src="/img/run1.jpg" alt="綠色永續 × AI 數位轉型"></div>
         <div class="carousel-slide"><img src="/img/run2.jpg" alt="碳路安心 3.0 中小型企業方案"></div>
         <div class="carousel-slide"><img src="/img/run3.jpg" alt="iPAS 淨零碳規劃管理師認證"></div>
       </div>
-      <button class="carousel-btn prev" id="prev-btn" aria-label="上一張">❮</button>
-      <button class="carousel-btn next" id="next-btn" aria-label="下一張">❯</button>
+
+      <button class="carousel-btn prev-btn" id="prev-btn" aria-label="上一張">❮</button>
+      <button class="carousel-btn next-btn" id="next-btn" aria-label="下一張">❯</button>
+
       <div class="carousel-dots" id="carousel-dots">
         <span class="dot active" data-slide="0"></span>
         <span class="dot" data-slide="1"></span>
@@ -95,107 +103,109 @@
     </div>
   </section>
 
-  <section class="pain-hero-section">
-    <div class="ticker-bar">
-      <div class="ticker-badge">最新消息</div>
-      <div class="ticker-wrapper">
-        <div id="ticker-track" class="ticker-track">
-          <span class="ticker-item">🎉 歡迎預約 2026 最新政府補助試算與綠色健檢！</span>
-        </div>
+  <section class="ticker-section">
+    <div class="ticker-badge">最新消息</div>
+    <div class="ticker-wrapper">
+      <div id="ticker-track" class="ticker-track">
+        <span class="ticker-item">歡迎預約最新政府補助試算與 ESG 綠色健檢！</span>
       </div>
     </div>
+  </section>
 
-    <div class="pain-container">
-      <div class="pain-left">
-        <span class="section-subtitle">TRANSFORMATION CHALLENGES</span>
-        <h2 class="section-title">您的企業是否面臨以下轉型挑戰？</h2>
-        <p class="pain-desc">面對日益嚴格的法規要求與供應鏈審查，我們提供一站式專業輔導，協助您打破減碳與數位轉型的盲點。</p>
-      </div>
-
-      <div class="pain-right">
-        <div class="pain-card">
-          <div class="pain-card-header">
-            <span class="tag tag-amber">合規與供應鏈</span>
-            <h3>法規與品牌要求雙重壓力？</h3>
-          </div>
-          <p>不知如何開始 ISO 14064-1 組織碳盤查與 ISO 14067 產品碳足跡計算，面臨國際品牌供應鏈抽查危機。</p>
+  <section class="content-section pain-section bg-light-gray">
+    <div class="section-container">
+      <div class="pain-split-grid">
+        <div class="pain-left-header">
+          <span class="section-subtitle">TRANSFORMATION CHALLENGES</span>
+          <h2 class="section-title">您的企業是否面臨以下轉型挑戰？</h2>
+          <p class="pain-lead-text">面對日益嚴格的法規要求與供應鏈審查，我們提供一站式專業輔導，協助您打破減碳與數位轉型的盲點。</p>
         </div>
 
-        <div class="pain-card">
-          <div class="pain-card-header">
-            <span class="tag tag-blue">數據管理</span>
-            <h3>數據收集繁瑣低效？</h3>
+        <div class="pain-right-list">
+          <div class="pain-item-card">
+            <div class="pain-card-header">
+              <span class="pain-tag tag-amber">合規與供應鏈</span>
+              <h3 class="pain-item-title">法規與品牌要求雙重壓力？</h3>
+            </div>
+            <p class="pain-item-desc">不知如何開始 ISO 14064-1 組織碳盤查與 ISO 14067 產品碳足跡計算，面臨國際品牌供應鏈抽查危機。</p>
           </div>
-          <p>跨部門 Excel 整理耗時易錯，缺乏自動化整合工具（如 EI Bot）與 AI 客服輔助串接。</p>
-        </div>
 
-        <div class="pain-card">
-          <div class="pain-card-header">
-            <span class="tag tag-green">資金補助</span>
-            <h3>轉型資金與資源不足？</h3>
+          <div class="pain-item-card">
+            <div class="pain-card-header">
+              <span class="pain-tag tag-blue">數據管理</span>
+              <h3 class="pain-item-title">數據收集繁瑣低效？</h3>
+            </div>
+            <p class="pain-item-desc">跨部門 Excel 整理耗時易錯，缺乏自動化整合工具（如 EI Bot）與 AI 客服輔助串接。</p>
           </div>
-          <p>想引進低碳與智慧化設備，卻不熟悉政府升級轉型補助（16+4 / 19+1）之申請與企劃流程。</p>
+
+          <div class="pain-item-card">
+            <div class="pain-card-header">
+              <span class="pain-tag tag-green">資金補助</span>
+              <h3 class="pain-item-title">轉型資金與資源不足？</h3>
+            </div>
+            <p class="pain-item-desc">想引進低碳與智慧化設備，卻不熟悉政府升級轉型補助（16+4 / 19+1）之申請與企劃流程。</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="services" class="section bg-light">
-    <div class="container">
+  <section id="services" class="content-section">
+    <div class="section-container">
       <div class="section-header text-center">
         <span class="section-subtitle">OUR CORE SERVICES</span>
         <h2 class="section-title">艾城市核心服務項目</h2>
       </div>
 
-      <div class="steps-wrapper">
-        <div class="step-card step-1">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h3>永續轉型服務</h3>
-            <p>溫室氣體盤查 ｜ 碳足跡計算 ｜ 永續報告書 ｜ ESG永續轉型 ｜ AI轉型輔導</p>
+      <div class="services-staggered-list">
+        <div class="service-row-card step-1">
+          <div class="service-num-badge">01</div>
+          <div class="service-content">
+            <h3 class="service-title">永續轉型服務</h3>
+            <p class="service-desc"> 溫室氣體盤查 ｜ 碳足跡計算 ｜ 永續報告書 ｜ ESG永續轉型 ｜ AI轉型輔導 </p>
           </div>
         </div>
 
-        <div class="step-card step-2">
-          <div class="step-num gold">02</div>
-          <div class="step-content">
-            <h3>人員培訓課程</h3>
-            <p>iPAS 淨零碳規劃管理師培訓 ｜ 國際認證 ISO 證照課程 ｜ 永續相關課程</p>
+        <div class="service-row-card step-2">
+          <div class="service-num-badge gold-badge">02</div>
+          <div class="service-content">
+            <h3 class="service-title">人員培訓課程</h3>
+            <p class="service-desc"> iPAS 淨零碳規劃管理師培訓 ｜ ISO 國際證照課程 ｜ 永續相關課程 </p>
           </div>
         </div>
 
-        <div class="step-card step-3">
-          <div class="step-num blue">03</div>
-          <div class="step-content">
-            <h3>綠能光電建置</h3>
-            <p>場域規劃設計 ｜ 工程承攬 ｜ 運營維護服務</p>
+        <div class="service-row-card step-3">
+          <div class="service-num-badge blue-badge">03</div>
+          <div class="service-content">
+            <h3 class="service-title">綠能光電建置</h3>
+            <p class="service-desc"> 場域規劃設計 ｜ 工程承攬 ｜ 運營維護服務 </p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="cases" class="section">
-    <div class="container">
+  <section id="cases" class="content-section bg-light-gray">
+    <div class="section-container">
       <div class="section-header text-center">
         <span class="section-subtitle">PERFORMANCE & RESULTS</span>
         <h2 class="section-title">公司實績與輔導成果</h2>
       </div>
 
-      <div class="stats-grid">
-        <div class="stat-card">
+      <div class="stats-boxes-grid">
+        <div class="stat-box-card">
           <div class="stat-number text-emerald">100+</div>
           <div class="stat-title">永續輔導實績</div>
           <p class="stat-desc">協助各類場域完成能源資產盤點與減碳路徑規劃</p>
         </div>
 
-        <div class="stat-card">
+        <div class="stat-box-card">
           <div class="stat-number text-amber">500+</div>
           <div class="stat-title">培訓學員人次</div>
-          <p class="stat-desc">舉辦 iPAS 淨零碳規劃管理師等課程，培育企業核心人才</p>
+          <p class="stat-desc">舉辦iPAS淨零碳規劃管理師等課程，培育企業核心人才</p>
         </div>
 
-        <div class="stat-card">
+        <div class="stat-box-card">
           <div class="stat-number text-blue">50+</div>
           <div class="stat-title">光電建置場域</div>
           <p class="stat-desc">提供太陽能規劃及工程建置，協助辦理再生能源憑證</p>
@@ -204,151 +214,151 @@
     </div>
   </section>
 
-  <section id="news" class="section bg-light">
-    <div class="container">
-      <div class="news-header">
+  <section id="news" class="content-section">
+    <div class="section-container">
+      <div class="section-header flex-header">
         <div>
           <span class="section-subtitle">LATEST ANNOUNCEMENTS</span>
           <h2 class="section-title">最新消息與熱門課程</h2>
         </div>
-        <a href="#all-news" class="btn-more desktop-only">更多資訊 ➔</a>
+        <a href="#all-news" class="btn-more-info">更多資訊 ➔</a>
       </div>
 
-      <div class="news-grid">
+      <div class="news-grid-6">
         <article class="news-card">
-          <div class="news-meta">
-            <span class="tag tag-green">輔導佳績</span>
+          <div class="news-card-meta">
+            <span class="news-tag tag-green">輔導佳績</span>
             <span class="news-date">114/12/26</span>
           </div>
-          <h3 class="news-title">綠色觀光新標竿！輔導「縱谷花蓮線」成為全台首條碳足跡認證客運</h3>
-          <p class="news-summary">協助大眾運輸落實低碳旅遊，從人才培訓轉向企業與公共服務之實體碳足跡輔導。</p>
+          <h3 class="news-card-title">綠色觀光新標竿！輔導「縱谷花蓮線」成為全台首條碳足跡認證客運</h3>
+          <p class="news-card-summary">協助大眾運輸落實低碳旅遊，從人才培訓轉向企業與公共服務之實體碳足跡輔導。</p>
         </article>
 
         <article class="news-card">
-          <div class="news-meta">
-            <span class="tag tag-blue">課程報名</span>
+          <div class="news-card-meta">
+            <span class="news-tag tag-blue">課程報名</span>
             <span class="news-date">115/06/06</span>
           </div>
-          <h3 class="news-title">2026 年 iPAS 淨零碳規劃管理師初級能力鑑定輔導考照班</h3>
-          <p class="news-summary">由經濟部產發署低碳淨零人才培訓專案補助，名額有限，歡迎企業主管盡快報名。</p>
+          <h3 class="news-card-title">2026 年 iPAS 淨零碳規劃管理師初級能力鑑定輔導考照班</h3>
+          <p class="news-card-summary">由經濟部產發署低碳淨零人才培訓專案補助，名額有限，歡迎企業主管盡快報名。</p>
         </article>
 
         <article class="news-card">
-          <div class="news-meta">
-            <span class="tag tag-green">榮獲認證</span>
+          <div class="news-card-meta">
+            <span class="news-tag tag-green">榮獲認證</span>
             <span class="news-date">112/09/15</span>
           </div>
-          <h3 class="news-title">賀！本公司榮獲勞動部頒發「TTQS 人才發展品質管理系統 銅牌」</h3>
-          <p class="news-summary">培訓流程與品質獲得國家級標準認可，提供企業最優質的內訓與公開班服務。</p>
+          <h3 class="news-card-title">賀！本公司榮獲勞動部頒發「TTQS 人才發展品質管理系統 銅牌」</h3>
+          <p class="news-card-summary">培訓流程與品質獲得國家級標準認可，提供企業最優質的內訓與公開班服務。</p>
         </article>
 
         <article class="news-card">
-          <div class="news-meta">
-            <span class="tag tag-amber">政策快訊</span>
+          <div class="news-card-meta">
+            <span class="news-tag tag-amber">政策快訊</span>
             <span class="news-date">115/01/10</span>
           </div>
-          <h3 class="news-title">環境部溫室氣體盤查登錄最新規範公告與企業因應對策講座</h3>
-          <p class="news-summary">解析最新碳費徵收機制與自主減量計畫申報實務，協助受管制企業超前部署。</p>
+          <h3 class="news-card-title">環境部溫室氣體盤查登錄最新規範公告與企業因應對策講座</h3>
+          <p class="news-card-summary">解析最新碳費徵收機制與自主減量計畫申報實務，協助受管制企業超前部署。</p>
         </article>
 
         <article class="news-card">
-          <div class="news-meta">
-            <span class="tag tag-green">專案核定</span>
+          <div class="news-card-meta">
+            <span class="news-tag tag-green">專案核定</span>
             <span class="news-date">114/11/18</span>
           </div>
-          <h3 class="news-title">協助中南部 10 家製造業成功爭取經濟部低碳化升級轉型補助</h3>
-          <p class="news-summary">提供資格試算、計畫書撰寫與專案核銷全流程服務，累計核定金額達千萬。</p>
+          <h3 class="news-card-title">協助中南部 10 家製造業成功爭取經濟部低碳化升級轉型補助</h3>
+          <p class="news-card-summary">提供資格試算、計畫書撰寫與專案核銷全流程服務，累計核定金額達千萬。</p>
         </article>
 
         <article class="news-card">
-          <div class="news-meta">
-            <span class="tag tag-blue">工具發布</span>
+          <div class="news-card-meta">
+            <span class="news-tag tag-blue">工具發布</span>
             <span class="news-date">114/08/20</span>
           </div>
-          <h3 class="news-title">EI Bot 自動化碳數據整合助手 2.0 正式上線！開啟智慧盤查新時代</h3>
-          <p class="news-summary">全新支援跨部門發票與電費單據 OCR 辨識自動帶入，效率提升 80%。</p>
+          <h3 class="news-card-title">EI Bot 自動化碳數據整合助手 2.0 正式上線！開啟智慧盤查新時代</h3>
+          <p class="news-card-summary">全新支援跨部門發票與電費單據 OCR 辨識自動帶入，效率提升 80%。</p>
         </article>
       </div>
 
-      <div class="text-center mobile-only">
-        <a href="#all-news" class="btn-more">更多資訊 ➔</a>
+      <div class="text-center mobile-more-btn-wrap">
+        <a href="#all-news" class="btn-more-info">更多資訊 ➔</a>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact-section">
-    <div class="container-small">
+  <section id="contact" class="consult-section">
+    <div class="consult-container">
       <div class="section-header text-center">
-        <h2 class="section-title text-white">立即與我們連絡</h2>
-        <p class="contact-subtitle">填寫下方資訊，艾城市專業顧問團隊將於 24 小時內與您聯繫</p>
+        <h2 class="consult-title">立即與我們連絡</h2>
+        <p class="consult-subtitle">填寫下方資訊，艾城市專業顧問團隊將於 24 小時內與您聯繫</p>
       </div>
 
-      <form class="contact-form">
-        <div class="form-row">
+      <form class="consult-form-card">
+        <div class="form-row-2">
           <div class="form-group">
-            <label>姓名 *</label>
-            <input type="text" required placeholder="請輸入姓名">
+            <label class="form-label">姓名 *</label>
+            <input type="text" required class="form-input" placeholder="請輸入姓名">
           </div>
           <div class="form-group">
-            <label>公司名稱 *</label>
-            <input type="text" required placeholder="請輸入公司名稱">
+            <label class="form-label">公司名稱 *</label>
+            <input type="text" required class="form-input" placeholder="請輸入公司名稱">
           </div>
         </div>
 
-        <div class="form-row">
+        <div class="form-row-2">
           <div class="form-group">
-            <label>聯絡電話 *</label>
-            <input type="tel" required placeholder="0912-345-678">
+            <label class="form-label">聯絡電話 *</label>
+            <input type="tel" required class="form-input" placeholder="0912-345-678">
           </div>
           <div class="form-group">
-            <label>電子郵件 *</label>
-            <input type="email" required placeholder="service@company.com">
+            <label class="form-label">電子郵件 *</label>
+            <input type="email" required class="form-input" placeholder="service@company.com">
           </div>
         </div>
 
         <div class="form-group">
-          <label>諮詢需求領域 (可多選)</label>
-          <div class="checkbox-grid">
-            <label class="checkbox-label">
+          <label class="form-label">諮詢需求領域 (可多選)</label>
+          <div class="checkbox-options-grid">
+            <label class="checkbox-option">
               <input type="checkbox" name="service" value="永續轉型服務">
-              <span>永續轉型服務</span>
+              <span>永續轉型</span>
             </label>
-            <label class="checkbox-label">
+            <label class="checkbox-option">
               <input type="checkbox" name="service" value="人員培訓">
               <span>人員培訓</span>
             </label>
-            <label class="checkbox-label">
+            <label class="checkbox-option">
               <input type="checkbox" name="service" value="光電建置">
               <span>光電建置</span>
             </label>
           </div>
 
           <div class="other-input-wrap">
-            <label class="checkbox-label">
+            <label class="checkbox-option other-label">
               <input type="checkbox" name="service" value="其他">
               <span>其他：</span>
             </label>
-            <input type="text" class="input-other" placeholder="請簡述您的其他特殊需求...">
+            <input type="text" class="form-input other-text-input" placeholder="請簡述您的需求...">
           </div>
         </div>
 
-        <button type="submit" class="btn-submit">送出諮詢</button>
+        <button type="submit" class="btn-submit-form">送出</button>
       </form>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <h3 class="footer-brand">艾城市有限公司</h3>
-        <p><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
-        <p><strong>Email：</strong>aicitybusiness@gmail.com</p>
-        <p><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
+  <footer class="site-footer">
+    <div class="footer-compact-container">
+      <div class="footer-col-info">
+        <h3 class="footer-company-name">艾城市有限公司</h3>
+        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
+        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
+        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
       </div>
 
-      <div class="footer-col">
+      <div class="footer-col-links">
         <h4 class="footer-title">快速連結</h4>
-        <div class="footer-links">
+        <div class="footer-links-2cols">
           <a href="#">關於我們</a>
           <a href="#services">永續服務</a>
           <a href="#news">最新消息</a>
@@ -358,19 +368,19 @@
         </div>
       </div>
 
-      <div class="footer-col">
+      <div class="footer-col-social">
         <h4 class="footer-title">官方社群</h4>
-        <div class="social-qr-row">
-          <div class="qr-item">
-            <img src="/img/FB.png" alt="FB QR Code">
+        <div class="qr-code-group">
+          <div class="qr-code-item">
+            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
             <span>Facebook</span>
           </div>
-          <div class="qr-item">
-            <img src="/img/IG.png" alt="IG QR Code">
+          <div class="qr-code-item">
+            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
             <span>Instagram</span>
           </div>
-          <div class="qr-item">
-            <img src="/img/LINE.png" alt="Line QR Code">
+          <div class="qr-code-item">
+            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
             <span>LINE 官方</span>
           </div>
         </div>
