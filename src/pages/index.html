@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>艾城市有限公司</title>
-  
+
+  <!--網站字體-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
@@ -12,19 +13,19 @@
   <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-
+<!--上方導覽列-->
   <header class="navbar-header">
     <div class="nav-container">
       <a href="#" class="logo-link">
         <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
       </a>
-      
       <nav class="desktop-nav">
         <div class="nav-dropdown">
           <span class="nav-link">關於我們 ▾</span>
           <div class="dropdown-menu">
             <span>公司介紹</span>
             <span>團隊介紹</span>
+            <!--<span>相關連結</span>-->
           </div>
         </div>
         <div class="nav-dropdown">
@@ -35,6 +36,7 @@
           <div class="dropdown-menu">
             <span>企業輔導</span>
             <span>政府專案</span>
+            <!--<span>AI轉型</span>-->
           </div>
         </div>
         <div class="nav-dropdown">
@@ -82,13 +84,14 @@
     </div>
   </header>
 
+<!--區塊輪播圖-->
   <section id="home" class="hero-section">
     <div class="carousel-container">
       <div class="carousel-track" id="carousel-track">
-        <div class="carousel-slide active"><img src="/img/homebg.png" alt="艾城市簡介"></div>
-        <div class="carousel-slide"><img src="/img/run1.jpg" alt="綠色永續 × AI 數位轉型"></div>
-        <div class="carousel-slide"><img src="/img/run2.jpg" alt="碳路安心 3.0 中小型企業方案"></div>
-        <div class="carousel-slide"><img src="/img/run3.jpg" alt="iPAS 淨零碳規劃管理師認證"></div>
+        <div class="carousel-slide active"><img src="/img/homebg.png"></div>
+        <div class="carousel-slide"><img src="/img/run1.jpg"></div>
+        <div class="carousel-slide"><img src="/img/run2.jpg"></div>
+        <div class="carousel-slide"><img src="/img/run3.jpg"></div>
       </div>
 
       <button class="carousel-btn prev-btn" id="prev-btn" aria-label="上一張">❮</button>
@@ -103,16 +106,17 @@
     </div>
   </section>
 
+<!--跑馬燈-->
   <section class="ticker-section">
-    <div class="ticker-badge">最新消息</div>
-    <div class="ticker-wrapper">
-      <div id="ticker-track" class="ticker-track">
-        <span class="ticker-item">歡迎預約最新政府補助試算與 ESG 綠色健檢！</span>
+      <div class="ticker-badge">最新消息</div>
+      <div class="ticker-wrapper">
+        <div id="ticker-track" class="ticker-track">
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="content-section pain-section bg-light-gray">
+<!--企業痛點-->
+  <section class="content-section bg-light-gray pain-section">
     <div class="section-container">
       <div class="pain-split-grid">
         <div class="pain-left-header">
@@ -150,6 +154,7 @@
     </div>
   </section>
 
+<!--服務項目-->
   <section id="services" class="content-section">
     <div class="section-container">
       <div class="section-header text-center">
@@ -159,10 +164,10 @@
 
       <div class="services-staggered-list">
         <div class="service-row-card step-1">
-          <div class="service-num-badge">01</div>
+          <div class="service-num-badge ">01</div>
           <div class="service-content">
             <h3 class="service-title">永續轉型服務</h3>
-            <p class="service-desc"> 溫室氣體盤查 ｜ 碳足跡計算 ｜ 永續報告書 ｜ ESG永續轉型 ｜ AI轉型輔導 </p>
+            <p> 溫室氣體盤查 | 碳足跡計算 | 永續報告書 | ESG永續轉型 | AI轉型輔導 </p>
           </div>
         </div>
 
@@ -170,7 +175,7 @@
           <div class="service-num-badge gold-badge">02</div>
           <div class="service-content">
             <h3 class="service-title">人員培訓課程</h3>
-            <p class="service-desc"> iPAS 淨零碳規劃管理師培訓 ｜ ISO 國際證照課程 ｜ 永續相關課程 </p>
+            <p> iPAS 淨零碳規劃管理師培訓 | 國際認證 ISO 證照課程 | 永續相關課程 </p>
           </div>
         </div>
 
@@ -178,33 +183,31 @@
           <div class="service-num-badge blue-badge">03</div>
           <div class="service-content">
             <h3 class="service-title">綠能光電建置</h3>
-            <p class="service-desc"> 場域規劃設計 ｜ 工程承攬 ｜ 運營維護服務 </p>
+            <p> 場域規劃設計 | 工程承攬 | 運營維護服務 </p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+<!--公司實績-->
   <section id="cases" class="content-section bg-light-gray">
     <div class="section-container">
       <div class="section-header text-center">
-        <span class="section-subtitle">PERFORMANCE & RESULTS</span>
+        <span class="section-subtitle">Performance & Results</span>
         <h2 class="section-title">公司實績與輔導成果</h2>
       </div>
-
       <div class="stats-boxes-grid">
         <div class="stat-box-card">
           <div class="stat-number text-emerald">100+</div>
           <div class="stat-title">永續輔導實績</div>
           <p class="stat-desc">協助各類場域完成能源資產盤點與減碳路徑規劃</p>
         </div>
-
         <div class="stat-box-card">
           <div class="stat-number text-amber">500+</div>
           <div class="stat-title">培訓學員人次</div>
           <p class="stat-desc">舉辦iPAS淨零碳規劃管理師等課程，培育企業核心人才</p>
         </div>
-
         <div class="stat-box-card">
           <div class="stat-number text-blue">50+</div>
           <div class="stat-title">光電建置場域</div>
@@ -214,6 +217,7 @@
     </div>
   </section>
 
+<!--最新消息-->
   <section id="news" class="content-section">
     <div class="section-container">
       <div class="section-header flex-header">
@@ -223,7 +227,6 @@
         </div>
         <a href="#all-news" class="btn-more-info">更多資訊 ➔</a>
       </div>
-
       <div class="news-grid-6">
         <article class="news-card">
           <div class="news-card-meta">
@@ -260,32 +263,14 @@
           <h3 class="news-card-title">環境部溫室氣體盤查登錄最新規範公告與企業因應對策講座</h3>
           <p class="news-card-summary">解析最新碳費徵收機制與自主減量計畫申報實務，協助受管制企業超前部署。</p>
         </article>
-
-        <article class="news-card">
-          <div class="news-card-meta">
-            <span class="news-tag tag-green">專案核定</span>
-            <span class="news-date">114/11/18</span>
-          </div>
-          <h3 class="news-card-title">協助中南部 10 家製造業成功爭取經濟部低碳化升級轉型補助</h3>
-          <p class="news-card-summary">提供資格試算、計畫書撰寫與專案核銷全流程服務，累計核定金額達千萬。</p>
-        </article>
-
-        <article class="news-card">
-          <div class="news-card-meta">
-            <span class="news-tag tag-blue">工具發布</span>
-            <span class="news-date">114/08/20</span>
-          </div>
-          <h3 class="news-card-title">EI Bot 自動化碳數據整合助手 2.0 正式上線！開啟智慧盤查新時代</h3>
-          <p class="news-card-summary">全新支援跨部門發票與電費單據 OCR 辨識自動帶入，效率提升 80%。</p>
-        </article>
       </div>
-
       <div class="text-center mobile-more-btn-wrap">
         <a href="#all-news" class="btn-more-info">更多資訊 ➔</a>
       </div>
     </div>
   </section>
 
+<!--聯絡表單-->
   <section id="contact" class="consult-section">
     <div class="consult-container">
       <div class="section-header text-center">
@@ -332,43 +317,33 @@
               <span>光電建置</span>
             </label>
           </div>
-
           <div class="other-input-wrap">
             <label class="checkbox-option other-label">
               <input type="checkbox" name="service" value="其他">
               <span>其他：</span>
             </label>
-            <input type="text" class="form-input other-text-input" placeholder="請簡述您的需求...">
+            <input type="text" class="form-input other-text-input" placeholder="請簡述您的其他特殊需求...">
           </div>
         </div>
-
         <button type="submit" class="btn-submit-form">送出</button>
       </form>
     </div>
   </section>
 
+<!--下方導覽列-->
   <footer class="site-footer">
     <div class="footer-compact-container">
-      <div class="footer-col-info">
+
+      <!--公司介紹-->
+      <div class="footer-col footer-col-info">
         <h3 class="footer-company-name">艾城市有限公司</h3>
         <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
         <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
         <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
       </div>
 
-      <div class="footer-col-links">
-        <h4 class="footer-title">快速連結</h4>
-        <div class="footer-links-2cols">
-          <a href="#">關於我們</a>
-          <a href="#services">永續服務</a>
-          <a href="#news">最新消息</a>
-          <a href="#courses">人員培訓</a>
-          <a href="#cases">實績事例</a>
-          <a href="#solar">光電建置</a>
-        </div>
-      </div>
-
-      <div class="footer-col-social">
+      <!--社群QR-->
+      <div class="footer-col footer-col-social">
         <h4 class="footer-title">官方社群</h4>
         <div class="qr-code-group">
           <div class="qr-code-item">
@@ -383,6 +358,19 @@
             <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
             <span>LINE 官方</span>
           </div>
+        </div>
+      </div>
+
+      <!--快速連結-->
+      <div class="footer-col footer-col-links">
+        <h4 class="footer-title">快速連結</h4>
+        <div class="footer-links-2cols">
+          <span>關於我們</span>
+          <span>最新消息</span>
+          <span>實績事例</span>
+          <span>永續服務</span>
+          <span>人員培訓</span>
+          <span>光電建置</span>
         </div>
       </div>
     </div>
