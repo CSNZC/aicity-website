@@ -8,7 +8,7 @@
   --accent-blue: #0284c7;     /* 輔助標籤：海洋藍 */
   --bg-light-gray: #f8fafc;   /* 區塊背景：高質感柔灰 */
   --bg-light-green: #f2f7f4;  /* 區塊背景：鼠尾草綠 */
-  --dark-green-bg: #1b4332b4; /* 表單背景：極深翡翠綠 */
+  --dark-green-bg: #1B4332; /* 表單背景：極深翡翠綠 */
   --text-dark: #0f172a;       /* 主要標題色 */
   --text-body: #334155;       /* 內文描述色 */
   --text-muted: #64748b;      /* 日期與次要文字 */
@@ -181,7 +181,8 @@ body {
    ========================================================================== */
 .hero-section {
   padding-top: 84px;
-  padding-bottom: 20px;
+  margin-bottom: 40px;
+
 }
 
 .carousel-container {
@@ -225,7 +226,6 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
-  margin-bottom: 40px;
 }
 
 .ticker-badge {
