@@ -1,6 +1,5 @@
 /* ==========================================================================
    1. 全域變數與重置 (Global Variables & Base Resets)
-   涵義：定義沉穩顧問風格色盤（森林綠、琥珀金、海洋藍、鼠尾草綠）與通用邊距
    ========================================================================== */
 :root {
   --primary-green: #1B4332;   /* 品牌主色：深森林綠 */
@@ -8,11 +7,12 @@
   --accent-blue: #0284c7;     /* 輔助標籤：海洋藍 */
   --bg-light-gray: #f8fafc;   /* 區塊背景：高質感柔灰 */
   --bg-light-green: #f2f7f4;  /* 區塊背景：鼠尾草綠 */
-  --dark-green-bg: #1B4332; /* 表單背景：極深翡翠綠 */
+  --dark-green-bg: #1b4332;   /* 表單背景：極深翡翠綠 */
   --text-dark: #0f172a;       /* 主要標題色 */
   --text-body: #334155;       /* 內文描述色 */
   --text-muted: #64748b;      /* 日期與次要文字 */
   --border-color: #cbd5e1;    /* 通用細微線條 */
+  --nav-height: 64px;         /* 導覽列高度變數 */
 }
 
 * {
@@ -30,12 +30,12 @@ body {
   color: var(--text-body);
   background-color: #ffffff;
   line-height: 1.6;
-  font-size: 16px; /* 電腦版基礎字級：16px */
+  font-size: 16px;
+  overflow-x: hidden; /* 防止橫向溢出出現滾動條 */
 }
 
 /* ==========================================================================
    2. 通用容器與標題 (Common Containers & Typography)
-   涵義：控制區塊黃金上限 1140px，上下保持 72px 呼吸空間
    ========================================================================== */
 .content-section {
   padding: 72px 24px;
@@ -80,12 +80,12 @@ body {
 }
 
 /* ==========================================================================
-   3. 置頂精緻導覽列 (Navbar)
+   3. 置頂精緻導覽列 (Navbar & Mobile Menu)
    ========================================================================== */
 .navbar-header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 64px;
+  height: var(--nav-height);
   z-index: 1000;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(10px);
@@ -139,14 +139,15 @@ body {
 
 .nav-dropdown:hover .dropdown-menu { display: block; }
 
-.dropdown-menu span {
+.dropdown-menu span, .dropdown-menu a {
   display: block;
   padding: 10px 18px;
   font-size: 15px;
   color: var(--primary-green);
+  text-decoration: none;
   cursor: pointer;
 }
-.dropdown-menu span:hover { background: var(--bg-light-green); color: var(--accent-gold); }
+.dropdown-menu span:hover, .dropdown-menu a:hover { background: var(--bg-light-green); color: var(--accent-gold); }
 
 .btn-map-link {
   font-size: 15px;
@@ -173,16 +174,33 @@ body {
 .btn-primary-cta:hover { background: var(--accent-gold); color: var(--primary-green); }
 
 .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--primary-green); }
-.mobile-menu { display: none; }
-.mobile-menu.is-active { display: block; }
+
+/* 手機選單彈出層修正 */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  padding: 20px;
+  z-index: 999;
+  border-bottom: 3px solid var(--primary-green);
+}
+
+.mobile-menu.is-active {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
 /* ==========================================================================
-   4. 英雄大圖輪播區塊 (Hero Carousel)
+   4. 英雄大圖輪播區塊 (Hero Carousel - 修正被選單遮擋問題)
    ========================================================================== */
 .hero-section {
-  padding-top: 84px;
-  margin-bottom: 40px;
-
+  padding-top: calc(var(--nav-height) + 24px); /* 留足上方間距 */
+  padding-bottom: 20px;
 }
 
 .carousel-container {
@@ -226,6 +244,7 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
+  margin-bottom: 40px;
 }
 
 .ticker-badge {
@@ -325,7 +344,7 @@ body {
 }
 
 /* ==========================================================================
-   7. 艾城市核心服務項目 (Core Services)
+   7. 核心服務項目 (Core Services)
    ========================================================================== */
 .services-staggered-list {
   display: flex;
@@ -382,7 +401,7 @@ body {
 }
 
 /* ==========================================================================
-   8. 實際績效與成果數據 (Track Record)
+   8. 實際績效數據 (Track Record)
    ========================================================================== */
 .stats-boxes-grid {
   display: grid;
@@ -502,7 +521,7 @@ body {
 }
 
 /* ==========================================================================
-   10. 預約免費健檢表單 (Form Section)
+   10. 預約表單區塊 (Form Section)
    ========================================================================== */
 .consult-section {
   background-color: var(--dark-green-bg);
@@ -601,14 +620,8 @@ body {
   gap: 12px;
 }
 
-.other-label {
-  flex-shrink: 0;
-  min-width: 100px;
-}
-
-.other-text-input {
-  flex-grow: 1;
-}
+.other-label { flex-shrink: 0; min-width: 100px; }
+.other-text-input { flex-grow: 1; }
 
 .btn-submit-form {
   background: var(--accent-gold);
@@ -626,7 +639,7 @@ body {
 .btn-submit-form:hover { background: #f1b720; }
 
 /* ==========================================================================
-   11. 頁尾資訊 (Footer 電腦版結構)
+   11. 頁尾資訊 (Footer 電腦版)
    ========================================================================== */
 .site-footer {
   background: #050b07;
@@ -638,7 +651,7 @@ body {
 .footer-compact-container {
   max-width: 1000px;
   margin: 0 auto;
-  display: flex; /* 電腦版橫排 */
+  display: flex;
   justify-content: space-between;
   gap: 36px;
 }
@@ -667,17 +680,16 @@ body {
   margin-bottom: 12px;
 }
 
-/* 電腦版 3 欄並排 */
 .footer-links-3cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px 16px;
 }
 
-.footer-links-3cols span {
+.footer-links-3cols span, .footer-links-3cols a {
   font-size: 15px;
   color: rgba(255, 255, 255, 0.75);
-  cursor: default;
+  text-decoration: none;
 }
 
 .qr-code-group { display: flex; gap: 14px; }
@@ -695,12 +707,12 @@ body {
 }
 
 /* ==========================================================================
-   12. RWD 響應式佈局與手機版完全適應 (Mobile Adjustments)
+   12. RWD 響應式佈局 (完全修正手機破版)
    ========================================================================== */
 @media (max-width: 991px) {
   body { font-size: 14px; }
   
-  /* 1. 手機端字級歸位正常大小 */
+  /* 1. 手機端適度縮小字級，保持精緻感 */
   .section-title { font-size: 26px; }
   .section-subtitle { font-size: 13px; }
   .ticker-badge, .ticker-item { font-size: 16px; }
@@ -720,13 +732,12 @@ body {
   .consult-subtitle { font-size: 14px; }
   .form-label, .form-input, .checkbox-option { font-size: 14px; }
   .btn-submit-form { font-size: 16px; }
-  .footer-company-name { font-size: 18px; }
-  .footer-info-text, .footer-links-3cols span { font-size: 13px; }
-
-  /* 2. 主選單與區塊切換為單欄直排 */
+  
+  /* 2. 頂部選單切換 */
   .desktop-nav { display: none; }
   .mobile-menu-btn { display: block; }
   
+  /* 3. 區塊切換為單欄垂直排列 */
   .pain-split-grid,
   .news-grid-6,
   .stats-boxes-grid,
@@ -735,25 +746,27 @@ body {
     gap: 20px;
   }
 
-  /* 3. 表單選項手機改 2 欄 */
+  /* 4. 多選核選框手機改雙欄 */
   .checkbox-options-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
 
-  /* 4. 【重點修復】頁尾整體改為直向堆疊 (flex-direction: column) */
+  /* 5. 頁尾強制切換為垂直單欄，防止手機端縮成一團 */
   .footer-compact-container {
-    flex-direction: column;
-    gap: 28px;
+    flex-direction: column !important;
+    gap: 30px;
   }
 
-  /* 5. 【重點修復】頁尾快速連結手機版改為 2 欄，不再強擠 3 欄造成文字疊字 */
+  .footer-col-info, .footer-col-links, .footer-col-social {
+    width: 100%;
+  }
+
   .footer-links-3cols {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px 20px;
+    gap: 12px;
   }
 
-  /* 6. QR碼區塊手機版靠左或對齊 */
   .qr-code-group {
     justify-content: flex-start;
   }
