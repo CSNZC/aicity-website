@@ -1,0 +1,33 @@
+backend:
+  name: GitHub
+  repo: CSNZC/aicity-website
+  branch: main
+  base_url: https://api.decapcms.org  
+
+# 設定圖片上傳的儲存位置
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  # 1. 最新消息管理
+  - name: "news"
+    label: "最新消息"
+    folder: "src/content/news" # 發布後 Markdown 檔案會自動存到這個資料夾
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }       # 例如：榮獲 TTQS 銅牌
+      - { label: "發布日期", name: "date", widget: "datetime" }    # 可點擊日曆小工具
+      - { label: "分類標籤", name: "tags", widget: "list" }        # 例如：輔導佳績、課程報名
+      - { label: "文章摘要", name: "summary", widget: "text" }     # 簡短介紹
+      - { label: "內文", name: "body", widget: "markdown" }      # 類似 Word 編輯器，可加粗體斜體
+
+  # 2. 首頁輪播圖管理
+  - name: "carousel"
+    label: "首頁輪播圖"
+    folder: "src/content/carousel"
+    create: true
+    fields:
+      - { label: "圖片標題", name: "title", widget: "string" }
+      - { label: "輪播圖片", name: "image", widget: "image" }
+      - { label: "跳轉連結", name: "link", widget: "string", required: false }
