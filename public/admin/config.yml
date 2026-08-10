@@ -1,5 +1,5 @@
 backend:
-  name: gitHub
+  name: github
   repo: CSNZC/aicity-website
   branch: main
   base_url: https://aicity-cms.casfzea.workers.dev
