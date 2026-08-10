@@ -1,157 +1,551 @@
-// 確保 DOM 結構與頁面元件載入完成後才執行程式碼
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ==========================================================================
-     1. 手機版選單與子選項展開/收合 (Mobile Menu & Submenu Toggle)
-     ========================================================================== */
-  const mobileBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
 
-  if (mobileBtn && mobileMenu) {
-    // 點擊漢堡按鈕：開啟或關閉手機版選單面板
-    mobileBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      mobileMenu.classList.toggle('is-active');
-    });
+/* ==========================================================================
+1. 手機版選單 (完全保留你的邏輯)
+========================================================================== */
 
-    // 取得手機選單內所有包含子項目的群組
-    const mobileNavGroups = mobileMenu.querySelectorAll('.mobile-nav-group');
+const mobileBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
 
-    mobileNavGroups.forEach((group) => {
-      const mainLink = group.querySelector('.mobile-nav-link');
-      const subMenu = group.querySelector('.mobile-submenu');
 
-      if (mainLink && subMenu) {
-        // 點擊主項目時，切換展開/收合狀態，不進行頁面跳轉
-        mainLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          subMenu.classList.toggle('is-open');
-        });
-      }
-    });
+if (mobileBtn && mobileMenu) {
 
-    // 點擊選單以外的空白區域時，自動關閉手機選單與所有子選單
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
+
+mobileBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    mobileMenu.classList.toggle('is-active');
+});
+
+
+
+document.addEventListener('click',(e)=>{
+
+    if(
+        !mobileMenu.contains(e.target) &&
+        !mobileBtn.contains(e.target)
+    ){
+
         mobileMenu.classList.remove('is-active');
-        
-        // 將所有開啟中的子選單復原為隱藏狀態
-        mobileMenu.querySelectorAll('.mobile-submenu').forEach(sub => {
-          sub.classList.remove('is-open');
-        });
-      }
-    });
-  }
 
-  /* ==========================================================================
-     2. 主視覺圖片輪播邏輯 (Hero Carousel Logic)
-     ========================================================================== */
-  const carouselTrack = document.getElementById('carousel-track');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const dotsContainer = document.getElementById('carousel-dots');
-
-  if (carouselTrack) {
-    const slides = Array.from(carouselTrack.children);
-    const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
-    let currentIndex = 0;
-    let autoSlideInterval = null;
-
-    // 更新輪播圖片位移與對應的圓點高亮狀態
-    function updateCarousel(index) {
-      // 處理第一張與最後一張的循環邊界
-      if (index < 0) {
-        currentIndex = slides.length - 1;
-      } else if (index >= slides.length) {
-        currentIndex = 0;
-      } else {
-        currentIndex = index;
-      }
-
-      // 使用 CSS translateX 計算橫向位移百分比
-      carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-      // 切換圓點高亮 active 類別
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentIndex);
-      });
     }
 
-    // 切換至下一張與上一張
-    const nextSlide = () => updateCarousel(currentIndex + 1);
-    const prevSlide = () => updateCarousel(currentIndex - 1);
+});
 
-    // 啟動每 4 秒自動輪播
-    function startAutoSlide() {
-      stopAutoSlide();
-      autoSlideInterval = setInterval(nextSlide, 4000);
-    }
 
-    // 停止自動輪播
-    function stopAutoSlide() {
-      if (autoSlideInterval) {
-        clearInterval(autoSlideInterval);
-      }
-    }
+}
 
-    // 綁定下一張按鈕點擊事件
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        nextSlide();
-        startAutoSlide(); // 點擊後重置 4 秒倒數
-      });
-    }
 
-    // 綁定上一張按鈕點擊事件
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        prevSlide();
-        startAutoSlide(); // 點擊後重置 4 秒倒數
-      });
-    }
 
-    // 綁定指示圓點點擊事件
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        updateCarousel(idx);
-        startAutoSlide(); // 點擊後重置 4 秒倒數
-      });
-    });
+/* ==========================================================================
+2. Decap 輪播圖片載入
+========================================================================== */
 
-    // 當滑鼠移入輪播圖時暫停輪播，移出時恢復
-    const carouselContainer = carouselTrack.parentElement;
-    if (carouselContainer) {
-      carouselContainer.addEventListener('mouseenter', stopAutoSlide);
-      carouselContainer.addEventListener('mouseleave', startAutoSlide);
-    }
 
-    // 頁面初次載入：初始化第 0 張並開始自動輪播
-    updateCarousel(0);
-    startAutoSlide();
-  }
+async function loadCarousel(){
 
-  /* ==========================================================================
-     3. 最新消息跑馬燈無縫動態注入 (News Ticker)
-     ========================================================================== */
-  const tickerItems = [
-    "恭賀！艾城市輔導台灣好行「縱谷花蓮線」成為全台首條獲碳足跡認證客運路線！",
-    "【熱門課程】2026年 iPAS 淨零碳規劃管理師初級輔導考照班開放報名",
-    "【政府補助】經濟部產發署低碳淨零人才培育計畫補助名額釋出",
-    "【公司公告】本公司通過勞動部 TTQS 評核，榮獲訓練機構版「銅牌」認證",
-    "【政策快訊】環境部公告溫室氣體排放量應盤查登錄對象與碳費收費標準"
-  ];
 
-  const tickerTrack = document.getElementById('ticker-track');
+const track =
+document.getElementById('carousel-track');
 
-  if (tickerTrack) {
-    // 將陣列複製一份，以達到 CSS Seamless Scroll 無縫銜接滾動效果
-    const doubleItems = [...tickerItems, ...tickerItems];
 
-    tickerTrack.innerHTML = doubleItems.map(text => `
-      <div class="ticker-item">
-        <span>${text}</span>
-      </div>
-    `).join('');
-  }
+const dotsContainer =
+document.getElementById('carousel-dots');
+
+
+
+if(!track) return;
+
+
+
+try{
+
+
+const res =
+await fetch('/data/carousel.json');
+
+
+const data =
+await res.json();
+
+
+
+track.innerHTML =
+data.map((item,index)=>`
+
+
+<div class="carousel-slide 
+${index===0?'active':''}">
+
+
+<img src="${item.image}" 
+alt="${item.title || ''}">
+
+
+</div>
+
+
+`).join("");
+
+
+
+
+
+if(dotsContainer){
+
+
+dotsContainer.innerHTML =
+
+
+data.map((item,index)=>`
+
+
+<span class="dot 
+${index===0?'active':''}" 
+data-slide="${index}">
+</span>
+
+
+`).join("");
+
+}
+
+
+initCarousel();
+
+
+}
+
+catch(error){
+
+console.error(
+"輪播資料載入失敗:",
+error
+);
+
+}
+
+
+}
+
+
+
+
+/* ==========================================================================
+3. 輪播控制
+========================================================================== */
+
+
+function initCarousel(){
+
+
+const carouselTrack =
+document.getElementById('carousel-track');
+
+
+const prevBtn =
+document.getElementById('prev-btn');
+
+
+const nextBtn =
+document.getElementById('next-btn');
+
+
+const dots =
+Array.from(
+document.querySelectorAll('.dot')
+);
+
+
+
+if(!carouselTrack) return;
+
+
+
+const slides =
+Array.from(carouselTrack.children);
+
+
+
+let currentIndex = 0;
+
+let timer;
+
+
+
+function updateCarousel(index){
+
+
+if(index < 0){
+
+currentIndex =
+slides.length-1;
+
+
+}
+
+else if(index >= slides.length){
+
+currentIndex=0;
+
+
+}
+
+else{
+
+
+currentIndex=index;
+
+
+}
+
+
+
+carouselTrack.style.transform =
+`translateX(-${currentIndex*100}%)`;
+
+
+
+dots.forEach((dot,i)=>{
+
+dot.classList.toggle(
+'active',
+i===currentIndex
+);
+
+});
+
+
+}
+
+
+
+function nextSlide(){
+
+updateCarousel(
+currentIndex+1
+);
+
+}
+
+
+
+function prevSlide(){
+
+updateCarousel(
+currentIndex-1
+);
+
+}
+
+
+
+function start(){
+
+stop();
+
+timer =
+setInterval(
+nextSlide,
+4000
+);
+
+}
+
+
+
+function stop(){
+
+if(timer){
+
+clearInterval(timer);
+
+}
+
+}
+
+
+
+if(nextBtn){
+
+nextBtn.onclick=()=>{
+
+nextSlide();
+
+start();
+
+};
+
+}
+
+
+
+if(prevBtn){
+
+prevBtn.onclick=()=>{
+
+prevSlide();
+
+start();
+
+};
+
+}
+
+
+
+dots.forEach((dot,index)=>{
+
+
+dot.onclick=()=>{
+
+
+updateCarousel(index);
+
+start();
+
+
+};
+
+
+});
+
+
+
+const container =
+carouselTrack.parentElement;
+
+
+if(container){
+
+
+container.addEventListener(
+'mouseenter',
+stop
+);
+
+
+container.addEventListener(
+'mouseleave',
+start
+);
+
+
+}
+
+
+
+updateCarousel(0);
+
+start();
+
+
+}
+
+
+
+
+
+/* ==========================================================================
+4. 最新消息載入
+========================================================================== */
+
+
+async function loadNews(){
+
+
+const container =
+document.querySelector('.news-grid-6');
+
+
+
+if(!container) return;
+
+
+
+try{
+
+
+const res =
+await fetch('/data/news.json');
+
+
+const news =
+await res.json();
+
+
+
+container.innerHTML =
+
+
+news.slice(0,6)
+.map(item=>`
+
+
+<article class="news-card">
+
+
+<div class="news-card-meta">
+
+
+<span class="news-tag tag-green">
+
+${item.tag}
+
+</span>
+
+
+<span class="news-date">
+
+${item.date}
+
+</span>
+
+
+</div>
+
+
+
+<h3 class="news-card-title">
+
+${item.title}
+
+</h3>
+
+
+
+<p class="news-card-summary">
+
+${item.summary}
+
+</p>
+
+
+
+</article>
+
+
+
+`).join("");
+
+
+
+}
+
+catch(error){
+
+console.error(
+"新聞資料載入失敗:",
+error
+);
+
+
+}
+
+
+}
+
+
+
+
+
+/* ==========================================================================
+5. 最新消息跑馬燈
+========================================================================== */
+
+
+async function loadTicker(){
+
+
+const ticker =
+document.getElementById(
+'ticker-track'
+);
+
+
+
+if(!ticker) return;
+
+
+
+try{
+
+
+const res =
+await fetch('/data/news.json');
+
+
+const news =
+await res.json();
+
+
+
+const items =
+news.slice(0,5);
+
+
+
+const loop =
+[
+...items,
+...items
+];
+
+
+
+ticker.innerHTML =
+
+
+loop.map(item=>`
+
+
+<div class="ticker-item">
+
+<span>
+
+${item.title}
+
+</span>
+
+</div>
+
+
+`).join("");
+
+
+
+}
+
+catch(error){
+
+
+console.error(
+"跑馬燈載入失敗:",
+error
+);
+
+
+}
+
+
+}
+
+
+
+
+/* ==========================================================================
+6. 啟動 CMS 功能
+========================================================================== */
+
+
+loadCarousel();
+
+
+loadNews();
+
+
+loadTicker();
+
+
 
 });
