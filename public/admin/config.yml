@@ -2,7 +2,8 @@ backend:
   name: GitHub
   repo: CSNZC/aicity-website
   branch: main
-  base_url: https://api.decapcms.org  
+  base_url: https://aicity-cms.casfzea.workers.dev
+  auth_endpoint: auth
 
 # 設定圖片上傳的儲存位置
 media_folder: "public/images/uploads"
