@@ -15,7 +15,7 @@ collections:
     label: "最新消息"
     folder: "src/content/news" # 發布後 Markdown 檔案會自動存到這個資料夾
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}"
     fields:
       - { label: "標題", name: "title", widget: "string" }       # 例如：榮獲 TTQS 銅牌
       - { label: "發布日期", name: "date", widget: "datetime" }    # 可點擊日曆小工具

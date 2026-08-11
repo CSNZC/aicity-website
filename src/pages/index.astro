@@ -225,33 +225,7 @@ const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
     </div>
   </section>
 
-<!--最新消息
-  <section id="news" class="content-section">
-    <div class="section-container">
-      <div class="section-header flex-header">
-        <div>
-          <span class="section-subtitle">LATEST ANNOUNCEMENTS</span>
-          <h2 class="section-title">最新消息與熱門課程</h2>
-        </div>
-        <a href="#all-news" class="btn-more-info">更多資訊 ➔</a>
-      </div>
-      <div class="news-grid-6">
-        <article class="news-card">
-          <div class="news-card-meta">
-            <span class="news-tag tag-green">輔導佳績</span>
-            <span class="news-date">114/12/26</span>
-          </div>
-          <h3 class="news-card-title">綠色觀光新標竿！輔導「縱谷花蓮線」成為全台首條碳足跡認證客運</h3>
-          <p class="news-card-summary">協助大眾運輸落實低碳旅遊，從人才培訓轉向企業與公共服務之實體碳足跡輔導。</p>
-        </article>
-      </div>
-      <div class="text-center mobile-more-btn-wrap">
-        <a href="#all-news" class="btn-more-info">更多資訊 ➔</a>
-      </div>
-    </div>
-  </section> 
--->
-
+<!--最新消息-->
 <section id="news" class="content-section">
   <div class="section-container">
     <div class="section-header flex-header">
@@ -265,7 +239,7 @@ const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
       {allPosts.map((news) => (
         <article class="news-card">
           <div class="news-card-meta">
-          <span class="news-tag tag-green">{news.data.tag || "最新消息"}</span>
+          <span class="news-tag tag-green">{news.data.tags}</span>
           <span class="news-date">
             {(() => {
               const d = new Date(news.data.date);
