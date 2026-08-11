@@ -1,10 +1,10 @@
 ---
 // 這就像是您的 PHP 引入資料庫檔案，直接去讀取 CMS 產生的內容資料夾
-//import { getCollection } from 'astro:content';
-//const allPosts = await getCollection('news');
 import { getCollection, type CollectionEntry } from 'astro:content';
-
 const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
+
+// 假設你的輪播圖資料存放在名為 'hero' 或其他 collection 中
+const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carousel');
 ---
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
@@ -92,7 +92,7 @@ const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
     </div>
   </header>
 
-<!--區塊輪播圖-->
+<!--區塊輪播圖
   <section id="home" class="hero-section">
     <div class="carousel-container">
       <div class="carousel-track" id="carousel-track">
@@ -112,7 +112,34 @@ const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
         <span class="dot" data-slide="3"></span>
       </div>
     </div>
-  </section>
+  </section>-->
+
+<section id="home" class="hero-section">
+  <div class="carousel-container">
+    <div class="carousel-track" id="carousel-track">
+      {carouselSlides.map((slide, index) => (
+        <div class={`carousel-slide ${index === 0 ? 'active' : ''}`}>
+          {slide.data.link ? (
+            <a href={slide.data.link}>
+              <img src={slide.data.image} alt={slide.data.title} />
+            </a>
+          ) : (
+            <img src={slide.data.image} alt={slide.data.title} />
+          )}
+        </div>
+      ))}
+    </div>
+
+    <button class="carousel-btn prev-btn" id="prev-btn" aria-label="上一張">❮</button>
+    <button class="carousel-btn next-btn" id="next-btn" aria-label="下一張">❯</button>
+
+    <div class="carousel-dots" id="carousel-dots">
+      {carouselSlides.map((_, index) => (
+        <span class={`dot ${index === 0 ? 'active' : ''}`} data-slide={index}></span>
+      ))}
+    </div>
+  </div>
+</section>
 
 <!--跑馬燈-->
   <section class="ticker-section">
