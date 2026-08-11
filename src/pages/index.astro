@@ -1,3 +1,11 @@
+---
+// 這就像是您的 PHP 引入資料庫檔案，直接去讀取 CMS 產生的內容資料夾
+//import { getCollection } from 'astro:content';
+//const allPosts = await getCollection('news');
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
+---
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
 <head>
@@ -217,7 +225,7 @@
     </div>
   </section>
 
-<!--最新消息-->
+<!--最新消息
   <section id="news" class="content-section">
     <div class="section-container">
       <div class="section-header flex-header">
@@ -236,39 +244,47 @@
           <h3 class="news-card-title">綠色觀光新標竿！輔導「縱谷花蓮線」成為全台首條碳足跡認證客運</h3>
           <p class="news-card-summary">協助大眾運輸落實低碳旅遊，從人才培訓轉向企業與公共服務之實體碳足跡輔導。</p>
         </article>
-
-        <article class="news-card">
-          <div class="news-card-meta">
-            <span class="news-tag tag-blue">課程報名</span>
-            <span class="news-date">115/06/06</span>
-          </div>
-          <h3 class="news-card-title">2026 年 iPAS 淨零碳規劃管理師初級能力鑑定輔導考照班</h3>
-          <p class="news-card-summary">由經濟部產發署低碳淨零人才培訓專案補助，名額有限，歡迎企業主管盡快報名。</p>
-        </article>
-
-        <article class="news-card">
-          <div class="news-card-meta">
-            <span class="news-tag tag-green">榮獲認證</span>
-            <span class="news-date">112/09/15</span>
-          </div>
-          <h3 class="news-card-title">賀！本公司榮獲勞動部頒發「TTQS 人才發展品質管理系統 銅牌」</h3>
-          <p class="news-card-summary">培訓流程與品質獲得國家級標準認可，提供企業最優質的內訓與公開班服務。</p>
-        </article>
-
-                <article class="news-card">
-          <div class="news-card-meta">
-            <span class="news-tag tag-blue">課程報名</span>
-            <span class="news-date">115/06/06</span>
-          </div>
-          <h3 class="news-card-title">2026 年 iPAS 淨零碳規劃管理師初級能力鑑定輔導考照班</h3>
-          <p class="news-card-summary">由經濟部產發署低碳淨零人才培訓專案補助，名額有限，歡迎企業主管盡快報名。</p>
-        </article>
       </div>
       <div class="text-center mobile-more-btn-wrap">
         <a href="#all-news" class="btn-more-info">更多資訊 ➔</a>
       </div>
     </div>
-  </section>
+  </section> 
+-->
+
+<section id="news" class="content-section">
+  <div class="section-container">
+    <div class="section-header flex-header">
+      <div>
+        <span class="section-subtitle">LATEST ANNOUNCEMENTS</span>
+        <h2 class="section-title">最新消息與熱門課程</h2>
+      </div>
+      <a class="btn-more-info">更多資訊 ➔</a>
+    </div>
+    <div class="news-grid-6">
+      {allPosts.map((news) => (
+        <article class="news-card">
+          <div class="news-card-meta">
+          <span class="news-tag tag-green">{news.data.tag || "最新消息"}</span>
+          <span class="news-date">
+            {(() => {
+              const d = new Date(news.data.date);
+              return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
+            })()}
+          </span>
+          </div>
+          <h3 class="news-card-title">
+            <a href={`/news/${news.id}`}>{news.data.title}</a>
+          </h3>
+          <p class="news-card-summary">{news.data.summary}</p>
+        </article>
+      ))}
+    </div>
+    <div class="text-center mobile-more-btn-wrap">
+      <a class="btn-more-info">更多資訊 ➔</a>
+    </div>
+  </div>
+</section>
 
 <!--聯絡表單-->
   <section id="contact" class="consult-section">
