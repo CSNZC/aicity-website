@@ -98,7 +98,7 @@ button {
   font-weight: 600;
   color: var(--primary-green);
   padding: 8px 6px;
-  position: relative;      /* 設定相對定位，供底線動畫使用 */
+  position: relative;       /* 設定相對定位，供底線動畫使用 */
   transition: color 0.2s ease;
   white-space: nowrap;      /* 強制文字不換行 */
 }
@@ -156,7 +156,7 @@ button {
 /* 下拉選單內的文字與連結 */
 .dropdown-menu span, 
 .dropdown-menu a {
-  display: block;    /* 讓每個項目獨佔一行 */
+  display: block;   /* 讓每個項目獨佔一行 */
   padding: 10px 20px;
   font-size: 0.9375rem;
   color: var(--primary-green);
@@ -209,6 +209,8 @@ button {
   padding: 24px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   border-bottom: 3px solid var(--primary-green);
+  max-height: calc(100vh - var(--nav-height)); /* 限制最大高度避免超出畫面 */
+  overflow-y: auto;                             /* 內容過多時可滾動 */
 }
 
 .mobile-menu.is-active {
@@ -223,11 +225,46 @@ button {
   color: var(--primary-green);
   padding: 8px 0;
   border-bottom: 1px solid var(--border-color);
+  display: block;
 }
 
 .mobile-cta {
   text-align: center;
   margin-top: 8px;
+}
+
+/* 手機版具備下拉子項目的群組容器 */
+.mobile-dropdown-group {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border-color); /* 底部加上分隔線 */
+}
+
+/* 覆蓋群組內主連結的預設底線，由外層容器統一管理邊線 */
+.mobile-dropdown-group .mobile-link {
+  border-bottom: none; 
+}
+
+/* 手機版收合的子選單區塊 */
+.mobile-sub-menu {
+  padding-left: 20px;                     /* 向右縮排，營造出階層感 */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                               /* 子項目間距 */
+  padding-bottom: 12px;
+}
+
+/* 手機版子選單內的連結樣式 */
+.mobile-sub-link {
+  font-size: 0.95rem;                     /* 字級稍微比主項目小 */
+  font-weight: 500;                       /* 中等字重 */
+  color: var(--text-muted);               /* 使用次要文字顏色降低視覺干擾 */
+  transition: color 0.2s ease;            /* 顏色過渡效果 */
+}
+
+/* 手機版子選單連結懸浮/點擊狀態 */
+.mobile-sub-link:hover {
+  color: var(--accent-gold);              /* 變更為琥珀金 */
 }
 
 
@@ -248,9 +285,9 @@ button {
 }
 
 /* 靈活設定三個區塊的比例 */
-.footer-col-info { flex: 1.2; }     
-.footer-col-links { flex: 0.8}     
-.footer-col-social { flex: 1; }   
+.footer-col-info { flex: 1.2; }    
+.footer-col-links { flex: 0.8}    
+.footer-col-social { flex: 1; }  
 
 .footer-company-name {
   color: var(--bg-white);           
@@ -298,13 +335,13 @@ button {
 }
 
 .qr-code-group {
-  display: flex;   /* 橫向排列 QR Code */                 
+  display: flex;   /* 橫向排列 QR Code */                
   gap: 18px;                        
 }
 
 .qr-code-item {
   display: flex;                    
-  flex-direction: column;    /* 圖片在上，文字在下 */      
+  flex-direction: column;   /* 圖片在上，文字在下 */         
   align-items: center;              
   gap: 6px;                         
   font-size: 0.75rem;               
@@ -329,7 +366,7 @@ button {
   color: #64748B;                   
 }
 
-/* ==================== 5. RWD 響應式佈局 ==================== */
+/*  RWD 響應式佈局  */
 @media (max-width: 991px) {
   /* 導覽列與漢堡選單切換 */
   .desktop-nav { display: none; } 

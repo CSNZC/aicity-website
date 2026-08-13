@@ -26,72 +26,108 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
 <!--上方導覽列-->
   <header class="navbar-header">
     <div class="nav-container">
-      <a href="#" class="logo-link">
+      <a href="/" class="logo-link">
         <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
       </a>
-      <nav class="desktop-nav">
-        <div class="nav-dropdown">
-          <span class="nav-link"><a href="/Company">關於我們 ▾</a></span>
-          <div class="dropdown-menu">
-            <span><a href="/Company">公司介紹</a></span>
-            <span><a href="/Partners">團隊介紹</a></span>
-            <span><a href="/company">相關連結</a></span>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a href="#news" class="nav-link">最新消息</a>
-        </div>
-        <div class="nav-dropdown">
-          <span class="nav-link">永續服務 ▾</span>
-          <div class="dropdown-menu">
-            <span>企業輔導</span>
-            <span>政府專案</span>
-            <!--<span>AI轉型</span>-->
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a href="#courses" class="nav-link">人員培訓 ▾</a>
-          <div class="dropdown-menu">
-            <span>iPAS 課程培訓</span>
-            <span>ISO 國際課程培訓</span>
-            <span>永續課程</span>
-          </div>
-        </div>
-        <div class="nav-dropdown">
-          <a href="#solar" class="nav-link">光電建置</a>
-        </div>
-        <div class="nav-dropdown">
-          <span class="nav-link">實績事例 ▾</span>
-          <div class="dropdown-menu">
-            <span>永續轉型</span>
-            <span>人員培訓</span>
-            <span>光電建置</span>
-          </div>
-        </div>
-        <!--<div class="nav-dropdown">
-          <a href="#solar" class="nav-link">相關連結</a>
-        </div>-->
-        <a href="#contact" class="btn-primary-cta">預約健檢</a>
-      </nav>
+            <nav class="desktop-nav">
+                <div class="nav-dropdown">
+                    <a href="/Company" class="nav-link">關於我們 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/Company">公司介紹</a>
+                        <a href="/Partners">團隊介紹</a>
+                        <a href="/Links">相關連結</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/News" class="nav-link">最新消息</a>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/Service" class="nav-link">永續服務 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/Business">企業輔導</a>
+                        <a href="/Government">政府專案</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/Training" class="nav-link">人員培訓 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/iPAS">iPAS 課程培訓</a>
+                        <a href="/ISO">ISO 國際課程培訓</a>
+                        <a href="/Courses">永續課程</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/Solar energy" class="nav-link">光電建置</a>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/Performance  Results" class="nav-link">實績事例 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/PR-S">永續轉型</a>
+                        <a href="/PR-T">人員培訓</a>
+                        <a href="/PR-E">光電建置</a>
+                    </div>
+                </div>
+                <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
+            </nav>
 
-      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="6" x2="20" y2="6"></line>
-          <line x1="4" y1="12" x2="20" y2="12"></line>
-          <line x1="4" y1="18" x2="20" y2="18"></line>
-        </svg>
-      </button>
-    </div>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <!-- 手機版下拉選單 -->
+        <div id="mobile-menu" class="mobile-menu">
+            <!-- 關於我們 -->
+            <div class="mobile-dropdown-group">
+                <a href="/Company" class="mobile-link">關於我們 ▾</a>
+                <div class="mobile-sub-menu">
+                    <a href="/Company" class="mobile-sub-link">公司介紹</a>
+                    <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
+                    <a href="/Links" class="mobile-sub-link">相關連結</a>
+                </div>
+            </div>
 
-    <div id="mobile-menu" class="mobile-menu">
-      <span class="mobile-link">關於我們</span>
-      <a href="#news" class="mobile-link">最新消息</a>
-      <span class="mobile-link">永續服務</span>
-      <a href="#courses" class="mobile-link">人員培訓</a>
-      <a href="#solar" class="mobile-link">光電建置</a>
-      <span class="mobile-link">實績事例</span>
-      <a href="#contact" class="btn-primary-cta mobile-cta">預約健檢</a>
-    </div>
+            <!-- 最新消息 -->
+            <a href="/News" class="mobile-link">最新消息</a>
+
+            <!-- 永續服務 -->
+            <div class="mobile-dropdown-group">
+                <a href="/Service" class="mobile-link">永續服務 ▾</a>
+                <div class="mobile-sub-menu">
+                    <a href="/Business" class="mobile-sub-link">企業輔導</a>
+                    <a href="/Government" class="mobile-sub-link">政府專案</a>
+                </div>
+            </div>
+
+            <!-- 人員培訓 -->
+            <div class="mobile-dropdown-group">
+                <a href="/Training" class="mobile-link">人員培訓 ▾</a>
+                <div class="mobile-sub-menu">
+                    <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
+                    <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
+                    <a href="/Courses" class="mobile-sub-link">永續課程</a>
+                </div>
+            </div>
+
+            <!-- 光電建置 -->
+            <a href="/Solar energy" class="mobile-link">光電建置</a>
+
+            <!-- 實績事例 -->
+            <div class="mobile-dropdown-group">
+                <a href="/Performance  Results" class="mobile-link">實績事例 ▾</a>
+                <div class="mobile-sub-menu">
+                    <a href="/PR-S" class="mobile-sub-link">永續轉型</a>
+                    <a href="/PR-T" class="mobile-sub-link">人員培訓</a>
+                    <a href="/PR-E" class="mobile-sub-link">光電建置</a>
+                </div>
+            </div>
+
+            <!-- 預約健檢 CTA 按鈕 -->
+            <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
+        </div>
   </header>
 
 <!--區塊輪播圖-->
