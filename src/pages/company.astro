@@ -3,551 +3,538 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>公司介紹｜艾城市有限公司</title>
 
+    <!-- 引入全站共用樣式與頁面專屬樣式 -->
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/Company.css">
 </head>
-
 <body>
-    <!--上方導覽列-->
+
+    <!-- =========================
+        1. 頂部導覽列 (全站共用)
+    ========================= -->
     <header class="navbar-header">
         <div class="nav-container">
-        <a href="#" class="logo-link">
-            <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
-        </a>
-        <nav class="desktop-nav">
-            <div class="nav-dropdown">
-            <span class="nav-link"><a href="/Company">關於我們 ▾</a></span>
-            <div class="dropdown-menu">
-                <span><a href="/Company">公司介紹</a></span>
-                <span><a href="/Partners">團隊介紹</a></span>
-                <span><a href="/company">相關連結</a></span>
-            </div>
-            </div>
-            <div class="nav-dropdown">
-            <a href="#news" class="nav-link">最新消息</a>
-            </div>
-            <div class="nav-dropdown">
-            <span class="nav-link">永續服務 ▾</span>
-            <div class="dropdown-menu">
-                <span>企業輔導</span>
-                <span>政府專案</span>
-                <!--<span>AI轉型</span>-->
-            </div>
-            </div>
-            <div class="nav-dropdown">
-            <a href="#courses" class="nav-link">人員培訓 ▾</a>
-            <div class="dropdown-menu">
-                <span>iPAS 課程培訓</span>
-                <span>ISO 國際課程培訓</span>
-                <span>永續課程</span>
-            </div>
-            </div>
-            <div class="nav-dropdown">
-            <a href="#solar" class="nav-link">光電建置</a>
-            </div>
-            <div class="nav-dropdown">
-            <span class="nav-link">實績事例 ▾</span>
-            <div class="dropdown-menu">
-                <span>永續轉型</span>
-                <span>人員培訓</span>
-                <span>光電建置</span>
-            </div>
-            </div>
-            <!--<div class="nav-dropdown">
-            <a href="#solar" class="nav-link">相關連結</a>
-            </div>-->
-            <a href="#contact" class="btn-primary-cta">預約健檢</a>
-        </nav>
+            <a href="/" class="logo-link">
+                <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
+            </a>
+            <nav class="desktop-nav">
+                <div class="nav-dropdown">
+                    <span class="nav-link"><a href="/Company">關於我們 ▾</a></span>
+                    <div class="dropdown-menu">
+                        <span><a href="/Company">公司介紹</a></span>
+                        <span><a href="/Partners">團隊介紹</a></span>
+                        <span><a href="/company">相關連結</a></span>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/#news" class="nav-link">最新消息</a>
+                </div>
+                <div class="nav-dropdown">
+                    <span class="nav-link">永續服務 ▾</span>
+                    <div class="dropdown-menu">
+                        <span>企業輔導</span>
+                        <span>政府專案</span>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/#courses" class="nav-link">人員培訓 ▾</a>
+                    <div class="dropdown-menu">
+                        <span>iPAS 課程培訓</span>
+                        <span>ISO 國際課程培訓</span>
+                        <span>永續課程</span>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/#solar" class="nav-link">光電建置</a>
+                </div>
+                <div class="nav-dropdown">
+                    <span class="nav-link">實績事例 ▾</span>
+                    <div class="dropdown-menu">
+                        <span>永續轉型</span>
+                        <span>人員培訓</span>
+                        <span>光電建置</span>
+                    </div>
+                </div>
+                <a href="/#contact" class="btn-primary-cta">預約健檢</a>
+            </nav>
 
-        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="4" y1="6" x2="20" y2="6"></line>
-            <line x1="4" y1="12" x2="20" y2="12"></line>
-            <line x1="4" y1="18" x2="20" y2="18"></line>
-            </svg>
-        </button>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+            </button>
         </div>
 
+        <!-- 手機版下拉選單 -->
         <div id="mobile-menu" class="mobile-menu">
-        <span class="mobile-link">關於我們</span>
-        <a href="#news" class="mobile-link">最新消息</a>
-        <span class="mobile-link">永續服務</span>
-        <a href="#courses" class="mobile-link">人員培訓</a>
-        <a href="#solar" class="mobile-link">光電建置</a>
-        <span class="mobile-link">實績事例</span>
-        <a href="#contact" class="btn-primary-cta mobile-cta">預約健檢</a>
-        </div>
-    <!-- Hero / Page Header -->
-        <div class="container hero-content">
-            <div class="hero-label">
-                ABOUT US
-            </div>
-            <h1>
-                以永續為核心<br>
-                協助企業走向低碳未來
-            </h1>
-            <p>
-                從碳管理、ESG 到再生能源與人才培訓，
-                我們整合專業顧問與產業資源，
-                陪伴企業建立完整的永續發展能力。
-            </p>
+            <span class="mobile-link">關於我們</span>
+            <a href="/#news" class="mobile-link">最新消息</a>
+            <span class="mobile-link">永續服務</span>
+            <a href="/#courses" class="mobile-link">人員培訓</a>
+            <a href="/#solar" class="mobile-link">光電建置</a>
+            <span class="mobile-link">實績事例</span>
+            <a href="/#contact" class="btn-primary-cta mobile-cta">預約健檢</a>
         </div>
     </header>
-    <!--  Company Introduction -->
-    <section class="section company-intro">
-        <div class="container two-column">
-            <div class="section-heading">
-                <span class="section-number">
-                    01
-                </span>
-                <span class="section-label">
-                    COMPANY
-                </span>
-                <h2>
-                    讓永續不只是目標，
-                    而是企業可以執行的策略
-                </h2>
-            </div>
-            <div class="intro-content">
-                <p class="lead">
-                    我們致力於協助企業面對全球低碳轉型所帶來的
-                    新挑戰，將永續理念轉化為可以落地執行的管理
-                    方法與行動方案。
-                </p>
+
+
+    <!-- =========================
+        2. 頁面主要內容 (Company 頁面專屬區塊)
+    ========================= -->
+    <main>
+        <!-- Hero / Page Header -->
+        <header class="page-hero">
+            <div class="container hero-content">
+                <div class="hero-label">
+                    ABOUT US
+                </div>
+                <h1>
+                    以永續為核心<br>
+                    協助企業走向低碳未來
+                </h1>
                 <p>
-                    面對全球氣候變遷、能源轉型以及國際碳管理
-                    趨勢，企業需要的不只是單一的碳盤查服務，
-                    而是一套能夠持續改善的管理架構。
-                </p>
-                <p>
-                    因此，我們整合碳管理、ESG、能源規劃、
-                    再生能源與人才培訓等專業服務，從企業
-                    現況分析開始，逐步建立適合自身產業的
-                    永續發展策略。
+                    從碳管理、ESG 到再生能源與人才培訓，
+                    我們整合專業顧問與產業資源，
+                    陪伴企業建立完整的永續發展能力。
                 </p>
             </div>
-        </div>
-    </section>
-    <!-- Core Philosophy -->
-    <section class="section philosophy-section">
-        <div class="container">
-            <div class="center-heading">
-                <span class="section-label">
-                    OUR PHILOSOPHY
-                </span>
-                <h2>
-                    從認識碳，到管理碳
-                </h2>
-                <p>
-                    我們相信企業的永續轉型需要循序漸進，
-                    因此透過專業服務與人才培育，
-                    建立企業自己的永續能力。
-                </p>
-            </div>
-            <div class="philosophy-grid">
-                <article class="philosophy-card">
-                    <div class="card-number">
+        </header>
+
+        <!-- Company Introduction -->
+        <section class="section company-intro">
+            <div class="container two-column">
+                <div class="section-heading">
+                    <span class="section-number">
                         01
-                    </div>
-                    <div class="icon-circle green">
-                        🌱
-                    </div>
-                    <h3>
-                        認識
-                    </h3>
-                    <p>
-                        協助企業理解溫室氣體、碳排放與
-                        永續發展趨勢，建立低碳轉型的基礎認知。
-                    </p>
-                </article>
-                <article class="philosophy-card featured">
-                    <div class="card-number">
-                        02
-                    </div>
-                    <div class="icon-circle gold">
-                        ◈
-                    </div>
-                    <h3>
-                        盤查
-                    </h3>
-                    <p>
-                        建立完整的排放數據管理流程，
-                        協助企業掌握自身碳排放狀況，
-                        找出主要排放來源。
-                    </p>
-                </article>
-                <article class="philosophy-card">
-                    <div class="card-number">
-                        03
-                    </div>
-                    <div class="icon-circle blue">
-                        ↗
-                    </div>
-                    <h3>
-                        行動
-                    </h3>
-                    <p>
-                        根據盤查結果規劃減量、節能與
-                        再生能源方案，將數據轉化為實際改善行動。
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
-    <!--  Services -->
-    <section class="section services-section">
-        <div class="container">
-            <div class="section-top">
-                <div>
+                    </span>
                     <span class="section-label">
-                        OUR SERVICES
+                        COMPANY
                     </span>
                     <h2>
-                        一站式永續轉型服務
+                        讓永續不只是目標，
+                        而是企業可以執行的策略
                     </h2>
                 </div>
-                <p>
-                    從策略規劃、數據盤查到實際改善，
-                    提供企業低碳轉型所需的完整支援。
-                </p>
-            </div>
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <article class="service-card">
-                    <div class="service-icon">
-                        01
-                    </div>
-                    <h3>
-                        碳管理與盤查
-                    </h3>
-                    <p>
-                        協助企業建立溫室氣體管理制度，
-                        執行組織型碳盤查、碳排放數據整理
-                        與相關報告文件。
+                <div class="intro-content">
+                    <p class="lead">
+                        我們致力於協助企業面對全球低碳轉型所帶來的
+                        新挑戰，將永續理念轉化為可以落地執行的管理
+                        方法與行動方案。
                     </p>
-                    <ul>
-                        <li>溫室氣體盤查</li>
-                        <li>碳排放數據管理</li>
-                        <li>碳管理制度建置</li>
-                    </ul>
-                </article>
-                <!-- Service 2 -->
-                <article class="service-card">
-                    <div class="service-icon blue-icon">
-                        02
-                    </div>
-                    <h3>
-                        ESG 永續管理
-                    </h3>
                     <p>
-                        依據企業發展需求建立 ESG 管理架構，
-                        協助整理永續資訊並強化企業治理與
-                        環境管理能力。
+                        面對全球氣候變遷、能源轉型以及國際碳管理
+                        趨勢，企業需要的不只是單一的碳盤查服務，
+                        而是一套能夠持續改善的管理架構。
                     </p>
-                    <ul>
-                        <li>ESG 制度規劃</li>
-                        <li>永續資訊整理</li>
-                        <li>永續報告相關輔導</li>
-                    </ul>
-                </article>
-                <!-- Service 3 -->
-                <article class="service-card">
-                    <div class="service-icon gold-icon">
-                        03
-                    </div>
-                    <h3>
-                        減碳與能源規劃
-                    </h3>
                     <p>
-                        針對企業能源使用情況進行分析，
-                        規劃節能改善、再生能源與能源管理
-                        等低碳方案。
+                        因此，我們整合碳管理、ESG、能源規劃、
+                        再生能源與人才培訓等專業服務，從企業
+                        現況分析開始，逐步建立適合自身產業的
+                        永續發展策略。
                     </p>
-                    <ul>
-                        <li>節能改善規劃</li>
-                        <li>太陽能光電規劃</li>
-                        <li>儲能系統評估</li>
-                    </ul>
-
-                </article>
-
-
-                <!-- Service 4 -->
-                <article class="service-card">
-
-                    <div class="service-icon">
-                        04
-                    </div>
-
-                    <h3>
-                        專業人才培訓
-                    </h3>
-
-                    <p>
-                        透過實務課程與專業講師，
-                        協助企業培養碳管理與永續發展
-                        所需的人才。
-                    </p>
-
-                    <ul>
-                        <li>碳盤查實務課程</li>
-                        <li>ISO 相關培訓</li>
-                        <li>淨零管理人才培育</li>
-                    </ul>
-
-                </article>
-
-
-                <!-- Service 5 -->
-                <article class="service-card">
-
-                    <div class="service-icon blue-icon">
-                        05
-                    </div>
-
-                    <h3>
-                        查證與專業媒合
-                    </h3>
-
-                    <p>
-                        依照企業需求協助尋找適合的
-                        第三方查證與確證資源，
-                        建立完整的碳管理服務流程。
-                    </p>
-
-                    <ul>
-                        <li>第三方查證資源</li>
-                        <li>碳足跡相關服務</li>
-                        <li>專業顧問資源整合</li>
-                    </ul>
-
-                </article>
-
-
-                <!-- Service 6 -->
-                <article class="service-card">
-
-                    <div class="service-icon gold-icon">
-                        06
-                    </div>
-
-                    <h3>
-                        企業永續顧問
-                    </h3>
-
-                    <p>
-                        依據企業規模、產業特性與發展階段，
-                        提供客製化的永續轉型策略與執行建議。
-                    </p>
-
-                    <ul>
-                        <li>企業現況診斷</li>
-                        <li>永續策略規劃</li>
-                        <li>低碳轉型顧問</li>
-                    </ul>
-
-                </article>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         Process
-    ========================== -->
-    <section class="section process-section">
-
-        <div class="container">
-
-            <div class="center-heading">
-
-                <span class="section-label">
-                    OUR PROCESS
-                </span>
-
-                <h2>
-                    陪伴企業逐步完成轉型
-                </h2>
-
-            </div>
-
-
-            <div class="process">
-
-                <div class="process-item">
-
-                    <div class="process-number">
-                        01
-                    </div>
-
-                    <h3>
-                        現況了解
-                    </h3>
-
-                    <p>
-                        掌握企業產業特性、
-                        能源使用及目前永續管理狀況。
-                    </p>
-
                 </div>
-
-
-                <div class="process-line"></div>
-
-
-                <div class="process-item">
-
-                    <div class="process-number">
-                        02
-                    </div>
-
-                    <h3>
-                        數據盤點
-                    </h3>
-
-                    <p>
-                        建立碳排放與能源使用數據，
-                        找出主要改善機會。
-                    </p>
-
-                </div>
-
-
-                <div class="process-line"></div>
-
-
-                <div class="process-item">
-
-                    <div class="process-number">
-                        03
-                    </div>
-
-                    <h3>
-                        策略規劃
-                    </h3>
-
-                    <p>
-                        根據企業需求制定低碳、
-                        ESG 與能源改善策略。
-                    </p>
-
-                </div>
-
-
-                <div class="process-line"></div>
-
-
-                <div class="process-item">
-
-                    <div class="process-number">
-                        04
-                    </div>
-
-                    <h3>
-                        持續改善
-                    </h3>
-
-                    <p>
-                        透過管理與追蹤，
-                        讓永續策略真正落實於企業營運。
-                    </p>
-
-                </div>
-
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-    <!-- =========================
-         Why Us
-    ========================== -->
-    <section class="section why-section">
-        <div class="container why-grid">
-            <div>
-                <span class="section-label">
-                    WHY CHOOSE US
-                </span>
-                <h2>
-                    專業 × 實務 × 資源整合
-                </h2>
-                <p class="why-description">
-                    永續轉型並非單一部門可以完成的工作。
-                    我們以顧問服務為核心，串聯企業、
-                    專業人才、教育單位與相關產業資源，
-                    協助企業從規劃走向執行。
-                </p>
-            </div>
-
-            <div class="strength-list">
-                <div class="strength-item">
-                    <span>01</span>
-                    <div>
-                        <h3>產業實務經驗</h3>
+        <!-- Core Philosophy -->
+        <section class="section philosophy-section">
+            <div class="container">
+                <div class="center-heading">
+                    <span class="section-label">
+                        OUR PHILOSOPHY
+                    </span>
+                    <h2>
+                        從認識碳，到管理碳
+                    </h2>
+                    <p>
+                        我們相信企業的永續轉型需要循序漸進，
+                        因此透過專業服務與人才培育，
+                        建立企業自己的永續能力。
+                    </p>
+                </div>
+                <div class="philosophy-grid">
+                    <article class="philosophy-card">
+                        <div class="card-number">
+                            01
+                        </div>
+                        <div class="icon-circle green">
+                            🌱
+                        </div>
+                        <h3>
+                            認識
+                        </h3>
                         <p>
-                            以企業實際需求為出發點，
-                            提供可執行的解決方案。
+                            協助企業理解溫室氣體、碳排放與
+                            永續發展趨勢，建立低碳轉型的基礎認知。
+                        </p>
+                    </article>
+                    <article class="philosophy-card featured">
+                        <div class="card-number">
+                            02
+                        </div>
+                        <div class="icon-circle gold">
+                            ◈
+                        </div>
+                        <h3>
+                            盤查
+                        </h3>
+                        <p>
+                            建立完整的排放數據管理流程，
+                            協助企業掌握自身碳排放狀況，
+                            找出主要排放來源。
+                        </p>
+                    </article>
+                    <article class="philosophy-card">
+                        <div class="card-number">
+                            03
+                        </div>
+                        <div class="icon-circle blue">
+                            ↗
+                        </div>
+                        <h3>
+                            行動
+                        </h3>
+                        <p>
+                            根據盤查結果規劃減量、節能與
+                            再生能源方案，將數據轉化為實際改善行動。
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="section services-section">
+            <div class="container">
+                <div class="section-top">
+                    <div>
+                        <span class="section-label">
+                            OUR SERVICES
+                        </span>
+                        <h2>
+                            一站式永續轉型服務
+                        </h2>
+                    </div>
+                    <p>
+                        從策略規劃、數據盤查到實際改善，
+                        提供企業低碳轉型所需的完整支援。
+                    </p>
+                </div>
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            01
+                        </div>
+                        <h3>
+                            碳管理與盤查
+                        </h3>
+                        <p>
+                            協助企業建立溫室氣體管理制度，
+                            執行組織型碳盤查、碳排放數據整理
+                            與相關報告文件。
+                        </p>
+                        <ul>
+                            <li>溫室氣體盤查</li>
+                            <li>碳排放數據管理</li>
+                            <li>碳管理制度建置</li>
+                        </ul>
+                    </article>
+                    <!-- Service 2 -->
+                    <article class="service-card">
+                        <div class="service-icon blue-icon">
+                            02
+                        </div>
+                        <h3>
+                            ESG 永續管理
+                        </h3>
+                        <p>
+                            依據企業發展需求建立 ESG 管理架構，
+                            協助整理永續資訊並強化企業治理與
+                            環境管理能力。
+                        </p>
+                        <ul>
+                            <li>ESG 制度規劃</li>
+                            <li>永續資訊整理</li>
+                            <li>永續報告相關輔導</li>
+                        </ul>
+                    </article>
+                    <!-- Service 3 -->
+                    <article class="service-card">
+                        <div class="service-icon gold-icon">
+                            03
+                        </div>
+                        <h3>
+                            減碳與能源規劃
+                        </h3>
+                        <p>
+                            針對企業能源使用情況進行分析，
+                            規劃節能改善、再生能源與能源管理
+                            等低碳方案。
+                        </p>
+                        <ul>
+                            <li>節能改善規劃</li>
+                            <li>太陽能光電規劃</li>
+                            <li>儲能系統評估</li>
+                        </ul>
+                    </article>
+                    <!-- Service 4 -->
+                    <article class="service-card">
+                        <div class="service-icon">
+                            04
+                        </div>
+                        <h3>
+                            專業人才培訓
+                        </h3>
+                        <p>
+                            透過實務課程與專業講師，
+                            協助企業培養碳管理與永續發展
+                            所需的人才。
+                        </p>
+                        <ul>
+                            <li>碳盤查實務課程</li>
+                            <li>ISO 相關培訓</li>
+                            <li>淨零管理人才培育</li>
+                        </ul>
+                    </article>
+                    <!-- Service 5 -->
+                    <article class="service-card">
+                        <div class="service-icon blue-icon">
+                            05
+                        </div>
+                        <h3>
+                            查證與專業媒合
+                        </h3>
+                        <p>
+                            依照企業需求協助尋找適合的
+                            第三方查證與確證資源，
+                            建立完整的碳管理服務流程。
+                        </p>
+                        <ul>
+                            <li>第三方查證資源</li>
+                            <li>碳足跡相關服務</li>
+                            <li>專業顧問資源整合</li>
+                        </ul>
+                    </article>
+                    <!-- Service 6 -->
+                    <article class="service-card">
+                        <div class="service-icon gold-icon">
+                            06
+                        </div>
+                        <h3>
+                            企業永續顧問
+                        </h3>
+                        <p>
+                            依據企業規模、產業特性與發展階段，
+                            提供客製化的永續轉型策略與執行建議。
+                        </p>
+                        <ul>
+                            <li>企業現況診斷</li>
+                            <li>永續策略規劃</li>
+                            <li>低碳轉型顧問</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section class="section process-section">
+            <div class="container">
+                <div class="center-heading">
+                    <span class="section-label">
+                        OUR PROCESS
+                    </span>
+                    <h2>
+                        陪伴企業逐步完成轉型
+                    </h2>
+                </div>
+                <div class="process">
+                    <div class="process-item">
+                        <div class="process-number">
+                            01
+                        </div>
+                        <h3>
+                            現況了解
+                        </h3>
+                        <p>
+                            掌握企業產業特性、
+                            能源使用及目前永續管理狀況。
                         </p>
                     </div>
-                </div>
-                <div class="strength-item">
-                    <span>02</span>
-                    <div>
-                        <h3>跨領域專業團隊</h3>
+                    <div class="process-line"></div>
+                    <div class="process-item">
+                        <div class="process-number">
+                            02
+                        </div>
+                        <h3>
+                            數據盤點
+                        </h3>
                         <p>
-                            整合永續、能源、碳管理與
-                            人才培訓等不同專業。
+                            建立碳排放與能源使用數據，
+                            找出主要改善機會。
                         </p>
                     </div>
-                </div>
-                <div class="strength-item">
-                    <span>03</span>
-                    <div>
-                        <h3>完整資源整合</h3>
+                    <div class="process-line"></div>
+                    <div class="process-item">
+                        <div class="process-number">
+                            03
+                        </div>
+                        <h3>
+                            策略規劃
+                        </h3>
                         <p>
-                            串聯企業與外部專業資源，
-                            建立更完整的永續服務鏈。
+                            根據企業需求制定低碳、
+                            ESG 與能源改善策略。
+                        </p>
+                    </div>
+                    <div class="process-line"></div>
+                    <div class="process-item">
+                        <div class="process-number">
+                            04
+                        </div>
+                        <h3>
+                            持續改善
+                        </h3>
+                        <p>
+                            透過管理與追蹤，
+                            讓永續策略真正落實於企業營運。
                         </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- =========================
-         CTA
-    ========================== -->
-    <section class="cta-section">
-        <div class="container cta-content">
-            <div>
-                <span class="section-label light-label">
-                    LET'S WORK TOGETHER
-                </span>
-                <h2>
-                    一起為企業打造下一個
-                    永續成長的可能
-                </h2>
-                <p>
-                    如果您的企業正在規劃碳管理、
-                    ESG 或低碳轉型，
-                    歡迎與我們聯繫。
-                </p>
+        <!-- Why Us -->
+        <section class="section why-section">
+            <div class="container why-grid">
+                <div>
+                    <span class="section-label">
+                        WHY CHOOSE US
+                    </span>
+                    <h2>
+                        專業 × 實務 × 資源整合
+                    </h2>
+                    <p class="why-description">
+                        永續轉型並非單一部門可以完成的工作。
+                        我們以顧問服務為核心，串聯企業、
+                        專業人才、教育單位與相關產業資源，
+                        協助企業從規劃走向執行。
+                    </p>
+                </div>
+                <div class="strength-list">
+                    <div class="strength-item">
+                        <span>01</span>
+                        <div>
+                            <h3>產業實務經驗</h3>
+                            <p>
+                                以企業實際需求為出發點，
+                                提供可執行的解決方案。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="strength-item">
+                        <span>02</span>
+                        <div>
+                            <h3>跨領域專業團隊</h3>
+                            <p>
+                                整合永續、能源、碳管理與
+                                人才培訓等不同專業。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="strength-item">
+                        <span>03</span>
+                        <div>
+                            <h3>完整資源整合</h3>
+                            <p>
+                                串聯企業與外部專業資源，
+                                建立更完整的永續服務鏈。
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="#contact" class="cta-button">
-                聯絡我們
-                <span>→</span>
-            </a>
-        </div>
-    </section>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="container cta-content">
+                <div>
+                    <span class="section-label light-label">
+                        LET'S WORK TOGETHER
+                    </span>
+                    <h2>
+                        一起為企業打造下一個
+                        永續成長的可能
+                    </h2>
+                    <p>
+                        如果您的企業正在規劃碳管理、
+                        ESG 或低碳轉型，
+                        歡迎與我們聯繫。
+                    </p>
+                </div>
+                <a href="#contact" class="cta-button">
+                    聯絡我們
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
 
     <!-- =========================
-         Footer
-    ========================== -->
+        3. 頁尾 (Footer - 全站共用)
+    ========================= -->
+    <footer class="site-footer">
+        <div class="footer-compact-container">
+            <!-- 公司介紹 -->
+            <div class="footer-col footer-col-info">
+                <h3 class="footer-company-name">艾城市有限公司</h3>
+                <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
+                <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
+                <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
+            </div>
+            <!-- 快速連結 -->
+            <div class="footer-col footer-col-links">
+                <h4 class="footer-title">快速連結</h4>
+                <div class="footer-links-2cols">
+                    <span>關於我們</span>
+                    <span>最新消息</span>
+                    <span>實績事例</span>
+                    <span>永續服務</span>
+                    <span>人員培訓</span>
+                    <span>光電建置</span>
+                </div>
+            </div>
+            <!-- 社群QR -->
+            <div class="footer-col footer-col-social">
+                <h4 class="footer-title">官方社群</h4>
+                <div class="qr-code-group">
+                    <div class="qr-code-item">
+                        <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
+                        <span>Facebook</span>
+                    </div>
+                    <div class="qr-code-item">
+                        <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
+                        <span>Instagram</span>
+                    </div>
+                    <div class="qr-code-item">
+                        <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
+                        <span>LINE 官方</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
