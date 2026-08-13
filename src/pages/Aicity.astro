@@ -24,11 +24,11 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
 </head>
 <body>
 <!--上方導覽列-->
-  <header class="navbar-header">
-    <div class="nav-container">
-      <a href="/" class="logo-link">
-        <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
-      </a>
+    <header class="navbar-header">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
+            </a>
             <nav class="desktop-nav">
                 <div class="nav-dropdown">
                     <a href="/Introduction" class="nav-link">關於我們 ▾</a>
@@ -60,7 +60,7 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
                     <a href="/Solar energy" class="nav-link">光電建置</a>
                 </div>
                 <div class="nav-dropdown">
-                    <a href="/Performance  Results" class="nav-link">實績事例 ▾</a>
+                    <span class="nav-link">實績事例 ▾</span>
                     <div class="dropdown-menu">
                         <a href="/PR-S">永續轉型</a>
                         <a href="/PR-T">人員培訓</a>
@@ -82,9 +82,9 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
         <div id="mobile-menu" class="mobile-menu">
             <!-- 關於我們 -->
             <div class="mobile-dropdown-group">
-                <a href="/Company" class="mobile-link">關於我們 ▾</a>
+                <a href="/Introduction" class="mobile-link">關於我們 ▾</a>
                 <div class="mobile-sub-menu">
-                    <a href="/Company" class="mobile-sub-link">公司介紹</a>
+                    <a href="/Introduction" class="mobile-sub-link">公司介紹</a>
                     <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
                     <a href="/Links" class="mobile-sub-link">相關連結</a>
                 </div>
@@ -117,7 +117,7 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
 
             <!-- 實績事例 -->
             <div class="mobile-dropdown-group">
-                <a href="/Performance  Results" class="mobile-link">實績事例 ▾</a>
+                <span class="mobile-link">實績事例 ▾</span>
                 <div class="mobile-sub-menu">
                     <a href="/PR-S" class="mobile-sub-link">永續轉型</a>
                     <a href="/PR-T" class="mobile-sub-link">人員培訓</a>
@@ -128,8 +128,7 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
             <!-- 預約健檢 CTA 按鈕 -->
             <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
         </div>
-  </header>
-
+    </header>
 <!--區塊輪播圖-->
 <section id="home" class="hero-section">
   <div class="carousel-container">
@@ -411,8 +410,8 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
     </div>
   </footer>
 
-  <script src="/js/Aicity.js" defer></script>
   <script src="/js/style.js" defer></script>
+  <script src="/js/Aicity.js" defer></script>
 
 </body>
 </html>
