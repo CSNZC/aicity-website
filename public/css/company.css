@@ -105,6 +105,187 @@ img {
    Hero
 ========================================================= */
 
+/* 頂部導覽列 (Navbar)  */
+.navbar-header {
+  position: fixed;                  /* 固定在畫面上方 */
+  top: 0;                           /* 緊貼頂部 */
+  left: 0;                          /* 緊貼左側 */
+  right: 0;                         /* 緊貼右側 */
+  height: var(--nav-height);        /* 高度為變數設定的 80px */
+  z-index: 1000;                    /* 設定高層級，確保不被其他內容遮擋 */
+  background: rgba(255, 255, 255, 0.95); /* 白色背景，95% 不透明度 */
+  backdrop-filter: blur(12px);      /* 加上毛玻璃模糊效果 */
+  border-bottom: 1px solid rgba(27, 67, 50, 0.08); /* 底部加上極淡的綠色邊線 */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* 加上極輕微的陰影 */
+}
+
+.nav-container {
+  max-width: 1140px;                /* 與版面內容同寬 */
+  margin: 0 auto;                   /* 置中對齊 */
+  padding: 0 24px;                  /* 左右內距 24px */
+  height: 100%;                     /* 填滿導覽列高度 */
+  display: flex;                    /* 使用 Flexbox 排版 */
+  align-items: center;              /* 垂直置中 */
+  justify-content: space-between;   /* Logo 靠左，選單靠右 */
+}
+
+.logo-img {
+  height: 40px;                     /* Logo 圖片高度固定 40px */
+  width: auto;                      /* 寬度隨比例自動縮放 */
+  transition: transform 0.2s;       /* 縮放動畫時間 0.2 秒 */
+}
+
+.logo-img:hover {
+  transform: scale(1.02);           /* 滑鼠移入時 Logo 微微放大 2% */
+}
+
+.desktop-nav {
+  display: flex;                    /* 電腦版選單採橫向排列 */
+  gap: 24px;                        /* 每個選單項目間距 24px */
+  align-items: center;              /* 垂直置中 */
+}
+
+/* 導覽列一級連結 */
+.nav-link {
+  font-size: 1rem;                  /* 16px 字體大小 */
+  font-weight: 600;                 /* 半粗體 */
+  color: var(--primary-green);      /* 預設為森林綠 */
+  padding: 8px 6px;                 /* 增加點擊熱區範圍 */
+  position: relative;               /* 設定相對定位，供底線動畫使用 */
+  transition: color 0.2s ease;      /* 顏色變化過渡效果 */
+  white-space: nowrap; /* 強制文字不換行 */
+
+}
+
+/* 導覽列底線動畫特效 */
+.nav-link::after {
+  content: '';                      /* 偽元素必備屬性 */
+  position: absolute;               /* 絕對定位於文字下方 */
+  bottom: 0;                        /* 貼齊底部 */
+  left: 50%;                        /* 從中間開始 */
+  width: 0;                         /* 初始寬度為 0 (不可見) */
+  height: 2px;                      /* 底線厚度 2px */
+  background: var(--accent-gold);   /* 底線顏色為琥珀金 */
+  transition: all 0.25s ease;       /* 動畫時間 0.25 秒 */
+  transform: translateX(-50%);      /* 讓底線完美置中於文字下方 */
+}
+
+.nav-link:hover {
+  color: var(--accent-gold);        /* 移入時文字變金色 */
+}
+
+.nav-link:hover::after {
+  width: 100%;                      /* 移入時底線展開至 100% 寬度 */
+}
+
+/* 下拉選單外層容器 */
+.nav-dropdown {
+  position: relative;               /* 供下拉選單絕對定位參考 */
+}
+
+/* 下拉選單本體 */
+.dropdown-menu {
+  display: none;                    /* 預設隱藏 */
+  position: absolute;               /* 絕對定位 */
+  top: 100%;                        /* 顯示在父元素正下方 */
+  left: -10px;                      /* 微調偏左 10px */
+  background: var(--bg-white);      /* 白色背景 */
+  min-width: 170px;                 /* 最小寬度 170px */
+  border-radius: 10px;              /* 圓角 10px */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1); /* 深層陰影營造浮空感 */
+  padding: 10px 0;                  /* 上下內距 10px */
+  border: 1px solid var(--border-color); /* 淺灰邊框 */
+  animation: fadeIn 0.2s ease;      /* 呼叫自訂的淡入動畫 */
+}
+
+/* 下拉選單淡入動畫定義 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); } /* 初始：透明且略微偏下 */
+  to { opacity: 1; transform: translateY(0); }     /* 結束：不透明且回到原位 */
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  display: block;                   /* 滑鼠移入父元素時，顯示下拉選單 */
+}
+
+/* 下拉選單內的文字與連結 */
+.dropdown-menu span, 
+.dropdown-menu a {
+  display: block;                   /* 讓每個項目獨佔一行 */
+  padding: 10px 20px;               /* 內距：上下 10px，左右 20px */
+  font-size: 0.9375rem;             /* 15px */
+  color: var(--primary-green);      /* 字體森林綠 */
+  font-weight: 500;                 /* 中等字重 */
+  transition: all 0.2s ease;        /* 過渡動畫 */
+}
+
+.dropdown-menu span:hover, 
+.dropdown-menu a:hover {
+  background: var(--accent-gold-light); /* 移入時背景變淺金色 */
+  color: var(--accent-gold);        /* 文字變琥珀金 */
+  padding-left: 24px;               /* 文字向右推 4px，產生互動感 */
+}
+
+/* 預約健檢 CTA 按鈕 */
+.btn-primary-cta {
+  background: var(--primary-green); /* 森林綠背景 */
+  color: var(--bg-white);           /* 白色文字 */
+  font-size: 0.9375rem;             /* 15px */
+  font-weight: 600;                 /* 半粗體 */
+  padding: 9px 22px;                /* 內距 */
+  border-radius: 8px;               /* 8px 圓角 */
+  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.2); /* 綠色調的按鈕陰影 */
+  transition: var(--transition);    /* 過渡動畫 */
+  white-space: nowrap; /* 強制文字不換行 */
+
+}
+
+.btn-primary-cta:hover {
+  background: var(--accent-gold);   /* 懸浮時變琥珀金 */
+  color: var(--bg-white);           /* 維持白字 */
+  transform: translateY(-2px);      /* 微微向上浮起 2px */
+  box-shadow: 0 6px 16px rgba(212, 160, 23, 0.3); /* 金色調的懸浮陰影 */
+}
+
+/* 手機版選單切換按鈕 (漢堡包) */
+.mobile-menu-btn {
+  display: none;                    /* 電腦版隱藏 */
+  color: var(--primary-green);      /* 漢堡圖示顏色為森林綠 */
+}
+
+/* 手機版下拉選單區塊 */
+.mobile-menu {
+  display: none;                    /* 預設隱藏 */
+  position: absolute;               /* 絕對定位於導覽列下方 */
+  top: var(--nav-height);           /* 距離頂部剛好是一個導覽列的高度 */
+  left: 0;                          /* 貼齊左側 */
+  right: 0;                         /* 貼齊右側 */
+  background: rgba(255, 255, 255, 0.98); /* 幾乎不透明的白底 */
+  backdrop-filter: blur(16px);      /* 毛玻璃效果 */
+  padding: 24px;                    /* 內部間距 24px */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* 下方深陰影 */
+  border-bottom: 3px solid var(--primary-green); /* 底部加粗綠線收邊 */
+}
+
+.mobile-menu.is-active {
+  display: flex;                    /* 當加入 is-active class 時顯示為 Flex */
+  flex-direction: column;           /* 垂直排列 */
+  gap: 16px;                        /* 項目間距 16px */
+}
+
+.mobile-link {
+  font-size: 1.125rem;              /* 手機選單文字稍大 (18px) */
+  font-weight: 600;                 /* 半粗體 */
+  color: var(--primary-green);      /* 森林綠 */
+  padding: 8px 0;                   /* 上下內距 */
+  border-bottom: 1px solid var(--border-color); /* 每個項目下方加上淺灰分隔線 */
+}
+
+.mobile-cta {
+  text-align: center;               /* 手機版的預約按鈕文字置中 */
+  margin-top: 8px;                  /* 與上方選單拉開 8px 距離 */
+}
+
 .page-hero {
 
     min-height: 520px;
