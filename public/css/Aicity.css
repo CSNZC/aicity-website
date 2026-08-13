@@ -4,6 +4,7 @@
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);  /* 輕微卡片陰影 */
   --shadow-hover: 0 12px 30px rgba(27, 67, 50, 0.1); /* 懸浮時的綠色調陰影 */
   --radius-md: 12px;                /* 中等圓角 */
+  --transition: all 0.3s ease;      /* 預設動畫過渡時間 (補上避免部分變數失效) */
 }
 
 /* 通用佈局與標題類別 (Layout & Typography)  */
@@ -47,7 +48,6 @@
   font-weight: 700;                 /* 粗體 */
   line-height: 1.35;                /* 緊湊行高，適合大標題 */
 }
-
 
 /* 輪播圖區塊 */
 .hero-section {
@@ -178,7 +178,6 @@
   animation: tick 35s linear infinite; /* 套用跑馬燈動畫，35秒一次，等速無限循環 */
 }
 
-/* 如果有單獨的 ticker-item class (相容性設定) */
 .ticker-track > * {
   font-size: 1.125rem;              /* 18px */
   color: var(--bg-white);           /* 白字 */
@@ -263,7 +262,7 @@
   line-height: 1.6;                 /* 行高 */
 }
 
-/*  核心服務區塊  */
+/* 核心服務區塊  */
 .services-staggered-list {
   display: flex;                    /* Flex 排版 */
   flex-direction: column;           /* 垂直排列 */
@@ -323,6 +322,11 @@
 .gold-badge { color: var(--accent-gold); background: #FEF3C7; } /* 金色徽章變體 */
 .blue-badge { color: var(--accent-blue); background: #E0F2FE; } /* 藍色徽章變體 */
 
+/* ===== 新增：服務卡片文字容器 ===== */
+.service-text-group {
+  flex: 1;                          /* 讓文字區域彈性填滿空間，把箭頭推到最右側 */
+}
+
 .service-title {
   font-size: 1.375rem;              /* 22px */
   color: var(--text-dark);          /* 深灰 */
@@ -334,7 +338,34 @@
   font-size: 1rem;                  /* 16px */
   color: var(--text-muted);         /* 灰色內文 */
   line-height: 1.65;                /* 行高 */
+  margin: 0;                        /* 清除預設 margin */
 }
+
+/* ===== 新增：右側圖片箭頭樣式 ===== */
+.service-arrow {
+  width: 36px;                      /* 箭頭區域寬度 (可依圖片比例調整) */
+  height: 36px;                     /* 箭頭區域高度 */
+  flex-shrink: 0;                   /* 確保箭頭不會被擠壓變形 */
+  margin-left: auto;                /* 關鍵語法：強制將箭頭推擠到最右側 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);    /* 動畫平滑過渡 */
+  opacity: 0.6;                     /* 預設稍微透明 */
+}
+
+.service-arrow img {
+  width: 100%;                      /* 圖片填滿容器 */
+  height: auto;
+  object-fit: contain;
+}
+
+/* 滑鼠移入卡片時，箭頭產生向右移動的互動感並變深 */
+.service-row-card:hover .service-arrow {
+  transform: translateX(6px);
+  opacity: 1;
+}
+/* =================================== */
 
 /* 公司實績數據 */
 .stats-boxes-grid {
@@ -609,7 +640,6 @@
   box-shadow: 0 8px 25px rgba(212, 160, 23, 0.35); /* 陰影放大 */
 }
 
-
 /*  RWD 響應式佈局 平板與手機 (螢幕寬度 991px 以下) */
 @media (max-width: 991px) {
   /* 調整全域基礎設定 */
@@ -631,6 +661,12 @@
     font-size: 1.5rem;              /* 24px */
     width: 50px;                    /* 寬度 50px */
     height: 50px;                   /* 高度 50px */
+  }
+
+  /* 縮小手機版箭頭大小 */
+  .service-arrow {
+    width: 24px;
+    height: 24px;
   }
   
   /* 公司實績數字縮小，避免在手機上斷行 */
