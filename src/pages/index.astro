@@ -3,11 +3,10 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
 const tickerItems = allPosts
-  .filter(post => post.data.is_ticker === true) // 👈 過濾網：只留下勾選跑馬燈的文章
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) // 👈 依日期排序
-  .map(post => post.data.title); // 👈 只提取標題文字陣列
+  .filter(post => post.data.is_ticker === true) 
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) 
+  .map(post => post.data.title); 
 
-// 假設你的輪播圖資料存放在名為 'hero' 或其他 collection 中
 const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carousel');
 ---
 <!DOCTYPE html>
@@ -161,18 +160,30 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
   </div>
 </section>
 
-    <!--跑馬燈-->
-<section class="ticker-section">
-  <div class="ticker-badge">最新消息</div>
-  <div class="ticker-wrapper">
-    <div id="ticker-track" class="ticker-track">
-      <!-- JS 動態注入 -->
-    </div>
-  </div>
-</section>
+<!--跑馬燈-->
+{tickerItems.length > 0 && (
+      <section class="ticker-section">
+        <div class="ticker-badge">最新消息</div>
+        <div class="ticker-wrapper">
+          <div id="ticker-track" class="ticker-track">
+            {tickerItems.map((title) => (
+              <div class="ticker-item">
+                <span>{title}</span>
+              </div>
+            ))}
+            {/* 多於 1 筆時，複製第 1 筆到末尾 */}
+            {tickerItems.length > 1 && (
+              <div class="ticker-item">
+                <span>{tickerItems[0]}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+)}
 
 <!--企業痛點-->
-  <section class="content-section bg-light-gray pain-section">
+<section class="content-section bg-light-gray pain-section">
     <div class="section-container">
       <div class="pain-split-grid">
         <div class="pain-left-header">
@@ -208,7 +219,7 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
         </div>
       </div>
     </div>
-  </section>
+</section>
 
 <!--服務項目-->
 <section id="services" class="content-section">
@@ -253,7 +264,7 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
         </div>
       </div>
     </div>
-  </section>
+</section>
 
 <!--公司實績-->
   <section id="cases" class="content-section bg-light-gray">

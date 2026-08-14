@@ -87,66 +87,84 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-   3. 最新消息跑馬燈垂直翻轉 (Vertical News Ticker)
+   3. 最新消息跑馬燈垂直翻轉 (Vertical News Ticker) - 最終修正版
    ========================================================================== */
 function initTicker() {
   const tickerTrack = document.getElementById('ticker-track');
-  if (!tickerTrack) return;
+  const tickerSection = document.querySelector('.ticker-section');
+  if (!tickerTrack || !tickerSection) return;
 
-  // 從 Astro 傳過來的全域變數讀取跑馬燈資料
-  const tickerItems = window.TICKER_ITEMS || [];
+  // 1. 優先檢查 HTML 內部是否已經由 Astro 渲染出 .ticker-item
+  let items = Array.from(tickerTrack.querySelectorAll('.ticker-item'));
 
-  // 如果後台沒有任何文章勾選「顯示於跑馬燈」，直接隱藏整個跑馬燈區塊
-  if (!tickerItems || tickerItems.length === 0) {
-    document.querySelector('.ticker-section')?.remove();
-    return;
+  // 2. 如果 HTML 內沒有，再嘗試從全域變數 window.TICKER_ITEMS 動態注入
+  if (items.length === 0) {
+    const rawTickerItems = typeof window !== 'undefined' ? (window.TICKER_ITEMS || []) : [];
+    
+    // 如果都沒有資料，隱藏跑馬燈並結束
+    if (!rawTickerItems || rawTickerItems.length === 0) {
+      tickerSection.style.display = 'none';
+      return;
+    }
+
+    // 複製第一筆做無縫循環
+    const displayItems = [...rawTickerItems, rawTickerItems[0]];
+    tickerTrack.innerHTML = displayItems.map(text => `
+      <div class="ticker-item">
+        <span>${text}</span>
+      </div>
+    `).join('');
+
+    items = Array.from(tickerTrack.querySelectorAll('.ticker-item'));
   }
 
-  // 複製第一筆放到最後面，用來做無縫循環銜接
-  const displayItems = [...tickerItems, tickerItems[0]];
+  // 3. 取得有效資料筆數（扣除重複的銜接項）
+  const totalItems = items.length > 1 ? items.length - 1 : items.length;
+  if (totalItems <= 1) return; // 只有 1 筆時不啟動滾動動畫
 
-  // 渲染 HTML
-  tickerTrack.innerHTML = displayItems.map(text => `
-    <div class="ticker-item">
-      <span>${text}</span>
-    </div>
-  `).join('');
-
+  // 4. 計算滾動高度（固定 64px 或動態抓取容器高度）
+  const itemHeight = tickerSection.offsetHeight || 64;
   let currentIndex = 0;
-  const itemHeight = 64; // 需與 CSS 行高 64px 一致
-  const totalItems = tickerItems.length;
   let intervalId = null;
 
   function startSlide() {
-    // 若只有 1 筆消息，就不需要滾動動畫
-    if (totalItems <= 1) return;
+    // 避免重複綁定定時器
+    if (intervalId) clearInterval(intervalId);
 
     intervalId = setInterval(() => {
       currentIndex++;
       tickerTrack.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
       tickerTrack.style.transform = `translateY(-${currentIndex * itemHeight}px)`;
 
-      // 當滾動到複製的第一筆時，瞬間切回真正的第一筆（實現無縫循環）
+      // 當翻到複製的最後一筆時，秒切回第 0 筆
       if (currentIndex === totalItems) {
         setTimeout(() => {
           tickerTrack.style.transition = 'none';
           tickerTrack.style.transform = 'translateY(0px)';
           currentIndex = 0;
-        }, 600); // 需配合 CSS transition 0.6s
+        }, 600); // 對應 transition 0.6s
       }
-    }, 3500); // 每 3.5 秒翻一頁
+    }, 3500); // 每 3.5 秒翻頁一次
   }
 
-  // 滑鼠移入暫停、移出繼續
+  // 5. 滑鼠移入暫停、移出繼續
   const tickerWrapper = document.querySelector('.ticker-wrapper');
   if (tickerWrapper) {
-    tickerWrapper.addEventListener('mouseenter', () => clearInterval(intervalId));
+    tickerWrapper.addEventListener('mouseenter', () => {
+      if (intervalId) clearInterval(intervalId);
+    });
     tickerWrapper.addEventListener('mouseleave', startSlide);
   }
 
   startSlide();
 }
 
-document.addEventListener('DOMContentLoaded', initTicker);
+// 支援一般載入與 Astro View Transitions 頁面載入
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTicker);
+} else {
+  initTicker();
+}
+document.addEventListener('astro:page-load', initTicker);
 
 });
