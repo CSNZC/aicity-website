@@ -18,12 +18,12 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}"
     fields:
       - { label: "標題", name: "title", widget: "string" } 
-      - { label: "發布日期", name: "date", widget: "datetime" }  
+      - { label: "發布日期", name: "date", widget: "datetime" } 
+      - { label: "封面圖片", name: "image", widget: "image", required: false } # 建議補上
       - { label: "顯示於跑馬燈", name: "is_ticker", widget: "boolean", default: false, required: false }   
       - { label: "分類標籤", name: "tags", widget: "list" }        
       - { label: "文章摘要", name: "summary", widget: "text" }    
-      - { label: "內文", name: "body", widget: "markdown" }      
-
+      - { label: "內文", name: "body", widget: "markdown" }
   # 2. 首頁輪播圖管理
   - name: "carousel"
     label: "首頁輪播圖"

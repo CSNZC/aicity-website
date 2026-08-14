@@ -6,10 +6,10 @@ const news = defineCollection({
     pattern: "**/*.md",
     base: "./src/content/news",
   }),
-
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    image: z.string().optional().default('/img/'), // 預設圖路徑
     is_ticker: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     summary: z.string(),
