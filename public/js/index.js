@@ -87,27 +87,66 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     3. 最新消息跑馬燈無縫動態注入 (News Ticker)
-     ========================================================================== */
-  const tickerItems = [
-    "恭賀！艾城市輔導台灣好行「縱谷花蓮線」成為全台首條獲碳足跡認證客運路線！",
-    "【熱門課程】2026年 iPAS 淨零碳規劃管理師初級輔導考照班開放報名",
-    "【政府補助】經濟部產發署低碳淨零人才培育計畫補助名額釋出",
-    "【公司公告】本公司通過勞動部 TTQS 評核，榮獲訓練機構版「銅牌」認證",
-    "【政策快訊】環境部公告溫室氣體排放量應盤查登錄對象與碳費收費標準"
-  ];
-
+   3. 最新消息跑馬燈垂直翻轉 (Vertical News Ticker)
+   ========================================================================== */
+function initTicker() {
   const tickerTrack = document.getElementById('ticker-track');
+  if (!tickerTrack) return;
 
-  if (tickerTrack) {
-    // 將陣列複製一份，以達到 CSS Seamless Scroll 無縫銜接滾動效果
-    const doubleItems = [...tickerItems, ...tickerItems];
+  // 從 Astro 傳過來的全域變數讀取跑馬燈資料
+  const tickerItems = window.TICKER_ITEMS || [];
 
-    tickerTrack.innerHTML = doubleItems.map(text => `
-      <div class="ticker-item">
-        <span>${text}</span>
-      </div>
-    `).join('');
+  // 如果後台沒有任何文章勾選「顯示於跑馬燈」，直接隱藏整個跑馬燈區塊
+  if (!tickerItems || tickerItems.length === 0) {
+    document.querySelector('.ticker-section')?.remove();
+    return;
   }
+
+  // 複製第一筆放到最後面，用來做無縫循環銜接
+  const displayItems = [...tickerItems, tickerItems[0]];
+
+  // 渲染 HTML
+  tickerTrack.innerHTML = displayItems.map(text => `
+    <div class="ticker-item">
+      <span>${text}</span>
+    </div>
+  `).join('');
+
+  let currentIndex = 0;
+  const itemHeight = 64; // 需與 CSS 行高 64px 一致
+  const totalItems = tickerItems.length;
+  let intervalId = null;
+
+  function startSlide() {
+    // 若只有 1 筆消息，就不需要滾動動畫
+    if (totalItems <= 1) return;
+
+    intervalId = setInterval(() => {
+      currentIndex++;
+      tickerTrack.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+      tickerTrack.style.transform = `translateY(-${currentIndex * itemHeight}px)`;
+
+      // 當滾動到複製的第一筆時，瞬間切回真正的第一筆（實現無縫循環）
+      if (currentIndex === totalItems) {
+        setTimeout(() => {
+          tickerTrack.style.transition = 'none';
+          tickerTrack.style.transform = 'translateY(0px)';
+          currentIndex = 0;
+        }, 600); // 需配合 CSS transition 0.6s
+      }
+    }, 3500); // 每 3.5 秒翻一頁
+  }
+
+  // 滑鼠移入暫停、移出繼續
+  const tickerWrapper = document.querySelector('.ticker-wrapper');
+  if (tickerWrapper) {
+    tickerWrapper.addEventListener('mouseenter', () => clearInterval(intervalId));
+    tickerWrapper.addEventListener('mouseleave', startSlide);
+  }
+
+  startSlide();
+}
+
+document.addEventListener('DOMContentLoaded', initTicker);
 
 });

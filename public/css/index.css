@@ -141,54 +141,58 @@
 
 /* 跑馬燈 */
 .ticker-section {
-  background: linear-gradient(90deg, var(--primary-green) 0%, #112D22 100%); /* 森林綠漸層背景 */
-  height: 64px;                     /* 高度固定 64px */
-  display: flex;                    /* Flex排版 */
-  align-items: center;              /* 垂直置中 */
-  position: relative;               /* 供 Badge 絕對定位 */
-  overflow: hidden;                 /* 隱藏溢出內容 */
-  box-shadow: inset 0 -2px 10px rgba(0,0,0,0.15); /* 內部陰影製造立體感 */
+  background: linear-gradient(90deg, var(--primary-green) 0%, #112D22 100%);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 -2px 10px rgba(0,0,0,0.15);
 }
 
 .ticker-badge {
-  background: var(--accent-gold);   /* 琥珀金背景 */
-  color: var(--primary-green);      /* 深綠文字 */
-  font-size: 1.125rem;              /* 18px */
-  font-weight: 800;                 /* 極粗體 */
-  padding: 0 32px;                  /* 左右內距 32px */
-  height: 100%;                     /* 高度滿滿 */
-  display: flex;                    /* Flex 排版 */
-  align-items: center;              /* 文字垂直置中 */
-  position: absolute;               /* 絕對定位 */
-  left: 0;                          /* 貼齊最左側 */
-  top: 0;                           /* 貼齊頂部 */
-  z-index: 10;                      /* 覆蓋在滾動文字之上 */
-  box-shadow: 4px 0 12px rgba(0,0,0,0.15); /* 右側陰影蓋住滾動文字的邊界 */
+  background: var(--accent-gold);
+  color: var(--primary-green);
+  font-size: 1.125rem;
+  font-weight: 800;
+  padding: 0 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.15);
 }
 
 .ticker-wrapper {
-  overflow: hidden;                 /* 隱藏超出範圍的文字 */
-  width: 100%;                      /* 滿寬 */
-  padding-left: 140px;              /* 左側預留空間給 Badge (避免文字重疊) */
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding-left: 170px; /* 預留給 Badge 的空間 */
+  position: relative;
 }
 
+/* 垂直滾動軌道 */
 .ticker-track {
-  display: flex;                    /* 橫向排列內部項目 */
-  white-space: nowrap;              /* 強制文字不換行 */
-  animation: tick 35s linear infinite; /* 套用跑馬燈動畫，35秒一次，等速無限循環 */
+  position: relative;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* 平滑翻頁效果 */
 }
 
-.ticker-track > * {
-  font-size: 1.125rem;              /* 18px */
-  color: var(--bg-white);           /* 白字 */
-  padding: 0 40px;                  /* 左右留白 40px */
-  font-weight: 500;                 /* 中等字重 */
-  letter-spacing: 0.02em;           /* 些微字距 */
-}
-
-@keyframes tick {
-  from { transform: translateX(100%); } /* 從畫面最右側進場 */
-  to { transform: translateX(-100%); }  /* 消失在畫面最左側 */
+/* 每一行消息 */
+.ticker-item {
+  height: 64px; /* 與容器同高 */
+  display: flex;
+  align-items: center;
+  font-size: 1.125rem;
+  color: var(--bg-white, #ffffff);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 文字過長自動顯示 ... */
 }
 
 /* 企業痛點挑戰 */

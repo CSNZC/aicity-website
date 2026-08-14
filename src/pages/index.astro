@@ -2,6 +2,10 @@
 // 這就像是您的 PHP 引入資料庫檔案，直接去讀取 CMS 產生的內容資料夾
 import { getCollection, type CollectionEntry } from 'astro:content';
 const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
+const tickerItems = allPosts
+  .filter(post => post.data.is_ticker === true) // 👈 過濾網：只留下勾選跑馬燈的文章
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) // 👈 依日期排序
+  .map(post => post.data.title); // 👈 只提取標題文字陣列
 
 // 假設你的輪播圖資料存放在名為 'hero' 或其他 collection 中
 const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carousel');
@@ -157,14 +161,15 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
   </div>
 </section>
 
-<!--跑馬燈-->
-  <section class="ticker-section">
-      <div class="ticker-badge">最新消息</div>
-      <div class="ticker-wrapper">
-        <div id="ticker-track" class="ticker-track">
-        </div>
-      </div>
-    </section>
+    <!--跑馬燈-->
+<section class="ticker-section">
+  <div class="ticker-badge">最新消息</div>
+  <div class="ticker-wrapper">
+    <div id="ticker-track" class="ticker-track">
+      <!-- JS 動態注入 -->
+    </div>
+  </div>
+</section>
 
 <!--企業痛點-->
   <section class="content-section bg-light-gray pain-section">
@@ -421,6 +426,9 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
 
   <script src="/js/style.js" defer></script>
   <script src="/js/index.js" defer></script>
-
+  <!-- 3. 將過濾好的 tickerItems 變數直接傳給前端 JavaScript -->
+  <script is:inline define:vars={{ tickerItems }}>
+    window.TICKER_ITEMS = tickerItems;
+  </script>
 </body>
 </html>

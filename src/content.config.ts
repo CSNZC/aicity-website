@@ -10,6 +10,7 @@ const news = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    is_ticker: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     summary: z.string(),
   }),
