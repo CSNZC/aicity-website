@@ -29,7 +29,7 @@ const formatDate = (date: Date) => {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>最新消息 (第 {page.currentPage} 頁) | 艾城市有限公司</title>
+  <title>最新消息 | 艾城市有限公司</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
@@ -138,10 +138,10 @@ const formatDate = (date: Date) => {
     <div class="news-container">
       
       <header class="news-header">
-        <div class="header-title-group">
-          <span class="section-subtitle">LATEST UPDATES</span>
-          <h1 class="page-title">最新消息</h1>
-        </div>
+      <div class="header-title-group">
+        <span class="section-subtitle">LATEST UPDATES</span>
+        <h1 class="page-title">最新消息</h1>
+      </div>
 
         <div class="news-toolbar">
           <div class="category-filters">
@@ -200,32 +200,34 @@ const formatDate = (date: Date) => {
         })}
       </section>
 
-      <!-- 動態分頁 -->
-      {page.lastPage > 1 && (
-        <nav class="news-pagination" aria-label="分頁導覽">
-          {page.url.prev ? (
-            <a href={page.url.prev} class="page-link prev">‹</a>
-          ) : (
-            <span class="page-link prev disabled">‹</span>
-          )}
+        <!-- 分頁換頁導覽 -->
+      <nav class="news-pagination" aria-label="分頁導覽">
+        {/* 上一頁 */}
+        {page.url.prev ? (
+          <a href={page.url.prev} class="page-link prev" aria-label="上一頁">‹</a>
+        ) : (
+          <span class="page-link prev disabled">‹</span>
+        )}
 
-          {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => {
-            const targetUrl = pageNum === 1 ? '/News' : `/News/${pageNum}`;
-            const isCurrent = page.currentPage === pageNum;
-            return (
-              <a href={targetUrl} class={`page-link ${isCurrent ? 'active' : ''}`}>
-                {pageNum}
-              </a>
-            );
-          })}
+        {/* 數字頁碼 */}
+        {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => {
+          // Astro 預設第 1 頁是 /News，第 2 頁開始是 /News/2
+          const targetUrl = pageNum === 1 ? '/News' : `/News/${pageNum}`;
+          const isCurrent = page.currentPage === pageNum;
+          return (
+            <a href={targetUrl} class={`page-link ${isCurrent ? 'active' : ''}`}>
+              {pageNum}
+            </a>
+          );
+        })}
 
-          {page.url.next ? (
-            <a href={page.url.next} class="page-link next">›</a>
-          ) : (
-            <span class="page-link next disabled">›</span>
-          )}
-        </nav>
-      )}
+        {/* 下一頁 */}
+        {page.url.next ? (
+          <a href={page.url.next} class="page-link next" aria-label="下一頁">›</a>
+        ) : (
+          <span class="page-link next disabled">›</span>
+        )}
+      </nav>
 
     </div>
   </main>

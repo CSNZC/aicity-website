@@ -14,7 +14,7 @@ const { Content } = await render(post);
 
 const formatDate = (date: Date) => {
   const d = new Date(date);
-  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
 };
 ---
 
@@ -24,27 +24,58 @@ const formatDate = (date: Date) => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{post.data.title} | 艾城市有限公司</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  
   <style>
-    .article-container {
-      max-width: 800px;
+    .article-page {
+      background-color: var(--bg-light-gray);
+      min-height: calc(100vh - var(--nav-height));
+      padding: 60px 24px 100px;
+    }
+
+    .article-wrapper {
+      max-width: 860px;
       margin: 0 auto;
       background: var(--bg-white);
-      padding: 48px 40px;
       border-radius: 12px;
       border: 1px solid var(--border-color);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      padding: 48px;
     }
+
+    .back-nav {
+      margin-bottom: 24px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary-green);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      transition: color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      color: var(--accent-gold);
+    }
+
+    /* 區塊 1：標題與標籤 */
     .article-header {
-      margin-bottom: 32px;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 24px;
+      margin-bottom: 28px;
     }
-    .article-tags {
+
+    .article-tag-list {
       display: flex;
       gap: 8px;
       margin-bottom: 12px;
+      flex-wrap: wrap;
     }
+
     .article-tag {
       background: var(--accent-gold-light);
       color: var(--accent-gold);
@@ -53,63 +84,126 @@ const formatDate = (date: Date) => {
       padding: 4px 12px;
       border-radius: 20px;
     }
+
     .article-title {
-      font-size: 2rem;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 2.15rem;
+      font-weight: 700;
       color: var(--primary-green);
       line-height: 1.4;
-      margin-bottom: 12px;
+      margin: 0;
     }
-    .article-date {
-      color: var(--text-muted);
+
+    /* 區塊 2：主圖 */
+    .article-image-box {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      background-color: var(--bg-light-gray);
+    }
+
+    .article-featured-img {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 區塊 3：發布時間 (小字) */
+    .article-meta-time {
       font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: block;
     }
-    .article-content {
+
+    /* 區塊 4：段落內文 */
+    .article-body-content {
       font-size: 1.0625rem;
-      line-height: 1.8;
+      line-height: 1.85;
       color: var(--text-body);
     }
-    .article-content p {
-      margin-bottom: 1.5em;
+
+    .article-body-content p {
+      margin-bottom: 1.6em;
     }
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+
+    .article-body-content h2,
+    .article-body-content h3 {
       color: var(--primary-green);
-      font-weight: 600;
-      margin-bottom: 24px;
-      transition: color 0.2s;
+      margin-top: 1.8em;
+      margin-bottom: 0.8em;
+      font-weight: 700;
     }
-    .back-btn:hover {
-      color: var(--accent-gold);
+
+    .article-body-content ul,
+    .article-body-content ol {
+      margin-bottom: 1.6em;
+      padding-left: 24px;
+    }
+
+    .article-body-content li {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .article-page {
+        padding: 30px 16px 60px;
+      }
+      .article-wrapper {
+        padding: 24px 18px;
+      }
+      .article-title {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="page-content">
-    <div class="article-container">
-      <a href="/News" class="back-btn">← 返回最新消息</a>
+  <!-- 頂部導覽列 (請保持原樣) -->
+
+  <main class="article-page">
+    <div class="article-wrapper">
       
+      <!-- 返回按鈕 -->
+      <div class="back-nav">
+        <a href="/News" class="back-btn">← 返回最新消息</a>
+      </div>
+
+      <!-- 第一塊：標題與標籤 -->
       <header class="article-header">
-        <div class="article-tags">
+        <div class="article-tag-list">
           {post.data.tags.map((tag: string) => (
             <span class="article-tag">{tag}</span>
           ))}
         </div>
         <h1 class="article-title">{post.data.title}</h1>
-        <time class="article-date">{formatDate(post.data.date)}</time>
       </header>
 
+      <!-- 接續區塊 1：圖 -->
       {post.data.image && (
-        <div style="margin-bottom: 32px; border-radius: 8px; overflow: hidden;">
-          <img src={post.data.image} alt={post.data.title} style="width: 100%; height: auto;" />
+        <div class="article-image-box">
+          <img src={post.data.image} alt={post.data.title} class="article-featured-img" />
         </div>
       )}
 
-      <article class="article-content">
+      <!-- 接續區塊 2：時間 (小字) -->
+      <time class="article-meta-time" datetime={new Date(post.data.date).toISOString()}>
+        發布日期：{formatDate(post.data.date)}
+      </time>
+
+      <!-- 接續區塊 3：區段內文 (Markdown 渲染) -->
+      <article class="article-body-content">
         <Content />
       </article>
+
     </div>
   </main>
+
+  <!-- 頁尾 (請保持原樣) -->
 </body>
 </html>

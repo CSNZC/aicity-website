@@ -6,6 +6,9 @@ const tickerItems = allPosts
   .filter(post => post.data.is_ticker === true) 
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) 
   .map(post => post.data.title); 
+const latestNews = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) // 依日期新到舊排序
+  .slice(0, 3); // 只裁切前 6 筆
 
 const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carousel');
 ---
@@ -309,20 +312,21 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
       </div>
       <a href="/News" class="btn-more-info">更多資訊 ➔</a>
     </div>
-    <div class="news-grid-6">
-      {allPosts.map((news) => (
+   <div class="news-grid-6">
+      {latestNews.map((news) => (
         <article class="news-card">
           <div class="news-card-meta">
-          <span class="news-tag tag-green">{news.data.tags}</span>
-          <span class="news-date">
-            {(() => {
-              const d = new Date(news.data.date);
-              return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
-            })()}
-          </span>
+            <!-- 注意：tags 是陣列，取第一個或是用 join 呈現 -->
+            <span class="news-tag tag-green">{news.data.tags[0] || '最新消息'}</span>
+            <span class="news-date">
+              {(() => {
+                const d = new Date(news.data.date);
+                return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
+              })()}
+            </span>
           </div>
           <h3 class="news-card-title">
-            <a href={`/news/${news.id}`}>{news.data.title}</a>
+            <a href={`/News/${news.id}`}>{news.data.title}</a>
           </h3>
           <p class="news-card-summary">{news.data.summary}</p>
         </article>
