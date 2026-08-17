@@ -1,0 +1,311 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths({ paginate }: any) {
+  const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
+  
+  // 依發布日期排序 (新 -> 舊)
+  const sortedPosts = allPosts.sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  );
+
+  // 每頁 6 筆
+  return paginate(sortedPosts, { pageSize: 6 });
+}
+
+// 取得當前頁面的資料與分頁狀態
+const { page } = Astro.props;
+const newsList: CollectionEntry<'news'>[] = page.data;
+
+// 日期格式化
+const formatDate = (date: Date) => {
+  const d = new Date(date);
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+};
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>最新消息 (第 {page.currentPage} 頁) | 艾城市有限公司</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/News.css">
+
+</head>
+<body>
+  <!-- 頂部導覽列 -->
+  <header class="navbar-header">
+    <div class="nav-container">
+      <a href="/index" class="logo-link">
+        <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
+      </a>
+      <nav class="desktop-nav">
+        <div class="nav-dropdown">
+          <a href="/About" class="nav-link">關於我們 ▾</a>
+          <div class="dropdown-menu">
+            <a href="/About">公司介紹</a>
+            <a href="/Partners">團隊介紹</a>
+            <a href="/Links">相關連結</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/News" class="nav-link">最新消息</a>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/Service" class="nav-link">永續服務 ▾</a>
+          <div class="dropdown-menu">
+            <a href="/Business">企業輔導</a>
+            <a href="/Government">政府專案</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/Training" class="nav-link">人員培訓 ▾</a>
+          <div class="dropdown-menu">
+            <a href="/iPAS">iPAS 課程培訓</a>
+            <a href="/ISO">ISO 國際課程培訓</a>
+            <a href="/Courses">永續課程</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/Solar energy" class="nav-link">光電建置</a>
+        </div>
+        <div class="nav-dropdown">
+          <span class="nav-link">實績事例 ▾</span>
+          <div class="dropdown-menu">
+            <a href="/PR-S">永續轉型</a>
+            <a href="/PR-T">人員培訓</a>
+            <a href="/PR-E">光電建置</a>
+          </div>
+        </div>
+        <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
+      </nav>
+
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- 手機版選單 -->
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-dropdown-group">
+        <a href="/About" class="mobile-link">關於我們 ▾</a>
+        <div class="mobile-sub-menu">
+          <a href="/About" class="mobile-sub-link">公司介紹</a>
+          <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
+          <a href="/Links" class="mobile-sub-link">相關連結</a>
+        </div>
+      </div>
+      <a href="/News" class="mobile-link">最新消息</a>
+      <div class="mobile-dropdown-group">
+        <a href="/Service" class="mobile-link">永續服務 ▾</a>
+        <div class="mobile-sub-menu">
+          <a href="/Business" class="mobile-sub-link">企業輔導</a>
+          <a href="/Government" class="mobile-sub-link">政府專案</a>
+        </div>
+      </div>
+      <div class="mobile-dropdown-group">
+        <a href="/Training" class="mobile-link">人員培訓 ▾</a>
+        <div class="mobile-sub-menu">
+          <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
+          <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
+          <a href="/Courses" class="mobile-sub-link">永續課程</a>
+        </div>
+      </div>
+      <a href="/Solar energy" class="mobile-link">光電建置</a>
+      <div class="mobile-dropdown-group">
+        <span class="mobile-link">實績事例 ▾</span>
+        <div class="mobile-sub-menu">
+          <a href="/PR-S" class="mobile-sub-link">永續轉型</a>
+          <a href="/PR-T" class="mobile-sub-link">人員培訓</a>
+          <a href="/PR-E" class="mobile-sub-link">光電建置</a>
+        </div>
+      </div>
+      <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
+    </div>
+  </header>
+
+  <!-- 主要內容區 -->
+  <main class="page-content">
+    <div class="news-container">
+      
+      <header class="news-header">
+        <div class="header-title-group">
+          <span class="section-subtitle">LATEST UPDATES</span>
+          <h1 class="page-title">最新消息</h1>
+        </div>
+
+        <div class="news-toolbar">
+          <div class="category-filters">
+            <button class="filter-btn active" data-tag="all">全部</button>
+            <button class="filter-btn" data-tag="企業輔導">企業輔導</button>
+            <button class="filter-btn" data-tag="政府專案">政府專案</button>
+            <button class="filter-btn" data-tag="光電建置">光電建置</button>
+            <button class="filter-btn" data-tag="人員培訓">人員培訓</button>
+            <button class="filter-btn" data-tag="其他">其他</button>
+          </div>
+
+          <form class="news-search-form" onsubmit="return false;">
+            <div class="search-input-wrapper">
+              <input type="text" id="news-search" class="search-input" placeholder="搜尋最新消息..." aria-label="搜尋最新消息">
+              <button type="button" class="search-submit-btn" aria-label="搜尋">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </header>
+
+      <!-- 文章卡片列表 (動態渲染 6 筆) -->
+      <section class="news-grid" aria-label="最新消息列表">
+        {newsList.map((item) => {
+          const { title, date, summary, tags, image } = item.data;
+          const firstTag = tags && tags.length > 0 ? tags[0] : '最新消息';
+          const postSlug = item.id || (item as any).slug;
+
+          return (
+            <article class="news-card" data-tags={JSON.stringify(tags || [])}>
+              <a href={`/News/${postSlug}`} class="news-card-image-wrap">
+                <img src={image || '/img/logo_L.png'} alt={title} class="news-card-img" loading="lazy" />
+                <span class="news-tag">{firstTag}</span>
+              </a>
+              <div class="news-card-body">
+                <div class="news-meta">
+                  <time datetime={new Date(date).toISOString()}>{formatDate(date)}</time>
+                </div>
+                <h2 class="news-card-title">
+                  <a href={`/News/${postSlug}`}>{title}</a>
+                </h2>
+                <p class="news-card-desc">{summary}</p>
+                <a href={`/News/${postSlug}`} class="news-read-more">
+                  閱讀更多 
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </section>
+
+      <!-- 動態分頁 -->
+      {page.lastPage > 1 && (
+        <nav class="news-pagination" aria-label="分頁導覽">
+          {page.url.prev ? (
+            <a href={page.url.prev} class="page-link prev">‹</a>
+          ) : (
+            <span class="page-link prev disabled">‹</span>
+          )}
+
+          {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => {
+            const targetUrl = pageNum === 1 ? '/News' : `/News/${pageNum}`;
+            const isCurrent = page.currentPage === pageNum;
+            return (
+              <a href={targetUrl} class={`page-link ${isCurrent ? 'active' : ''}`}>
+                {pageNum}
+              </a>
+            );
+          })}
+
+          {page.url.next ? (
+            <a href={page.url.next} class="page-link next">›</a>
+          ) : (
+            <span class="page-link next disabled">›</span>
+          )}
+        </nav>
+      )}
+
+    </div>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="site-footer">
+    <div class="footer-compact-container">
+      <div class="footer-col footer-col-info">
+        <h3 class="footer-company-name">艾城市有限公司</h3>
+        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
+        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
+        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
+      </div>
+      <div class="footer-col footer-col-links">
+        <h4 class="footer-title">快速連結</h4>
+        <div class="footer-links-2cols">
+          <a href="/About">關於我們</a>
+          <a href="/News">最新消息</a>
+          <a href="/PR-S">實績事例</a>
+          <a href="/Service">永續服務</a>
+          <a href="/Training">人員培訓</a>
+          <a href="/Solar energy">光電建置</a>
+        </div>
+      </div>
+      <div class="footer-col footer-col-social">
+        <h4 class="footer-title">官方社群</h4>
+        <div class="qr-code-group">
+          <div class="qr-code-item">
+            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
+            <span>Facebook</span>
+          </div>
+          <div class="qr-code-item">
+            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
+            <span>Instagram</span>
+          </div>
+          <div class="qr-code-item">
+            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
+            <span>LINE 官方</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/style.js" defer></script>
+
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('news-search') as HTMLInputElement;
+    const cards = document.querySelectorAll('.news-card') as NodeListOf<HTMLElement>;
+
+    function filterCards() {
+      const activeBtn = document.querySelector('.filter-btn.active') as HTMLElement;
+      const selectedTag = activeBtn?.dataset.tag || 'all';
+      const searchText = searchInput?.value.trim().toLowerCase() || '';
+
+      cards.forEach(card => {
+        const cardTags = JSON.parse(card.dataset.tags || '[]');
+        const cardTitle = card.querySelector('.news-card-title')?.textContent?.toLowerCase() || '';
+        const cardDesc = card.querySelector('.news-card-desc')?.textContent?.toLowerCase() || '';
+
+        const matchTag = selectedTag === 'all' || cardTags.includes(selectedTag);
+        const matchSearch = !searchText || cardTitle.includes(searchText) || cardDesc.includes(searchText);
+
+        card.style.display = (matchTag && matchSearch) ? 'flex' : 'none';
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterCards();
+      });
+    });
+
+    searchInput?.addEventListener('input', filterCards);
+  </script>
+</body>
+</html>

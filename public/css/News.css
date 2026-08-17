@@ -1,7 +1,6 @@
 /* =========================================
-   最新消息頁面 (News Page Content) 專用樣式
+   最新消息頁面 (News) 美編樣式
 ========================================= */
-
 .page-content {
   background-color: var(--bg-light-gray);
   min-height: calc(100vh - var(--nav-height));
@@ -13,7 +12,7 @@
   margin: 0 auto;
 }
 
-/* 頂部標題區 */
+/* 標題區 */
 .news-header {
   margin-bottom: 48px;
   display: flex;
@@ -41,7 +40,6 @@
   color: var(--primary-green);
   position: relative;
   display: inline-block;
-  letter-spacing: -0.5px;
 }
 
 .page-title::after {
@@ -54,7 +52,7 @@
   border-radius: 2px;
 }
 
-/* 工具列：分類按鈕與搜尋欄 */
+/* 工具列：篩選與搜尋 */
 .news-toolbar {
   display: flex;
   justify-content: space-between;
@@ -93,7 +91,6 @@
   box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
 }
 
-/* 搜尋表單 */
 .news-search-form {
   min-width: 280px;
 }
@@ -125,20 +122,10 @@
 .search-submit-btn {
   position: absolute;
   right: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: var(--text-muted);
-  transition: color 0.2s ease;
 }
 
-.search-submit-btn:hover {
-  color: var(--primary-green);
-}
-
-/* =========================================
-   新聞卡片網格 (News Card Grid)
-========================================= */
+/* 3x2 卡片網格 */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -161,7 +148,6 @@
   border-color: rgba(212, 160, 23, 0.4);
 }
 
-/* 圖片容器與標籤浮水印 */
 .news-card-image-wrap {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -192,10 +178,8 @@
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 4px;
-  letter-spacing: 0.5px;
 }
 
-/* 卡片內文 */
 .news-card-body {
   padding: 24px;
   display: flex;
@@ -207,14 +191,6 @@
   font-size: 0.8125rem;
   color: var(--text-muted);
   margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.news-views {
-  color: var(--accent-gold);
-  font-weight: 600;
 }
 
 .news-card-title {
@@ -223,9 +199,6 @@
   line-height: 1.5;
   color: var(--text-dark);
   margin-bottom: 12px;
-  transition: color 0.2s ease;
-  
-  /* 多行截字 (最多兩行) */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -241,8 +214,6 @@
   color: var(--text-body);
   line-height: 1.6;
   margin-bottom: 20px;
-  
-  /* 多行截字 (最多三行) */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -260,21 +231,11 @@
   transition: gap 0.2s ease, color 0.2s ease;
 }
 
-.news-read-more svg {
-  transition: transform 0.2s ease;
-}
-
 .news-read-more:hover {
   color: var(--accent-gold);
 }
 
-.news-read-more:hover svg {
-  transform: translateX(4px);
-}
-
-/* =========================================
-   分頁導覽 (Pagination)
-========================================= */
+/* 分頁導覽 */
 .news-pagination {
   display: flex;
   justify-content: center;
@@ -316,38 +277,15 @@
   cursor: not-allowed;
 }
 
-/* =========================================
-   RWD 響應式佈局補充 (News Page)
-========================================= */
+/* RWD 調整 */
 @media (max-width: 1024px) {
-  .news-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  .page-content {
-    padding: 40px 16px 64px;
-  }
-
-  .news-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .news-search-form {
-    width: 100%;
-  }
-
-  .category-filters {
-    overflow-x: auto;
-    padding-bottom: 4px;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .news-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+  .page-content { padding: 40px 16px 64px; }
+  .news-toolbar { flex-direction: column; align-items: stretch; }
+  .news-search-form { width: 100%; }
+  .category-filters { overflow-x: auto; padding-bottom: 4px; white-space: nowrap; }
+  .news-grid { grid-template-columns: 1fr; gap: 20px; }
 }

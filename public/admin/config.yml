@@ -13,15 +13,27 @@ collections:
   # 1. 最新消息管理
   - name: "news"
     label: "最新消息"
-    folder: "src/content/news" # 發布後 Markdown 檔案會自動存到這個資料夾
+    folder: "src/content/news"
     create: true
     slug: "{{year}}-{{month}}-{{day}}"
     fields:
       - { label: "標題", name: "title", widget: "string" } 
       - { label: "發布日期", name: "date", widget: "datetime" } 
-      - { label: "封面圖片", name: "image", widget: "image", required: false } # 建議補上
+      - { label: "封面圖片", name: "image", widget: "image", required: false }
       - { label: "顯示於跑馬燈", name: "is_ticker", widget: "boolean", default: false, required: false }   
-      - { label: "分類標籤", name: "tags", widget: "list" }        
+        
+      - label: "分類標籤"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "企業輔導", value: "企業輔導" }
+          - { label: "政府專案", value: "政府專案" }
+          - { label: "光電建置", value: "光電建置" }
+          - { label: "人員培訓", value: "人員培訓" }
+          - { label: "其他", value: "其他" }
+        
+
       - { label: "文章摘要", name: "summary", widget: "text" }    
       - { label: "內文", name: "body", widget: "markdown" }
   # 2. 首頁輪播圖管理

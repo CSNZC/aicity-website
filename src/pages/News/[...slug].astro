@@ -1,0 +1,115 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts: CollectionEntry<'news'>[] = await getCollection('news');
+  return posts.map(post => ({
+    params: { slug: post.id || (post as any).slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<'news'> };
+const { Content } = await render(post);
+
+const formatDate = (date: Date) => {
+  const d = new Date(date);
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+};
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{post.data.title} | 艾城市有限公司</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-white);
+      padding: 48px 40px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .article-header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 24px;
+    }
+    .article-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .article-tag {
+      background: var(--accent-gold-light);
+      color: var(--accent-gold);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .article-title {
+      font-size: 2rem;
+      color: var(--primary-green);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .article-date {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .article-content {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: var(--text-body);
+    }
+    .article-content p {
+      margin-bottom: 1.5em;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary-green);
+      font-weight: 600;
+      margin-bottom: 24px;
+      transition: color 0.2s;
+    }
+    .back-btn:hover {
+      color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+  <main class="page-content">
+    <div class="article-container">
+      <a href="/News" class="back-btn">← 返回最新消息</a>
+      
+      <header class="article-header">
+        <div class="article-tags">
+          {post.data.tags.map((tag: string) => (
+            <span class="article-tag">{tag}</span>
+          ))}
+        </div>
+        <h1 class="article-title">{post.data.title}</h1>
+        <time class="article-date">{formatDate(post.data.date)}</time>
+      </header>
+
+      {post.data.image && (
+        <div style="margin-bottom: 32px; border-radius: 8px; overflow: hidden;">
+          <img src={post.data.image} alt={post.data.title} style="width: 100%; height: auto;" />
+        </div>
+      )}
+
+      <article class="article-content">
+        <Content />
+      </article>
+    </div>
+  </main>
+</body>
+</html>
