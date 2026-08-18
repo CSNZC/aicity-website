@@ -68,9 +68,9 @@ collections:
       - { label: "摘要敘述", name: "text", widget: "text" }    
 
   # 企業輔導項目
-  - name: "business"
+  - name: "serviceb"
     label: "企業輔導項目"
-    folder: "src/content/business"
+    folder: "src/content/serviceb"
     create: true
     fields:
       - { label: "標題", name: "title", widget: "string" }
