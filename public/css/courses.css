@@ -1,0 +1,219 @@
+/* ==========================================
+   子項目共用模板專用樣式 (subpage.css)
+   ========================================== */
+
+/* 1. 頁面標題與返回鍵 */
+.subpage-header {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--text-muted, #666);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--primary-green, #2c5e3b);
+}
+
+/* 2. 課程列表容器 */
+.course-catalog {
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.course-item-card {
+    background: var(--bg-white, #ffffff);
+    border: 1px solid var(--border-color, #e0e0e0);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    transition: var(--transition, all 0.3s ease);
+}
+
+.course-item-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border-color: var(--primary-green, #2c5e3b);
+}
+
+.course-info {
+    flex: 1;
+}
+
+.course-tag {
+    display: inline-block;
+    background: var(--accent-gold-light, #fcf8e3);
+    color: var(--accent-gold, #c69500);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.course-info h2 {
+    font-size: 1.25rem;
+    color: var(--primary-green, #2c5e3b);
+    margin-bottom: 10px;
+}
+
+.course-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted, #666);
+    margin: 4px 0;
+}
+
+.course-desc {
+    font-size: 0.95rem;
+    color: var(--text-body, #333);
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+.course-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    min-width: 140px;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-green, #2c5e3b);
+}
+
+/* 3. 介紹區塊與網格 (加入響應式斷點) */
+.section-intro {
+    background-color: var(--bg-white, #ffffff);
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+}
+
+.intro-card {
+    background: var(--bg-white, #ffffff);
+    border-radius: 12px;
+    padding: 36px 32px;
+    border: 1px solid var(--border-color, #e0e0e0);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--text-dark, #111);
+    margin-bottom: 16px;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: var(--text-body, #333);
+    line-height: 1.75;
+    margin-bottom: 16px;
+}
+
+.org-badge-group {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color, #e0e0e0);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.org-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.org-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    background: var(--bg-light-gray, #f4f4f4);
+    color: var(--primary-green, #2c5e3b);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color, #e0e0e0);
+}
+
+.org-value {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-dark, #111);
+}
+
+/* 4. 認證卡片 */
+.cert-card {
+    background: linear-gradient(180deg, var(--accent-gold-light, #fcf8e3) 0%, #FFFFFF 100%);
+    border: 2px solid rgba(212, 160, 23, 0.3);
+    position: relative;
+}
+
+.cert-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-gold, #c69500);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.cert-highlight {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--primary-green, #2c5e3b);
+    margin-bottom: 12px;
+}
+
+/* 5. 響應式調整 (RWD Media Query) */
+@media (max-width: 768px) {
+    .course-item-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .course-action {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--border-color, #e0e0e0);
+        padding-top: 15px;
+    }
+
+    /* 將 Intro Grid 在手機版改為單欄排列，避免擠壓 */
+    .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .intro-card {
+        padding: 24px 20px;
+    }
+}

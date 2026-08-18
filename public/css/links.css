@@ -1,0 +1,77 @@
+/* 相關連結頁面特有樣式 */
+.links-page {
+    padding: 60px 24px;
+    background-color: var(--bg-light-gray);
+}
+
+.links-page .container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.page-title {
+    color: var(--primary-green);
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.page-subtitle {
+    text-align: center;
+    color: var(--text-body);
+    margin-bottom: 48px;
+    font-size: 1.1rem;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.link-card {
+    background: var(--bg-white);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.card-header h2 {
+    color: var(--primary-green);
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-gold);
+    display: inline-block;
+}
+
+.link-list {
+    list-style: none;
+    padding: 0;
+}
+
+.link-list li {
+    margin-bottom: 12px;
+}
+
+.link-list a {
+    color: var(--text-body);
+    font-size: 0.95rem;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.link-list a:hover {
+    background-color: var(--accent-gold-light);
+    color: var(--primary-green);
+    font-weight: 600;
+}

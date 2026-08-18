@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>企業輔導 | 艾城市有限公司</title>
+    <title>iPAS課程 | 艾城市有限公司</title>
     <!-- 引入 Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/courses.css">
+
 </head>
 <body>
   <!-- 頂部導覽列 -->
@@ -119,10 +121,63 @@
         </div>
     </header>
   <!-- 頁面主要內容區塊 (各子頁面可在此填入不同內容) -->
-  <main class="page-content">
-    <h1 class="page-title">網站建置中</h1>
-    <p>本公司網站建置中，造成不便請見諒</p>
-  </main>
+<main class="page-content">
+        <section class="subpage-header">
+            <a href="/Training" class="back-link">← 返回人員培訓總覽</a>
+            <h1 class="page-title">ISO 國際課程培訓列表</h1>
+            <p class="page-subtitle">提供多項國際標準認證課程，助您掌握全球稽核趨勢</p>
+        </section>
+
+        <!-- 課程直接呈現與報名區塊 (多項舉例) -->
+        <section class="course-catalog">
+            
+            <!-- 課程項目 1 -->
+            <div class="course-item-card">
+                <div class="course-info">
+                    <span class="course-tag">熱門認證</span>
+                    <h2>ISO 14064-1 溫室氣體盤查主導稽核員培訓班</h2>
+                    <p class="course-meta"><strong>開課日期：</strong>2026/05/10 - 2026/05/12 (共3天)</p>
+                    <p class="course-meta"><strong>授課地點：</strong>台中市西區五權五街151號 (實體/線上同步)</p>
+                    <p class="course-desc">本課程符合 ISO 14064-1:2018 標準，帶領學員實際操作組織型溫室氣體盤查與量化計算，結業考試通過者頒發國際認可證書。</p>
+                </div>
+                <div class="course-action">
+                    <span class="price">NT$ 24,000</span>
+                    <a href="/Reserve?course=iso14064" class="btn-primary-cta">立即報名</a>
+                </div>
+            </div>
+
+            <!-- 課程項目 2 -->
+            <div class="course-item-card">
+                <div class="course-info">
+                    <span class="course-tag">管理系統</span>
+                    <h2>ISO 14001:2015 環境管理系統主導稽核員班</h2>
+                    <p class="course-meta"><strong>開課日期：</strong>2026/06/05 - 2026/06/07 (共3天)</p>
+                    <p class="course-meta"><strong>授課地點：</strong>台中市西區五權五街151號</p>
+                    <p class="course-desc">深入解析環境考量面評估、法規鑑別與稽核技巧，協助企業建構完善的環境永續管理體系。</p>
+                </div>
+                <div class="course-action">
+                    <span class="price">NT$ 22,000</span>
+                    <a href="/Reserve?course=iso14001" class="btn-primary-cta">立即報名</a>
+                </div>
+            </div>
+
+            <!-- 課程項目 3 -->
+            <div class="course-item-card">
+                <div class="course-info">
+                    <span class="course-tag">能源轉型</span>
+                    <h2>ISO 50001:2018 能源管理系統內部稽核員班</h2>
+                    <p class="course-meta"><strong>開課日期：</strong>2026/07/15 (共2天)</p>
+                    <p class="course-meta"><strong>授課地點：</strong>線上直播授課</p>
+                    <p class="course-desc">學習如何建立能源基准、績效指標並落實內部稽核，有效協助工廠節能減碳與符合用電大戶法規。</p>
+                </div>
+                <div class="course-action">
+                    <span class="price">NT$ 15,000</span>
+                    <a href="/Reserve?course=iso50001" class="btn-primary-cta">立即報名</a>
+                </div>
+            </div>
+
+        </section>
+    </main>
 
   <!-- 頁尾 (Footer) -->
   <footer class="site-footer">
