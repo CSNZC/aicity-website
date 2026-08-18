@@ -1,6 +1,7 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+//最新消息
 const news = defineCollection({
   loader: glob({
     pattern: "**/*.md",
@@ -16,6 +17,7 @@ const news = defineCollection({
   }),
 });
 
+//首頁輪播圖
 const carousel = defineCollection({
   loader: glob({
     pattern: "**/*.{md,json}",
@@ -29,7 +31,7 @@ const carousel = defineCollection({
   }),
 });
 
-
+//永續服務輪播圖
 const service = defineCollection({
   loader: glob({
     pattern: "**/*.{md,json}",
@@ -43,6 +45,7 @@ const service = defineCollection({
   }),
 });
 
+//關於我們官方認證
 const about = defineCollection({
   loader: glob({
     pattern: "**/*.{md,json}",
@@ -55,23 +58,9 @@ const about = defineCollection({
     text: z.string(),  }),
 });
 
-const servicebCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    image: z.string().optional(),
-    text: z.string(),
-    category: z.enum(['enterprise', 'government']).default('enterprise'),
-    isSpecial: z.boolean().default(false),
-    badge: z.string().optional(),
-    link: z.string().optional(),
-  }),
-});
-
 export const collections = {
   news,
   carousel,
   service,
   about,
-  servicebCollection,
 };

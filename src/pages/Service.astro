@@ -2,22 +2,7 @@
 // 這就像是您的 PHP 引入資料庫檔案，直接去讀取 CMS 產生的內容資料夾
 import { getCollection, type CollectionEntry } from 'astro:content';
 const carouselSlides: CollectionEntry<'service'>[] = await getCollection('service');
-const allServices: CollectionEntry<'serviceb'>[] = await getCollection('serviceb');
 
-// 1. 篩選「特殊/即時專案」（有特殊標記且啟用的項目）
-const specialProjects: CollectionEntry<'serviceb'>[] = allServices.filter(
-  (item) => item.data.isSpecial === true
-);
-
-// 2. 篩選常態「企業輔導」
-const enterpriseServices: CollectionEntry<'serviceb'>[] = allServices.filter(
-  (item) => item.data.category === 'enterprise' && !item.data.isSpecial
-);
-
-// 3. 篩選常態「政府專案」
-const governmentServices: CollectionEntry<'serviceb'>[] = allServices.filter(
-  (item) => item.data.category === 'government' && !item.data.isSpecial
-);
 ---
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -36,7 +21,7 @@ const governmentServices: CollectionEntry<'serviceb'>[] = allServices.filter(
 </head>
 <body>
   <!-- 頂部導覽列 -->
-    <header class="navbar-header">
+  <header class="navbar-header">
         <div class="nav-container">
             <a href="/index" class="logo-link">
                 <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
@@ -140,212 +125,230 @@ const governmentServices: CollectionEntry<'serviceb'>[] = allServices.filter(
             <!-- 預約健檢 CTA 按鈕 -->
             <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
         </div>
-    </header>
+  </header>
 
   <!-- 頁面主要內容區塊 -->
   <main class="page-content">
     
-  <!--區塊輪播圖-->
-  <section id="home" class="hero-section">
-    <div class="carousel-container">
-      <div class="carousel-track" id="carousel-track">
-        {carouselSlides.map((slide, index) => (
-          <div class={`carousel-slide ${index === 0 ? 'active' : ''}`}>
-            {slide.data.link ? (
-              <a href={slide.data.link}>
+    <!--區塊輪播圖-->
+    <section id="home" class="hero-section">
+      <div class="carousel-container">
+        <div class="carousel-track" id="carousel-track">
+          {carouselSlides.map((slide, index) => (
+            <div class={`carousel-slide ${index === 0 ? 'active' : ''}`}>
+              {slide.data.link ? (
+                <a href={slide.data.link}>
+                  <img src={slide.data.image} alt={slide.data.title} />
+                </a>
+              ) : (
                 <img src={slide.data.image} alt={slide.data.title} />
-              </a>
-            ) : (
-              <img src={slide.data.image} alt={slide.data.title} />
-            )}
-          </div>
-        ))}
-      </div>
-
-      <button class="carousel-btn prev-btn" id="prev-btn" aria-label="上一張">❮</button>
-      <button class="carousel-btn next-btn" id="next-btn" aria-label="下一張">❯</button>
-
-      <div class="carousel-dots" id="carousel-dots">
-        {carouselSlides.map((_, index) => (
-          <span class={`dot ${index === 0 ? 'active' : ''}`} data-slide={index}></span>
-        ))}
-      </div>
-    </div>
-  </section>
-    <!-- 企業輔導項目 -->
-<!-- 1. 【醒目特殊專案區塊】（平時沒特殊專案時完全不顯示，有時自動高亮置頂） -->
-{specialProjects.length > 0 && (
-  <section class="special-project-section">
-    <div class="container">
-      <div class="special-notice-bar">
-        <span class="live-tag"><span class="pulse-dot"></span> 即時專案招募</span>
-        <span class="special-hint">艾城市最新精選輔導與專案補助計畫</span>
-      </div>
-
-      <div class="special-cards-wrap">
-        {specialProjects.map((project) => (
-          <div class="special-item-card">
-            <span class="special-badge">{(project.data as any).badge || '重點專案'}</span>
-            <span class="special-category">
-              {(project.data as any).category === 'government' ? '政府補助專案' : '企業輔導專案'}
-            </span>
-            <h3 class="special-title">{project.data.title}</h3>
-            <p class="special-text">{project.data.text}</p>
-            
-            <a href={(project.data as any).link || `/service/${project.slug}`} class="special-btn">
-              查看專案詳情與申請 <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
-
-<!-- 2. 【常態服務區塊】（包含企業輔導與政府專案） -->
-<section id="credentials" class="section bg-sand">
-  <div class="container">
-    
-    <!-- 企業輔導模組 -->
-    <div class="credential-box">
-      <h2>企業輔導項目</h2> 
-      <p class="credential-intro">協助企業建立自主溫室氣體盤查與永續碳管理機制</p>
-      
-      <div class="credential-list">
-        {enterpriseServices.map((item) => (
-          <div class="cred-item">
-            <i class="fa-solid fa-circle-check"></i>
-            <div>
-              <strong>{item.data.title}</strong>
-              <p>{item.data.text}</p>
-              {(item.data as any).link && (
-                <a href={(item.data as any).link} class="cred-link">了解更多 →</a>
               )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <!-- 政府專案模組 (若有資料則獨立展示) -->
-    {governmentServices.length > 0 && (
-      <div class="credential-box gov-credential-box">
-        <h2>政府專案資源對接</h2> 
-        <p class="credential-intro">整合政府低碳轉型、數位創新及各項專案補助資源</p>
-        
-        <div class="credential-list">
-          {governmentServices.map((item) => (
-            <div class="cred-item">
-              <i class="fa-solid fa-file-signature"></i>
-              <div>
-                <strong>{item.data.title}</strong>
-                <p>{item.data.text}</p>
-                {(item.data as any).link && (
-                  <a href={(item.data as any).link} class="cred-link">了解更多 →</a>
-                )}
-              </div>
             </div>
           ))}
         </div>
-      </div>
-    )}
 
-  </div>
-</section>
+        <button class="carousel-btn prev-btn" id="prev-btn" aria-label="上一張">❮</button>
+        <button class="carousel-btn next-btn" id="next-btn" aria-label="下一張">❯</button>
+
+        <div class="carousel-dots" id="carousel-dots">
+          {carouselSlides.map((_, index) => (
+            <span class={`dot ${index === 0 ? 'active' : ''}`} data-slide={index}></span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心五大永續服務矩陣 -->
+    <section class="section-block section-services-list" style="background-color: var(--bg-white);">
+      <div class="container">
+        <div class="section-header" style="text-align: center;">
+          <span class="section-tag">CORE SERVICES</span>
+          <h2 class="section-title">全方位永續與淨零輔導服務</h2>
+          <p class="section-desc">從碳盤查、產品足跡到 ESG 報告書編撰，協助企業精準對接國際綠色供應鏈</p>
+        </div>
+
+        <div class="transformation-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="trans-card">
+            <h3 class="trans-title" style="color: var(--primary-green);">01. 溫室氣體盤查 (ISO 14064-1)</h3>
+            <p class="trans-text">協助企業界定組織邊界、鑑別直接與間接排放源（類別1至類別6），建立專屬活動數據清冊與清冊報告書，協助通過第三方查證。</p>
+            <div style="margin-top: 16px;"><a href="/Business" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem;">深入了解企業輔導 →</a></div>
+          </div>
+
+          <div class="trans-card">
+            <h3 class="trans-title" style="color: var(--primary-green);">02. 產品碳足跡計算 (ISO 14067)</h3>
+            <p class="trans-text">從搖籃到大門（Cradle-to-Gate）或生命週期全階段（LCA）量化單一產品排碳量，找出減碳熱點，滿足品牌供應鏈減碳要求。</p>
+            <div style="margin-top: 16px;"><a href="/Business" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem;">深入了解企業輔導 →</a></div>
+          </div>
+
+          <div class="trans-card">
+            <h3 class="trans-title" style="color: var(--primary-green);">03. ESG 永續報告書編撰</h3>
+            <p class="trans-text">遵循 GRI 通用準則與 ISSB (IFRS S1/S2) 架構，執行重大主題鑑別、利害關係人溝通，協助產出具公信力的高品質永續報告書。</p>
+            <div style="margin-top: 16px;"><a href="/Business" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem;">深入了解企業輔導 →</a></div>
+          </div>
+
+          <div class="trans-card">
+            <h3 class="trans-title" style="color: var(--primary-green);">04. ESG 永續轉型顧問</h3>
+            <p class="trans-text">協助企業制定中長期淨零路徑、內部碳定價機制、SBTi 科學基礎減量目標設定，落實治理結構優化與綠色策略轉型。</p>
+            <div style="margin-top: 16px;"><a href="/Business" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem;">深入了解企業輔導 →</a></div>
+          </div>
+
+          <div class="trans-card">
+            <h3 class="trans-title" style="color: var(--primary-green);">05. AI 智慧轉型與能耗診斷</h3>
+            <p class="trans-text">導入智慧能源管理系統（EMS）與 AI 數據自動化抓取工具，減少盤查繁瑣人工填報，提升能耗監測精準度與決策效率。</p>
+            <div style="margin-top: 16px;"><a href="/Business" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem;">深入了解企業輔導 →</a></div>
+          </div>
+
+          <div class="trans-card">
+            <h3 class="trans-title" style="color: var(--primary-green);">06. 政府專案與綠色資源對接</h3>
+            <p class="trans-text">協助企業申請經濟部產發署低碳化升級補助、智慧化補助、中小型企業碳盤查輔導資源與綠色金融專案。</p>
+            <div style="margin-top: 16px;"><a href="/Government" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem;">查看政府專案 →</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- 輔導規劃 (含圖片) -->
     <section class="section-block section-consulting">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">CONSULTING & TRAINING</span>
-          <h2 class="section-title">輔導規劃與碳盤查機制建立</h2>
-        </div>
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">CONSULTING & TRAINING</span>
+            <h2 class="section-title">輔導規劃與碳盤查機制建立</h2>
+          </div>
 
-        <div class="consulting-wrapper">
-          <!-- 核心理念與文字 -->
-          <div class="consulting-content">
-            <div class="purpose-highlight">
-              <h3 class="purpose-title">規劃目的 — 給您魚吃，不如教您釣魚</h3>
-              <p class="purpose-desc">
-                隨著國際間對於溫室氣體管理及減排要求日益嚴格，企業唯有建立自主碳盤查能力，方能穩健達成永續經營目標。本企劃依據 <strong>ISO 14064-1:2018 標準</strong>，協助企業建立完善機制，培育內部稽核與盤查關鍵人才。
-              </p>
+          <div class="consulting-wrapper">
+            <!-- 核心理念與文字 -->
+            <div class="consulting-content">
+              <div class="purpose-highlight">
+                <h3 class="purpose-title">規劃目的 — 給您魚吃，不如教您釣魚</h3>
+                <p class="purpose-desc">
+                  隨著國際間對於溫室氣體管理及減排要求日益嚴格，企業唯有建立自主碳盤查能力，方能穩健達成永續經營目標。本企劃依據 <strong>ISO 14064-1:2018 標準</strong>，協助企業建立完善機制，培育內部稽核與盤查關鍵人才。
+                </p>
+              </div>
+
+              <div class="feature-steps">
+                <div class="step-item">
+                  <div class="step-num">01</div>
+                  <div class="step-info">
+                    <h4>全盤掌握企業碳資訊</h4>
+                    <p>由專業顧問團隊深入產線與營運環節，精準盤點各項溫室氣體排放源。</p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num">02</div>
+                  <div class="step-info">
+                    <h4>做中學 ＆ 學中做</h4>
+                    <p>輔導過程中投入企業內部人員共同參與，實作演練排放量計算與盤查清冊建置。</p>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num">03</div>
+                  <div class="step-info">
+                    <h4>培育國際證照專業人員</h4>
+                    <p>輔導內部同仁具備獨立撰寫盤查報告書、執行內部稽核並考取國際證照之實務能力。</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="feature-steps">
-              <div class="step-item">
-                <div class="step-num">01</div>
-                <div class="step-info">
-                  <h4>全盤掌握企業碳資訊</h4>
-                  <p>由專業顧問團隊深入產線與營運環節，精準盤點各項溫室氣體排放源。</p>
-                </div>
-              </div>
-              <div class="step-item">
-                <div class="step-num">02</div>
-                <div class="step-info">
-                  <h4>做中學 ＆ 學中做</h4>
-                  <p>輔導過程中投入企業內部人員共同參與，實作演練排放量計算與盤查清冊建置。</p>
-                </div>
-              </div>
-              <div class="step-item">
-                <div class="step-num">03</div>
-                <div class="step-info">
-                  <h4>培育國際證照專業人員</h4>
-                  <p>輔導內部同仁具備獨立撰寫盤查報告書、執行內部稽核並考取國際證照之實務能力。</p>
+            <!-- 圖片展示區 -->
+            <div class="consulting-image-box">
+              <div class="image-frame">
+                <img src="/img/service.png" alt="ISO 14064-1 企業輔導流程與培育規劃" class="consulting-img">
+                <div class="image-caption">
+                  <strong>ISO 14064-1 盤查與輔導流程</strong>
+                  <span>全方位碳盤查輔導與人才培訓機制</span>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- 圖片展示區 -->
-          <div class="consulting-image-box">
-            <div class="image-frame">
-              <img src="/img/service.png" alt="ISO 14064-1 企業輔導流程與培育規劃" class="consulting-img">
-              <div class="image-caption">
-                <strong>ISO 14064-1 盤查與輔導流程</strong>
-                <span>全方位碳盤查輔導與人才培訓機制</span>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- AI 數位轉型與資源轉介 -->
     <section class="section-block section-transformation">
-      <div class="container">
-            <div class="section-header">
-            <span class="section-tag">AI TRANSFORMATION</span>
-            <h2 class="section-title">AI 數位轉型與政府資源對接</h2>
-            <p class="section-desc">結合前瞻 AI 工具導入與全方位政府資源，全面厚植企業營運與製造韌性</p>
-            </div>
-            <div class="transformation-grid">
-            <!-- 特色卡片 1 -->
-            <div class="trans-card">
-                <h3 class="trans-title">實質導入 AI 工具</h3>
-                <p class="trans-text">針對產線與營運流程進行智慧化升級診斷，量身打造 AI 輔助與流程自動化最佳方案。</p>
-            </div>
+        <div class="container">
+              <div class="section-header">
+              <span class="section-tag">AI TRANSFORMATION</span>
+              <h2 class="section-title">AI 數位轉型與政府資源對接</h2>
+              <p class="section-desc">結合前瞻 AI 工具導入與全方位政府資源，全面厚植企業營運與製造韌性</p>
+              </div>
+              <div class="transformation-grid">
+              <!-- 特色卡片 1 -->
+              <div class="trans-card">
+                  <h3 class="trans-title">實質導入 AI 工具</h3>
+                  <p class="trans-text">針對產線與營運流程進行智慧化升級診斷，量身打造 AI 輔助與流程自動化最佳方案。</p>
+              </div>
 
-            <!-- 特色卡片 2 -->
-            <div class="trans-card">
-                <h3 class="trans-title">研發轉型與金融支持</h3>
-                <p class="trans-text">掌握政府最新研發補助專案與綠色/智慧化金融優惠貸款，降低企業轉型資金負擔。</p>
-            </div>
+              <!-- 特色卡片 2 -->
+              <div class="trans-card">
+                  <h3 class="trans-title">研發轉型與金融支持</h3>
+                  <p class="trans-text">掌握政府最新研發補助專案與綠色/智慧化金融優惠貸款，降低企業轉型資金負擔。</p>
+              </div>
 
-            <!-- 特色卡片 3 -->
-            <div class="trans-card">
-                <h3 class="trans-title">人才再充電與技術培訓</h3>
-                <p class="trans-text">結合勞工在職進修與 AI 技術應用培訓補助，全面升級企業團隊數位與綠領技能。</p>
-            </div>
+              <!-- 特色卡片 3 -->
+              <div class="trans-card">
+                  <h3 class="trans-title">人才再充電與技術培訓</h3>
+                  <p class="trans-text">結合勞工在職進修與 AI 技術應用培訓補助，全面升級企業團隊數位與綠領技能。</p>
+              </div>
 
-            <!-- 特色卡片 4 -->
-            <div class="trans-card">
-                <h3 class="trans-title">多元市場開拓與節能輔導</h3>
-                <p class="trans-text">媒合節能技術服務團隊降低碳排成本，協助企業符合國際供應鏈低碳門檻、拓展全球市場。</p>
-            </div>
-            </div>
-        </div>
+              <!-- 特色卡片 4 -->
+              <div class="trans-card">
+                  <h3 class="trans-title">多元市場開拓與節能輔導</h3>
+                  <p class="trans-text">媒合節能技術服務團隊降低碳排成本，協助企業符合國際供應鏈低碳門檻、拓展全球市場。</p>
+              </div>
+              </div>
+          </div>
     </section>
 
+    <!-- 最新活動與講座專區 -->
+    <section class="section-block section-events" style="background-color: var(--bg-white);">
+      <div class="container">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <span class="section-tag">LATEST EVENTS</span>
+            <h2 class="section-title">最新永續活動與培訓專區</h2>
+            <p class="section-desc">掌握最新法規趨勢、碳管理實務講座與政府補助說明會</p>
+          </div>
+          <a href="/News" class="btn-primary-cta" style="background: transparent; color: var(--primary-green); border: 1.5px solid var(--primary-green);">查看所有活動</a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+          <!-- 活動卡片 1 -->
+          <div style="background: var(--bg-white); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column;">
+            <div style="background: var(--primary-green); color: #fff; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; display: inline-block;">【實體研習】台中場</div>
+            <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+              <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 8px;">2026.09.15 ｜ 報名倒數</span>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.4;">中小製造業 ISO 14064-1 實務工作坊：從邊界界定到清冊建置</h3>
+              <p style="font-size: 0.925rem; color: var(--text-body); margin-bottom: 20px; flex-grow: 1;">手把手帶領學員實作溫室氣體活動數據盤點與係數選用，現場解答工廠查證痛點。</p>
+              <a href="/Reserve" style="display: inline-block; text-align: center; background: var(--bg-light-gray); color: var(--primary-green); padding: 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color); transition: all 0.3s ease;">立即線上報名</a>
+            </div>
+          </div>
+
+          <!-- 活動卡片 2 -->
+          <div style="background: var(--bg-white); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column;">
+            <div style="background: var(--accent-blue); color: #fff; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; display: inline-block;">【線上講座】免費名額</div>
+            <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+              <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 8px;">2026.09.28 ｜ 趨勢剖析</span>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.4;">2026 政府低碳化升級轉型專案申請要點與評選心法</h3>
+              <p style="font-size: 0.925rem; color: var(--text-body); margin-bottom: 20px; flex-grow: 1;">解析政府各項專案補助重點，分享製造業碳盤查、節能設備更新與智慧轉型之成功案例。</p>
+              <a href="/Reserve" style="display: inline-block; text-align: center; background: var(--bg-light-gray); color: var(--primary-green); padding: 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color); transition: all 0.3s ease;">立即線上報名</a>
+            </div>
+          </div>
+
+          <!-- 活動卡片 3 -->
+          <div style="background: var(--bg-white); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column;">
+            <div style="background: var(--accent-gold); color: #fff; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; display: inline-block;">【證照課程】iPAS 系列</div>
+            <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+              <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 8px;">2026.10.12 開課 ｜ 輔導考照</span>
+              <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.4;">淨零碳規劃管理師 / 綠領關鍵人才考照衝刺專班</h3>
+              <p style="font-size: 0.925rem; color: var(--text-body); margin-bottom: 20px; flex-grow: 1;">經濟部 iPAS 能力鑑定輔導，涵蓋溫室氣體盤查、減碳策略與國際淨零法規重點精華。</p>
+              <a href="/Reserve" style="display: inline-block; text-align: center; background: var(--bg-light-gray); color: var(--primary-green); padding: 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color); transition: all 0.3s ease;">立即線上報名</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
   </main>
 
   <!-- 頁尾 (Footer) -->

@@ -51,7 +51,7 @@
 
 /* 輪播圖區塊 */
 .hero-section {
-  padding-top: calc(var(--nav-height) + 32px); /* 扣除導覽列高度，並保留 32px 上方留白 */
+  padding-top: 50px; 
   padding-bottom: 32px;             /* 底部保留 32px 留白 */
   padding-bottom: 80px;                  /* 【加大留白】將下方留白增加到 80px，把跑馬燈往下推 */
   padding-left: 20px;                    /* 左右維持 20px */
