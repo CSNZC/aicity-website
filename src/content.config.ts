@@ -29,7 +29,48 @@ const carousel = defineCollection({
   }),
 });
 
+
+const service = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,json}",
+    base: "./src/content/service",
+  }),
+
+  schema: z.object({
+    title: z.string(),
+    image: z.string(),
+    link: z.string().optional(),
+  }),
+});
+
+const about = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,json}",
+    base: "./src/content/about",
+  }),
+
+  schema: z.object({
+    title: z.string(),
+    image: z.string(),
+    text: z.string(),  }),
+});
+
+const serviceb = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,json}",
+    base: "./src/content/serviceb",
+  }),
+
+  schema: z.object({
+    title: z.string(),
+    image: z.string(),
+    text: z.string(),  }),
+});
+
 export const collections = {
   news,
   carousel,
+  service,
+  about,
+  serviceb,
 };

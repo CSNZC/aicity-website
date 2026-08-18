@@ -10,7 +10,7 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  # 1. 最新消息管理
+  # 最新消息管理
   - name: "news"
     label: "最新消息"
     folder: "src/content/news"
@@ -36,7 +36,8 @@ collections:
 
       - { label: "文章摘要", name: "summary", widget: "text" }    
       - { label: "內文", name: "body", widget: "markdown" }
-  # 2. 首頁輪播圖管理
+  
+  # 首頁輪播圖
   - name: "carousel"
     label: "首頁輪播圖"
     folder: "src/content/carousel"
@@ -45,3 +46,33 @@ collections:
       - { label: "圖片標題", name: "title", widget: "string" }
       - { label: "輪播圖片", name: "image", widget: "image" }
       - { label: "跳轉連結", name: "link", widget: "string", required: false }
+  
+  # 永續服務輪播圖
+  - name: "service"
+    label: "永續服務輪播圖"
+    folder: "src/content/service"
+    create: true
+    fields:
+      - { label: "圖片標題", name: "title", widget: "string" }
+      - { label: "輪播圖片", name: "image", widget: "image" }
+      - { label: "跳轉連結", name: "link", widget: "string", required: false }
+
+  # 關於我們官方認證
+  - name: "about"
+    label: "關於我們官方認證"
+    folder: "src/content/about"
+    create: true
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "icon圖片", name: "image", widget: "image" }
+      - { label: "摘要敘述", name: "text", widget: "text" }    
+
+  # 企業輔導項目
+  - name: "business"
+    label: "企業輔導項目"
+    folder: "src/content/business"
+    create: true
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "icon圖片", name: "image", widget: "image" }
+      - { label: "摘要敘述", name: "text", widget: "text" }    

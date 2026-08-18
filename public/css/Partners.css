@@ -313,6 +313,58 @@
   content: none !important;
 }
 
+/* 外聘講師橫向滑動外層容器 */
+.expert-scroll-container {
+    width: 100%;
+    overflow-x: auto; /* 允許橫向捲動 */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px; /* 留空間給捲軸 */
+    scrollbar-width: thin; /* Firefox 捲軸變細 */
+    scrollbar-color: var(--primary-green) var(--border-color);
+}
+
+/* 自訂義美化捲軸（Chrome / Edge / Safari） */
+.expert-scroll-container::-webkit-scrollbar {
+    height: 6px;
+}
+.expert-scroll-container::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+.expert-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--primary-green);
+    border-radius: 10px;
+}
+
+/* 橫向滑動軌道 */
+.expert-scroll-track {
+    display: flex;
+    gap: 30px; /* 卡片間距 */
+    scroll-snap-type: x mandatory; /* 捲動時自動對齊卡片 */
+    padding: 5px;
+}
+
+/* 單張卡片寬度設定：在桌機下一次顯示 3 張 (扣掉間距) */
+.expert-scroll-track > .expert-card {
+    flex: 0 0 calc((100% - 60px) / 3); /* (100% - 兩段間距) / 3張 */
+    scroll-snap-align: start; /* 磁吸對齊起點 */
+    box-sizing: border-box;
+}
+
+/* RWD 響應式：平板改為顯示 2 張 */
+@media (max-width: 991px) {
+    .expert-scroll-track > .expert-card {
+        flex: 0 0 calc((100% - 30px) / 2);
+    }
+}
+
+/* RWD 響應式：手機改為顯示 1 張（並露出旁邊一點點提示可滑動） */
+@media (max-width: 576px) {
+    .expert-scroll-track > .expert-card {
+        flex: 0 0 85%; 
+    }
+}
 
 /* ==========================================================================
    4. 合作企業夥伴區塊：LOGO + 名稱牆（附帶超連結）
