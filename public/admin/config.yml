@@ -69,10 +69,32 @@ collections:
 
   # 企業輔導項目
   - name: "serviceb"
-    label: "企業輔導項目"
+    label: "企業輔導與專案項目"
     folder: "src/content/serviceb"
     create: true
+    slug: "{{slug}}"
     fields:
       - { label: "標題", name: "title", widget: "string" }
-      - { label: "icon圖片", name: "image", widget: "image" }
-      - { label: "摘要敘述", name: "text", widget: "text" }    
+      - { label: "icon圖片", name: "image", widget: "image", required: false }
+      - { label: "摘要敘述", name: "text", widget: "text" }
+      - label: "專案分類"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "企業輔導", value: "enterprise" }
+          - { label: "政府專案", value: "government" }
+        default: "enterprise"
+        required: false
+      - label: "是否為特殊/限時專案（置頂醒目顯示）"
+        name: "isSpecial"
+        widget: "boolean"
+        default: false
+        required: false
+      - label: "醒目標籤文字（如：名額倒數、政府全額補助）"
+        name: "badge"
+        widget: "string"
+        required: false
+      - label: "詳細連結 URL（如：/Business、/Government 或外部連結）"
+        name: "link"
+        widget: "string"
+        required: false

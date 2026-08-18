@@ -227,6 +227,157 @@
   line-height: 1.75;
 }
 
+
+/* =========================================
+   醒目特殊專案 / 即時專案區塊樣式
+   ========================================= */
+.special-project-section {
+  background: #fffdf5;
+  border-top: 1px solid #fef3c7;
+  border-bottom: 2px solid var(--accent-gold);
+  padding: 36px 0;
+}
+
+.special-notice-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background: #dc2626;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  animation: pulse-dot-anim 1.8s infinite;
+}
+
+@keyframes pulse-dot-anim {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+.special-hint {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.special-cards-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.special-item-card {
+  position: relative;
+  background: var(--bg-white);
+  border: 2px solid var(--accent-gold);
+  border-radius: 12px;
+  padding: 28px 24px 22px;
+  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.12);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.special-item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(212, 160, 23, 0.2);
+}
+
+.special-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #dc2626;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.special-category {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin-bottom: 6px;
+}
+
+.special-title {
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.special-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.special-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--primary-green);
+  color: var(--bg-white);
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.special-btn:hover {
+  background: var(--accent-gold);
+  color: var(--bg-white);
+}
+
+/* =========================================
+   常態專案輔導微調與政府專案區塊
+   ========================================= */
+.gov-credential-box {
+  margin-top: 80px;
+}
+
+.cred-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.cred-link:hover {
+  color: var(--accent-gold);
+  text-decoration: underline;
+}
 /* -----------------------------------------
    第二區：輔導規劃
    ----------------------------------------- */

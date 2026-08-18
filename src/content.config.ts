@@ -55,16 +55,17 @@ const about = defineCollection({
     text: z.string(),  }),
 });
 
-const serviceb = defineCollection({
-  loader: glob({
-    pattern: "**/*.{md,json}",
-    base: "./src/content/serviceb",
-  }),
-
+const servicebCollection = defineCollection({
+  type: 'content',
   schema: z.object({
     title: z.string(),
-    image: z.string(),
-    text: z.string(),  }),
+    image: z.string().optional(),
+    text: z.string(),
+    category: z.enum(['enterprise', 'government']).default('enterprise'),
+    isSpecial: z.boolean().default(false),
+    badge: z.string().optional(),
+    link: z.string().optional(),
+  }),
 });
 
 export const collections = {
@@ -72,5 +73,5 @@ export const collections = {
   carousel,
   service,
   about,
-  serviceb,
+  servicebCollection,
 };

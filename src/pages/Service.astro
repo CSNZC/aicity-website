@@ -2,8 +2,22 @@
 // 這就像是您的 PHP 引入資料庫檔案，直接去讀取 CMS 產生的內容資料夾
 import { getCollection, type CollectionEntry } from 'astro:content';
 const carouselSlides: CollectionEntry<'service'>[] = await getCollection('service');
-const credentialItems: CollectionEntry<'serviceb'>[] = await getCollection('serviceb');
----
+const allServices: CollectionEntry<'serviceb'>[] = await getCollection('serviceb');
+
+// 1. 篩選「特殊/即時專案」（有特殊標記且啟用的項目）
+const specialProjects: CollectionEntry<'serviceb'>[] = allServices.filter(
+  (item) => item.data.isSpecial === true
+);
+
+// 2. 篩選常態「企業輔導」
+const enterpriseServices: CollectionEntry<'serviceb'>[] = allServices.filter(
+  (item) => item.data.category === 'enterprise' && !item.data.isSpecial
+);
+
+// 3. 篩選常態「政府專案」
+const governmentServices: CollectionEntry<'serviceb'>[] = allServices.filter(
+  (item) => item.data.category === 'government' && !item.data.isSpecial
+);---
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -158,26 +172,85 @@ const credentialItems: CollectionEntry<'serviceb'>[] = await getCollection('serv
     </div>
   </section>
     <!-- 企業輔導項目 -->
-  <section id="credentials" class="section bg-sand">
+<!-- 1. 【醒目特殊專案區塊】（平時沒特殊專案時完全不顯示，有時自動高亮置頂） -->
+{specialProjects.length > 0 && (
+  <section class="special-project-section">
     <div class="container">
-      <div class="credential-box">
-        <div class="credential-icon"><i class="fa-solid fa-award"></i>
-        </div>
-        <h2>企業輔導項目</h2>   
+      <div class="special-notice-bar">
+        <span class="live-tag"><span class="pulse-dot"></span> 即時專案招募</span>
+        <span class="special-hint">艾城市最新精選輔導與專案補助計畫</span>
+      </div>
+
+      <div class="special-cards-wrap">
+        {specialProjects.map((project) => (
+          <div class="special-item-card">
+            <span class="special-badge">{(project.data as any).badge || '重點專案'}</span>
+            <span class="special-category">
+              {(project.data as any).category === 'government' ? '政府補助專案' : '企業輔導專案'}
+            </span>
+            <h3 class="special-title">{project.data.title}</h3>
+            <p class="special-text">{project.data.text}</p>
+            
+            <a href={(project.data as any).link || `/service/${project.slug}`} class="special-btn">
+              查看專案詳情與申請 <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- 2. 【常態服務區塊】（包含企業輔導與政府專案） -->
+<section id="credentials" class="section bg-sand">
+  <div class="container">
+    
+    <!-- 企業輔導模組 -->
+    <div class="credential-box">
+      <h2>企業輔導項目</h2> 
+      <p class="credential-intro">協助企業建立自主溫室氣體盤查與永續碳管理機制</p>
+      
+      <div class="credential-list">
+        {enterpriseServices.map((item) => (
+          <div class="cred-item">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <strong>{item.data.title}</strong>
+              <p>{item.data.text}</p>
+              {(item.data as any).link && (
+                <a href={(item.data as any).link} class="cred-link">了解更多 →</a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 政府專案模組 (若有資料則獨立展示) -->
+    {governmentServices.length > 0 && (
+      <div class="credential-box gov-credential-box">
+        <h2>政府專案資源對接</h2> 
+        <p class="credential-intro">整合政府低碳轉型、數位創新及各項專案補助資源</p>
+        
         <div class="credential-list">
-          {credentialItems.map((item) => (
+          {governmentServices.map((item) => (
             <div class="cred-item">
-              <i class="fa-solid fa-circle-check"></i>
+              <i class="fa-solid fa-file-signature"></i>
               <div>
                 <strong>{item.data.title}</strong>
                 <p>{item.data.text}</p>
+                {(item.data as any).link && (
+                  <a href={(item.data as any).link} class="cred-link">了解更多 →</a>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
-  </section>
+    )}
+
+  </div>
+</section>
 
     <!-- 輔導規劃 (含圖片) -->
     <section class="section-block section-consulting">
