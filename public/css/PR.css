@@ -1,0 +1,331 @@
+/* 企業輔導頁面專用樣式 */
+.page-hero {
+    padding: 60px 0;
+    text-align: center;
+    background: var(--bg-light-gray);
+    margin-bottom: 40px;
+}
+
+.page-title {
+    color: var(--primary-green);
+    font-size: 2.25rem;
+    margin-bottom: 16px;
+}
+
+.section-content {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+
+.section-heading {
+    color: var(--primary-green);
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--accent-gold);
+    padding-left: 15px;
+}
+
+.achievement-card {
+    background: var(--accent-gold-light);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.service-tags span {
+    background: var(--primary-green);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.report-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.report-item {
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.report-item:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+/* ==========================================
+   光電建置頁面專屬樣式 (PRE.css)
+   ========================================== */
+
+/* 頁面 Banner */
+.page-hero {
+    padding: 60px 0;
+    text-align: center;
+    background: var(--bg-light-gray);
+    margin-bottom: 40px;
+}
+
+.page-title {
+    color: var(--primary-green);
+    font-size: 2.25rem;
+    margin-bottom: 12px;
+}
+
+/* 內容區塊共用 */
+.section-content {
+    max-width: 1140px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+}
+
+.section-heading {
+    color: var(--primary-green);
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--accent-gold);
+    padding-left: 15px;
+}
+
+/* 光電介紹左右排版 */
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.intro-text-box p {
+    margin-bottom: 16px;
+    line-height: 1.8;
+}
+
+.rounded-img {
+    border-radius: 12px;
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 服務標籤盒 */
+.partner-badge-box {
+    margin-top: 24px;
+    padding: 16px;
+    background: var(--accent-gold-light);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-gold);
+}
+
+.badge-title {
+    font-weight: 600;
+    color: var(--primary-green);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.badge-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.partner-tag {
+    background: var(--bg-white);
+    color: var(--text-dark);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    border: 1px solid var(--border-color);
+}
+
+/* 案場實績左右交錯卡片 */
+.featured-case-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    background: var(--bg-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.case-img-wrap {
+    position: relative;
+    min-height: 280px;
+}
+
+.case-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.case-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--accent-gold);
+    color: var(--text-dark);
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.case-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.case-content h3 {
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.case-highlight {
+    font-weight: 600;
+    color: var(--primary-green-hover);
+    margin-bottom: 10px;
+}
+
+/* 響應式調整 */
+@media (max-width: 991px) {
+    .intro-grid, .featured-case-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   人員培訓頁面專屬樣式 (PRT.css)
+   ========================================== */
+
+/* 頁面 Banner */
+.page-hero {
+    padding: 60px 0;
+    text-align: center;
+    background: var(--bg-light-gray);
+    margin-bottom: 40px;
+}
+
+.page-title {
+    color: var(--primary-green);
+    font-size: 2.25rem;
+    margin-bottom: 12px;
+}
+
+/* 內容區塊共用 */
+.section-content {
+    max-width: 1140px;
+    margin: 0 auto 50px;
+    padding: 0 24px;
+}
+
+.training-category-header {
+    margin-bottom: 8px;
+}
+
+.category-tag {
+    display: inline-block;
+    background: var(--accent-gold-light);
+    color: var(--primary-green);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(212, 160, 23, 0.3);
+}
+
+.section-heading {
+    color: var(--primary-green);
+    font-size: 1.75rem;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--accent-gold);
+    padding-left: 15px;
+}
+
+.section-desc {
+    color: var(--text-body);
+    margin-bottom: 24px;
+    font-size: 1.05rem;
+}
+
+/* 培訓課程網格卡片 */
+.training-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.training-card {
+    background: var(--bg-white);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    position: relative;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.training-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.training-icon {
+    font-size: 2.25rem;
+    margin-bottom: 16px;
+}
+
+.training-card h3 {
+    color: var(--primary-green);
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.training-type {
+    color: var(--text-body);
+    font-size: 0.9375rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.training-year {
+    align-self: flex-start;
+    background: var(--primary-green);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .training-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -19,7 +19,7 @@
 
 /* 頁首主視覺 Banner */
 .gov-hero-banner {
-  background: linear-gradient(rgba(15, 39, 29, 0.88), rgba(15, 39, 29, 0.92)), url('/img/service.png') center/cover;
+  background: linear-gradient(rgba(15, 39, 29, 0.85), rgba(15, 39, 29, 0.9)), url('/img/bg.jpg') center/cover;
   padding: 90px 0;
   color: #ffffff;
 }
