@@ -1,36 +1,165 @@
-/* 企業輔導頁面專用樣式 */
+/* ==========================================
+   全域變數與基礎設定
+   ========================================== */
+:root {
+    --primary-green: #1b4332;
+    --primary-green-hover: #2d6a4f;
+    --accent-gold: #d4a017;
+    --accent-gold-light: #fef9e7;
+    --bg-light-gray: #f8f9fa;
+    --bg-white: #ffffff;
+    --text-dark: #212529;
+    --text-body: #495057;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --transition: all 0.3s ease;
+}
+
+/* ==========================================
+   頂部主視覺與數據總覽 (Hero & Stats)
+   ========================================== */
 .page-hero {
-    padding: 60px 0;
+    padding: 60px 0 50px;
     text-align: center;
     background: var(--bg-light-gray);
     margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .page-title {
     color: var(--primary-green);
     font-size: 2.25rem;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+    font-weight: 700;
 }
 
+/* 數據指標看板網格 */
+.stats-boxes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1040px;
+    margin: 30px auto 0;
+    padding: 0 24px;
+}
+
+.stat-box-card {
+    background: var(--bg-white);
+    padding: 28px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.stat-box-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.text-emerald { color: #10b981; }
+.text-amber { color: #d4a017; }
+.text-blue { color: #3b82f6; }
+
+.stat-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-green);
+    margin-bottom: 6px;
+}
+
+.stat-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ==========================================
+   三大核心主區塊排版 (Main Category Sections)
+   ========================================== */
+.main-category-section {
+    padding: 40px 0 60px;
+    border-bottom: 2px dashed var(--border-color);
+}
+
+.main-category-section:last-of-type {
+    border-bottom: none;
+}
+
+.category-main-header {
+    max-width: 1140px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.main-category-title {
+    font-size: 2.1rem;
+    color: var(--primary-green);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.main-category-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+}
+
+/* 內容區塊共用容器 */
 .section-content {
-    max-width: 900px;
-    margin: 0 auto 60px;
-    padding: 0 20px;
+    max-width: 1140px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
+}
+
+.section-content:last-child {
+    margin-bottom: 0;
 }
 
 .section-heading {
     color: var(--primary-green);
-    font-size: 1.75rem;
-    margin-bottom: 24px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
     border-left: 4px solid var(--accent-gold);
     padding-left: 15px;
+    font-weight: 700;
 }
 
+.section-desc {
+    color: var(--text-body);
+    margin-bottom: 24px;
+    font-size: 1.05rem;
+}
+
+/* ==========================================
+   區塊一：永續服務專屬樣式 (Sustainability)
+   ========================================== */
 .achievement-card {
     background: var(--accent-gold-light);
     padding: 30px;
     border-radius: 12px;
     border: 1px solid var(--border-color);
+}
+
+.achievement-card h3 {
+    color: var(--primary-green);
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.achievement-card p {
+    color: var(--text-body);
+    line-height: 1.7;
+    margin: 0;
 }
 
 .service-tags {
@@ -46,6 +175,7 @@
     padding: 6px 16px;
     border-radius: 20px;
     font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .report-list {
@@ -56,6 +186,7 @@
 
 .report-item {
     padding: 20px;
+    background: var(--bg-white);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     transition: var(--transition);
@@ -65,178 +196,23 @@
     border-color: var(--accent-gold);
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
-/* ==========================================
-   光電建置頁面專屬樣式 (PRE.css)
-   ========================================== */
 
-/* 頁面 Banner */
-.page-hero {
-    padding: 60px 0;
-    text-align: center;
-    background: var(--bg-light-gray);
-    margin-bottom: 40px;
-}
-
-.page-title {
+.report-item h4 {
     color: var(--primary-green);
-    font-size: 2.25rem;
-    margin-bottom: 12px;
-}
-
-/* 內容區塊共用 */
-.section-content {
-    max-width: 1140px;
-    margin: 0 auto 60px;
-    padding: 0 24px;
-}
-
-.section-heading {
-    color: var(--primary-green);
-    font-size: 1.75rem;
-    margin-bottom: 24px;
-    border-left: 4px solid var(--accent-gold);
-    padding-left: 15px;
-}
-
-/* 光電介紹左右排版 */
-.intro-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 40px;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.intro-text-box p {
-    margin-bottom: 16px;
-    line-height: 1.8;
-}
-
-.rounded-img {
-    border-radius: 12px;
-    width: 100%;
-    object-fit: cover;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-/* 服務標籤盒 */
-.partner-badge-box {
-    margin-top: 24px;
-    padding: 16px;
-    background: var(--accent-gold-light);
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-gold);
-}
-
-.badge-title {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
     font-weight: 600;
-    color: var(--primary-green);
-    display: block;
-    margin-bottom: 8px;
 }
 
-.badge-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.partner-tag {
-    background: var(--bg-white);
-    color: var(--text-dark);
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    border: 1px solid var(--border-color);
-}
-
-/* 案場實績左右交錯卡片 */
-.featured-case-card {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    background: var(--bg-white);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-    border: 1px solid var(--border-color);
-    margin-bottom: 30px;
-}
-
-.case-img-wrap {
-    position: relative;
-    min-height: 280px;
-}
-
-.case-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.case-tag {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: var(--accent-gold);
-    color: var(--text-dark);
-    font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.case-content {
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.case-content h3 {
-    color: var(--primary-green);
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-}
-
-.case-highlight {
-    font-weight: 600;
-    color: var(--primary-green-hover);
-    margin-bottom: 10px;
-}
-
-/* 響應式調整 */
-@media (max-width: 991px) {
-    .intro-grid, .featured-case-card {
-        grid-template-columns: 1fr;
-    }
+.report-item p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 /* ==========================================
-   人員培訓頁面專屬樣式 (PRT.css)
+   區塊二：人員培訓專屬樣式 (Training)
    ========================================== */
-
-/* 頁面 Banner */
-.page-hero {
-    padding: 60px 0;
-    text-align: center;
-    background: var(--bg-light-gray);
-    margin-bottom: 40px;
-}
-
-.page-title {
-    color: var(--primary-green);
-    font-size: 2.25rem;
-    margin-bottom: 12px;
-}
-
-/* 內容區塊共用 */
-.section-content {
-    max-width: 1140px;
-    margin: 0 auto 50px;
-    padding: 0 24px;
-}
-
 .training-category-header {
     margin-bottom: 8px;
 }
@@ -253,21 +229,6 @@
     border: 1px solid rgba(212, 160, 23, 0.3);
 }
 
-.section-heading {
-    color: var(--primary-green);
-    font-size: 1.75rem;
-    margin-bottom: 12px;
-    border-left: 4px solid var(--accent-gold);
-    padding-left: 15px;
-}
-
-.section-desc {
-    color: var(--text-body);
-    margin-bottom: 24px;
-    font-size: 1.05rem;
-}
-
-/* 培訓課程網格卡片 */
 .training-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -323,9 +284,153 @@
     font-weight: 600;
 }
 
-/* 響應式調整 */
+/* ==========================================
+   區塊三：光電建置專屬樣式 (Solar Energy)
+   ========================================== */
+/* 一站式服務滿版區塊調整 (已移除右側圖片，改為寬幅呈現並完美容納標籤) */
+.solar-intro-box-full {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary-green);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.solar-intro-box-full h3 {
+    color: var(--primary-green);
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.solar-intro-box-full p {
+    color: var(--text-body);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.partner-badge-inline {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.partner-badge-box {
+    margin-top: 24px;
+    padding: 16px;
+    background: var(--accent-gold-light);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-gold);
+}
+
+.badge-title {
+    font-weight: 600;
+    color: var(--primary-green);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.badge-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.partner-tag {
+    background: var(--bg-light-gray);
+    color: var(--text-dark);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    border: 1px solid var(--border-color);
+}
+
+/* 案場實績左右交錯卡片 */
+.featured-case-card {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    background: var(--bg-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.featured-case-card:last-child {
+    margin-bottom: 0;
+}
+
+.case-img-wrap {
+    position: relative;
+    min-height: 280px;
+}
+
+.case-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.case-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--accent-gold);
+    color: var(--text-dark);
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.case-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.case-content h3 {
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.case-highlight {
+    font-weight: 600;
+    color: var(--primary-green-hover);
+    margin-bottom: 10px;
+}
+
+.case-content p {
+    color: var(--text-body);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ==========================================
+   響應式調整 (RWD Breakpoints)
+   ========================================== */
+@media (max-width: 991px) {
+    .featured-case-card {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .training-cards-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 1.85rem;
+    }
+    
+    .main-category-title {
+        font-size: 1.75rem;
     }
 }
