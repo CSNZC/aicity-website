@@ -290,25 +290,6 @@ const associationPartners = allPartners.filter(p => p.data.category === 'associa
                 </div>
             </div>
         </section>
-        <!-- 企業夥伴 -->
-        <section class="partners-section">
-            <div class="container">
-                <div class="section-title-wrapper">
-                    <span class="section-badge">Business Partners</span>
-                    <h2 class="section-title">合作企業夥伴</h2>
-                </div>
-
-                <div class="partners-grid">
-                    {enterprisePartners.map((partner) => (
-                        <a href={partner.data.url || "#"} target="_blank" rel="noopener noreferrer" class="partner-card">
-                            <img src={partner.data.logo} alt={partner.data.name} class="partner-logo">
-                            <span class="partner-name">{partner.data.name}</span>
-                        </a>
-                    ))}
-                </div>
-            </div>
-        </section>
-
         <!-- 合作公協會夥伴 -->
         <section class="partners-section">
             <div class="container">
@@ -319,6 +300,24 @@ const associationPartners = allPartners.filter(p => p.data.category === 'associa
 
                 <div class="partners-grid">
                     {associationPartners.map((partner) => (
+                        <a href={partner.data.url || "#"} target="_blank" rel="noopener noreferrer" class="partner-card">
+                            <img src={partner.data.logo} alt={partner.data.name} class="partner-logo">
+                            <span class="partner-name">{partner.data.name}</span>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </section>
+                <!-- 企業夥伴 -->
+        <section class="partners-section">
+            <div class="container">
+                <div class="section-title-wrapper">
+                    <span class="section-badge">Business Partners</span>
+                    <h2 class="section-title">合作企業夥伴</h2>
+                </div>
+
+                <div class="partners-grid">
+                    {enterprisePartners.map((partner) => (
                         <a href={partner.data.url || "#"} target="_blank" rel="noopener noreferrer" class="partner-card">
                             <img src={partner.data.logo} alt={partner.data.name} class="partner-logo">
                             <span class="partner-name">{partner.data.name}</span>
