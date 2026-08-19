@@ -112,39 +112,73 @@
     </header>
 
 
-  <!-- 頁面主要內容區塊 (各子頁面可在此填入不同內容) -->
-<main class="page-content">
-        <!-- 頁面標題與辦課證明/介紹 -->
+    <!-- 頁面主要內容區塊 -->
+    <main class="page-content">
+        <!-- 培訓與辦課證明 -->
         <section class="training-hero">
             <h1 class="page-title">專業人員培訓中心</h1>
             <p class="page-subtitle">協助企業與個人對接國際標準、提升職場綠色競爭力</p>
-            <div class="certification-intro">
-                <h3>🏆 專業辦課認證與實績保證</h3>
-                <p>本公司擁有政府合法立案與各大國際驗證機構認可之培訓資歷。累計已協助超過百家企業培育專業稽核員與ESG管理人才，授課師資皆具備 10 年以上實務輔導經驗，確保學員結業後即具備即戰力。</p>
+            <div class="container">
+                <div class="intro-grid">
+                    <!-- 計畫法源與背景 -->
+                    <div class="intro-card primary-card">
+                        <h3 class="card-title">法源依據與推動目的</h3>
+                        <p class="card-text">
+                        依據<strong>「因應國際情勢強化經濟社會及民生國安韌性特別條例」第3條第2款</strong>及<strong>「經濟部因應國際情勢強化經濟韌性辦法」第5條第2項規定</strong>辦理。
+                        </p>
+                        <p class="card-text">
+                        本計畫旨在協助製造業企業接受專業診斷輔導，獲得實質智慧化轉型升級建議，並導入人工智慧（AI）工具，強化企業面對國際局勢變化的整體營運韌性與競爭力。
+                        </p>
+                        <div class="org-badge-group">
+                        <div class="org-badge">
+                            <span class="org-label">主辦單位</span>
+                            <span class="org-value">經濟部 ｜ 工研院生醫與醫材研究所</span>
+                        </div>
+                        <div class="org-badge">
+                            <span class="org-label">執行單位</span>
+                            <span class="org-value">艾城市有限公司</span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- 專業認證 -->
+                    <div class="intro-card cert-card">
+                        <div class="cert-icon-wrap">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 15l-2 5l9-13h-7l2-5l-9 13h7z"></path>
+                        </svg>
+                        </div>
+                        <h3 class="card-title">專業資格與官方認證</h3>
+                        <p class="cert-highlight">經濟部認可・工研院專業受訓核可團隊</p>
+                        <p class="card-text">
+                        本公司專案顧問團隊已正式通過經濟部辦理、工業技術研究院執行之<strong>「115年產業競爭力輔導團種子培訓」</strong>，並取得專業受訓證明，具備輔導企業邁向數位與綠色雙軸轉型的專業實力。
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 三大子項目綜合導覽 -->
+        <!-- 三大類課程綜合導覽 -->
         <section class="sub-projects-section">
             <h2 class="section-heading">培訓課程三大領域</h2>
             <div class="projects-grid">
-                <!-- ISO 子項目 -->
-                <div class="project-card">
-                    <h3>ISO 國際課程</h3>
-                    <p>涵蓋 ISO 14001、ISO 50001、ISO 14064 等國際標準主導稽核員培訓。</p>
-                    <a href="/ISO" class="btn-primary-cta">進入 ISO 課程列表</a>
-                </div>
-                <!-- iPAS 子項目 -->
-                <div class="project-card">
-                    <h3>iPAS 課程</h3>
-                    <p>經濟部產業人才能力鑑定衝刺班，精準掌握綠色科技與智慧製造關鍵能力。</p>
-                    <a href="/iPAS" class="btn-primary-cta">進入 iPAS 課程列表</a>
-                </div>
-                <!-- 永續課程 子項目 -->
+                <!-- 永續課程 -->
                 <div class="project-card">
                     <h3>永續課程</h3>
                     <p>聚焦 ESG 永續報告書編撰、碳足跡盤查與淨零碳排策略實戰演練。</p>
-                    <a href="/Courses" class="btn-primary-cta">進入永續課程列表</a>
+                    <a href="/Courses" class="btn-primary-cta">了解 永續課程 開課資訊</a>
+                </div>
+                <!-- iPAS -->
+                <div class="project-card">
+                    <h3>iPAS 課程</h3>
+                    <p>經濟部產業人才能力鑑定衝刺班，精準掌握綠色科技與智慧製造關鍵能力。</p>
+                    <a href="/iPAS" class="btn-primary-cta">了解 iPAS 開課資訊</a>
+                </div>
+                <!-- ISO -->
+                <div class="project-card">
+                    <h3>ISO 國際課程</h3>
+                    <p>涵蓋 ISO 14067、ISO 14064 等國際標準主導稽核員培訓。</p>
+                    <a href="/ISO" class="btn-primary-cta">了解 ISO 開課資訊</a>
                 </div>
             </div>
         </section>
@@ -155,9 +189,76 @@
             <ul class="notice-list">
                 <li><strong>報名流程：</strong>點選各子項目進入課程列表 → 選擇欲報名梯次 → 填寫線上表單 → 完成匯款即完成保留席次。</li>
                 <li><strong>退費機制：</strong>開課日前 7 天取消者全額退費（需扣除行政手續費）；開課日前 3 天內恕不退費，但可替換受訓學員。</li>
-                <li><strong>企業包班：</strong>若企業有內訓需求，歡迎點擊下方按鈕預約專人客製化規劃。</li>
             </ul>
         </section>
+
+        <!-- 企業包班 -->
+        <section class="sub-projects-section corporate-section">
+            <div class="project-card corporate-card-full">
+                <h3>企業專屬培訓規劃</h3>
+                <p>若您的企業有特定的內訓需求，我們提供專業顧問到廠輔導或客製化包班服務，協助團隊快速對接國際標準與綠色轉型目標。</p>
+                <a href="/Reserve" class="btn-primary-cta">預約企業包班諮詢</a>
+            </div>
+        </section>
+
+        <!-- 課程內容與主旨介紹 -->
+        <section class="sub-projects-section course-details-section">
+            <h2 class="section-heading">三大課程領域詳細介紹</h2>
+            
+            <!-- 1. 永續課程 -->
+            <div class="course-detail-row">
+                <div class="course-img-box">
+                    <img src="/img/sustainability.jpg" alt="永續課程示意圖" class="course-img">
+                </div>
+                <div class="course-info-box">
+                    <h3>1. 永續發展與 ESG 課程</h3>
+                    <p class="card-text"><strong>證照與應用價值：</strong>ESG（環境、社會、公司治理）已成為評估企業價值與供應鏈資格的核心指標。本課程協助學員全面掌握全球永續趨勢，深入學習碳足跡盤查、溫室氣體計算及永續報告書（GRI Standards）編撰實務，將永續理念轉化為企業的核心競爭優勢。</p>
+                </div>
+            </div>
+
+            <!-- 2. iPAS 課程 -->
+            <div class="course-detail-row">
+                <div class="course-img-box">
+                    <img src="/img/iPAS.webp" alt="iPAS 課程示意圖" class="course-img">
+                </div>
+                <div class="course-info-box">
+                    <h3>2. iPAS 產業人才能力鑑定</h3>
+                    <p class="card-text"><strong>證照與應用價值：</strong>由經濟部推動的國家級能力鑑定，具高度產業公信力。本培訓班專為「綠色科技工程師」、「淨零碳規劃師」等重點職務設計，透過系統化重點衝刺與考古題解析，協助學員高效率取得國家級專業證照，躍升職場搶手綠領人才。</p>
+                </div>
+            </div>
+
+            <!-- 3. ISO 課程 -->
+            <details class="course-detail-row course-accordion-card">
+                <summary class="course-summary-trigger">
+                    <div class="summary-preview-content">
+                        <div class="course-img-box">
+                            <img src="/img/ISO.jpg" alt="ISO 課程示意圖" class="course-img">
+                        </div>
+                        <div class="course-info-box">
+                            <h3>3. ISO 國際標準稽核員培訓</h3>
+                            <p class="card-text"><strong>證照與應用價值：</strong>ISO 國際標準是企業布局全球市場的通行證。我們開設包含 ISO 14067、ISO 14064 等主導稽核員班。</p>
+                            <p>點擊展開深入了解標準由來與詳細介紹 ▾</p>
+                        </div>
+                    </div>
+                </summary>
+
+                <!-- 展開後才會顯示的詳細內容區塊 -->
+                <div class="course-accordion-body">
+                    <hr class="accordion-divider">
+                    <h4 class="accordion-sub-title">📌 ISO 標準的由來與發展背景</h4>
+                    <p class="card-text">ISO（國際標準組織）成立於 1947 年，旨在促進國際間的工業標準化與合作。隨著全球化與環保意識抬頭，ISO 標準從最初的品質管理，逐步擴展至環境管理（ISO 14000 系列）與溫室氣體盤查（ISO 14064 系列），成為全球企業信任的共通語言。</p>
+                    
+                    <h4 class="accordion-sub-title">🎯 取得資格後能為企業與個人帶來什麼？</h4>
+                    <p class="card-text">取得 ISO 主導稽核員資格後，個人不僅具備獨立執行內部與供應鏈稽核的專業公信力，更是企業滿足歐盟碳邊境調整機制（CBAM）、國際大廠 ESG 供應鏈稽核不可或缺的核心戰力。</p>
+                    
+                    <!-- 展開後的圖文補充 -->
+                    <div class="accordion-sub-grid">
+                        <img src="/img/iso-detail-banner.jpg" alt="ISO 課程實務演練" class="accordion-sub-img">
+                        <p class="card-text" style="margin: 0;">我們的培訓採理論與實務個案並重，協助學員無縫接軌最新條文標準，結業即具備即戰力。</p>
+                    </div>
+                </div>
+            </details>
+        </section>  
     </main>
 
   <!-- 頁尾 (Footer) -->
