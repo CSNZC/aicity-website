@@ -10,7 +10,11 @@ const latestNews = allPosts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) // 依日期新到舊排序
   .slice(0, 3); // 只裁切前 6 筆
 
+
+// 2. 獲取資料
 const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carousel');
+// 輪播圖：依據後台設定的 order 欄位排序 (數字越小越前面)
+const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 ---
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
@@ -126,33 +130,38 @@ const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carou
         </div>
     </header>
 
-<!--區塊輪播圖-->
-<section id="home" class="hero-section">
-  <div class="carousel-container">
-    <div class="carousel-track" id="carousel-track">
-      {carouselSlides.map((slide, index) => (
-        <div class={`carousel-slide ${index === 0 ? 'active' : ''}`}>
-          {slide.data.link ? (
-            <a href={slide.data.link}>
+  <!-- 區塊輪播圖 -->
+  <section id="home" class="hero-section">
+    <div class="carousel-container">
+      
+      <!-- 輪播圖片軌道 -->
+      <div class="carousel-track" id="carousel-track">
+        {sortedSlides.map((slide, index) => (
+          <div class={`carousel-slide ${index === 0 ? 'active' : ''}`}>
+            {slide.data.link ? (
+              <a href={slide.data.link}>
+                <img src={slide.data.image} alt={slide.data.title} />
+              </a>
+            ) : (
               <img src={slide.data.image} alt={slide.data.title} />
-            </a>
-          ) : (
-            <img src={slide.data.image} alt={slide.data.title} />
-          )}
-        </div>
-      ))}
-    </div>
+            )}
+          </div>
+        ))}
+      </div>
 
-    <button class="carousel-btn prev-btn" id="prev-btn" aria-label="上一張">❮</button>
-    <button class="carousel-btn next-btn" id="next-btn" aria-label="下一張">❯</button>
+      <!-- 左右控制按鈕 -->
+      <button class="carousel-btn prev-btn" id="prev-btn" aria-label="上一張">❮</button>
+      <button class="carousel-btn next-btn" id="next-btn" aria-label="下一張">❯</button>
 
-    <div class="carousel-dots" id="carousel-dots">
-      {carouselSlides.map((_, index) => (
-        <span class={`dot ${index === 0 ? 'active' : ''}`} data-slide={index}></span>
-      ))}
+      <!-- 底部圓點指示器 -->
+      <div class="carousel-dots" id="carousel-dots">
+        {sortedSlides.map((_, index) => (
+          <span class={`dot ${index === 0 ? 'active' : ''}`} data-slide={index}></span>
+        ))}
+      </div>
+      
     </div>
-  </div>
-</section>
+  </section>
 
 <!--跑馬燈-->
 {tickerItems.length > 0 && (

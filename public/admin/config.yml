@@ -43,6 +43,7 @@ collections:
     folder: "src/content/carousel"
     create: true
     fields:
+      - { label: "排序", name: "order", widget: "number", default: 0, hint: "數字越小越前面" }
       - { label: "圖片標題", name: "title", widget: "string" }
       - { label: "輪播圖片", name: "image", widget: "image" }
       - { label: "跳轉連結", name: "link", widget: "string", required: false }

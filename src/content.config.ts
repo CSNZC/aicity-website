@@ -25,6 +25,7 @@ const carousel = defineCollection({
   }),
 
   schema: z.object({
+    order: z.number().default(0), // 加入這行
     title: z.string(),
     image: z.string(),
     link: z.string().optional(),
