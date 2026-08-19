@@ -52,63 +52,207 @@ const formatDate = (date: Date) => {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   
-  <!-- 引入拆分出來的獨立 CSS -->
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/Government.css">
 </head>
 <body>
-
-  <!-- 主要內容區 -->
-  <main class="page-content">
-    
-    <!-- 頁首主視覺 Banner -->
-    <section class="gov-hero-banner text-center">
-      <div class="container">
-        <span class="banner-tag">GOVERNMENT ANNOUNCEMENTS</span>
-        <h1 class="banner-title">政府最新專案公告</h1>
-        <p class="banner-desc">即時掌握中央與地方政府各項補助、輔導計畫與政策招標最新動態，協助企業搶先佈局永續商機。</p>
-      </div>
-    </section>
-
-    <!-- 公告列表區塊 -->
-    <section class="section-block">
-      <div class="container">
-        <!-- 專案公告卡片列表 -->
-        <section class="gov-grid" aria-label="政府最新專案列表">
-          {sortedProjects.map((item) => {
-            const { title, date, summary, tag, image, id } = item;
-            // 點擊後跳轉到對應的詳細頁面路徑
-            const postSlug = `/Government/${id}`;
-
-            return (
-              <article class="gov-card">
-                <a href={postSlug} class="gov-card-image-wrap">
-                  <img src={image || '/img/logo_L.png'} alt={title} class="gov-card-img" loading="lazy" />
-                  <span class="gov-tag">{tag}</span>
-                </a>
-                <div class="gov-card-body">
-                  <div class="gov-meta">
-                    <time datetime={new Date(date).toISOString()}>{formatDate(date)}</time>
-                  </div>
-                  <h3 class="gov-card-title">
-                    <a href={postSlug}>{title}</a>
-                  </h3>
-                  <p class="gov-card-desc">{summary}</p>
-                  <a href={postSlug} class="gov-read-more">
-                    查看詳細公告 
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                  </a>
+    <!-- 頂部導覽列 -->
+    <header class="navbar-header">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
+            </a>
+            <nav class="desktop-nav">
+                <div class="nav-dropdown">
+                    <a href="/About" class="nav-link">關於我們 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/About">公司介紹</a>
+                        <a href="/Partners">團隊介紹</a>
+                        <a href="/Links">相關連結</a>
+                    </div>
                 </div>
-              </article>
-            );
-          })}
+                <div class="nav-dropdown">
+                    <a href="/News" class="nav-link">最新消息</a>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/Service" class="nav-link">永續服務 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/Business">企業輔導</a>
+                        <a href="/Government">政府專案</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/Training" class="nav-link">人員培訓 ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/iPAS">iPAS 課程培訓</a>
+                        <a href="/ISO">ISO 國際課程培訓</a>
+                        <a href="/Courses">永續課程</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/Solar energy" class="nav-link">光電建置</a>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="/PR" class="nav-link">實績事例</a>
+                </div>
+                <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
+            </nav>
+
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <!-- 手機版下拉選單 -->
+        <div id="mobile-menu" class="mobile-menu">
+            <!-- 關於我們 -->
+            <div class="mobile-dropdown-group">
+                <a href="/About" class="mobile-link">關於我們 ▾</a>
+                <div class="mobile-sub-menu">
+                    <a href="/About" class="mobile-sub-link">公司介紹</a>
+                    <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
+                    <a href="/Links" class="mobile-sub-link">相關連結</a>
+                </div>
+            </div>
+
+            <!-- 最新消息 -->
+            <a href="/News" class="mobile-link">最新消息</a>
+
+            <!-- 永續服務 -->
+            <div class="mobile-dropdown-group">
+                <a href="/Service" class="mobile-link">永續服務 ▾</a>
+                <div class="mobile-sub-menu">
+                    <a href="/Business" class="mobile-sub-link">企業輔導</a>
+                    <a href="/Government" class="mobile-sub-link">政府專案</a>
+                </div>
+            </div>
+
+            <!-- 人員培訓 -->
+            <div class="mobile-dropdown-group">
+                <a href="/Training" class="mobile-link">人員培訓 ▾</a>
+                <div class="mobile-sub-menu">
+                    <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
+                    <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
+                    <a href="/Courses" class="mobile-sub-link">永續課程</a>
+                </div>
+            </div>
+
+            <!-- 光電建置 -->
+            <a href="/Solar energy" class="mobile-link">光電建置</a>
+
+            <!-- 實績事例 -->
+            <div class="mobile-dropdown-group">
+                <a href="/PR" class="mobile-link">實績事例</a>
+            </div>
+
+            <!-- 預約健檢 CTA 按鈕 -->
+            <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
+        </div>
+    </header>
+    
+    <!-- 主要內容區 -->
+    <main class="page-content">
+        
+        <!-- 頁首主視覺 Banner -->
+        <section class="gov-hero-banner text-center">
+        <div class="container">
+            <span class="banner-tag">GOVERNMENT ANNOUNCEMENTS</span>
+            <h1 class="banner-title">政府最新專案公告</h1>
+            <p class="banner-desc">即時掌握中央與地方政府各項補助、輔導計畫與政策招標最新動態，協助企業搶先佈局永續商機。</p>
+        </div>
         </section>
 
-      </div>
-    </section>
+        <!-- 公告列表區塊 -->
+        <section class="section-block">
+        <div class="container">
+            <!-- 專案公告卡片列表 -->
+            <section class="gov-grid" aria-label="政府最新專案列表">
+            {sortedProjects.map((item) => {
+                const { title, date, summary, tag, image, id } = item;
+                // 點擊後跳轉到對應的詳細頁面路徑
+                const postSlug = `/Government/${id}`;
 
-  </main>
+                return (
+                <article class="gov-card">
+                    <a href={postSlug} class="gov-card-image-wrap">
+                    <img src={image || '/img/logo_L.png'} alt={title} class="gov-card-img" loading="lazy" />
+                    <span class="gov-tag">{tag}</span>
+                    </a>
+                    <div class="gov-card-body">
+                    <div class="gov-meta">
+                        <time datetime={new Date(date).toISOString()}>{formatDate(date)}</time>
+                    </div>
+                    <h3 class="gov-card-title">
+                        <a href={postSlug}>{title}</a>
+                    </h3>
+                    <p class="gov-card-desc">{summary}</p>
+                    <a href={postSlug} class="gov-read-more">
+                        查看詳細公告 
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    </div>
+                </article>
+                );
+            })}
+            </section>
+
+        </div>
+        </section>
+
+    </main>
+
+      <!-- 頁尾 (Footer) -->
+  <footer class="site-footer">
+    <div class="footer-compact-container">
+      <!-- 公司介紹 -->
+      <div class="footer-col footer-col-info">
+        <h3 class="footer-company-name">艾城市有限公司</h3>
+        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
+        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
+        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
+      </div>
+      <!-- 快速連結 -->
+      <div class="footer-col footer-col-links">
+        <h4 class="footer-title">快速連結</h4>
+        <div class="footer-links-2cols">
+          <span>關於我們</span>
+          <span>最新消息</span>
+          <span>實績事例</span>
+          <span>永續服務</span>
+          <span>人員培訓</span>
+          <span>光電建置</span>
+        </div>
+      </div>
+      <!-- 社群QR -->
+      <div class="footer-col footer-col-social">
+        <h4 class="footer-title">官方社群</h4>
+        <div class="qr-code-group">
+          <div class="qr-code-item">
+            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
+            <span>Facebook</span>
+          </div>
+          <div class="qr-code-item">
+            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
+            <span>Instagram</span>
+          </div>
+          <div class="qr-code-item">
+            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
+            <span>LINE 官方</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <script src="/js/style.js" defer></script>
 
 </body>
 </html>
