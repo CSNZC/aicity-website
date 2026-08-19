@@ -26,6 +26,8 @@
   margin-bottom: 0;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 400;
+  text-align: justify;
+  text-justify: inter-ideograph;
 }
 
 /* 容器通用設定 */
@@ -71,64 +73,116 @@
   text-align: center;
 }
 
-.story-lead {
-  font-size: 1.25rem; /* 字體放大至 20px */
-  color: var(--text-body);
-  line-height: 1.9;
-  margin-top: 16px;
+/* 外層捲動容器：允許在螢幕較小時橫向滑動 */
+.timeline-scroll-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 40px 0 20px 0;
+    scrollbar-width: thin; /* Firefox 捲軸美化 */
+    scrollbar-color: var(--primary-green) var(--border-color);
 }
 
-.story-timeline {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 40px;
+/* 自訂 Webkit 瀏覽器捲軸（Chrome, Safari） */
+.timeline-scroll-container::-webkit-scrollbar {
+    height: 6px;
+}
+.timeline-scroll-container::-webkit-scrollbar-track {
+    background: var(--bg-light-gray, #f1f1f1);
+    border-radius: 4px;
+}
+.timeline-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--primary-green);
+    border-radius: 4px;
 }
 
-.story-item {
-  background: var(--bg-white);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 36px 28px;
-  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
+/* 橫向時間軸主體 */
+.timeline-horizontal {
+    position: relative;
+    display: flex;
+    gap: 24px;
+    min-width: 900px; /* 確保內容足夠寬時能撐開並出現滑動效果 */
+    padding: 0 20px;
 }
 
-.story-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--primary-green);
-  transition: var(--transition);
+/* 貫穿整條時間軸的橫線 */
+.timeline-axis {
+    position: absolute;
+    top: 24px; /* 需與圓點的垂直位置對齊 */
+    left: 20px;
+    right: 20px;
+    height: 3px;
+    background: var(--primary-green);
+    z-index: 1;
 }
 
-.story-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(27, 67, 50, 0.08);
-  border-color: var(--primary-green);
+/* 單一時間點區塊 */
+.timeline-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
-.story-year {
-  font-weight: 700;
-  color: var(--primary-green);
-  font-size: 1.2rem; /* 字體放大 */
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
+/* 圓點定位（精準壓在橫線上） */
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--primary-green);
+    border: 3px solid var(--bg-white, #ffffff);
+    border-radius: 50%;
+    margin-top: 16px; /* 控制圓點距離上方的高度 */
+    margin-bottom: 24px; /* 圓點與下方卡片的間距 */
+    box-shadow: 0 0 0 2px var(--primary-green);
 }
 
-.story-item p {
-  color: var(--text-body);
-  font-size: 1.1rem; /* 字體放大至 20px 視覺感 (約 1.1rem-1.125rem) */
-  line-height: 1.75;
+/* 下方說明卡片（結合您原本網站的卡片樣式） */
+.timeline-card {
+    width: 100%;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 28px 20px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+    transition: var(--transition);
+    text-align: left; /* 卡片內部標題可維持靠左或置中，若要置中可改 center */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 讓每個卡片高度一致 */
 }
 
+.timeline-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(27, 67, 50, 0.08);
+    border-color: var(--primary-green);
+}
+
+/* 年份樣式 */
+.timeline-year {
+    font-weight: 700;
+    color: var(--primary-green);
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* 標題與內文 */
+.timeline-content h3 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    color: var(--text-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
 
 /* 核心營運項目區塊 */
 .service-rows {
@@ -140,13 +194,13 @@
 }
 
 .service-rows .service-row-item:nth-child(1) {
-  grid-row: span 2; /* 左側一大塊佔據兩行高度 */
+  grid-row: span 2; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 48px 40px;
-  background: var(--bg-white); /* 移除原本的漸層黃色底色 */
-  border-left: 6px solid var(--accent-gold); /* 保留左側顯眼的金色線條 */
+  background: var(--bg-white); 
+  border-left: 6px solid var(--accent-gold); 
   border-top: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
@@ -167,7 +221,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-left: 6px solid var(--accent-gold); /* 右側兩塊也加上一致的金色線條 */
+  border-left: 6px solid var(--accent-gold); 
 }
 
 .service-row-item {
@@ -182,7 +236,7 @@
   transform: translateY(-3px);
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
   border-color: var(--primary-green);
-  border-left-color: var(--accent-gold); /* 保持左側線條金黃色 */
+  border-left-color: var(--accent-gold); 
 }
 
 .service-num-badge {
@@ -195,7 +249,7 @@
 }
 
 .service-detail h3 {
-  font-size: 1.4rem; /* 標題放大 */
+  font-size: 1.4rem; 
   color: var(--text-dark);
   font-weight: 700;
   margin-bottom: 12px;
@@ -203,9 +257,11 @@
 
 .service-detail p {
   color: var(--text-body);
-  font-size: 1.1rem; /* 內文放大至 20px 視覺感 */
+  font-size: 1.1rem; 
   margin-bottom: 20px;
   line-height: 1.75;
+  text-align: justify;
+  text-justify: inter-ideograph;
 }
 
 .service-tag {
@@ -214,7 +270,7 @@
   color: var(--primary-green);
   padding: 5px 12px;
   border-radius: 6px;
-  font-size: 0.9rem; /* 標籤字體微調放大 */
+  font-size: 0.9rem; 
   font-weight: 600;
   margin-right: 8px;
   margin-bottom: 8px;
@@ -224,99 +280,86 @@
 
 /* 官方認證專區 */
 .credential-box {
-  background: transparent;
-  border: none;
-  padding: 0;
-  box-shadow: none;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .credential-icon {
-  display: none; 
+    display: none; 
 }
 
 .credential-box h2 {
-  font-size: 2.35rem;
-  color: var(--text-dark);
-  font-weight: 700;
-  margin-bottom: 12px;
+    font-size: 2.35rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
-.credential-intro {
-  color: var(--text-muted);
-  font-size: 1.2rem; /* 字體放大 */
-  margin-bottom: 50px;
-}
-
+/* 網格列表排版 */
 .credential-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
 }
 
-.cred-item {
-  background: var(--bg-white);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 40px 28px 32px 28px;
-  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  transition: var(--transition);
+.story-item {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 36px 28px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    text-align: left; /* 讓卡片內部文字靠左對齊 */
 }
 
-.cred-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(27, 67, 50, 0.08);
-  border-color: var(--primary-green);
+/* 卡片上方的裝飾邊框線條 */
+.story-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-green);
+    transition: var(--transition);
 }
 
-/* 圓圈圖示設計結合矩形卡片 */
-.cred-item i {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  background: var(--primary-green);
-  color: var(--bg-white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  box-shadow: 0 6px 16px rgba(27, 67, 50, 0.2);
-  border: 3px solid var(--bg-white);
-  margin: 0;
+/* 滑鼠懸停互動效果 */
+.story-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(27, 67, 50, 0.08);
+    border-color: var(--primary-green);
 }
 
-.cred-item > div {
-  margin-top: 16px; 
-  width: 100%;
+/* 卡片內部的標題（大字） */
+.story-content h3 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
 }
 
-.cred-item strong {
-  color: var(--text-dark);
-  font-size: 1.15rem; /* 字體放大 */
-  font-weight: 700;
-  display: block;
-  margin-bottom: 10px;
+/* 卡片內部的內文（左右對齊） */
+.story-content p {
+    color: var(--text-body);
+    font-size: 1.05rem; 
+    line-height: 1.75;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-ideograph;
 }
-
-.cred-item p {
-  color: var(--text-muted);
-  font-size: 1.05rem; /* 字體放大至 20px 視覺感 */
-  margin: 0;
-  line-height: 1.7;
-}
-
 
 /* RWD 響應式佈局調整 */
 @media (max-width: 991px) {

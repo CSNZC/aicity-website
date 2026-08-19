@@ -1,7 +1,3 @@
-/* ===================================================
-   Business.css - 企業輔導專頁樣式表
-   =================================================== */
-
 .page-content {
   background-color: var(--bg-white);
   min-height: calc(100vh - var(--nav-height));
@@ -19,7 +15,7 @@
 
 /* 頁首主視覺 Banner */
 .business-hero-banner {
-  background: linear-gradient(rgba(15, 39, 29, 0.85), rgba(15, 39, 29, 0.9)), url('/img/service.png') center/cover;
+  background: linear-gradient(rgba(15, 39, 29, 0.85), rgba(15, 39, 29, 0.9)), url('/img/bgb.jpg') center/cover;
   padding: 90px 0;
   color: #ffffff;
 }
@@ -310,6 +306,143 @@
   font-weight: 700;
   font-size: 0.9rem;
   transition: var(--transition);
+}
+
+/* 輔導規劃 */
+.section-consulting {
+  background-color: var(--bg-light-gray);
+}
+
+.consulting-wrapper {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr; 
+  gap: 32px 40px; /* 加大欄位間距 */
+  align-items: start;
+}
+
+.consulting-content {
+  display: contents;
+}
+
+.purpose-highlight {
+  grid-column: 1 / -1; 
+  background: var(--bg-white);
+  padding: 28px 32px; /* 增加內部留白 */
+  border-radius: 12px;
+  border-left: 5px solid var(--primary-green);
+  border-top: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  margin-bottom: 12px; /* 拉開與下方 01/02/03 的距離 */
+}
+
+.purpose-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 10px; /* 拉開標題與敘述距離 */
+}
+
+.purpose-desc {
+  font-size: 0.975rem;
+  color: var(--text-body);
+  line-height: 1.8;
+}
+
+.feature-steps {
+  grid-column: 1; 
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* 加大 01, 02, 03 之間的間距避免黏在一起 */
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-white);
+  padding: 16px 20px; /* 加大內部空間 */
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: var(--transition);
+}
+
+.step-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.12);
+}
+
+.step-num {
+  background: var(--primary-green);
+  color: var(--bg-white);
+  font-weight: 700;
+  font-size: 0.875rem;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-info h4 {
+  font-size: 1rem; 
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.step-info p {
+  font-size: 0.875rem; 
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.consulting-image-box {
+  grid-column: 2; 
+}
+
+.image-frame {
+  background: var(--bg-white);
+  padding: 18px; /* 加大圖片邊框留白 */
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(27, 67, 50, 0.06);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.consulting-img {
+  width: 100%;
+  height: auto;           
+  max-height: 420px;       
+  object-fit: contain;      
+  border-radius: 6px;
+  display: block;
+}
+
+.image-caption {
+  margin-top: 14px; /* 拉開圖片與文字說明的距離 */
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.image-caption strong {
+  font-size: 0.975rem;
+  color: var(--text-dark);
+}
+
+.image-caption span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 .biz-event-link:hover {
