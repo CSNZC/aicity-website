@@ -58,9 +58,26 @@ const about = defineCollection({
     text: z.string(),  }),
 });
 
+//團隊介紹合作夥伴
+const partnersCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,json}",
+    base: "./src/content/partners",
+  }),
+  schema: z.object({
+    name: z.string(),                  // 夥伴名稱
+    logo: z.string(),                  // Logo 圖片路徑
+    url: z.string().url().optional(),  // 超連結 (選填)
+    category: z.enum(['enterprise', 'association']), // 分類標籤
+    weight: z.number().default(0),     // 排序順序
+    draft: z.boolean().default(false), // 啟用狀態 (false 代表啟用顯示)
+  }),
+});
+
 export const collections = {
   news,
   carousel,
   service,
   about,
+  partnersCollection,
 };

@@ -139,11 +139,11 @@
 
 /* 下方說明卡片（結合您原本網站的卡片樣式） */
 .timeline-card {
-    width: 100%;
+    width: 80%;
     background: var(--bg-white);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 28px 20px;
+    padding: 20px 16px;
     box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
     transition: var(--transition);
     text-align: left; /* 卡片內部標題可維持靠左或置中，若要置中可改 center */

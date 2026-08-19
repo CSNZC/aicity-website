@@ -67,3 +67,24 @@ collections:
       - { label: "icon圖片", name: "image", widget: "image" }
       - { label: "摘要敘述", name: "text", widget: "text" }    
 
+  # 團隊介紹企業及公協會夥伴
+  - name: "partners"
+    label: "合作夥伴管理"
+    folder: "src/content/partners" 
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "夥伴名稱", name: "name", widget: "string" }
+      - { label: "Logo 圖片", name: "logo", widget: "image" }
+      - { label: "超連結", name: "url", widget: "string", required: false }
+      - { 
+          label: "分類標籤", 
+          name: "category", 
+          widget: "select", 
+          options: [
+            { label: "合作企業夥伴", value: "enterprise" },
+            { label: "公協會合作夥伴", value: "association" }
+          ]
+        }
+      - { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }
+      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false, hint: "開啟代表顯示，關閉代表隱藏" }
