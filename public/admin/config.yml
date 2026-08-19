@@ -87,4 +87,4 @@ collections:
           ]
         }
       - { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }
-      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false, hint: "開啟代表顯示，關閉代表隱藏" }
+      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false, hint: "關閉代表顯示，開啟代表隱藏" }

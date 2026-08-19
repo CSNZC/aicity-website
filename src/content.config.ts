@@ -79,5 +79,5 @@ export const collections = {
   carousel,
   service,
   about,
-  partnersCollection,
+  partners: partnersCollection, 
 };
