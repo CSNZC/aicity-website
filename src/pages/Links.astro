@@ -1,246 +1,60 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>相關連結 | 艾城市有限公司</title>
-    <!-- 引入 Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/links.css">
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Model from '../layouts/Model.astro';
 
-</head>
-<body>
-    <!-- 頂部導覽列 -->
-    <header class="navbar-header">
-        <div class="nav-container">
-            <a href="/" class="logo-link">
-                <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
-            </a>
-            <nav class="desktop-nav">
-                <div class="nav-dropdown">
-                    <a href="/About" class="nav-link">關於我們 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/About">公司介紹</a>
-                        <a href="/Partners">團隊介紹</a>
-                        <a href="/Links">相關連結</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/News" class="nav-link">最新消息</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Service" class="nav-link">永續服務 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/Business">企業輔導</a>
-                        <a href="/Government">政府專案</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Training" class="nav-link">人員培訓 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/iPAS">iPAS 課程培訓</a>
-                        <a href="/ISO">ISO 國際課程培訓</a>
-                        <a href="/Courses">永續課程</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Solar energy" class="nav-link">光電建置</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/PR" class="nav-link">實績事例</a>
-                </div>
-                <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
-            </nav>
+// 依照您的專案習慣，以 CollectionEntry 定義型別引入資料
+const allLinks: CollectionEntry<'links'>[] = await getCollection(
+  'links', 
+  (item: CollectionEntry<'links'>) => !item.data.draft
+);
+// 依照 weight 排序（數字越小越前面）
+allLinks.sort((a, b) => a.data.weight - b.data.weight);
 
-            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="4" y1="6" x2="20" y2="6"></line>
-                    <line x1="4" y1="12" x2="20" y2="12"></line>
-                    <line x1="4" y1="18" x2="20" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-        <!-- 手機版下拉選單 -->
-        <div id="mobile-menu" class="mobile-menu">
-            <!-- 關於我們 -->
-            <div class="mobile-dropdown-group">
-                <a href="/About" class="mobile-link">關於我們 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/About" class="mobile-sub-link">公司介紹</a>
-                    <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
-                    <a href="/Links" class="mobile-sub-link">相關連結</a>
-                </div>
+// 定義分類對應清單（確保順序與您原本網頁的區塊完全一致）
+const categories = [
+  { value: "government", title: "政府資源" },
+  { value: "policy", title: "政策" },
+  { value: "friendly", title: "友善連結" },
+  { value: "guidelines", title: "報告書編製指引及參考網站" },
+  { value: "carbon", title: "碳盤查指引" },
+  { value: "ipas", title: "iPAS 教材專區" }
+];
+---
+
+<Model title="相關連結" customCss="/css/links.css">
+    <main class="page-content links-page">
+        <div class="container">
+            <h1 class="page-title">相關連結</h1>
+            <p class="page-subtitle">提供您企業永續轉型所需之重要資源與參考資訊。</p>
+
+            <div class="links-grid">
+                <!-- 動態迴圈產生每一個分類卡片 -->
+                {categories.map((cat) => {
+                    // 篩選出屬於這個分類的連結
+                    const categoryLinks = allLinks.filter((item) => item.data.category === cat.value);
+                    
+                    return (
+                        <section class="link-card">
+                            <div class="card-header">
+                                <h2>{cat.title}</h2>
+                            </div>
+                            <ul class="link-list">
+                                {categoryLinks.length > 0 ? (
+                                    categoryLinks.map((link) => (
+                                        <li>
+                                            <a href={link.data.url || "#"} target="_blank" rel="noopener noreferrer">
+                                                {link.data.name}
+                                            </a>
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li style="color: #999; font-size: 0.9rem; list-style: none;">暫無連結</li>
+                                )}
+                            </ul>
+                        </section>
+                    );
+                })}
             </div>
-
-            <!-- 最新消息 -->
-            <a href="/News" class="mobile-link">最新消息</a>
-
-            <!-- 永續服務 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Service" class="mobile-link">永續服務 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/Business" class="mobile-sub-link">企業輔導</a>
-                    <a href="/Government" class="mobile-sub-link">政府專案</a>
-                </div>
-            </div>
-
-            <!-- 人員培訓 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Training" class="mobile-link">人員培訓 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
-                    <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
-                    <a href="/Courses" class="mobile-sub-link">永續課程</a>
-                </div>
-            </div>
-
-            <!-- 光電建置 -->
-            <a href="/Solar energy" class="mobile-link">光電建置</a>
-
-            <!-- 實績事例 -->
-            <div class="mobile-dropdown-group">
-                <a href="/PR" class="mobile-link">實績事例</a>
-            </div>
-
-            <!-- 預約健檢 CTA 按鈕 -->
-            <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
         </div>
-    </header>
-
-
-  <!-- 頁面主要內容區塊 (各子頁面可在此填入不同內容) -->
-<main class="page-content links-page">
-    <div class="container">
-        <h1 class="page-title">相關連結</h1>
-        <p class="page-subtitle">提供您企業永續轉型所需之重要資源與參考資訊。</p>
-
-        <div class="links-grid">
-            <!-- 政府資源 -->
-            <section class="link-card">
-                <div class="card-header">
-                    <h2>政府資源</h2>
-                </div>
-                <ul class="link-list">
-                    <li><a href="#" target="_blank">經濟部產業發展署</a></li>
-                    <li><a href="#" target="_blank">中小及新創企業署</a></li>
-                    <li><a href="#" target="_blank">環境部氣候變遷署</a></li>
-                    <li><a href="#" target="_blank">臺灣碳權交易所</a></li>
-                </ul>
-            </section>
-
-            <!-- 政策 -->
-            <section class="link-card">
-                <div class="card-header">
-                    <h2>政策</h2>
-                </div>
-                <ul class="link-list">
-                    <li><a href="#" target="_blank">2050 淨零排放路徑</a></li>
-                    <li><a href="#" target="_blank">企業永續發展政策</a></li>
-                    <li><a href="#" target="_blank">綠色金融行動方案</a></li>
-                </ul>
-            </section>
-
-            <!-- 友善連結 -->
-            <section class="link-card">
-                <div class="card-header">
-                    <h2>友善連結</h2>
-                </div>
-                <ul class="link-list">
-                    <li><a href="#" target="_blank">CSRone 永續報告平台</a></li>
-                    <li><a href="#" target="_blank">台灣永續能源研究基金會</a></li>
-                </ul>
-            </section>
-
-            <!-- 報告書編製指引及參考網站 -->
-            <section class="link-card">
-                <div class="card-header">
-                    <h2>報告書編製指引及參考網站</h2>
-                </div>
-                <ul class="link-list">
-                    <li><a href="#" target="_blank">GRI 標準繁體中文版</a></li>
-                    <li><a href="#" target="_blank">SASB 準則架構</a></li>
-                    <li><a href="#" target="_blank">TCFD 氣候相關財務揭露</a></li>
-                </ul>
-            </section>
-
-            <!-- 碳盤查指引 -->
-            <section class="link-card">
-                <div class="card-header">
-                    <h2>碳盤查指引</h2>
-                </div>
-                <ul class="link-list">
-                    <li><a href="#" target="_blank">ISO 14064-1 溫室氣體盤查</a></li>
-                    <li><a href="#" target="_blank">碳盤查計算與減量指引</a></li>
-                    <li><a href="#" target="_blank">中小企業碳盤查路徑圖</a></li>
-                </ul>
-            </section>
-
-            <!-- iPAS 教材專區 -->
-            <section class="link-card">
-                <div class="card-header">
-                    <h2>iPAS 教材專區</h2>
-                </div>
-                <ul class="link-list">
-                    <li><a href="#" target="_blank">iPAS 淨零碳規劃管理師教材</a></li>
-                    <li><a href="#" target="_blank">iPAS 相關考試規範</a></li>
-                    <li><a href="#" target="_blank">課程培訓影音資源</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-</main>
-
-  <!-- 頁尾 (Footer) -->
-  <footer class="site-footer">
-    <div class="footer-compact-container">
-      <!-- 公司介紹 -->
-      <div class="footer-col footer-col-info">
-        <h3 class="footer-company-name">艾城市有限公司</h3>
-        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
-        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
-        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
-      </div>
-      <!-- 快速連結 -->
-      <div class="footer-col footer-col-links">
-        <h4 class="footer-title">快速連結</h4>
-        <div class="footer-links-2cols">
-          <span>關於我們</span>
-          <span>最新消息</span>
-          <span>實績事例</span>
-          <span>永續服務</span>
-          <span>人員培訓</span>
-          <span>光電建置</span>
-        </div>
-      </div>
-      <!-- 社群QR -->
-      <div class="footer-col footer-col-social">
-        <h4 class="footer-title">官方社群</h4>
-        <div class="qr-code-group">
-          <div class="qr-code-item">
-            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
-            <span>Facebook</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
-            <span>Instagram</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
-            <span>LINE 官方</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-copyright">
-      <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
-    </div>
-  </footer>
-  <script src="/js/style.js" defer></script>
-
-</body>
-</html>
+    </main>
+</Model>

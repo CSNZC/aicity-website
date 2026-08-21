@@ -133,3 +133,28 @@ collections:
         }
       - { label: "是否隱藏 (勾選後前台不顯示)", name: "hide", widget: "boolean", default: false }
       - { label: "詳細內容 (課程介紹/講師介紹與照片)", name: "body", widget: "markdown", required: false }
+
+  # 相關連結
+  - name: "links"
+    label: "相關連結"
+    folder: "src/content/links" 
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "連結名稱", name: "name", widget: "string" }
+      - { label: "內容超連結", name: "url", widget: "string", required: false }
+      - { 
+          label: "分類標籤", 
+          name: "category", 
+          widget: "select", 
+          options: [
+            { label: "政府資源", value: "government" },
+            { label: "政策", value: "policy" },
+            { label: "友善連結", value: "friendly" },
+            { label: "報告書編製指引及參考網站", value: "guidelines" },
+            { label: "碳盤查指引", value: "carbon" },
+            { label: "iPAS 教材專區", value: "ipas" }
+          ]
+        }
+      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false }
+      # { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }

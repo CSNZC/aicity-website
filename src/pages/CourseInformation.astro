@@ -13,8 +13,7 @@ const { category } = Astro.props;
 const now = new Date().getTime();
 
 // 抓取 allcourses Collection
-const allCourses: CollectionEntry<'allcourses'>[] =
-  await getCollection('allcourses');
+const allCourses: CollectionEntry<'allcourses'>[] = await getCollection('allcourses');
 
 // 篩選、排序
 const courses = allCourses
