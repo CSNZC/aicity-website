@@ -102,3 +102,16 @@ const renderedCourses = await Promise.all(
     <p class="no-courses">目前暫無開課資訊，敬請期待。</p>
   )}
 </section>
+
+<!-- 放在 <section> 標籤正下方進行測試 -->
+<div style="background:#fef3c7; color:#92400e; padding:12px; border-radius:6px; margin-bottom:16px; font-size:14px;">
+  <p><strong>除錯狀態：</strong></p>
+  <p>當前組件要求的 Category：<code>{category}</code></p>
+  <p>全部抓到的課程數量：<code>{allCourses.length}</code> 筆</p>
+  <p>符合條件的課程數量：<code>{courses.length}</code> 筆</p>
+  <pre>{JSON.stringify(allCourses.map(c => ({ 
+    file: c.id, 
+    cat: c.data.category, 
+    hide: c.data.hide 
+  })), null, 2)}</pre>
+</div>

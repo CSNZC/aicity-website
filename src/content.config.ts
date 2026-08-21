@@ -102,14 +102,14 @@ const allcoursesCollection = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
-    start_date: z.coerce.date().optional(), // 使用 coerce 自動轉換日期格式
+    start_date: z.coerce.date(), // 自動將字串轉換為 Date
     date_time: z.string(),
     deadline: z.coerce.date().optional().nullable(),
     location: z.string(),
     price: z.string(),
     info: z.string().optional().nullable(),
     url: z.string().optional().nullable(),
-    category: z.enum(['iPAS', 'ISO', 'courses']),
+    category: z.string(),
     hide: z.boolean().default(false),
   }),
 });
