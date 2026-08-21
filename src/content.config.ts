@@ -98,18 +98,21 @@ const service = defineCollection({
 });
 
 //課程資訊
-const allcoursesCollection = defineCollection({
-  type: 'content',
+const allcourses = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: "./src/content/allcourses",
+  }),
   schema: z.object({
     name: z.string(),
-    start_date: z.coerce.date(), // 自動將字串轉換為 Date
+    start_date: z.coerce.date(),
     date_time: z.string(),
-    deadline: z.coerce.date().optional().nullable(),
+    deadline: z.coerce.date().optional(),
     location: z.string(),
     price: z.string(),
-    info: z.string().optional().nullable(),
-    url: z.string().optional().nullable(),
-    category: z.string(),
+    info: z.string().optional(),
+    url: z.string().optional(),
+    category: z.enum(["iPAS", "ISO", "courses"]),
     hide: z.boolean().default(false),
   }),
 });
@@ -120,5 +123,5 @@ export const collections = {
   service,
   about,
   partners: partnersCollection, 
-  allcourses: allcoursesCollection,
+  allcourses,
 };
