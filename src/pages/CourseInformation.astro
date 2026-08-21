@@ -1,0 +1,91 @@
+---
+// src/components/CourseCatalog.astro
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  category: 'iPAS' | 'ISO' | 'courses';
+}
+
+const { category } = Astro.props;
+const now = new Date();
+
+// 1. 抓取資料並過濾、排序
+const allCourses: CollectionEntry<'allcourses'>[] = await getCollection('allcourses');
+const courses: CollectionEntry<'allcourses'>[] = allCourses
+  .filter((course) => !course.data.hide && course.data.category === category)
+  .sort((a, b) => new Date(b.data.start_date).getTime() - new Date(a.data.start_date).getTime());
+
+// 2. 同步解析所有課程的 Markdown 內文 (包含講師介紹與照片)
+const renderedCourses = await Promise.all(
+  courses.map(async (course) => {
+    const { Content } = await course.render();
+    return { ...course, Content };
+  })
+);
+---
+
+<section class="course-catalog">
+  {renderedCourses.map((course) => {
+    const isExpired = course.data.deadline ? new Date(course.data.deadline) < now : false;
+
+    return (
+      /* 原生手風琴容器：name 屬性讓同一時間只有一個被展開 */
+      <details class="course-accordion-item" name="course-accordion">
+        
+        {/* 卡片主體（點擊可展開/收合詳細資訊） */}
+        <summary class="course-item-card">
+          <div class="course-info">
+            <span class="course-tag">{course.data.category}</span>
+            <h2>{course.data.name}</h2>
+            <p class="course-meta"><strong>開課日期：</strong>{course.data.date_time}</p>
+            <p class="course-meta"><strong>授課地點：</strong>{course.data.location}</p>
+            
+            {course.data.deadline && (
+              <p class="course-meta deadline-text">
+                <strong>報名截止：</strong>
+                {new Date(course.data.deadline).toLocaleDateString('zh-TW', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: false
+                })}
+              </p>
+            )}
+
+            {course.data.info && <p class="course-desc">{course.data.info}</p>}
+            
+            <span class="expand-hint">點擊查看課程與講師詳細資訊 ▼</span>
+          </div>
+
+          <div class="course-action">
+            <span class="price">{course.data.price}</span>
+            {isExpired ? (
+              <span class="btn-primary-cta disabled">報名已截止</span>
+            ) : course.data.url ? (
+              /* onclick 阻止冒泡，避免點擊報名按鈕時觸發收合/展開 */
+              <a href={course.data.url} target="_blank" rel="noopener noreferrer" class="btn-primary-cta" onclick="event.stopPropagation()">
+                立即報名
+              </a>
+            ) : (
+              <span class="btn-primary-cta disabled">即將開放</span>
+            )}
+          </div>
+        </summary>
+
+        {/* 展開後的詳細內容（包含 Markdown 課程介紹、講師介紹、照片） */}
+        <div class="course-detail-panel">
+          <div class="markdown-content">
+            <course.Content />
+          </div>
+        </div>
+
+      </details>
+    );
+  })}
+
+  {renderedCourses.length === 0 && (
+    <p class="no-courses">目前暫無開課資訊，敬請期待。</p>
+  )}
+</section>

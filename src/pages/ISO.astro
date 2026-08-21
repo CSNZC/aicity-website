@@ -1,3 +1,6 @@
+---
+import CourseCatalog from '../pages/CourseInformation.astro';
+---
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -111,28 +114,11 @@
         </div>
     </header>
 
-
-  <!-- 頁面主要內容區塊 -->
-  <main class="page-content">
-    <!-- 課程直接呈現與報名區塊 (多項舉例) -->
-    <section class="course-catalog">
-      <!-- 課程項目 1 -->
-            <div class="course-item-card">
-                <div class="course-info">
-                    <span class="course-tag">熱門認證</span>
-                    <h2>ISO 14064-1 溫室氣體盤查主導稽核員培訓班</h2>
-                    <p class="course-meta"><strong>開課日期：</strong>2026/05/10 - 2026/05/12 (共3天)</p>
-                    <p class="course-meta"><strong>授課地點：</strong>台中市西區五權五街151號 (實體/線上同步)</p>
-                    <p class="course-desc">本課程符合 ISO 14064-1:2018 標準，帶領學員實際操作組織型溫室氣體盤查與量化計算，結業考試通過者頒發國際認可證書。</p>
-                </div>
-                <div class="course-action">
-                    <span class="price">NT$ 24,000</span>
-                    <a href="/Reserve?course=iso14064" class="btn-primary-cta">立即報名</a>
-                </div>
-            </div>
-        </section>
-  </main>
-
+    <!-- 頁面主要內容區塊 -->
+    <main class="page-content">
+        <h1>iPAS 培訓課程</h1>
+        <CourseCatalog category="iPAS" />
+    </main>
   <!-- 頁尾 (Footer) -->
   <footer class="site-footer">
     <div class="footer-compact-container">

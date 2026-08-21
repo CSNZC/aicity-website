@@ -97,10 +97,28 @@ const service = defineCollection({
   }),
 });
 
+//課程資訊
+const allcoursesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    start_date: z.date(), // 自動將 YAML 日期轉為 Date 物件
+    date_time: z.string(),
+    deadline: z.date().optional(), // 截止報名時間
+    location: z.string(),
+    price: z.string(),
+    info: z.string().optional(),
+    url: z.string().optional(),
+    category: z.enum(['iPAS', 'ISO', 'courses']),
+    hide: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   news,
   carousel,
   service,
   about,
   partners: partnersCollection, 
+  allcoursesCollection,
 };

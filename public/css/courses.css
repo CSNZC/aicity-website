@@ -33,21 +33,47 @@
     gap: 24px;
 }
 
-.course-item-card {
+/* 手風琴外層容器 */
+.course-accordion-item {
     background: var(--bg-white, #ffffff);
     border: 1px solid var(--border-color, #e0e0e0);
     border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition, all 0.3s ease);
+}
+
+.course-accordion-item:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border-color: var(--primary-green, #2c5e3b);
+}
+
+/* 展開狀態下保持主體邊框高亮 */
+.course-accordion-item[open] {
+    border-color: var(--primary-green, #2c5e3b);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* summary 充當原本的卡片主體 */
+.course-accordion-item summary.course-item-card {
+    list-style: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: 0;
     padding: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
-    transition: var(--transition, all 0.3s ease);
+    outline: none;
 }
 
-.course-item-card:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    border-color: var(--primary-green, #2c5e3b);
+/* 移除預設黑色三角形 */
+.course-accordion-item summary::-webkit-details-marker {
+    display: none;
+}
+.course-accordion-item summary::marker {
+    display: none;
 }
 
 .course-info {
@@ -77,6 +103,11 @@
     margin: 4px 0;
 }
 
+.course-meta.deadline-text {
+    color: #c93b2b;
+    font-weight: 500;
+}
+
 .course-desc {
     font-size: 0.95rem;
     color: var(--text-body, #333);
@@ -84,6 +115,27 @@
     line-height: 1.6;
 }
 
+/* 展開指示提示文字 */
+.expand-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: var(--text-muted, #666);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.course-accordion-item summary:hover .expand-hint {
+    color: var(--primary-green, #2c5e3b);
+}
+
+.course-accordion-item[open] .expand-hint {
+    color: var(--primary-green, #2c5e3b);
+}
+
+/* 3. 按鈕與操作區塊 */
 .course-action {
     display: flex;
     flex-direction: column;
@@ -98,12 +150,91 @@
     color: var(--primary-green, #2c5e3b);
 }
 
+.btn-primary-cta {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-green, #2c5e3b);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.2s ease;
+}
+
+.btn-primary-cta:hover {
+    background-color: #1e4228;
+}
+
+.btn-primary-cta.disabled {
+    background-color: #b0b0b0;
+    color: #ffffff;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* 4. 手風琴展開後的詳細內容抽屜 */
+.course-detail-panel {
+    padding: 24px 30px 30px;
+    border-top: 1px dashed var(--border-color, #e0e0e0);
+    background-color: #fafbfc;
+}
+
+.markdown-content {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-body, #333);
+}
+
+.markdown-content h3 {
+    font-size: 1.1rem;
+    color: var(--primary-green, #2c5e3b);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 3px solid var(--primary-green, #2c5e3b);
+}
+
+.markdown-content h3:first-child {
+    margin-top: 0;
+}
+
+.markdown-content p {
+    margin-bottom: 12px;
+}
+
+.markdown-content ul, 
+.markdown-content ol {
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+/* 講師照片樣式 */
+.markdown-content img {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 12px 0;
+    display: block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.no-courses {
+    text-align: center;
+    color: var(--text-muted, #666);
+    padding: 40px 0;
+    font-size: 1rem;
+}
 
 /* 5. 響應式調整 (RWD Media Query) */
 @media (max-width: 768px) {
-    .course-item-card {
+    .course-accordion-item summary.course-item-card {
         flex-direction: column;
         align-items: flex-start;
+        padding: 20px;
+        gap: 20px;
     }
     
     .course-action {
@@ -113,6 +244,14 @@
         align-items: center;
         border-top: 1px solid var(--border-color, #e0e0e0);
         padding-top: 15px;
+    }
+
+    .course-detail-panel {
+        padding: 20px;
+    }
+
+    .markdown-content img {
+        max-width: 100%;
     }
 
     /* 將 Intro Grid 在手機版改為單欄排列，避免擠壓 */

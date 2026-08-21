@@ -105,3 +105,31 @@ collections:
       - { label: "圖片標題", name: "title", widget: "string" }
       - { label: "輪播圖片", name: "image", widget: "image" }
       - { label: "跳轉連結", name: "link", widget: "string", required: false }
+
+  # ISO、iPAS、永續課程
+  - name: "allcourses"
+    label: "課程資訊"
+    folder: "src/content/allcourses"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "課程名稱", name: "name", widget: "string" }
+      - { label: "開課起始日期 (用於排序)", name: "start_date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "課程時間顯示文字", name: "date_time", widget: "string", hint: "例如：2026/05/10 - 2026/05/12 (共3天)" }
+      - { label: "截止報名時間", name: "deadline", widget: "datetime", format: "YYYY-MM-DD HH:mm", date_format: "YYYY-MM-DD", time_format: "HH:mm", required: false }
+      - { label: "課程地點", name: "location", widget: "string" }
+      - { label: "金額", name: "price", widget: "string" }
+      - { label: "課程簡介 (卡片摘要)", name: "info", widget: "text", required: false }
+      - { label: "報名連結", name: "url", widget: "string", required: false }
+      - { 
+          label: "分類標籤", 
+          name: "category", 
+          widget: "select", 
+          options: [
+            { label: "iPAS", value: "iPAS" },
+            { label: "ISO", value: "ISO" },
+            { label: "永續課程", value: "courses" }
+          ]
+        }
+      - { label: "是否隱藏 (勾選後前台不顯示)", name: "hide", widget: "boolean", default: false }
+      - { label: "詳細內容 (課程介紹/講師介紹與照片)", name: "body", widget: "markdown", required: false }
