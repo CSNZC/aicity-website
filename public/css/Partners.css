@@ -194,7 +194,6 @@
 /* ==========================================================================
    外聘講師與輔導師專用區塊修正樣式（強制為直式卡片方框）
    ========================================================================== */
-
 /* 確保外聘講師區塊的網格為標準 Grid 欄位 */
 .bg-alt .team-grid {
   display: grid;
@@ -211,13 +210,10 @@
   border-radius: 12px !important;
   overflow: hidden !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
-  transition: var(--transition) !important;
   padding: 0 !important;
 }
 
 .bg-alt .team-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(27, 67, 50, 0.08);
   border-color: var(--primary-green);
 }
 
@@ -235,11 +231,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.bg-alt .team-card:hover .team-img {
-  transform: scale(1.05);
 }
 
 /* 講師文字與經歷區塊 */
