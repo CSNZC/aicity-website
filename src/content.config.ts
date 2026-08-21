@@ -1,6 +1,20 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+//首頁輪播圖
+const carousel = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,json}",
+    base: "./src/content/carousel",
+  }),
+  schema: z.object({
+    order: z.number().default(0), 
+    title: z.string(),
+    image: z.string(),
+    link: z.string().optional(),
+  }),
+});
+
 //最新消息
 const news = defineCollection({
   loader: glob({
@@ -17,45 +31,15 @@ const news = defineCollection({
   }),
 });
 
-//首頁輪播圖
-const carousel = defineCollection({
-  loader: glob({
-    pattern: "**/*.{md,json}",
-    base: "./src/content/carousel",
-  }),
-
-  schema: z.object({
-    order: z.number().default(0), // 加入這行
-    title: z.string(),
-    image: z.string(),
-    link: z.string().optional(),
-  }),
-});
-
-//永續服務輪播圖
-const service = defineCollection({
-  loader: glob({
-    pattern: "**/*.{md,json}",
-    base: "./src/content/service",
-  }),
-
-  schema: z.object({
-    title: z.string(),
-    image: z.string(),
-    link: z.string().optional(),
-  }),
-});
-
 //關於我們官方認證
 const about = defineCollection({
   loader: glob({
     pattern: "**/*.{md,json}",
     base: "./src/content/about",
   }),
-
   schema: z.object({
+    weight: z.number().default(0), 
     title: z.string(),
-    image: z.string(),
     text: z.string(),  }),
 });
 
@@ -72,6 +56,20 @@ const partnersCollection = defineCollection({
     category: z.enum(['enterprise', 'association']), // 分類標籤
     weight: z.number().default(0),     // 排序順序
     draft: z.boolean().default(false), // 啟用狀態 (false 代表啟用顯示)
+  }),
+});
+
+//永續服務輪播圖
+const service = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,json}",
+    base: "./src/content/service",
+  }),
+
+  schema: z.object({
+    title: z.string(),
+    image: z.string(),
+    link: z.string().optional(),
   }),
 });
 

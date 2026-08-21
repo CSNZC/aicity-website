@@ -10,6 +10,18 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+
+  # 首頁輪播圖
+  - name: "carousel"
+    label: "首頁輪播圖"
+    folder: "src/content/carousel"
+    create: true
+    fields:
+      - { label: "排序", name: "order", widget: "number", default: 0, hint: "數字越小越前面" }
+      - { label: "圖片標題", name: "title", widget: "string" }
+      - { label: "輪播圖片", name: "image", widget: "image" }
+      - { label: "跳轉連結", name: "link", widget: "string", required: false }
+
   # 最新消息管理
   - name: "news"
     label: "最新消息"
@@ -21,7 +33,6 @@ collections:
       - { label: "發布日期", name: "date", widget: "datetime" } 
       - { label: "封面圖片", name: "image", widget: "image", required: false }
       - { label: "顯示於跑馬燈", name: "is_ticker", widget: "boolean", default: false, required: false }   
-        
       - label: "分類標籤"
         name: "tags"
         widget: "select"
@@ -32,48 +43,43 @@ collections:
           - { label: "光電建置", value: "光電建置" }
           - { label: "人員培訓", value: "人員培訓" }
           - { label: "其他", value: "其他" }
-        
-
       - { label: "文章摘要", name: "summary", widget: "text" }    
       - { label: "內文", name: "body", widget: "markdown" }
   
-  # 首頁輪播圖
-  - name: "carousel"
-    label: "首頁輪播圖"
-    folder: "src/content/carousel"
-    create: true
-    fields:
-      - { label: "排序", name: "order", widget: "number", default: 0, hint: "數字越小越前面" }
-      - { label: "圖片標題", name: "title", widget: "string" }
-      - { label: "輪播圖片", name: "image", widget: "image" }
-      - { label: "跳轉連結", name: "link", widget: "string", required: false }
-  
-  # 永續服務輪播圖
-  - name: "service"
-    label: "永續服務輪播圖"
-    folder: "src/content/service"
-    create: true
-    fields:
-      - { label: "圖片標題", name: "title", widget: "string" }
-      - { label: "輪播圖片", name: "image", widget: "image" }
-      - { label: "跳轉連結", name: "link", widget: "string", required: false }
-
   # 關於我們官方認證
   - name: "about"
     label: "關於我們官方認證"
     folder: "src/content/about"
     create: true
+    sortable_fields: ['weight', 'title'] # 允許透過 weight 排序
     fields:
+      - { label: "排序權重", name: "weight", widget: "number", default: 0, hint: "數字越小越前面" }
       - { label: "標題", name: "title", widget: "string" }
-      - { label: "icon圖片", name: "image", widget: "image" }
-      - { label: "摘要敘述", name: "text", widget: "text" }    
+      - { label: "敘述", name: "text", widget: "text" }  
+
+  # 外聘講師
+  - name: "lecturers"
+    label: "外聘講師"
+    folder: "src/content/partners" 
+    create: true
+    # 關鍵：只抓取檔案內 category 等於 lecturer 的檔案
+    filter: { field: "category", value: "lecturer" }
+    fields:
+      # 關鍵：新增檔案時，自動在檔案內補上 category: lecturer
+      - { name: "category", widget: "hidden", default: "lecturer" }
+      - { label: "姓名", name: "name", widget: "string" }
+      - { label: "講師圖片", name: "logo", widget: "image" }
+      - { label: "講師簡介", name: "bio", widget: "text" }
+      - { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }
+      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false }
 
   # 團隊介紹企業及公協會夥伴
-  - name: "partners"
+  - name: "corporate_partners"
     label: "合作夥伴管理"
     folder: "src/content/partners" 
     create: true
-    slug: "{{slug}}"
+    # 關鍵：只抓取檔案內 category 是 enterprise 或 association 的檔案
+    filter: { field: "category", value: ["enterprise", "association"] }
     fields:
       - { label: "夥伴名稱", name: "name", widget: "string" }
       - { label: "Logo 圖片", name: "logo", widget: "image" }
@@ -88,4 +94,14 @@ collections:
           ]
         }
       - { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }
-      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false, hint: "關閉代表顯示，開啟代表隱藏" }
+      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false }
+
+  # 永續服務輪播圖
+  - name: "service"
+    label: "永續服務輪播圖"
+    folder: "src/content/service"
+    create: true
+    fields:
+      - { label: "圖片標題", name: "title", widget: "string" }
+      - { label: "輪播圖片", name: "image", widget: "image" }
+      - { label: "跳轉連結", name: "link", widget: "string", required: false }

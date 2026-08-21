@@ -1,3 +1,8 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+const aboutItems: CollectionEntry<'about'>[] = await getCollection('about');
+aboutItems.sort((a, b) => a.data.weight - b.data.weight);
+---
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -106,9 +111,7 @@
         </div>
     </header>
 
-
     <!--  頁面主要內容 -->
-    <!-- 主視覺區塊 -->
     <section class="hero">
         <div class="container hero-content">
             <h1>引領企業邁向 2050 淨零碳排</h1>
@@ -222,44 +225,24 @@
     <section id="credentials" class="section bg-sand">
         <div class="container">
             <div class="credential-box">
-                <div class="credential-icon"><i class="fa-solid fa-award"></i></div>
                 <h2>官方認證與合作</h2>                
                 <div class="credential-list">
-                    <!-- 項目 1 -->
+                    <!-- 項目 1 
                     <div class="story-item">
                         <div class="story-content">
                             <h3>經濟部產發署「示範輔導團隊」</h3>
                             <p>成立不到1年即獲評鑑具備資格，參與「中小型製造業低碳輔導計畫」。</p>
                         </div>
-                    </div>
-                    <!-- 項目 2 -->
-                    <div class="story-item">
-                        <div class="story-content">
-                            <h3>官方指定培訓與授課單位</h3>
-                            <p>獲產發署委託辦理「低碳淨零人才培訓」，為「溫室氣體盤查一日/三日體驗班」指定辦訓單位，並晉升最熱門之淨零碳管理師「iPAS低碳證照精修ABC班」合格辦訓單位。</p>
+                    </div> -->
+                    <!-- 認證項目 -->
+                    {aboutItems.map((item) => (
+                        <div class="story-item">
+                            <div class="story-content">
+                                <h3>{item.data.title}</h3>
+                                <p>{item.data.text}</p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- 項目 3 -->
-                    <div class="story-item">
-                        <div class="story-content">
-                            <h3>工研院 iPAS 指定講師</h3>
-                            <p>負責人劉正興執行長獲工研院開辦之 iPAS 低碳證照班隊指定講師，並受邀達十餘班次講授。</p>
-                        </div>
-                    </div>
-                    <!-- 項目 4 -->
-                    <div class="story-item">
-                        <div class="story-content">
-                            <h3>勞動發展署 TTQS 銅牌訓練機構</h3>
-                            <p>2023年下半年通過人才發展品質管理系統評鑑（訓練機構版銅牌）。</p>
-                        </div>
-                    </div>
-                    <!-- 項目 5 -->
-                    <div class="story-item">
-                        <div class="story-content">
-                            <h3>IAF / IAS 國際認證授權</h3>
-                            <p>獲 Best PCB（經 IAF 國際認證論壇之 IAS 認證機構授權）授權開辦 ISO 14001、ISO 14064、ISO 14067 課程，培育符合國際標準的專業稽核員與查證師。</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
