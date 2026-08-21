@@ -7,15 +7,26 @@ interface Props {
 }
 
 const { category } = Astro.props;
-const now = new Date();
+const now = new Date().getTime();
 
-// 1. 抓取資料並過濾、排序
+// 1. 抓取資料
 const allCourses: CollectionEntry<'allcourses'>[] = await getCollection('allcourses');
-const courses: CollectionEntry<'allcourses'>[] = allCourses
-  .filter((course) => !course.data.hide && course.data.category === category)
-  .sort((a, b) => new Date(b.data.start_date).getTime() - new Date(a.data.start_date).getTime());
 
-// 2. 同步解析所有課程的 Markdown 內文 (包含講師介紹與照片)
+// 2. 容錯過濾與排序
+const courses = allCourses
+  .filter((course) => {
+    if (course.data.hide) return false;
+    const courseCat = course.data.category?.toString().trim().toLowerCase();
+    const targetCat = category.toString().trim().toLowerCase();
+    return courseCat === targetCat;
+  })
+  .sort((a, b) => {
+    const timeA = a.data.start_date ? new Date(a.data.start_date).getTime() : 0;
+    const timeB = b.data.start_date ? new Date(b.data.start_date).getTime() : 0;
+    return timeB - timeA;
+  });
+
+// 3. 解析內文
 const renderedCourses = await Promise.all(
   courses.map(async (course) => {
     const { Content } = await course.render();
@@ -26,13 +37,13 @@ const renderedCourses = await Promise.all(
 
 <section class="course-catalog">
   {renderedCourses.map((course) => {
-    const isExpired = course.data.deadline ? new Date(course.data.deadline) < now : false;
+    // 兼容字串或 Date 格式的 deadline
+    const deadlineTime = course.data.deadline ? new Date(course.data.deadline).getTime() : null;
+    const isExpired = deadlineTime ? deadlineTime < now : false;
+    const Content = course.Content;
 
     return (
-      /* 原生手風琴容器：name 屬性讓同一時間只有一個被展開 */
       <details class="course-accordion-item" name="course-accordion">
-        
-        {/* 卡片主體（點擊可展開/收合詳細資訊） */}
         <summary class="course-item-card">
           <div class="course-info">
             <span class="course-tag">{course.data.category}</span>
@@ -55,7 +66,6 @@ const renderedCourses = await Promise.all(
             )}
 
             {course.data.info && <p class="course-desc">{course.data.info}</p>}
-            
             <span class="expand-hint">點擊查看課程與講師詳細資訊 ▼</span>
           </div>
 
@@ -64,8 +74,13 @@ const renderedCourses = await Promise.all(
             {isExpired ? (
               <span class="btn-primary-cta disabled">報名已截止</span>
             ) : course.data.url ? (
-              /* onclick 阻止冒泡，避免點擊報名按鈕時觸發收合/展開 */
-              <a href={course.data.url} target="_blank" rel="noopener noreferrer" class="btn-primary-cta" onclick="event.stopPropagation()">
+              <a 
+                href={course.data.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn-primary-cta" 
+                onclick="event.stopPropagation()"
+              >
                 立即報名
               </a>
             ) : (
@@ -74,13 +89,11 @@ const renderedCourses = await Promise.all(
           </div>
         </summary>
 
-        {/* 展開後的詳細內容（包含 Markdown 課程介紹、講師介紹、照片） */}
         <div class="course-detail-panel">
           <div class="markdown-content">
-            <course.Content />
+            <Content />
           </div>
         </div>
-
       </details>
     );
   })}

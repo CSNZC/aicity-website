@@ -102,13 +102,13 @@ const allcoursesCollection = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
-    start_date: z.date(), // 自動將 YAML 日期轉為 Date 物件
+    start_date: z.coerce.date().optional(), // 使用 coerce 自動轉換日期格式
     date_time: z.string(),
-    deadline: z.date().optional(), // 截止報名時間
+    deadline: z.coerce.date().optional().nullable(),
     location: z.string(),
     price: z.string(),
-    info: z.string().optional(),
-    url: z.string().optional(),
+    info: z.string().optional().nullable(),
+    url: z.string().optional().nullable(),
     category: z.enum(['iPAS', 'ISO', 'courses']),
     hide: z.boolean().default(false),
   }),
@@ -120,5 +120,5 @@ export const collections = {
   service,
   about,
   partners: partnersCollection, 
-  allcoursesCollection,
+  allcourses: allcoursesCollection,
 };
