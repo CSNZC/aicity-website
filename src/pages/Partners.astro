@@ -9,7 +9,8 @@ const allPartners: CollectionEntry<'partners'>[] = await getCollection('partners
 // 2. 排序邏輯（數字越小越前面）
 allPartners.sort((a, b) => a.data.weight - b.data.weight);
 
-// 3. 分成企業與公協會
+// 3. 分成外聘、企業與公協會
+const lecturers = allPartners.filter(p => p.data.category === 'lecturer');
 const enterprisePartners = allPartners.filter(p => p.data.category === 'enterprise');
 const associationPartners = allPartners.filter(p => p.data.category === 'association');
 ---
@@ -150,7 +151,7 @@ const associationPartners = allPartners.filter(p => p.data.category === 'associa
         <section class="team-section">
         <div class="container">
             <div class="section-title-wrapper">
-            <span class="section-badge">Core Team</span>
+            <span class="section-badge">Team</span>
             <h2 class="section-title">公司職員</h2>
             <p class="section-desc">秉持專業與熱忱，為企業提供全方位的永續顧問與專案管理服務</p>
             </div>
@@ -240,52 +241,36 @@ const associationPartners = allPartners.filter(p => p.data.category === 'associa
         <section class="team-section bg-alt">
             <div class="container">
                 <div class="section-title-wrapper">
-                    <span class="section-badge">Expert Consultants</span>
+                    <span class="section-badge">lecturer</span>
                     <h2 class="section-title">外聘講師與特約輔導師</h2>
-                    <p class="section-desc">匯集產官學研界權威專家，為企業提供深度診斷、專業培訓與前瞻技術支援</p>
                 </div>
-
                 <!-- 橫向滑動容器 -->
                 <div class="expert-scroll-container">
                     <div class="expert-scroll-track">
-                        
-                        <!-- 卡片 1 -->
                         <div class="team-card expert-card">
-                            <div class="team-img-wrapper">
-                                <img src="/img/expert-1.jpg" alt="張教授 特約講座" class="team-img">
-                            </div>
-                            <div class="team-info">
-                                <h3 class="team-name">張教授 <span class="team-title-tag">特約講座教授 / 碳資產顧問</span></h3>
-                                <p class="team-bio">長期深耕循環經濟與碳經濟學領域，為國內各大企業與政府機關指定之永續發展核心講師。</p>
-                            </div>
+                            {
+                                lecturers.map((item) => {
+                                // 確保 TypeScript 能精確辨識 item.data 為 lecturer 欄位 (包含 bio, title 等)
+                                if (item.data.category !== 'lecturer') return null;
+                                const { name, logo, bio, title } = item.data;
+
+                                return (
+                                    <div class="team-card">
+                                    <div class="team-img-wrapper">
+                                        <img src={logo} alt={name} class="team-img" loading="lazy" />
+                                    </div>
+                                    <div class="team-info">
+                                        <h3 class="team-name">
+                                        {name}
+                                        {title && <span class="team-title-tag">{title}</span>}
+                                        </h3>
+                                        {bio && <p class="team-bio">{bio}</p>}
+                                    </div>
+                                    </div>
+                                );
+                                })
+                            }
                         </div>
-                        <div class="team-card expert-card">
-                            <div class="team-img-wrapper">
-                                <img src="/img/expert-1.jpg" alt="張教授 特約講座" class="team-img">
-                            </div>
-                            <div class="team-info">
-                                <h3 class="team-name">張教授 <span class="team-title-tag">特約講座教授 / 碳資產顧問</span></h3>
-                                <p class="team-bio">長期深耕循環經濟與碳經濟學領域，為國內各大企業與政府機關指定之永續發展核心講師。</p>
-                            </div>
-                        </div>
-                        <div class="team-card expert-card">
-                            <div class="team-img-wrapper">
-                                <img src="/img/expert-1.jpg" alt="張教授 特約講座" class="team-img">
-                            </div>
-                            <div class="team-info">
-                                <h3 class="team-name">張教授 <span class="team-title-tag">特約講座教授 / 碳資產顧問</span></h3>
-                                <p class="team-bio">長期深耕循環經濟與碳經濟學領域，為國內各大企業與政府機關指定之永續發展核心講師。</p>
-                            </div>
-                        </div>
-                        <div class="team-card expert-card">
-                            <div class="team-img-wrapper">
-                                <img src="/img/expert-1.jpg" alt="張教授 特約講座" class="team-img">
-                            </div>
-                            <div class="team-info">
-                                <h3 class="team-name">張教授 <span class="team-title-tag">特約講座教授 / 碳資產顧問</span></h3>
-                                <p class="team-bio">長期深耕循環經濟與碳經濟學領域，為國內各大企業與政府機關指定之永續發展核心講師。</p>
-                            </div>
-                        </div>                           
                     </div>
                 </div>
             </div>

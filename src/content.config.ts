@@ -46,17 +46,41 @@ const about = defineCollection({
 //團隊介紹合作夥伴
 const partnersCollection = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,json}",
-    base: "./src/content/partners",
+    pattern: '**/*.{md,json}',
+    base: './src/content/partners',
   }),
-  schema: z.object({
-    name: z.string(),                  // 夥伴名稱
-    logo: z.string(),                  // Logo 圖片路徑
-    url: z.string().url().optional(),  // 超連結 (選填)
-    category: z.enum(['enterprise', 'association']), // 分類標籤
-    weight: z.number().default(0),     // 排序順序
-    draft: z.boolean().default(false), // 啟用狀態 (false 代表啟用顯示)
-  }),
+  schema: z.discriminatedUnion('category', [
+    // 1. 外聘講師
+    z.object({
+      category: z.literal('lecturer'),
+      name: z.string(),
+      title: z.string().optional(), // 職稱/頭銜（選填）
+      logo: z.string(),
+      bio: z.string().default(''),
+      weight: z.number().default(0),
+      draft: z.boolean().default(false),
+    }),
+
+    // 2. 企業夥伴
+    z.object({
+      category: z.literal('enterprise'),
+      name: z.string(),
+      logo: z.string(),
+      url: z.string().url().optional(),
+      weight: z.number().default(0),
+      draft: z.boolean().default(false),
+    }),
+
+    // 3. 公協會
+    z.object({
+      category: z.literal('association'),
+      name: z.string(),
+      logo: z.string(),
+      url: z.string().url().optional(),
+      weight: z.number().default(0),
+      draft: z.boolean().default(false),
+    }),
+  ]),
 });
 
 //永續服務輪播圖
