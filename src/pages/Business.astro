@@ -1,119 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>企業輔導 | 艾城市有限公司</title>
-    <!-- 引入 Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/Business.css">
-</head>
-<body>
-    <!-- 頂部導覽列 -->
-    <header class="navbar-header">
-        <div class="nav-container">
-            <a href="/" class="logo-link">
-                <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
-            </a>
-            <nav class="desktop-nav">
-                <div class="nav-dropdown">
-                    <a href="/About" class="nav-link">關於我們 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/About">公司介紹</a>
-                        <a href="/Partners">團隊介紹</a>
-                        <a href="/Links">相關連結</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/News" class="nav-link">最新消息</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Service" class="nav-link">永續服務 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/Business">企業輔導</a>
-                        <a href="/Government">政府專案</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Training" class="nav-link">人員培訓 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/iPAS">iPAS 課程培訓</a>
-                        <a href="/ISO">ISO 國際課程培訓</a>
-                        <a href="/Courses">永續課程</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Solar energy" class="nav-link">光電建置</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/PR" class="nav-link">實績事例</a>
-                </div>
-                <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
-            </nav>
+---
+import Model from '../layouts/Model.astro'; 
+---
 
-            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="4" y1="6" x2="20" y2="6"></line>
-                    <line x1="4" y1="12" x2="20" y2="12"></line>
-                    <line x1="4" y1="18" x2="20" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-        <!-- 手機版下拉選單 -->
-        <div id="mobile-menu" class="mobile-menu">
-            <!-- 關於我們 -->
-            <div class="mobile-dropdown-group">
-                <a href="/About" class="mobile-link">關於我們 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/About" class="mobile-sub-link">公司介紹</a>
-                    <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
-                    <a href="/Links" class="mobile-sub-link">相關連結</a>
-                </div>
-            </div>
-
-            <!-- 最新消息 -->
-            <a href="/News" class="mobile-link">最新消息</a>
-
-            <!-- 永續服務 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Service" class="mobile-link">永續服務 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/Business" class="mobile-sub-link">企業輔導</a>
-                    <a href="/Government" class="mobile-sub-link">政府專案</a>
-                </div>
-            </div>
-
-            <!-- 人員培訓 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Training" class="mobile-link">人員培訓 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
-                    <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
-                    <a href="/Courses" class="mobile-sub-link">永續課程</a>
-                </div>
-            </div>
-
-            <!-- 光電建置 -->
-            <a href="/Solar energy" class="mobile-link">光電建置</a>
-
-            <!-- 實績事例 -->
-            <div class="mobile-dropdown-group">
-                <a href="/PR" class="mobile-link">實績事例</a>
-            </div>
-
-            <!-- 預約健檢 CTA 按鈕 -->
-            <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
-        </div>
-    </header>
-
-
-  <!-- 頁面主要內容區塊 -->
-    <main class="page-content">
-    
+<Model title="企業輔導 | 艾城市有限公司" customCss="/css/Business.css">
+  <main class="page-content">
     <!-- 頁首主視覺 Banner -->
     <section class="business-hero-banner">
       <div class="container text-center">
@@ -234,141 +124,59 @@
 
     <!-- 輔導規劃 (含圖片) -->
     <section class="section-block section-consulting">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-tag">CONSULTING & TRAINING</span>
-            <h2 class="section-title">輔導規劃與碳盤查機制建立</h2>
-          </div>
-
-          <div class="consulting-wrapper">
-            <!-- 核心理念與文字 -->
-            <div class="consulting-content">
-              <div class="purpose-highlight">
-                <h3 class="purpose-title">規劃目的 — 給您魚吃，不如教您釣魚</h3>
-                <p class="purpose-desc">
-                  隨著國際間對於溫室氣體管理及減排要求日益嚴格，企業唯有建立自主碳盤查能力，方能穩健達成永續經營目標。本企劃依據 <strong>ISO 14064-1:2018 標準</strong>，協助企業建立完善機制，培育內部稽核與盤查關鍵人才。
-                </p>
-              </div>
-
-              <div class="feature-steps">
-                <div class="step-item">
-                  <div class="step-num">01</div>
-                  <div class="step-info">
-                    <h4>全盤掌握企業碳資訊</h4>
-                    <p>由專業顧問團隊深入產線與營運環節，精準盤點各項溫室氣體排放源。</p>
-                  </div>
-                </div>
-                <div class="step-item">
-                  <div class="step-num">02</div>
-                  <div class="step-info">
-                    <h4>做中學 ＆ 學中做</h4>
-                    <p>輔導過程中投入企業內部人員共同參與，實作演練排放量計算與盤查清冊建置。</p>
-                  </div>
-                </div>
-                <div class="step-item">
-                  <div class="step-num">03</div>
-                  <div class="step-info">
-                    <h4>培育國際證照專業人員</h4>
-                    <p>輔導內部同仁具備獨立撰寫盤查報告書、執行內部稽核並考取國際證照之實務能力。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 圖片展示區 -->
-            <div class="consulting-image-box">
-              <div class="image-frame">
-                <img src="/img/service.png" alt="ISO 14064-1 企業輔導流程與培育規劃" class="consulting-img">
-                <div class="image-caption">
-                  <strong>ISO 14064-1 盤查與輔導流程</strong>
-                  <span>全方位碳盤查輔導與人才培訓機制</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </section>
-
-    <!-- 企業專屬活動與說明會專區
-    <section class="section-block section-business-events">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">EVENTS & SEMINARS</span>
-          <h2 class="section-title">企業專屬輔導交流活動與工作坊</h2>
-          <p class="section-desc">定期舉辦產業實戰論壇、高階主管 ESG 研討會與碳管理閉門交流會</p>
+          <span class="section-tag">CONSULTING & TRAINING</span>
+          <h2 class="section-title">輔導規劃與碳盤查機制建立</h2>
         </div>
 
-        <div class="business-events-grid">
-          <div class="biz-event-card">
-            <div class="biz-event-header">
-              <span class="biz-badge-gold">企業閉門會</span>
-              <span class="biz-event-time">每季定期舉辦</span>
+        <div class="consulting-wrapper">
+          <!-- 核心理念與文字 -->
+          <div class="consulting-content">
+            <div class="purpose-highlight">
+              <h3 class="purpose-title">規劃目的 — 給您魚吃，不如教您釣魚</h3>
+              <p class="purpose-desc">
+                隨著國際間對於溫室氣體管理及減排要求日益嚴格，企業唯有建立自主碳盤查能力，方能穩健達成永續經營目標。本企劃依據 <strong>ISO 14064-1:2018 標準</strong>，協助企業建立完善機制，培育內部稽核與盤查關鍵人才。
+              </p>
             </div>
-            <h3 class="biz-event-title">製造業淨零實戰：碳盤查痛點破解與綠色採購策略</h3>
-            <p class="biz-event-desc">邀請已通過第三方查證之企業主管與稽核專家，針對類別3至6範疇三鑑別困難點進行案例剖析與互動討論。</p>
-            <a href="/Reserve" class="biz-event-link">申請參加企業邀請場 →</a>
-          </div>
 
-          <div class="biz-event-card">
-            <div class="biz-event-header">
-              <span class="biz-badge-blue">線上工作坊</span>
-              <span class="biz-event-time">每月雙週四開課</span>
+            <div class="feature-steps">
+              <div class="step-item">
+                <div class="step-num">01</div>
+                <div class="step-info">
+                  <h4>全盤掌握企業碳資訊</h4>
+                  <p>由專業顧問團隊深入產線與營運環節，精準盤點各項溫室氣體排放源。</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-num">02</div>
+                <div class="step-info">
+                  <h4>做中學 ＆ 學中做</h4>
+                  <p>輔導過程中投入企業內部人員共同參與，實作演練排放量計算與盤查清冊建置。</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-num">03</div>
+                <div class="step-info">
+                  <h4>培育國際證照專業人員</h4>
+                  <p>輔導內部同仁具備獨立撰寫盤查報告書、執行內部稽核並考取國際證照之實務能力。</p>
+                </div>
+              </div>
             </div>
-            <h3 class="biz-event-title">企業內部碳盤查種子種植計畫：實務報表填寫指南</h3>
-            <p class="biz-event-desc">針對企業盤查專責小組同仁，深入演練冷媒逸散、電力熱值換算與單據歸檔管理，加速企業內部能力建置。</p>
-            <a href="/Reserve" class="biz-event-link">立即了解課程細節 →</a>
           </div>
-        </div>
-      </div>
-    </section> -->
-    </main>
 
-  <!-- 頁尾 (Footer) -->
-  <footer class="site-footer">
-    <div class="footer-compact-container">
-      <!-- 公司介紹 -->
-      <div class="footer-col footer-col-info">
-        <h3 class="footer-company-name">艾城市有限公司</h3>
-        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
-        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
-        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
-      </div>
-      <!-- 快速連結 -->
-      <div class="footer-col footer-col-links">
-        <h4 class="footer-title">快速連結</h4>
-        <div class="footer-links-2cols">
-          <span>關於我們</span>
-          <span>最新消息</span>
-          <span>實績事例</span>
-          <span>永續服務</span>
-          <span>人員培訓</span>
-          <span>光電建置</span>
-        </div>
-      </div>
-      <!-- 社群QR -->
-      <div class="footer-col footer-col-social">
-        <h4 class="footer-title">官方社群</h4>
-        <div class="qr-code-group">
-          <div class="qr-code-item">
-            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
-            <span>Facebook</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
-            <span>Instagram</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
-            <span>LINE 官方</span>
+          <!-- 圖片展示區 -->
+          <div class="consulting-image-box">
+            <div class="image-frame">
+              <img src="/img/service.png" alt="ISO 14064-1 企業輔導流程與培育規劃" class="consulting-img">
+              <div class="image-caption">
+                <strong>ISO 14064-1 盤查與輔導流程</strong>
+                <span>全方位碳盤查輔導與人才培訓機制</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="footer-copyright">
-      <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
-    </div>
-  </footer>
-  <script src="/js/style.js" defer></script>
-</body>
-</html>
+    </section>
+  </main>
+</Model>

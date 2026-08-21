@@ -1,135 +1,24 @@
 ---
-// 這就像是您的 PHP 引入資料庫檔案，直接去讀取 CMS 產生的內容資料夾
+import Model from '../layouts/Model.astro'; 
 import { getCollection, type CollectionEntry } from 'astro:content';
+
+// 1. 最新消息與跑馬燈資料
 const allPosts: CollectionEntry<'news'>[] = await getCollection('news');
 const tickerItems = allPosts
   .filter(post => post.data.is_ticker === true) 
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) 
   .map(post => post.data.title); 
+
 const latestNews = allPosts
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()) // 依日期新到舊排序
-  .slice(0, 3); // 只裁切前 6 筆
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 
-
-// 2. 獲取資料
+// 2. 首頁輪播圖資料
 const carouselSlides: CollectionEntry<'carousel'>[] = await getCollection('carousel');
-// 輪播圖：依據後台設定的 order 欄位排序 (數字越小越前面)
 const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 ---
-<!DOCTYPE html>
-<html lang="zh-TW" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>艾城市有限公司</title>
 
-  <!--網站字體-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="/css/index.css">
-  <link rel="stylesheet" href="/css/style.css">
-
-</head>
-<body>
-    <!--上方導覽列-->
-    <header class="navbar-header">
-        <div class="nav-container">
-            <a href="/" class="logo-link">
-                <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
-            </a>
-            <nav class="desktop-nav">
-                <div class="nav-dropdown">
-                    <a href="/About" class="nav-link">關於我們 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/About">公司介紹</a>
-                        <a href="/Partners">團隊介紹</a>
-                        <a href="/Links">相關連結</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/News" class="nav-link">最新消息</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Service" class="nav-link">永續服務 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/Business">企業輔導</a>
-                        <a href="/Government">政府專案</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Training" class="nav-link">人員培訓 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/iPAS">iPAS 課程培訓</a>
-                        <a href="/ISO">ISO 國際課程培訓</a>
-                        <a href="/Courses">永續課程</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Solar energy" class="nav-link">光電建置</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/PR" class="nav-link">實績事例</a>
-                </div>
-                <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
-            </nav>
-
-            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="4" y1="6" x2="20" y2="6"></line>
-                    <line x1="4" y1="12" x2="20" y2="12"></line>
-                    <line x1="4" y1="18" x2="20" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-        <!-- 手機版下拉選單 -->
-        <div id="mobile-menu" class="mobile-menu">
-            <!-- 關於我們 -->
-            <div class="mobile-dropdown-group">
-                <a href="/About" class="mobile-link">關於我們 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/About" class="mobile-sub-link">公司介紹</a>
-                    <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
-                    <a href="/Links" class="mobile-sub-link">相關連結</a>
-                </div>
-            </div>
-
-            <!-- 最新消息 -->
-            <a href="/News" class="mobile-link">最新消息</a>
-
-            <!-- 永續服務 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Service" class="mobile-link">永續服務 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/Business" class="mobile-sub-link">企業輔導</a>
-                    <a href="/Government" class="mobile-sub-link">政府專案</a>
-                </div>
-            </div>
-
-            <!-- 人員培訓 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Training" class="mobile-link">人員培訓 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
-                    <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
-                    <a href="/Courses" class="mobile-sub-link">永續課程</a>
-                </div>
-            </div>
-
-            <!-- 光電建置 -->
-            <a href="/Solar energy" class="mobile-link">光電建置</a>
-
-            <!-- 實績事例 -->
-            <div class="mobile-dropdown-group">
-                <a href="/PR" class="mobile-link">實績事例</a>
-            </div>
-
-            <!-- 預約健檢 CTA 按鈕 -->
-            <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
-        </div>
-    </header>
-
+<Model title="艾城市有限公司" customCss="/css/index.css">
   <!-- 區塊輪播圖 -->
   <section id="home" class="hero-section">
     <div class="carousel-container">
@@ -163,30 +52,30 @@ const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data
     </div>
   </section>
 
-<!--跑馬燈-->
-{tickerItems.length > 0 && (
-      <section class="ticker-section">
-        <div class="ticker-badge">最新消息</div>
-        <div class="ticker-wrapper">
-          <div id="ticker-track" class="ticker-track">
-            {tickerItems.map((title) => (
-              <div class="ticker-item">
-                <span>{title}</span>
-              </div>
-            ))}
-            {/* 多於 1 筆時，複製第 1 筆到末尾 */}
-            {tickerItems.length > 1 && (
-              <div class="ticker-item">
-                <span>{tickerItems[0]}</span>
-              </div>
-            )}
-          </div>
+  <!-- 跑馬燈 -->
+  {tickerItems.length > 0 && (
+    <section class="ticker-section">
+      <div class="ticker-badge">最新消息</div>
+      <div class="ticker-wrapper">
+        <div id="ticker-track" class="ticker-track">
+          {tickerItems.map((title) => (
+            <div class="ticker-item">
+              <span>{title}</span>
+            </div>
+          ))}
+          {/* 多於 1 筆時，複製第 1 筆到末尾 */}
+          {tickerItems.length > 1 && (
+            <div class="ticker-item">
+              <span>{tickerItems[0]}</span>
+            </div>
+          )}
         </div>
-      </section>
-)}
+      </div>
+    </section>
+  )}
 
-<!--企業痛點-->
-<section class="content-section bg-light-gray pain-section">
+  <!-- 企業痛點 -->
+  <section class="content-section bg-light-gray pain-section">
     <div class="section-container">
       <div class="pain-split-grid">
         <div class="pain-left-header">
@@ -222,10 +111,10 @@ const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data
         </div>
       </div>
     </div>
-</section>
+  </section>
 
-<!--服務項目-->
-<section id="services" class="content-section">
+  <!-- 服務項目 -->
+  <section id="services" class="content-section">
     <div class="section-container">
       <div class="section-header text-center">
         <span class="section-subtitle">OUR CORE SERVICES</span>
@@ -273,9 +162,9 @@ const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data
         </div>
       </div>
     </div>
-</section>
+  </section>
 
-<!--公司實績-->
+  <!-- 公司實績 -->
   <section id="cases" class="content-section bg-light-gray">
     <div class="section-container">
       <div class="section-header text-center">
@@ -302,43 +191,42 @@ const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data
     </div>
   </section>
 
-<!--最新消息-->
-<section id="news" class="content-section">
-  <div class="section-container">
-    <div class="section-header flex-header">
-      <div>
-        <span class="section-subtitle">LATEST ANNOUNCEMENTS</span>
-        <h2 class="section-title">最新消息與熱門課程</h2>
+  <!-- 最新消息 -->
+  <section id="news" class="content-section">
+    <div class="section-container">
+      <div class="section-header flex-header">
+        <div>
+          <span class="section-subtitle">LATEST ANNOUNCEMENTS</span>
+          <h2 class="section-title">最新消息與熱門課程</h2>
+        </div>
+        <a href="/News" class="btn-more-info">更多資訊 ➔</a>
       </div>
-      <a href="/News" class="btn-more-info">更多資訊 ➔</a>
+      <div class="news-grid-6">
+        {latestNews.map((news) => (
+          <article class="news-card">
+            <div class="news-card-meta">
+              <span class="news-tag tag-green">{news.data.tags[0] || '最新消息'}</span>
+              <span class="news-date">
+                {(() => {
+                  const d = new Date(news.data.date);
+                  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
+                })()}
+              </span>
+            </div>
+            <h3 class="news-card-title">
+              <a href={`/News/${news.id}`}>{news.data.title}</a>
+            </h3>
+            <p class="news-card-summary">{news.data.summary}</p>
+          </article>
+        ))}
+      </div>
+      <div class="text-center mobile-more-btn-wrap">
+        <a href="/News" class="btn-more-info">更多資訊 ➔</a>
+      </div>
     </div>
-   <div class="news-grid-6">
-      {latestNews.map((news) => (
-        <article class="news-card">
-          <div class="news-card-meta">
-            <!-- 注意：tags 是陣列，取第一個或是用 join 呈現 -->
-            <span class="news-tag tag-green">{news.data.tags[0] || '最新消息'}</span>
-            <span class="news-date">
-              {(() => {
-                const d = new Date(news.data.date);
-                return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
-              })()}
-            </span>
-          </div>
-          <h3 class="news-card-title">
-            <a href={`/News/${news.id}`}>{news.data.title}</a>
-          </h3>
-          <p class="news-card-summary">{news.data.summary}</p>
-        </article>
-      ))}
-    </div>
-    <div class="text-center mobile-more-btn-wrap">
-      <a href="/News" class="btn-more-info">更多資訊 ➔</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!--聯絡表單-->
+  <!-- 聯絡表單 -->
   <section id="contact" class="consult-section">
     <div class="consult-container">
       <div class="section-header text-center">
@@ -398,58 +286,9 @@ const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data
     </div>
   </section>
 
-<!--下方導覽列-->
-  <footer class="site-footer">
-    <div class="footer-compact-container">
-      <!--公司介紹-->
-      <div class="footer-col footer-col-info">
-        <h3 class="footer-company-name">艾城市有限公司</h3>
-        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
-        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
-        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
-      </div>
-      <!--快速連結-->
-      <div class="footer-col footer-col-links">
-        <h4 class="footer-title">快速連結</h4>
-        <div class="footer-links-2cols">
-          <span>關於我們</span>
-          <span>最新消息</span>
-          <span>實績事例</span>
-          <span>永續服務</span>
-          <span>人員培訓</span>
-          <span>光電建置</span>
-        </div>
-      </div>
-      <!--社群QR-->
-      <div class="footer-col footer-col-social">
-        <h4 class="footer-title">官方社群</h4>
-        <div class="qr-code-group">
-          <div class="qr-code-item">
-            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
-            <span>Facebook</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
-            <span>Instagram</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
-            <span>LINE 官方</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-copyright">
-      <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <script src="/js/style.js" defer></script>
+  <!-- 首頁專屬腳本與跑馬燈變數傳遞 -->
   <script src="/js/index.js" defer></script>
-  <!-- 3. 將過濾好的 tickerItems 變數直接傳給前端 JavaScript -->
   <script is:inline define:vars={{ tickerItems }}>
     window.TICKER_ITEMS = tickerItems;
   </script>
-</body>
-</html>
+</Model>

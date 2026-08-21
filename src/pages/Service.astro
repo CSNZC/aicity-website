@@ -1,127 +1,14 @@
 ---
-// 這就像是您的 PHP 引入資料庫檔案，直接去讀取 CMS 產生的內容資料夾
+import Model from '../layouts/Model.astro'; // 若 Model 放在 src/components，請改為 '../components/Model.astro'
 import { getCollection, type CollectionEntry } from 'astro:content';
+
 const carouselSlides: CollectionEntry<'service'>[] = await getCollection('service');
-
 ---
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>永續服務 | 艾城市有限公司</title>
-    <!-- 引入 Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/Service.css">
 
-</head>
-<body>
-    <!-- 頂部導覽列 -->
-    <header class="navbar-header">
-        <div class="nav-container">
-            <a href="/" class="logo-link">
-                <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
-            </a>
-            <nav class="desktop-nav">
-                <div class="nav-dropdown">
-                    <a href="/About" class="nav-link">關於我們 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/About">公司介紹</a>
-                        <a href="/Partners">團隊介紹</a>
-                        <a href="/Links">相關連結</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/News" class="nav-link">最新消息</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Service" class="nav-link">永續服務 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/Business">企業輔導</a>
-                        <a href="/Government">政府專案</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Training" class="nav-link">人員培訓 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/iPAS">iPAS 課程培訓</a>
-                        <a href="/ISO">ISO 國際課程培訓</a>
-                        <a href="/Courses">永續課程</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Solar energy" class="nav-link">光電建置</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/PR" class="nav-link">實績事例</a>
-                </div>
-                <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
-            </nav>
-
-            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="4" y1="6" x2="20" y2="6"></line>
-                    <line x1="4" y1="12" x2="20" y2="12"></line>
-                    <line x1="4" y1="18" x2="20" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-        <!-- 手機版下拉選單 -->
-        <div id="mobile-menu" class="mobile-menu">
-            <!-- 關於我們 -->
-            <div class="mobile-dropdown-group">
-                <a href="/About" class="mobile-link">關於我們 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/About" class="mobile-sub-link">公司介紹</a>
-                    <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
-                    <a href="/Links" class="mobile-sub-link">相關連結</a>
-                </div>
-            </div>
-
-            <!-- 最新消息 -->
-            <a href="/News" class="mobile-link">最新消息</a>
-
-            <!-- 永續服務 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Service" class="mobile-link">永續服務 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/Business" class="mobile-sub-link">企業輔導</a>
-                    <a href="/Government" class="mobile-sub-link">政府專案</a>
-                </div>
-            </div>
-
-            <!-- 人員培訓 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Training" class="mobile-link">人員培訓 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
-                    <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
-                    <a href="/Courses" class="mobile-sub-link">永續課程</a>
-                </div>
-            </div>
-
-            <!-- 光電建置 -->
-            <a href="/Solar energy" class="mobile-link">光電建置</a>
-
-            <!-- 實績事例 -->
-            <div class="mobile-dropdown-group">
-                <a href="/PR" class="mobile-link">實績事例</a>
-            </div>
-
-            <!-- 預約健檢 CTA 按鈕 -->
-            <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
-        </div>
-    </header>
-
-
-  <!-- 頁面主要內容區塊 -->
+<Model title="永續服務 | 艾城市有限公司" customCss="/css/Service.css">
   <main class="page-content">
     
-    <!--區塊輪播圖-->
+    <!-- 區塊輪播圖 -->
     <section id="home" class="hero-section">
       <div class="carousel-container">
         <div class="carousel-track" id="carousel-track">
@@ -200,90 +87,42 @@ const carouselSlides: CollectionEntry<'service'>[] = await getCollection('servic
 
     <!-- AI 數位轉型與資源轉介 -->
     <section class="section-block section-transformation">
-        <div class="container">
-              <div class="section-header">
-              <span class="section-tag">GOVERNMENT RESOURCES AND AI TRANSFORMATION</span>
-              <h2 class="section-title">政府資源對接與 AI 數位轉型</h2>
-              <p class="section-desc">結合前瞻 AI 工具導入與全方位政府資源，全面厚植企業營運與製造韌性</p>
-              </div>
-              <div class="transformation-grid">
-              <!-- 特色卡片 1 -->
-              <div class="trans-card">
-                  <h3 class="trans-title">實質導入 AI 工具</h3>
-                  <p class="trans-text">針對產線與營運流程進行智慧化升級診斷，量身打造 AI 輔助與流程自動化最佳方案。</p>
-              </div>
-
-              <!-- 特色卡片 2 -->
-              <div class="trans-card">
-                  <h3 class="trans-title">研發轉型與金融支持</h3>
-                  <p class="trans-text">掌握政府最新研發補助專案與綠色/智慧化金融優惠貸款，降低企業轉型資金負擔。</p>
-              </div>
-
-              <!-- 特色卡片 3 -->
-              <div class="trans-card">
-                  <h3 class="trans-title">人才再充電與技術培訓</h3>
-                  <p class="trans-text">結合勞工在職進修與 AI 技術應用培訓補助，全面升級企業團隊數位與綠領技能。</p>
-              </div>
-
-              <!-- 特色卡片 4 -->
-              <div class="trans-card">
-                  <h3 class="trans-title">多元市場開拓與節能輔導</h3>
-                  <p class="trans-text">媒合節能技術服務團隊降低碳排成本，協助企業符合國際供應鏈低碳門檻、拓展全球市場。</p>
-              </div>
-              </div>
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">GOVERNMENT RESOURCES AND AI TRANSFORMATION</span>
+          <h2 class="section-title">政府資源對接與 AI 數位轉型</h2>
+          <p class="section-desc">結合前瞻 AI 工具導入與全方位政府資源，全面厚植企業營運與製造韌性</p>
+        </div>
+        <div class="transformation-grid">
+          <!-- 特色卡片 1 -->
+          <div class="trans-card">
+            <h3 class="trans-title">實質導入 AI 工具</h3>
+            <p class="trans-text">針對產線與營運流程進行智慧化升級診斷，量身打造 AI 輔助與流程自動化最佳方案。</p>
           </div>
+
+          <!-- 特色卡片 2 -->
+          <div class="trans-card">
+            <h3 class="trans-title">研發轉型與金融支持</h3>
+            <p class="trans-text">掌握政府最新研發補助專案與綠色/智慧化金融優惠貸款，降低企業轉型資金負擔。</p>
+          </div>
+
+          <!-- 特色卡片 3 -->
+          <div class="trans-card">
+            <h3 class="trans-title">人才再充電與技術培訓</h3>
+            <p class="trans-text">結合勞工在職進修與 AI 技術應用培訓補助，全面升級企業團隊數位與綠領技能。</p>
+          </div>
+
+          <!-- 特色卡片 4 -->
+          <div class="trans-card">
+            <h3 class="trans-title">多元市場開拓與節能輔導</h3>
+            <p class="trans-text">媒合節能技術服務團隊降低碳排成本，協助企業符合國際供應鏈低碳門檻、拓展全球市場。</p>
+          </div>
+        </div>
+      </div>
     </section>
     
   </main>
 
-  <!-- 頁尾 (Footer) -->
-  <footer class="site-footer">
-    <div class="footer-compact-container">
-      <!-- 公司介紹 -->
-      <div class="footer-col footer-col-info">
-        <h3 class="footer-company-name">艾城市有限公司</h3>
-        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
-        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
-        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
-      </div>
-      <!-- 快速連結 -->
-      <div class="footer-col footer-col-links">
-        <h4 class="footer-title">快速連結</h4>
-        <div class="footer-links-2cols">
-          <span>關於我們</span>
-          <span>最新消息</span>
-          <span>實績事例</span>
-          <span>永續服務</span>
-          <span>人員培訓</span>
-          <span>光電建置</span>
-        </div>
-      </div>
-      <!-- 社群QR -->
-      <div class="footer-col footer-col-social">
-        <h4 class="footer-title">官方社群</h4>
-        <div class="qr-code-group">
-          <div class="qr-code-item">
-            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
-            <span>Facebook</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
-            <span>Instagram</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
-            <span>LINE 官方</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-copyright">
-      <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
-    </div>
-  </footer>
-  <script src="/js/style.js" defer></script>
+  <!-- 輪播專用腳本 -->
   <script src="/js/Service.js" defer></script>
-
-</body>
-</html>
+</Model>

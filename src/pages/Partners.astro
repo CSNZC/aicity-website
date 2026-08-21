@@ -1,7 +1,8 @@
 ---
+import Model from '../layouts/Model.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-// 1. 取得所有夥伴資料，並在參數明確指定型別
+// 1. 取得所有夥伴資料，排除草稿
 const allPartners: CollectionEntry<'partners'>[] = await getCollection('partners', ({ data }: CollectionEntry<'partners'>) => {
   return data.draft !== true; 
 });
@@ -14,354 +15,191 @@ const lecturers = allPartners.filter(p => p.data.category === 'lecturer');
 const enterprisePartners = allPartners.filter(p => p.data.category === 'enterprise');
 const associationPartners = allPartners.filter(p => p.data.category === 'association');
 ---
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>團隊介紹 | 艾城市有限公司</title>
-    <!-- 引入 Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/Partners.css">
 
-</head>
-<body>
-    <!-- 頂部導覽列 -->
-    <header class="navbar-header">
-        <div class="nav-container">
-            <a href="/" class="logo-link">
-                <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
+<Model title="團隊介紹 | 艾城市有限公司" customCss="/css/Partners.css">
+  <main class="page-content">
+    <section class="page-header-section">
+      <div class="container">
+        <h1 class="page-title">專業團隊與合作夥伴</h1>
+        <p class="page-subtitle">匯聚永續發展、ESG 規劃、碳盤查與數位轉型的頂尖專家，攜手共創綠色未來</p>
+      </div>
+    </section>
+
+    <!-- 組織架構圖 -->
+    <section class="org-chart-section">
+      <div class="container">
+        <div class="section-title-wrapper">
+          <span class="section-badge">Organization</span>
+          <h2 class="section-title">團隊組織架構</h2>
+        </div>
+        <div class="org-chart-container">
+          <img src="/img/team.jpg" alt="艾城市組織架構圖" class="org-chart-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- 公司職員 -->
+    <section class="team-section">
+      <div class="container">
+        <div class="section-title-wrapper">
+          <span class="section-badge">Team</span>
+          <h2 class="section-title">公司職員</h2>
+          <p class="section-desc">秉持專業與熱忱，為企業提供全方位的永續顧問與專案管理服務</p>
+        </div>
+        <div class="team-grid">
+          <!-- 執行長 -->
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img src="/img/team-1.png" alt="執行長" class="team-img">
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">劉正興 <span class="team-title-tag">執行長 / 創辦人</span></h3>
+              <p class="team-bio">具備能源效率改善、減碳策略規劃與企業碳管理輔導經驗，熟悉節能技術應用、減量效益分析與碳管理制度實務。</p>
+              <div class="team-experience">
+                <h4 class="exp-title">經歷：</h4>
+                <ul>
+                  <li>中華永續淨零推動協會｜理事長</li>
+                  <li>艾城市有限公司｜執行長</li>
+                  <li>銘傳大學｜兼任講師</li>
+                  <li>iPAS淨零碳規劃管理師培訓｜講師</li>
+                  <li>經濟部產業發展署淨零人才培訓｜講師</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 協理-陳 -->
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img src="/img/team-2.png" alt="協理" class="team-img">
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">陳 晧 <span class="team-title-tag">外駐講師</span></h3>
+              <p class="team-bio">具備企業 ESG 推動、永續揭露與碳盤查輔導經驗，熟悉 GHG Protocol、ISO 14064-1 與企業價值鏈盤查架構。</p>
+              <div class="team-experience">
+                <h4 class="exp-title">經歷：</h4>
+                <ul>
+                  <li>中華永續淨零推動協會 ｜秘書長</li>
+                  <li>艾城市有限公司｜策略長</li>
+                  <li>銘傳大學｜兼任講師</li>
+                  <li>iPAS淨零碳規劃管理師培訓｜講師</li>
+                  <li>低碳動能股份有限公司｜溫室氣體盤查顧問</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 協理-劉 -->
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img src="/img/team-3.png" alt="協理" class="team-img">
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">劉恒齊 <span class="team-title-tag">協理 / 溫室氣體盤查顧問</span></h3>
+              <p class="team-bio">協理專精於企業溫室氣體盤查與永續報告書（ESG）編製，協助企業精準對接國際標準、落實綠色低碳轉型。</p>
+              <div class="team-experience">
+                <h4 class="exp-title">經歷：</h4>
+                <ul>
+                  <li>中華永續淨零推動協會｜協理</li>
+                  <li>iPAS 課程講師</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 協理-林 -->
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img src="/img/team-4.png" alt="協理" class="team-img">
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">林育安 <span class="team-title-tag">協理 / 教培講師</span></h3>
+              <p class="team-bio">具備企業碳管理、永續揭露與淨零轉型輔導經驗，熟悉 ISO 14064-1、GHG Protocol 與企業永續治理架構。</p>
+              <div class="team-experience">
+                <h4 class="exp-title">經歷：</h4>
+                <ul>
+                  <li>社團法人中華永續淨零推動協會｜理事</li>
+                  <li>秘鍊永續協作有限公司｜永續顧問</li>
+                  <li>源昇整合方案股份有限公司｜盤查顧問</li>
+                  <li>經濟部產業發展署淨零人才培訓｜講師</li>
+                  <li>國際品質驗證股份有限公司｜主導查證員</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 外聘講師 -->
+    <section class="team-section bg-alt">
+      <div class="container">
+        <div class="section-title-wrapper">
+          <span class="section-badge">lecturer</span>
+          <h2 class="section-title">外聘講師與特約輔導師</h2>
+        </div>
+        <!-- 橫向滑動容器 -->
+        <div class="expert-scroll-container">
+          <div class="expert-scroll-track">
+            {lecturers.map((item) => {
+              const { name, logo, bio, title } = item.data;
+
+              return (
+                <div class="team-card expert-card">
+                  <div class="team-img-wrapper">
+                    <img src={logo} alt={name} class="team-img" loading="lazy" />
+                  </div>
+                  <div class="team-info">
+                    <h3 class="team-name">
+                      {name}
+                      {title && <span class="team-title-tag">{title}</span>}
+                    </h3>
+                    {bio && <p class="team-bio">{bio}</p>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 合作公協會夥伴 -->
+    <section class="partners-section">
+      <div class="container">
+        <div class="section-title-wrapper">
+          <span class="section-badge">Public Association Partners</span>
+          <h2 class="section-title">公協會合作夥伴</h2>
+        </div>
+
+        <div class="partners-grid">
+          {associationPartners.map((partner) => (
+            <a href={partner.data.url || "#"} target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src={partner.data.logo} alt={partner.data.name} class="partner-logo">
+              <span class="partner-name">{partner.data.name}</span>
             </a>
-            <nav class="desktop-nav">
-                <div class="nav-dropdown">
-                    <a href="/About" class="nav-link">關於我們 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/About">公司介紹</a>
-                        <a href="/Partners">團隊介紹</a>
-                        <a href="/Links">相關連結</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/News" class="nav-link">最新消息</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Service" class="nav-link">永續服務 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/Business">企業輔導</a>
-                        <a href="/Government">政府專案</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Training" class="nav-link">人員培訓 ▾</a>
-                    <div class="dropdown-menu">
-                        <a href="/iPAS">iPAS 課程培訓</a>
-                        <a href="/ISO">ISO 國際課程培訓</a>
-                        <a href="/Courses">永續課程</a>
-                    </div>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/Solar energy" class="nav-link">光電建置</a>
-                </div>
-                <div class="nav-dropdown">
-                    <a href="/PR" class="nav-link">實績事例</a>
-                </div>
-                <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
-            </nav>
-
-            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="4" y1="6" x2="20" y2="6"></line>
-                    <line x1="4" y1="12" x2="20" y2="12"></line>
-                    <line x1="4" y1="18" x2="20" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-        <!-- 手機版下拉選單 -->
-        <div id="mobile-menu" class="mobile-menu">
-            <!-- 關於我們 -->
-            <div class="mobile-dropdown-group">
-                <a href="/About" class="mobile-link">關於我們 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/About" class="mobile-sub-link">公司介紹</a>
-                    <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
-                    <a href="/Links" class="mobile-sub-link">相關連結</a>
-                </div>
-            </div>
-
-            <!-- 最新消息 -->
-            <a href="/News" class="mobile-link">最新消息</a>
-
-            <!-- 永續服務 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Service" class="mobile-link">永續服務 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/Business" class="mobile-sub-link">企業輔導</a>
-                    <a href="/Government" class="mobile-sub-link">政府專案</a>
-                </div>
-            </div>
-
-            <!-- 人員培訓 -->
-            <div class="mobile-dropdown-group">
-                <a href="/Training" class="mobile-link">人員培訓 ▾</a>
-                <div class="mobile-sub-menu">
-                    <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
-                    <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
-                    <a href="/Courses" class="mobile-sub-link">永續課程</a>
-                </div>
-            </div>
-
-            <!-- 光電建置 -->
-            <a href="/Solar energy" class="mobile-link">光電建置</a>
-
-            <!-- 實績事例 -->
-            <div class="mobile-dropdown-group">
-                <a href="/PR" class="mobile-link">實績事例</a>
-            </div>
-
-            <!-- 預約健檢 CTA 按鈕 -->
-            <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
-        </div>
-    </header>
-
-  <!-- 頁面主要內容區塊 (各子頁面可在此填入不同內容) -->
-    <main class="page-content">
-        <section class="page-header-section">
-        <div class="container">
-            <h1 class="page-title">專業團隊與合作夥伴</h1>
-            <p class="page-subtitle">匯聚永續發展、ESG 規劃、碳盤查與數位轉型的頂尖專家，攜手共創綠色未來</p>
-        </div>
-        </section>
-        <!-- 組織架構圖 -->
-        <section class="org-chart-section">
-            <div class="container">
-                <div class="section-title-wrapper">
-                    <span class="section-badge">Organization</span>
-                    <h2 class="section-title">團隊組織架構</h2>
-                </div>
-                <div class="org-chart-container">
-                    <img src="/img/team.jpg" alt="艾城市組織架構圖" class="org-chart-img">
-                </div>
-            </div>
-        </section>
-        <!-- 公司職員 -->
-        <section class="team-section">
-        <div class="container">
-            <div class="section-title-wrapper">
-            <span class="section-badge">Team</span>
-            <h2 class="section-title">公司職員</h2>
-            <p class="section-desc">秉持專業與熱忱，為企業提供全方位的永續顧問與專案管理服務</p>
-            </div>
-            <div class="team-grid">
-                <!-- 執行長 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="/img/team-1.png" alt="執行長" class="team-img">
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">劉正興 <span class="team-title-tag">執行長 / 創辦人</span></h3>
-                        <p class="team-bio">具備能源效率改善、減碳策略規劃與企業碳管理輔導經驗，熟悉節能技術應用、減量效益分析與碳管理制度實務。</p>
-                        <div class="team-experience">
-                            <h4 class="exp-title">經歷：</h4>
-                            <ul>
-                            <li>中華永續淨零推動協會｜理事長</li>
-                            <li>艾城市有限公司｜執行長</li>
-                            <li>銘傳大學｜兼任講師</li>
-                            <li>iPAS淨零碳規劃管理師培訓｜講師</li>
-                            <li>經濟部產業發展署淨零人才培訓｜講師</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- 協理-陳 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="/img/team-2.png" alt="協理" class="team-img">
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">陳 晧 <span class="team-title-tag">外駐講師</span></h3>
-                        <p class="team-bio">具備企業 ESG 推動、永續揭露與碳盤查輔導經驗，熟悉 GHG Protocol、ISO 14064-1 與企業價值鏈盤查架構。</p>
-                        <div class="team-experience">
-                            <h4 class="exp-title">經歷：</h4>
-                            <ul>
-                            <li>中華永續淨零推動協會 ｜秘書長</li>
-                            <li>艾城市有限公司｜策略長</li>
-                            <li>銘傳大學｜兼任講師</li>
-                            <li>iPAS淨零碳規劃管理師培訓｜講師</li>
-                            <li>低碳動能股份有限公司｜溫室氣體盤查顧問</li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- 協理-劉 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="/img/team-3.png" alt="協理" class="team-img">
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">劉恒齊 <span class="team-title-tag">協理 / 溫室氣體盤查顧問</span></h3>
-                        <p class="team-bio"> 協理專精於企業溫室氣體盤查與永續報告書（ESG）編製，協助企業精準對接國際標準、落實綠色低碳轉型。 </p>
-                        <div class="team-experience">
-                            <h4 class="exp-title">經歷：</h4>
-                            <ul>
-                            <li>中華永續淨零推動協會｜協理</li>
-                            <li>iPAS 課程講師</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- 協理-林 -->
-                <div class="team-card">
-                    <div class="team-img-wrapper">
-                        <img src="/img/team-4.png" alt="協理" class="team-img">
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-name">林育安 <span class="team-title-tag">協理 / 教培講師</span></h3>
-                        <p class="team-bio">具備企業碳管理、永續揭露與淨零轉型輔導經驗，熟悉 ISO 14064-1、GHG Protocol 與企業永續治理架構。</p>
-                        <div class="team-experience">
-                            <h4 class="exp-title">經歷：</h4>
-                            <ul>
-                            <li>社團法人中華永續淨零推動協會｜理事</li>
-                            <li>秘鍊永續協作有限公司｜永續顧問</li>
-                            <li>源昇整合方案股份有限公司｜盤查顧問</li>
-                            <li>經濟部產業發展署淨零人才培訓｜講師</li>
-                            <li>國際品質驗證股份有限公司｜主導查證員</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </section>
-        <!-- 外聘講師 -->
-        <section class="team-section bg-alt">
-            <div class="container">
-                <div class="section-title-wrapper">
-                    <span class="section-badge">lecturer</span>
-                    <h2 class="section-title">外聘講師與特約輔導師</h2>
-                </div>
-                <!-- 橫向滑動容器 -->
-                <div class="expert-scroll-container">
-                    <div class="expert-scroll-track">
-                        <div class="team-card expert-card">
-                            {
-                                lecturers.map((item) => {
-                                // 確保 TypeScript 能精確辨識 item.data 為 lecturer 欄位 (包含 bio, title 等)
-                                if (item.data.category !== 'lecturer') return null;
-                                const { name, logo, bio, title } = item.data;
-
-                                return (
-                                    <div class="team-card">
-                                    <div class="team-img-wrapper">
-                                        <img src={logo} alt={name} class="team-img" loading="lazy" />
-                                    </div>
-                                    <div class="team-info">
-                                        <h3 class="team-name">
-                                        {name}
-                                        {title && <span class="team-title-tag">{title}</span>}
-                                        </h3>
-                                        {bio && <p class="team-bio">{bio}</p>}
-                                    </div>
-                                    </div>
-                                );
-                                })
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- 合作公協會夥伴 -->
-        <section class="partners-section">
-            <div class="container">
-                <div class="section-title-wrapper">
-                    <span class="section-badge">Public Association Partners</span>
-                    <h2 class="section-title">公協會合作夥伴</h2>
-                </div>
-
-                <div class="partners-grid">
-                    {associationPartners.map((partner) => (
-                        <a href={partner.data.url || "#"} target="_blank" rel="noopener noreferrer" class="partner-card">
-                            <img src={partner.data.logo} alt={partner.data.name} class="partner-logo">
-                            <span class="partner-name">{partner.data.name}</span>
-                        </a>
-                    ))}
-                </div>
-            </div>
-        </section>
-        <!-- 企業夥伴 -->
-        <section class="partners-section">
-            <div class="container">
-                <div class="section-title-wrapper">
-                    <span class="section-badge">Business Partners</span>
-                    <h2 class="section-title">合作企業夥伴</h2>
-                </div>
-
-                <div class="partners-grid">
-                    {enterprisePartners.map((partner) => (
-                        <a href={partner.data.url || "#"} target="_blank" rel="noopener noreferrer" class="partner-card">
-                            <img src={partner.data.logo} alt={partner.data.name} class="partner-logo">
-                            <span class="partner-name">{partner.data.name}</span>
-                        </a>
-                    ))}
-                </div>
-            </div>
-        </section>
-    </main>
-
-  <!-- 頁尾 (Footer) -->
-  <footer class="site-footer">
-    <div class="footer-compact-container">
-      <!-- 公司介紹 -->
-      <div class="footer-col footer-col-info">
-        <h3 class="footer-company-name">艾城市有限公司</h3>
-        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
-        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
-        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
-      </div>
-      <!-- 快速連結 -->
-      <div class="footer-col footer-col-links">
-        <h4 class="footer-title">快速連結</h4>
-        <div class="footer-links-2cols">
-          <span>關於我們</span>
-          <span>最新消息</span>
-          <span>實績事例</span>
-          <span>永續服務</span>
-          <span>人員培訓</span>
-          <span>光電建置</span>
+          ))}
         </div>
       </div>
-      <!-- 社群QR -->
-      <div class="footer-col footer-col-social">
-        <h4 class="footer-title">官方社群</h4>
-        <div class="qr-code-group">
-          <div class="qr-code-item">
-            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
-            <span>Facebook</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
-            <span>Instagram</span>
-          </div>
-          <div class="qr-code-item">
-            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
-            <span>LINE 官方</span>
-          </div>
+    </section>
+
+    <!-- 企業夥伴 -->
+    <section class="partners-section">
+      <div class="container">
+        <div class="section-title-wrapper">
+          <span class="section-badge">Business Partners</span>
+          <h2 class="section-title">合作企業夥伴</h2>
+        </div>
+
+        <div class="partners-grid">
+          {enterprisePartners.map((partner) => (
+            <a href={partner.data.url || "#"} target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src={partner.data.logo} alt={partner.data.name} class="partner-logo">
+              <span class="partner-name">{partner.data.name}</span>
+            </a>
+          ))}
         </div>
       </div>
-    </div>
-
-    <div class="footer-copyright">
-      <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
-    </div>
-  </footer>
-  <script src="/js/style.js" defer></script>
-
-
-</body>
-</html>
-
+    </section>
+  </main>
+</Model>
