@@ -1,0 +1,167 @@
+---
+// src/layouts/Model.astro
+interface Props {
+  title?: string;
+  customCss?: string; // 允許個別頁面載入專屬 CSS (如 courses.css)
+}
+
+const { 
+  title = "艾城市有限公司", 
+  customCss 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+
+  <!-- 引入 Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- 全域共用 CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 個別頁面專用 CSS (如有傳入才載入) -->
+  {customCss && <link rel="stylesheet" href={customCss} />}
+</head>
+<body>
+  <!-- 頂部導覽列 (全站共用) -->
+  <header class="navbar-header">
+    <div class="nav-container">
+      <a href="/" class="logo-link">
+        <img src="/img/logo_L.png" alt="艾城市 Logo" class="logo-img">
+      </a>
+      <nav class="desktop-nav">
+        <div class="nav-dropdown">
+          <a href="/About" class="nav-link">關於我們 ▾</a>
+          <div class="dropdown-menu">
+            <a href="/About">公司介紹</a>
+            <a href="/Partners">團隊介紹</a>
+            <a href="/Links">相關連結</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/News" class="nav-link">最新消息</a>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/Service" class="nav-link">永續服務 ▾</a>
+          <div class="dropdown-menu">
+            <a href="/Business">企業輔導</a>
+            <a href="/Government">政府專案</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/Training" class="nav-link">人員培訓 ▾</a>
+          <div class="dropdown-menu">
+            <a href="/iPAS">iPAS 課程培訓</a>
+            <a href="/ISO">ISO 國際課程培訓</a>
+            <a href="/Courses">永續課程</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/Solar energy" class="nav-link">光電建置</a>
+        </div>
+        <div class="nav-dropdown">
+          <a href="/PR" class="nav-link">實績事例</a>
+        </div>
+        <a href="/Reserve" class="btn-primary-cta">預約健檢</a>
+      </nav>
+
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開關選單">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- 手機版下拉選單 -->
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-dropdown-group">
+        <a href="/About" class="mobile-link">關於我們 ▾</a>
+        <div class="mobile-sub-menu">
+          <a href="/About" class="mobile-sub-link">公司介紹</a>
+          <a href="/Partners" class="mobile-sub-link">團隊介紹</a>
+          <a href="/Links" class="mobile-sub-link">相關連結</a>
+        </div>
+      </div>
+      <a href="/News" class="mobile-link">最新消息</a>
+      <div class="mobile-dropdown-group">
+        <a href="/Service" class="mobile-link">永續服務 ▾</a>
+        <div class="mobile-sub-menu">
+          <a href="/Business" class="mobile-sub-link">企業輔導</a>
+          <a href="/Government" class="mobile-sub-link">政府專案</a>
+        </div>
+      </div>
+      <div class="mobile-dropdown-group">
+        <a href="/Training" class="mobile-link">人員培訓 ▾</a>
+        <div class="mobile-sub-menu">
+          <a href="/iPAS" class="mobile-sub-link">iPAS 課程培訓</a>
+          <a href="/ISO" class="mobile-sub-link">ISO 國際課程培訓</a>
+          <a href="/Courses" class="mobile-sub-link">永續課程</a>
+        </div>
+      </div>
+      <a href="/Solar energy" class="mobile-link">光電建置</a>
+      <div class="mobile-dropdown-group">
+        <a href="/PR" class="mobile-link">實績事例</a>
+      </div>
+      <a href="/Reserve" class="btn-primary-cta mobile-cta">預約健檢</a>
+    </div>
+  </header>
+
+  <!-- 關鍵插槽：每個頁面的獨立內容會自動注入在這裡 -->
+  <slot />
+
+  <!-- 頁尾 (全站共用) -->
+  <footer class="site-footer">
+    <div class="footer-compact-container">
+      <div class="footer-col footer-col-info">
+        <h3 class="footer-company-name">艾城市有限公司</h3>
+        <p class="footer-info-text"><strong>電話：</strong>04-23763215 ｜ <strong>傳真：</strong>04-23763213</p>
+        <p class="footer-info-text"><strong>Email：</strong>aicitybusiness@gmail.com</p>
+        <p class="footer-info-text"><strong>地址：</strong>台中市西區五權五街151號A棟5樓1-2室</p>
+      </div>
+      <div class="footer-col footer-col-links">
+        <h4 class="footer-title">快速連結</h4>
+        <div class="footer-links-2cols">
+          <span>關於我們</span>
+          <span>最新消息</span>
+          <span>實績事例</span>
+          <span>永續服務</span>
+          <span>人員培訓</span>
+          <span>光電建置</span>
+        </div>
+      </div>
+      <div class="footer-col footer-col-social">
+        <h4 class="footer-title">官方社群</h4>
+        <div class="qr-code-group">
+          <div class="qr-code-item">
+            <img src="/img/FB.png" alt="FB QR Code" class="qr-img">
+            <span>Facebook</span>
+          </div>
+          <div class="qr-code-item">
+            <img src="/img/IG.png" alt="IG QR Code" class="qr-img">
+            <span>Instagram</span>
+          </div>
+          <div class="qr-code-item">
+            <img src="/img/LINE.png" alt="Line QR Code" class="qr-img">
+            <span>LINE 官方</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <p>&copy; 2026 艾城市有限公司 AI City Co., Ltd. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/style.js" defer></script>
+</body>
+</html>
