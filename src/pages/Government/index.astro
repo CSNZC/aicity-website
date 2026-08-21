@@ -1,0 +1,70 @@
+---
+import Model from '../../layouts/Model.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+// 1. 取得所有政府專案資料
+const allProjects: CollectionEntry<'government'>[] = await getCollection('government');
+
+// 2. 依發布日期排序 (新 -> 舊)
+const sortedProjects = allProjects.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+// 日期格式化
+const formatDate = (date: Date) => {
+  const d = new Date(date);
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+};
+---
+
+<Model title="政府最新專案公告 | 艾城市有限公司" customCss="/css/Government.css">
+    <!-- 主要內容區 -->
+    <main class="page-content">
+        
+        <!-- 頁首主視覺 Banner -->
+        <section class="gov-hero-banner text-center">
+            <div class="container">
+                <span class="banner-tag">GOVERNMENT ANNOUNCEMENTS</span>
+                <h1 class="banner-title">政府最新專案公告</h1>
+                <p class="banner-desc">即時掌握中央與地方政府各項補助、輔導計畫與政策招標最新動態，協助企業搶先佈局永續商機。</p>
+            </div>
+        </section>
+
+        <!-- 公告列表區塊 -->
+        <section class="section-block">
+            <div class="container">
+                <section class="gov-grid" aria-label="政府最新專案列表">
+                    {sortedProjects.map((item) => {
+                        const { title, date, summary, tag, image } = item.data;
+                        const postSlug = item.id || (item as any).slug;
+                        const postUrl = `/Government/${postSlug}`;
+
+                        return (
+                            <article class="gov-card">
+                                <a href={postUrl} class="gov-card-image-wrap">
+                                    <img src={image || '/img/logo_L.png'} alt={title} class="gov-card-img" loading="lazy" />
+                                    <span class="gov-tag">{tag}</span>
+                                </a>
+                                <div class="gov-card-body">
+                                    <div class="gov-meta">
+                                        <time datetime={new Date(date).toISOString()}>{formatDate(date)}</time>
+                                    </div>
+                                    <h3 class="gov-card-title">
+                                        <a href={postUrl}>{title}</a>
+                                    </h3>
+                                    <p class="gov-card-desc">{summary}</p>
+                                    <a href={postUrl} class="gov-read-more">
+                                        查看詳細公告 
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </article>
+                        );
+                    })}
+                </section>
+            </div>
+        </section>
+    </main>
+</Model>

@@ -1,0 +1,87 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Model from '../../layouts/Model.astro';
+
+export async function getStaticPaths() {
+  const projects: CollectionEntry<'government'>[] = await getCollection('government');
+  return projects.map(project => ({
+    params: { slug: project.id || (project as any).slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props as { project: CollectionEntry<'government'> };
+const { Content } = await render(project);
+
+const formatDate = (date: Date) => {
+  const d = new Date(date);
+  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
+};
+---
+
+<Model title={`${project.data.title} | 艾城市有限公司`}>
+  <main class="article-page">
+    <div class="article-wrapper">
+      
+      <!-- 返回按鈕 -->
+      <div class="back-nav">
+        <a href="/Government" class="back-btn">← 返回政府專案列表</a>
+      </div>
+
+      <!-- 標題與標籤 -->
+      <header class="article-header">
+        <div class="article-tag-list">
+          <span class="article-tag">{project.data.tag}</span>
+        </div>
+        <h1 class="article-title">{project.data.title}</h1>
+      </header>
+
+      <!-- 主圖 -->
+      {project.data.image && (
+        <div class="article-image-box">
+          <img src={project.data.image} alt={project.data.title} class="article-featured-img" />
+        </div>
+      )}
+
+      <!-- 發布時間 -->
+      <time class="article-meta-time" datetime={new Date(project.data.date).toISOString()}>
+        發布日期：{formatDate(project.data.date)}
+      </time>
+
+      <!-- Markdown 內文渲染 -->
+      <article class="article-body-content">
+        <Content />
+      </article>
+
+    </div>
+  </main>
+</Model>
+
+<style>
+  /* 樣式可以直接沿用你原本寫好的詳細頁 CSS 結構 */
+  .article-page {
+    background-color: var(--bg-light-gray);
+    min-height: calc(100vh - var(--nav-height));
+    padding: 60px 24px 100px;
+  }
+  .article-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--bg-white);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    padding: 48px;
+  }
+  .back-nav { margin-bottom: 24px; }
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--primary-green); font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
+  .back-btn:hover { color: var(--accent-gold); }
+  .article-header { margin-bottom: 28px; }
+  .article-tag { background: var(--accent-gold-light); color: var(--accent-gold); font-size: 0.8125rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+  .article-title { font-family: 'Noto Serif TC', serif; font-size: 2.15rem; font-weight: 700; color: var(--primary-green); line-height: 1.4; margin-top: 12px; }
+  .article-image-box { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 14px; background-color: var(--bg-light-gray); }
+  .article-featured-img { width: 100%; height: auto; max-height: 480px; object-fit: cover; display: block; }
+  .article-meta-time { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color); display: block; }
+  .article-body-content { font-size: 1.0625rem; line-height: 1.85; color: var(--text-body); }
+  .article-body-content p { margin-bottom: 1.6em; }
+</style>

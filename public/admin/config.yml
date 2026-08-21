@@ -158,3 +158,19 @@ collections:
         }
       - { label: "啟用狀態", name: "draft", widget: "boolean", default: false }
       # { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }
+
+  # 政府專區
+  - name: "government"
+    label: "政府專案"
+    folder: "src/content/government"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "發布日期", name: "date", widget: "datetime" }
+      - { label: "封面圖片", name: "image", widget: "image", required: false }
+      - { label: "標籤狀態", name: "tag", widget: "string", default: "最新公告", required: false }
+      - { label: "摘要", name: "summary", widget: "text" }
+      - { label: "詳細內文", name: "body", widget: "markdown" }
+
+  # 永續服務課程報名

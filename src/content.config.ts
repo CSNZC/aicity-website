@@ -117,6 +117,21 @@ const allcourses = defineCollection({
   }),
 });
 
+//政府專區
+const government = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: "./src/content/government", // 對應你的 Markdown 檔案夾
+  }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    image: z.string().optional().default('/img/logo_L.png'),
+    tag: z.string().default('最新公告'), // 政府專案通常只需要單一標籤/狀態
+    summary: z.string(),
+  }),
+});
+
 export const collections = {
   news,
   carousel,
@@ -124,4 +139,5 @@ export const collections = {
   about,
   partners: partnersCollection, 
   allcourses,
+  government,
 };
