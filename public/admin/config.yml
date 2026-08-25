@@ -26,12 +26,22 @@ collections:
     label: "最新消息"
     folder: "src/content/news"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}"
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "標題", name: "title", widget: "string" } 
       - { label: "發布日期", name: "date", widget: "datetime" } 
       - { label: "封面圖片", name: "image", widget: "image", required: false }
+      
+      # 頁面顯示開關
       - { label: "顯示於跑馬燈", name: "is_ticker", widget: "boolean", default: false, required: false }   
+      - { label: "顯示於永續服務頁面", name: "is_service", widget: "boolean", default: false, required: false }   
+      
+      # 永續服務頁面專用欄位 (選填)
+      - { label: "線上報名連結", name: "register_url", widget: "string", required: false, hint: "若顯示於永續服務，此為立即報名跳轉網址" }
+      - { label: "活動時間與狀態", name: "event_status", widget: "string", required: false, hint: "若未填寫則預設顯示發布日期" }
+
       - label: "分類標籤"
         name: "tags"
         widget: "select"
@@ -42,9 +52,10 @@ collections:
           - { label: "課程資訊", value: "課程資訊" }
           - { label: "新知分享", value: "新知分享" }
           - { label: "其他", value: "其他" }
+          
       - { label: "文章摘要", name: "summary", widget: "text" }    
       - { label: "內文", name: "body", widget: "markdown" }
-  
+
   # 關於我們官方認證
   - name: "about"
     label: "關於我們官方認證"
@@ -180,35 +191,4 @@ collections:
       - { label: "摘要", name: "summary", widget: "text" }
       - { label: "詳細內文", name: "body", widget: "markdown" }
 
-  # 永續服務報名
-  - name: "servicebs"
-    label: "最新永續活動"
-    folder: "src/content/servicebs"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "活動名稱/標題", name: "title", widget: "string" }
-      - { label: "發布日期", name: "date", widget: "datetime" }
-      
-      # 頂部標籤與顏色
-      - { label: "頂部標籤文字", name: "badge_text", widget: "string", hint: "例如：【實體研習】台中場" }
-      - label: "標籤主題色"
-        name: "badge_theme"
-        widget: "select"
-        default: "green"
-        options:
-          - { label: "綠色 (Primary Green)", value: "green" }
-          - { label: "藍色 (Accent Blue)", value: "blue" }
-          - { label: "金色 (Accent Gold)", value: "gold" }
-
-      # 活動時間與狀態
-      - { label: "活動日期與狀態", name: "event_status", widget: "string", hint: "例如：2026.09.15 ｜ 報名倒數" }
-
-      # 內容簡述
-      - { label: "活動簡述", name: "summary", widget: "text" }
-
-      # 報名連結（可填站內路徑 /Reserve 或外部 Google 表單、Accupass 連結）
-      - { label: "線上報名連結", name: "register_url", widget: "string", default: "/Reserve" }
-
-      # 詳細內文（若有單頁需求保留，沒有的話可視情況移除）
-      - { label: "詳細內文", name: "body", widget: "markdown", required: false }
+ 

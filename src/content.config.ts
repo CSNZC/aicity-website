@@ -24,8 +24,16 @@ const news = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
-    image: z.string().optional().default('/img/'), // 預設圖路徑
+    image: z.string().optional().default('/img/'),
+    
+    // 跑馬燈開關
     is_ticker: z.boolean().default(false),
+    
+    // 永續服務頁面開關與相關欄位
+    is_service: z.boolean().default(false),
+    register_url: z.string().optional(),
+    event_status: z.string().optional(),
+
     tags: z.array(z.string()).default([]),
     summary: z.string(),
   }),
@@ -132,20 +140,6 @@ const government = defineCollection({
   }),
 });
 
-//永續輔導報名
-const servicebsCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    date: z.date(),
-    badge_text: z.string(),
-    badge_theme: z.enum(['green', 'blue', 'gold']).default('green'),
-    event_status: z.string(),
-    summary: z.string(),
-    register_url: z.string().default('/Reserve'),
-  }),
-});
-
 export const collections = {
   news,
   carousel,
@@ -154,5 +148,4 @@ export const collections = {
   partners: partnersCollection, 
   allcourses,
   government,
-  servicebs: servicebsCollection,
 };

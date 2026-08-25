@@ -1,20 +1,15 @@
 ---
-import Model from '../layouts/Model.astro'; // 若 Model 放在 src/components，請改為 '../components/Model.astro'
+import Model from '../layouts/Model.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+// 1. 取得輪播圖資料
 const carouselSlides: CollectionEntry<'service'>[] = await getCollection('service');
-// 取得所有活動文章，並依照日期由新到舊排序
-const allEvents: CollectionEntry<'servicebs'>[] = await getCollection('servicebs');
-const events = allEvents.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
 
-// 主題色與 CSS 變數對應表
-const themeColorMap: Record<string, string> = {
-  green: 'var(--primary-green)',
-  blue: 'var(--accent-blue)',
-  gold: 'var(--accent-gold)',
-};
+// 2. 取得最新消息中，勾選「顯示於永續服務頁面」的文章，並依日期排序
+const allNews: CollectionEntry<'news'>[] = await getCollection('news');
+const serviceEvents = allNews
+  .filter((item) => item.data.is_service === true)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <Model title="永續服務 | 艾城市有限公司" customCss="/css/Service.css">
@@ -61,21 +56,34 @@ const themeColorMap: Record<string, string> = {
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
-          {events.map((event) => {
-            const { title, badge_text, badge_theme, event_status, summary, register_url } = event.data;
-            const badgeBgColor = themeColorMap[badge_theme] || 'var(--primary-green)';
+          {serviceEvents.map((event) => {
+            const { title, date, summary, tags, register_url, event_status } = event.data;
+            
+            // 頂部標籤：取 tags 第一個元素，若無則顯示預設文字
+            const firstTag = tags && tags.length > 0 ? tags[0] : '最新公告';
+            
+            // 狀態日期：優先顯示自訂 event_status，未填寫則格式化發布日期
+            const displayStatus = event_status || new Date(date).toLocaleDateString('zh-TW', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit'
+            }).replace(/\//g, '.');
+
+            // 報名連結 fallback 防呆
+            const targetUrl = register_url || '/Reserve';
+            const isExternal = targetUrl.startsWith('http');
 
             return (
               <div style="background: var(--bg-white); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column;">
-                {/* 頂部類別標籤 */}
-                <div style={`background: ${badgeBgColor}; color: #fff; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; display: inline-block;`}>
-                  {badge_text}
+                {/* 頂部標籤 */}
+                <div style="background: var(--primary-green); color: #fff; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; display: inline-block;">
+                  【{firstTag}】
                 </div>
 
                 <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
                   {/* 活動時間與狀態 */}
                   <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 8px;">
-                    {event_status}
+                    {displayStatus}
                   </span>
 
                   {/* 標題 */}
@@ -83,16 +91,16 @@ const themeColorMap: Record<string, string> = {
                     {title}
                   </h3>
 
-                  {/* 簡述 */}
+                  {/* 摘要 */}
                   <p style="font-size: 0.925rem; color: var(--text-body); margin-bottom: 20px; flex-grow: 1;">
                     {summary}
                   </p>
 
-                  {/* 報名按鈕 */}
+                  {/* 立即線上報名按鈕 */}
                   <a
-                    href={register_url}
-                    target={register_url.startsWith('http') ? '_blank' : '_self'}
-                    rel={register_url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    href={targetUrl}
+                    target={isExternal ? '_blank' : '_self'}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
                     style="display: inline-block; text-align: center; background: var(--bg-light-gray); color: var(--primary-green); padding: 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color); transition: all 0.3s ease;"
                   >
                     立即線上報名
