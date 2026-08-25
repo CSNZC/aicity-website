@@ -59,42 +59,51 @@ collections:
   # 外聘講師
   - name: "lecturers"
     label: "外聘講師"
-    folder: "src/content/partners" 
+    folder: "src/content/partners"
     create: true
-    # 關鍵：只抓取檔案內 category 等於 lecturer 的檔案
-    filter: { field: "category", value: "lecturer" }
+    extension: "md"
+    format: "frontmatter"
+    filter: { field: "category", value: "lecturer" } # 僅篩選講師
     fields:
-      # 關鍵：新增檔案時，自動在檔案內補上 category: lecturer
-      - { name: "category", widget: "hidden", default: "lecturer" }
-      - { label: "姓名", name: "name", widget: "string" }
-      - { label: "講師圖片", name: "logo", widget: "image" }
-      - { label: "講師簡介", name: "bio", widget: "text" }
-      - { label: "排序", name: "weight", widget: "number", default: 0, value_type: "int" }
+      - { label: "講師姓名/名稱", name: "name", widget: "string" }
+      - { label: "照片/Logo", name: "logo", widget: "image" }
+      - { label: "個人/單位連結", name: "url", widget: "string", required: false }
+      - { label: "分類", name: "category", widget: "hidden", default: "lecturer" }
+      - { label: "排序權重", name: "weight", widget: "number", default: 0, value_type: "int" }
       - { label: "是否隱藏", name: "draft", widget: "boolean", default: false }
 
-  # 團隊介紹企業及公協會夥伴
-  - name: "corporate_partners"
-    label: "合作夥伴管理"
-    folder: "src/content/partners" 
+  # 合作企業夥伴
+  - name: "enterprise_partners"
+    label: "合作企業夥伴"
+    folder: "src/content/partners"
     create: true
-    # 關鍵：只抓取檔案內 category 是 enterprise 或 association 的檔案
-    filter: { field: "category", value: ["enterprise", "association"] }
+    extension: "md"
+    format: "frontmatter"
+    filter: { field: "category", value: "enterprise" } # 僅篩選企業夥伴
     fields:
-      - { label: "夥伴名稱", name: "name", widget: "string" }
+      - { label: "企業名稱", name: "name", widget: "string" }
       - { label: "Logo 圖片", name: "logo", widget: "image" }
-      - { label: "超連結", name: "url", widget: "string", required: false }
-      - { 
-          label: "分類標籤", 
-          name: "category", 
-          widget: "select", 
-          options: [
-            { label: "合作企業夥伴", value: "enterprise" },
-            { label: "公協會合作夥伴", value: "association" }
-          ]
-        }
-      - { label: "排序", name: "weight", widget: "number", default: 0, value_type: "int" }
+      - { label: "企業官網連結", name: "url", widget: "string", required: false }
+      - { label: "分類", name: "category", widget: "hidden", default: "enterprise" }
+      - { label: "排序權重", name: "weight", widget: "number", default: 0, value_type: "int" }
       - { label: "是否隱藏", name: "draft", widget: "boolean", default: false }
 
+  # 公協會合作夥伴
+  - name: "association_partners"
+    label: "公協會合作夥伴"
+    folder: "src/content/partners"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    filter: { field: "category", value: "association" } # 僅篩選公協會
+    fields:
+      - { label: "公協會名稱", name: "name", widget: "string" }
+      - { label: "Logo 圖片", name: "logo", widget: "image" }
+      - { label: "單位官網連結", name: "url", widget: "string", required: false }
+      - { label: "分類", name: "category", widget: "hidden", default: "association" }
+      - { label: "排序權重", name: "weight", widget: "number", default: 0, value_type: "int" }
+      - { label: "是否隱藏", name: "draft", widget: "boolean", default: false }
+  
   # 永續服務輪播圖
   - name: "service"
     label: "永續服務輪播圖"
