@@ -57,21 +57,21 @@ const serviceEvents = allNews
 
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
           {serviceEvents.map((event) => {
-            const { title, date, summary, tags, register_url, event_status } = event.data;
+            const { title, date, summary, tags, event_status } = event.data;
             
-            // 頂部標籤：取 tags 第一個元素，若無則顯示預設文字
+            // 頂部標籤防呆
             const firstTag = tags && tags.length > 0 ? tags[0] : '最新公告';
             
-            // 狀態日期：優先顯示自訂 event_status，未填寫則格式化發布日期
+            // 狀態日期顯示
             const displayStatus = event_status || new Date(date).toLocaleDateString('zh-TW', {
               year: 'numeric',
               month: '2-digit',
               day: '2-digit'
             }).replace(/\//g, '.');
 
-            // 報名連結 fallback 防呆
-            const targetUrl = register_url || '/Reserve';
-            const isExternal = targetUrl.startsWith('http');
+            // 修正：支援 Astro 5 的 post.id 與舊版 slug
+            const eventSlug = event.id || (event as any).slug;
+            const targetUrl = `/News/${eventSlug}`;
 
             return (
               <div style="background: var(--bg-white); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column;">
@@ -99,9 +99,7 @@ const serviceEvents = allNews
                   {/* 立即線上報名按鈕 */}
                   <a
                     href={targetUrl}
-                    target={isExternal ? '_blank' : '_self'}
-                    rel={isExternal ? 'noopener noreferrer' : undefined}
-                    style="display: inline-block; text-align: center; background: var(--bg-light-gray); color: var(--primary-green); padding: 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color); transition: all 0.3s ease;"
+                    style="display: inline-block; text-align: center; background: var(--bg-light-gray); color: var(--primary-green); padding: 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color); text-decoration: none;"
                   >
                     立即線上報名
                   </a>
@@ -122,25 +120,18 @@ const serviceEvents = allNews
           <p class="section-desc">結合前瞻 AI 工具導入與全方位政府資源，全面厚植企業營運與製造韌性</p>
         </div>
         <div class="transformation-grid">
-          <!-- 特色卡片 1 -->
           <div class="trans-card">
             <h3 class="trans-title">實質導入 AI 工具</h3>
             <p class="trans-text">針對產線與營運流程進行智慧化升級診斷，量身打造 AI 輔助與流程自動化最佳方案。</p>
           </div>
-
-          <!-- 特色卡片 2 -->
           <div class="trans-card">
             <h3 class="trans-title">研發轉型與金融支持</h3>
             <p class="trans-text">掌握政府最新研發補助專案與綠色/智慧化金融優惠貸款，降低企業轉型資金負擔。</p>
           </div>
-
-          <!-- 特色卡片 3 -->
           <div class="trans-card">
             <h3 class="trans-title">人才再充電與技術培訓</h3>
             <p class="trans-text">結合勞工在職進修與 AI 技術應用培訓補助，全面升級企業團隊數位與綠領技能。</p>
           </div>
-
-          <!-- 特色卡片 4 -->
           <div class="trans-card">
             <h3 class="trans-title">多元市場開拓與節能輔導</h3>
             <p class="trans-text">媒合節能技術服務團隊降低碳排成本，協助企業符合國際供應鏈低碳門檻、拓展全球市場。</p>
@@ -151,6 +142,5 @@ const serviceEvents = allNews
     
   </main>
 
-  <!-- 輪播專用腳本 -->
   <script src="/js/Service.js" defer></script>
 </Model>

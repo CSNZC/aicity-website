@@ -38,10 +38,10 @@ collections:
       - { label: "顯示於跑馬燈", name: "is_ticker", widget: "boolean", default: false, required: false }   
       - { label: "顯示於永續服務頁面", name: "is_service", widget: "boolean", default: false, required: false }   
       
-      # 永續服務頁面專用欄位 (選填)
-      - { label: "線上報名連結", name: "register_url", widget: "string", required: false, hint: "若顯示於永續服務，此為立即報名跳轉網址" }
+      # 永續服務頁面專用欄位
       - { label: "活動時間與狀態", name: "event_status", widget: "string", required: false, hint: "若未填寫則預設顯示發布日期" }
-
+      - { label: "開啟活動線上報名表", name: "enable_registration", widget: "boolean", default: false, required: false }
+      
       - label: "分類標籤"
         name: "tags"
         widget: "select"
@@ -53,9 +53,9 @@ collections:
           - { label: "新知分享", value: "新知分享" }
           - { label: "其他", value: "其他" }
           
-      - { label: "文章摘要", name: "summary", widget: "text" }    
+      - { label: "文章摘要", name: "summary", widget: "text", required: false }    
       - { label: "內文", name: "body", widget: "markdown" }
-
+      
   # 關於我們官方認證
   - name: "about"
     label: "關於我們官方認證"

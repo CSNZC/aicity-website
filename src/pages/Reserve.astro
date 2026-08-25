@@ -1,0 +1,375 @@
+---
+import Model from '../layouts/Model.astro';
+---
+
+<Model title="企業淨零與智慧化體檢預約 | 艾城市有限公司">
+  <main class="reserve-page">
+    <div class="reserve-container">
+      
+      <!-- 頂部引言 -->
+      <header class="reserve-header">
+        <span class="reserve-tag">ENTERPRISE CONSULTING & AUDIT</span>
+        <h1 class="reserve-title">預約企業專屬永續與數位體檢</h1>
+        <p class="reserve-subtitle">
+          協助企業精準掌握法規要求、碳排放熱點與 AI 轉型契機。填寫以下評估需求，艾城市專業顧問團隊將於 1-2 個工作天內由專人與您聯繫安排線上或到廠診斷。
+        </p>
+      </header>
+
+      <!-- 體檢預約表單 -->
+      <form id="reserveForm" class="reserve-card">
+        <input type="hidden" name="formType" value="預約健檢-企業專屬診斷" />
+
+        <!-- 區塊一：企業與聯絡人基本資訊 -->
+        <h3 class="form-section-title">1. 基本聯絡資訊</h3>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">聯絡人姓名 *</label>
+            <input type="text" name="name" required class="form-input" placeholder="請輸入姓名" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">職稱 *</label>
+            <input type="text" name="title" required class="form-input" placeholder="例如：永續長 / 廠長 / 專案經理" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">企業 / 組織名稱 *</label>
+            <input type="text" name="company" required class="form-input" placeholder="請輸入公司完整名稱" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">統一編號 (選填)</label>
+            <input type="text" name="taxId" class="form-input" placeholder="8碼統一編號" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">聯絡電話 *</label>
+            <input type="tel" name="phone" required class="form-input" placeholder="0912-345-678 或 04-xxxx-xxxx" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">公務電子郵件 *</label>
+            <input type="email" name="email" required class="form-input" placeholder="service@company.com" />
+          </div>
+        </div>
+
+        <!-- 區塊二：企業背景規模 -->
+        <h3 class="form-section-title" style="margin-top: 24px;">2. 企業營運現況</h3>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">所屬產業別</label>
+            <select name="industry" class="form-input form-select">
+              <option value="傳統製造業 / 金屬加工">傳統製造業 / 金屬加工</option>
+              <option value="電子零組件 / 半導體">電子零組件 / 半導體</option>
+              <option value="食品加工 / 生技醫療">食品加工 / 生技醫療</option>
+              <option value="化學 / 塑膠 / 紡織">化學 / 塑膠 / 紡織</option>
+              <option value="交通運輸 / 觀光服務業">交通運輸 / 觀光服務業</option>
+              <option value="營造建築 / 不動產">營造建築 / 不動產</option>
+              <option value="其他">其他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">企業員工規模</label>
+            <select name="scale" class="form-input form-select">
+              <option value="50人以下">50人以下 (中小企業)</option>
+              <option value="50-200人">50 - 200人</option>
+              <option value="200人以上">200人以上</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 區塊三：健檢診斷核心項目 (可多選) -->
+        <h3 class="form-section-title" style="margin-top: 24px;">3. 預約健檢重點項目 (可多選)</h3>
+        <div class="checkbox-grid">
+          <label class="checkbox-item">
+            <input type="checkbox" name="services" value="組織溫室氣體盤查 (ISO 14064-1)" />
+            <span>組織溫室氣體盤查 (ISO 14064-1)</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="services" value="產品碳足跡評估 (ISO 14067)" />
+            <span>產品碳足跡計算與查證 (ISO 14067)</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="services" value="廠區能源/電力監測與設備能效" />
+            <span>廠區用電能效診斷與智慧監測</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="services" value="太陽能光電建置評估" />
+            <span>廠房屋頂太陽光電建置評估</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="services" value="政府淨零/數位轉型補助專案" />
+            <span>政府淨零轉型 / AI 補助專案對接</span>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" name="services" value="企業永續人才培育與內訓" />
+            <span>企業內部碳管理人才培訓</span>
+          </label>
+        </div>
+
+        <!-- 區塊四：期望形式與補充說明 -->
+        <div class="form-group" style="margin-top: 20px;">
+          <label class="form-label">期望診斷形式</label>
+          <div class="radio-group">
+            <label class="radio-item">
+              <input type="radio" name="meetType" value="線上視訊初診 (Google Meet)" checked />
+              <span>線上視訊初步診斷 (約 30-40 分鐘)</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="meetType" value="顧問到廠實地現勘" />
+              <span>顧問實地到廠走訪與現勘</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">目前的困擾或特定需求說明</label>
+          <textarea name="notes" rows="4" class="form-input form-textarea" placeholder="例如：供應鏈客戶要求提供 Scope 1/2 盤查數據、想了解廠區馬達設備能耗監測等..."></textarea>
+        </div>
+
+        <button type="submit" id="reserveSubmitBtn" class="btn-reserve-submit">
+          立即送出預約健檢
+        </button>
+      </form>
+
+    </div>
+  </main>
+</Model>
+
+<style>
+  .reserve-page {
+    background-color: var(--bg-light-gray, #f8f9fa);
+    min-height: calc(100vh - var(--nav-height, 70px));
+    padding: 60px 24px 100px;
+  }
+
+  .reserve-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .reserve-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .reserve-tag {
+    display: inline-block;
+    color: var(--accent-gold, #b8860b);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .reserve-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-green, #1b5e20);
+    margin-bottom: 14px;
+  }
+
+  .reserve-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted, #555);
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .reserve-card {
+    background: var(--bg-white, #fff);
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+    padding: 44px;
+  }
+
+  .form-section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-green, #1b5e20);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color, #eee);
+    margin-bottom: 20px;
+  }
+
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-dark, #333);
+    margin-bottom: 6px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.9375rem;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 6px;
+    background: var(--bg-white, #fff);
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .form-input:focus {
+    border-color: var(--primary-green, #1b5e20);
+    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
+  }
+
+  .form-select {
+    cursor: pointer;
+  }
+
+  .form-textarea {
+    resize: vertical;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .checkbox-item, .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-body, #333);
+    cursor: pointer;
+    background: #fafafa;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    transition: all 0.2s;
+  }
+
+  .checkbox-item:hover, .radio-item:hover {
+    background: #f0f7f0;
+    border-color: var(--primary-green, #1b5e20);
+  }
+
+  .radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .btn-reserve-submit {
+    width: 100%;
+    margin-top: 24px;
+    padding: 15px;
+    background: var(--primary-green, #1b5e20);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-reserve-submit:hover {
+    background: var(--accent-gold, #b8860b);
+  }
+
+  .btn-reserve-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    .reserve-page {
+      padding: 30px 16px 60px;
+    }
+    .reserve-card {
+      padding: 24px 18px;
+    }
+    .reserve-title {
+      font-size: 1.6rem;
+    }
+    .form-row-2, .checkbox-grid, .radio-group {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+</style>
+
+<script>
+  // 請填入你在 Google Apps Script 取得的網址
+  const GAS_ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbxMOq8iVJzfE8Yv3i1IBxGurpPZQqIxN5mH7-iKWRr6urXesAXgFPsiUbTTSo8qiBLS/exec';
+
+  const form = document.getElementById('reserveForm') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('reserveSubmitBtn') as HTMLButtonElement | null;
+
+  if (form && submitBtn) {
+    form.addEventListener('submit', async (e: SubmitEvent) => {
+      e.preventDefault();
+
+      // 1. 抓取多選服務項目
+      const selectedServices: string[] = [];
+      const checkboxes = form.querySelectorAll<HTMLInputElement>('input[name="services"]:checked');
+      checkboxes.forEach((cb) => selectedServices.push(cb.value));
+
+      // 2. 抓取基本欄位
+      const getVal = (name: string): string => {
+        const el = form.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(`[name="${name}"]`);
+        return el ? el.value.trim() : '';
+      };
+
+      const selectedRadio = form.querySelector<HTMLInputElement>('input[name="meetType"]:checked');
+      const meetType = selectedRadio ? selectedRadio.value : '';
+
+      // 3. 組合公司與職稱、規模等詳細描述
+      const companyInfo = `${getVal('company')} (統編: ${getVal('taxId') || '未填'}, 產業: ${getVal('industry')}, 規模: ${getVal('scale')})`;
+      const contactName = `${getVal('name')} (${getVal('title')})`;
+      const detailedNotes = `【健檢項目】: ${selectedServices.join('、')}\n【偏好形式】: ${meetType}\n【需求備註】: ${getVal('notes') || '無'}`;
+
+      const payload = {
+        formType: getVal('formType'),
+        name: contactName,
+        company: companyInfo,
+        phone: getVal('phone'),
+        email: getVal('email'),
+        services: detailedNotes
+      };
+
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent || '立即送出預約健檢';
+      submitBtn.textContent = '資料送出中...';
+
+      try {
+        await fetch(GAS_ENDPOINT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        alert('預約健檢已成功送出！艾城市顧問團隊將於 1-2 個工作天內主動與您聯繫。');
+        form.reset();
+      } catch (error) {
+        console.error('送出失敗:', error);
+        alert('送出時發生錯誤，請稍後再試或直接致電聯繫我們。');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  }
+</script>

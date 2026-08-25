@@ -104,10 +104,6 @@ const renderedCourses = await Promise.all(
           </div>
 
           <div class="course-action">
-            <span class="price">
-              {course.data.price}
-            </span>
-
             {isExpired ? (
               <span class="btn-primary-cta disabled">
                 報名已截止
@@ -146,7 +142,11 @@ const renderedCourses = await Promise.all(
   )}
 </section>
 
-<!-- 除錯資訊 
+<!-- 
+            <span class="price">
+              {course.data.price}
+            </span>
+除錯資訊 
 <div
   style="
     background:#fef3c7;

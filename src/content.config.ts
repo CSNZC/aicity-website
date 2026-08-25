@@ -21,21 +21,16 @@ const news = defineCollection({
     pattern: "**/*.md",
     base: "./src/content/news",
   }),
-  schema: z.object({
+    schema: z.object({
     title: z.string(),
-    date: z.coerce.date(),
-    image: z.string().optional().default('/img/'),
-    
-    // 跑馬燈開關
+    date: z.date(),
+    image: z.string().optional(),
     is_ticker: z.boolean().default(false),
-    
-    // 永續服務頁面開關與相關欄位
     is_service: z.boolean().default(false),
-    register_url: z.string().optional(),
     event_status: z.string().optional(),
-
-    tags: z.array(z.string()).default([]),
-    summary: z.string(),
+    enable_registration: z.boolean().default(false),
+    tags: z.array(z.string()),
+    summary: z.string().optional(),
   }),
 });
 
