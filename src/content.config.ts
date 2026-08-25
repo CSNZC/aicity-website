@@ -126,7 +126,7 @@ const government = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
-    image: z.string().optional().default('/img/logo_L.png'),
+    image: z.string().optional(),
     tag: z.string().default('最新公告'), // 政府專案通常只需要單一標籤/狀態
     summary: z.string(),
   }),
