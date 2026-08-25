@@ -22,8 +22,8 @@ const courses = allCourses
     if (course.data.hide) return false;
 
     // 比對分類
-    const courseCat = course.data.category.trim().toLowerCase();
-    const targetCat = category.trim().toLowerCase();
+    const courseCat = (course.data?.category || '').trim().toLowerCase();
+    const targetCat = (category || '').trim().toLowerCase();
 
     return courseCat === targetCat;
   })
