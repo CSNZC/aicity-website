@@ -132,6 +132,20 @@ const government = defineCollection({
   }),
 });
 
+//永續輔導報名
+const servicebsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    badge_text: z.string(),
+    badge_theme: z.enum(['green', 'blue', 'gold']).default('green'),
+    event_status: z.string(),
+    summary: z.string(),
+    register_url: z.string().default('/Reserve'),
+  }),
+});
+
 export const collections = {
   news,
   carousel,
@@ -140,4 +154,5 @@ export const collections = {
   partners: partnersCollection, 
   allcourses,
   government,
+  servicebs: servicebsCollection,
 };

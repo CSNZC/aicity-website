@@ -4,7 +4,6 @@ backend:
   branch: main
   base_url: https://aicity-cms.casfzea.workers.dev
   auth_endpoint: auth
-
 # 設定圖片上傳的儲存位置
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -173,3 +172,34 @@ collections:
       - { label: "詳細內文", name: "body", widget: "markdown" }
 
   # 永續服務報名
+  - name: "servicebs"
+    label: "最新永續活動"
+    folder: "src/content/servicebs"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "活動名稱/標題", name: "title", widget: "string" }
+      - { label: "發布日期", name: "date", widget: "datetime" }
+      
+      # 頂部標籤與顏色
+      - { label: "頂部標籤文字", name: "badge_text", widget: "string", hint: "例如：【實體研習】台中場" }
+      - label: "標籤主題色"
+        name: "badge_theme"
+        widget: "select"
+        default: "green"
+        options:
+          - { label: "綠色 (Primary Green)", value: "green" }
+          - { label: "藍色 (Accent Blue)", value: "blue" }
+          - { label: "金色 (Accent Gold)", value: "gold" }
+
+      # 活動時間與狀態
+      - { label: "活動日期與狀態", name: "event_status", widget: "string", hint: "例如：2026.09.15 ｜ 報名倒數" }
+
+      # 內容簡述
+      - { label: "活動簡述", name: "summary", widget: "text" }
+
+      # 報名連結（可填站內路徑 /Reserve 或外部 Google 表單、Accupass 連結）
+      - { label: "線上報名連結", name: "register_url", widget: "string", default: "/Reserve" }
+
+      # 詳細內文（若有單頁需求保留，沒有的話可視情況移除）
+      - { label: "詳細內文", name: "body", widget: "markdown", required: false }
