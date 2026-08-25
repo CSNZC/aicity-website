@@ -226,7 +226,7 @@ const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data
     </div>
   </section>
 
-  <!-- 聯絡表單 -->
+  <!-- 聯絡表單 
   <section id="contact" class="consult-section">
     <div class="consult-container">
       <div class="section-header text-center">
@@ -284,11 +284,140 @@ const sortedSlides = carouselSlides.sort((a, b) => (a.data.order || 0) - (b.data
         <button type="submit" class="btn-submit-form">送出</button>
       </form>
     </div>
-  </section>
+  </section>-->
+<section id="contact" class="consult-section">
+  <div class="consult-container">
+    <div class="section-header text-center">
+      <h2 class="consult-title">立即與我們連絡</h2>
+      <p class="consult-subtitle">填寫下方資訊，艾城市專業顧問團隊將於 24 小時內與您聯繫</p>
+    </div>
+
+    <form id="consultForm" class="consult-form-card">
+      <!-- 標記表單來源 -->
+      <input type="hidden" name="formType" value="首頁嵌入-立即與我們連絡" />
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label class="form-label">姓名 *</label>
+          <input type="text" name="name" required class="form-input" placeholder="請輸入姓名" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">公司名稱 *</label>
+          <input type="text" name="company" required class="form-input" placeholder="請輸入公司名稱" />
+        </div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label class="form-label">聯絡電話 *</label>
+          <input type="tel" name="phone" required class="form-input" placeholder="0912-345-678" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">電子郵件 *</label>
+          <input type="email" name="email" required class="form-input" placeholder="service@company.com" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">諮詢需求領域 (可多選)</label>
+        <div class="checkbox-options-grid">
+          <label class="checkbox-option">
+            <input type="checkbox" name="services" value="永續轉型" />
+            <span>永續轉型</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="services" value="人員培訓" />
+            <span>人員培訓</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="services" value="光電建置" />
+            <span>光電建置</span>
+          </label>
+        </div>
+        <div class="other-input-wrap">
+          <label class="checkbox-option other-label">
+            <input type="checkbox" id="otherCheckbox" name="services" value="其他" />
+            <span>其他：</span>
+          </label>
+          <input type="text" name="otherDetail" id="otherDetail" class="form-input other-text-input" placeholder="請簡述您的其他特殊需求..." />
+        </div>
+      </div>
+      
+      <button type="submit" id="submitBtn" class="btn-submit-form">送出</button>
+    </form>
+  </div>
+</section>
 
   <!-- 首頁專屬腳本與跑馬燈變數傳遞 -->
   <script src="/js/index.js" defer></script>
   <script is:inline define:vars={{ tickerItems }}>
     window.TICKER_ITEMS = tickerItems;
   </script>
+  <script>
+  // 記得替換成你的 Google Apps Script 網址
+  const GAS_ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbzYgiMUtOCh6MwcZnS2R9s5Ud2a5JDe6REnAwgxRHkS2sI1VvZTcs-3S5vinbZ08RV-/exec';
+
+  const form = document.getElementById('consultForm') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement | null;
+
+  if (form && submitBtn) {
+    form.addEventListener('submit', async (e: SubmitEvent) => {
+      e.preventDefault();
+
+      // 1. 整理勾選的服務項目 (指定 string[] 避免 TS 報錯)
+      const selectedServices: string[] = [];
+      const checkboxes = form.querySelectorAll<HTMLInputElement>('input[name="services"]:checked');
+      const otherDetailInput = document.getElementById('otherDetail') as HTMLInputElement | null;
+
+      checkboxes.forEach((cb: HTMLInputElement) => {
+        if (cb.value === '其他') {
+          const detail = otherDetailInput ? otherDetailInput.value.trim() : '';
+          selectedServices.push(detail ? `其他: ${detail}` : '其他');
+        } else {
+          selectedServices.push(cb.value);
+        }
+      });
+
+      const getInputValue = (name: string): string => {
+        const input = form.querySelector<HTMLInputElement>(`input[name="${name}"]`);
+        return input ? input.value.trim() : '';
+      };
+
+      // 2. 打包資料
+      const payload = {
+        formType: getInputValue('formType'),
+        name: getInputValue('name'),
+        company: getInputValue('company'),
+        phone: getInputValue('phone'),
+        email: getInputValue('email'),
+        services: selectedServices.join('、')
+      };
+
+      // 3. 切換按鈕狀態並送出
+      submitBtn.disabled = true;
+      const originalBtnText = submitBtn.textContent || '送出';
+      submitBtn.textContent = '資料送出中...';
+
+      try {
+        await fetch(GAS_ENDPOINT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        alert('表單送出成功！艾城市專業顧問團隊將儘快與您聯繫。');
+        form.reset();
+      } catch (error) {
+        console.error('送出失敗:', error);
+        alert('送出時發生錯誤，請稍後再試或直接與我們聯絡。');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+    });
+  }
+</script>
 </Model>
