@@ -137,6 +137,7 @@
     color: var(--text-body);
     margin-bottom: 24px;
     font-size: 1.05rem;
+    line-height: 1.75;
 }
 
 /* ==========================================
@@ -162,11 +163,48 @@
     margin: 0;
 }
 
+/* 碳盤查圖文排版區塊 */
+.carbon-footprint-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 36px;
+    align-items: center;
+    background: var(--bg-white);
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.carbon-info .section-desc {
+    margin-bottom: 20px;
+}
+
+.carbon-img-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-light-gray);
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.carbon-img {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain; /* 圖片完整顯示不裁切 */
+    border-radius: 6px;
+    display: block;
+}
+
 .service-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 .service-tags span {
@@ -287,7 +325,6 @@
 /* ==========================================
    區塊三：光電建置專屬樣式 (Solar Energy)
    ========================================== */
-/* 一站式服務滿版區塊調整 (已移除右側圖片，改為寬幅呈現並完美容納標籤) */
 .solar-intro-box-full {
     background: var(--bg-white);
     border: 1px solid var(--border-color);
@@ -316,14 +353,6 @@
     border-top: 1px dashed var(--border-color);
 }
 
-.partner-badge-box {
-    margin-top: 24px;
-    padding: 16px;
-    background: var(--accent-gold-light);
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-gold);
-}
-
 .badge-title {
     font-weight: 600;
     color: var(--primary-green);
@@ -346,7 +375,7 @@
     border: 1px solid var(--border-color);
 }
 
-/* 案場實績左右交錯卡片 */
+/* 案場實績左右交錯卡片（圖片無裁切） */
 .featured-case-card {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -364,13 +393,20 @@
 
 .case-img-wrap {
     position: relative;
+    width: 100%;
     min-height: 280px;
+    background-color: var(--bg-light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .case-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    max-height: 360px;
+    object-fit: contain; /* 案場照片不裁切 */
+    display: block;
 }
 
 .case-tag {
@@ -384,6 +420,7 @@
     border-radius: 20px;
     font-size: 0.875rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2;
 }
 
 .case-content {
@@ -416,8 +453,22 @@
    響應式調整 (RWD Breakpoints)
    ========================================== */
 @media (max-width: 991px) {
+    .carbon-footprint-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .carbon-img {
+        max-height: 260px;
+    }
+
     .featured-case-card {
         grid-template-columns: 1fr;
+    }
+
+    .case-content {
+        padding: 28px 24px;
     }
 }
 
@@ -432,5 +483,17 @@
     
     .main-category-title {
         font-size: 1.75rem;
+    }
+
+    .section-content {
+        padding: 0 16px;
+    }
+
+    .carbon-footprint-grid {
+        padding: 20px 16px;
+    }
+
+    .carbon-img {
+        max-height: 220px;
     }
 }

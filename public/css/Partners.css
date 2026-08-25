@@ -73,16 +73,17 @@
 }
 
 /* ==========================================================================
-   2. 正式職員區塊：現代通透、左右交錯的水平排版
+   2. 正式職員區塊：左右交錯水平排版（所有螢幕尺寸均維持）
    ========================================================================== */
 .team-section:not(.bg-alt) .team-grid {
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 48px;
 }
 
 .team-section:not(.bg-alt) .team-grid > .team-card {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 48px;
   background: transparent;
@@ -97,8 +98,8 @@
 }
 
 .team-section:not(.bg-alt) .team-card .team-img-wrapper {
-  flex: 0 0 320px;
-  height: 380px;
+  flex: 0 0 300px;
+  height: 360px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
@@ -118,6 +119,7 @@
 .team-section:not(.bg-alt) .team-card .team-info {
   flex: 1;
   padding: 0;
+  min-width: 0; /* 防止子元素撐爆 flex 排版 */
 }
 
 .team-section:not(.bg-alt) .team-card .team-name {
@@ -128,11 +130,11 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .team-section:not(.bg-alt) .team-card .team-title-tag {
-  font-size: 0.9375rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--primary-green);
   background: var(--bg-light-gray);
@@ -169,6 +171,7 @@
   flex-direction: column;
   gap: 6px;
   padding-left: 0;
+  margin: 0;
 }
 
 .team-section:not(.bg-alt) .team-card .team-experience li {
@@ -186,197 +189,131 @@
   font-weight: bold;
 }
 
-
 /* ==========================================================================
-   3. 外聘講師與輔導師專用區塊（已完全移除浮動與放大效果）
+   3. 外聘講師與輔導師專用區塊（卡片尺寸縮小優化）
    ========================================================================== */
+.expert-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-green) var(--border-color);
+}
 
-.bg-alt .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 30px;
+.expert-scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+.expert-scroll-container::-webkit-scrollbar-track {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+.expert-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--primary-green);
+  border-radius: 10px;
+}
+
+.expert-scroll-track {
+  display: flex;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  padding: 5px;
+}
+
+/* 桌機預設：一列 4 張或 3.5 張，尺寸更為精緻 */
+.expert-scroll-track > .expert-card {
+  flex: 0 0 calc((100% - 60px) / 3.5);
+  min-width: 240px;
+  max-width: 280px;
+  scroll-snap-align: start;
+  box-sizing: border-box;
 }
 
 .bg-alt .team-card {
-  display: flex !important;
-  flex-direction: column !important;
-  background: var(--bg-white) !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
-  padding: 0 !important;
-  /* 已完全移除 transition 浮動轉場 */
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
-/* 滑鼠移過去時：僅變更邊框顏色，絕對不上浮、不放大 */
 .bg-alt .team-card:hover {
-  border-color: var(--primary-green) !important;
-  transform: none !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+  border-color: var(--primary-green);
 }
 
 .bg-alt .team-card .team-img-wrapper {
-  width: 100% !important;
-  height: 260px !important;
-  flex: none !important;
-  border-radius: 0 !important;
+  width: 100%;
+  height: 200px; /* 原 260px 縮小為 200px */
+  flex: none;
   overflow: hidden;
-  box-shadow: none !important;
 }
 
 .bg-alt .team-card .team-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* 已移除圖片懸停縮放 */
-}
-
-.bg-alt .team-card:hover .team-img {
-  transform: none !important;
 }
 
 .bg-alt .team-card .team-info {
-  padding: 24px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  flex-grow: 1 !important;
+  padding: 16px; /* 緊湊內距 */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .bg-alt .team-card .team-name {
-  font-size: 1.25rem !important;
-  font-weight: 700 !important;
-  color: var(--text-dark) !important;
-  margin-bottom: 12px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 6px !important;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .bg-alt .team-card .team-title-tag {
-  font-size: 0.8125rem !important;
-  font-weight: 600 !important;
-  color: var(--accent-blue) !important;
-  background: rgba(2, 132, 199, 0.08) !important;
-  padding: 3px 10px !important;
-  border-radius: 6px !important;
-  border: none !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  background: rgba(2, 132, 199, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
 }
 
 .bg-alt .team-card .team-bio {
-  font-size: 0.95rem !important;
-  color: var(--text-body) !important;
-  margin-bottom: 20px !important;
-  line-height: 1.6 !important;
-}
-
-.bg-alt .team-card .team-experience {
-  margin-top: auto !important;
-  padding-top: 16px !important;
-  border-top: 1px solid var(--border-color) !important;
-  background: transparent !important;
-  border-left: none !important;
-  padding-left: 0 !important;
-  box-shadow: none !important;
-}
-
-.bg-alt .team-card .exp-title {
-  font-size: 0.8125rem !important;
-  font-weight: 700 !important;
-  color: var(--text-muted) !important;
-  margin-bottom: 6px !important;
-}
-
-.bg-alt .team-card .team-experience ul {
-  list-style: none !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 4px !important;
-  padding-left: 0 !important;
-}
-
-.bg-alt .team-card .team-experience li {
-  font-size: 0.875rem !important;
-  color: var(--text-body) !important;
-  padding-left: 0 !important;
-}
-
-.bg-alt .team-card .team-experience li::before {
-  content: none !important;
-}
-
-/* 外聘講師橫向滑動外層容器 */
-.expert-scroll-container {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-green) var(--border-color);
-}
-
-.expert-scroll-container::-webkit-scrollbar {
-    height: 6px;
-}
-.expert-scroll-container::-webkit-scrollbar-track {
-    background: var(--border-color);
-    border-radius: 10px;
-}
-.expert-scroll-container::-webkit-scrollbar-thumb {
-    background: var(--primary-green);
-    border-radius: 10px;
-}
-
-.expert-scroll-track {
-    display: flex;
-    gap: 30px;
-    scroll-snap-type: x mandatory;
-    padding: 5px;
-}
-
-.expert-scroll-track > .expert-card {
-    flex: 0 0 calc((100% - 60px) / 3);
-    scroll-snap-align: start;
-    box-sizing: border-box;
-}
-
-@media (max-width: 991px) {
-    .expert-scroll-track > .expert-card {
-        flex: 0 0 calc((100% - 30px) / 2);
-    }
-}
-
-@media (max-width: 576px) {
-    .expert-scroll-track > .expert-card {
-        flex: 0 0 85%; 
-    }
+  font-size: 0.875rem;
+  color: var(--text-body);
+  margin-bottom: 12px;
+  line-height: 1.55;
 }
 
 /* ==========================================================================
-   4. 合作企業夥伴區塊：LOGO + 名稱牆
+   4. 合作企業與公協會夥伴區塊：固定 3 欄排列 (3個一行)
    ========================================================================== */
 .partners-section {
-  padding: 60px 0 80px;
+  padding: 50px 0 70px;
 }
 
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr); /* 固定 3 行呈現 */
+  gap: 20px;
 }
 
 .partner-card {
   background: var(--bg-white);
   border: 1px solid var(--border-color);
   border-radius: 10px;
-  padding: 24px 16px;
+  padding: 20px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 10px;
   text-align: center;
   transition: var(--transition);
 }
@@ -389,8 +326,9 @@
 }
 
 .partner-logo {
-  max-height: 50px;
+  max-height: 44px;
   width: auto;
+  max-width: 90%;
   object-fit: contain;
   filter: grayscale(20%);
   transition: filter 0.3s;
@@ -401,13 +339,13 @@
 }
 
 .partner-name {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-dark);
 }
 
 /* ==========================================================================
-   5. 組織架構圖區塊專屬樣式
+   5. 組織架構圖區塊
    ========================================================================== */
 .org-chart-section {
   padding: 40px 0 60px;
@@ -442,37 +380,109 @@
 }
 
 /* ==========================================================================
-   RWD 響應式佈局調整：專門針對【正式職員】區塊的小螢幕優化
+   6. RWD 響應式微調 (平板 & 手機)
    ========================================================================== */
 @media (max-width: 991px) {
-  /* 平板：讓正式職員維持左右並排，並放大照片尺寸避免圖小字大 */
-  .team-section:not(.bg-alt) .team-grid > .team-card,
-  .team-section:not(.bg-alt) .team-grid > .team-card:nth-child(even) {
-    flex-direction: row !important;
-    gap: 24px !important;
+  .team-section:not(.bg-alt) .team-grid > .team-card {
+    gap: 28px;
   }
-
-  .team-section:not(.bg-alt) .team-grid > .team-card:nth-child(even) {
-    flex-direction: row-reverse !important;
-  }
-
   .team-section:not(.bg-alt) .team-card .team-img-wrapper {
-    flex: 0 0 240px !important;
-    height: 300px !important;
+    flex: 0 0 200px;
+    height: 260px;
+  }
+
+  .expert-scroll-track > .expert-card {
+    flex: 0 0 240px;
   }
 }
 
-@media (max-width: 576px) {
-  /* 極窄手機：改為上下堆疊，確保閱讀版面舒適 */
-  .team-section:not(.bg-alt) .team-grid > .team-card,
-  .team-section:not(.bg-alt) .team-grid > .team-card:nth-child(even) {
-    flex-direction: column !important;
-    align-items: stretch !important;
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  /* 手機版：正式成員依然保持左右交錯並緊湊呈現 */
+  .team-section:not(.bg-alt) .team-grid {
+    gap: 32px;
+  }
+
+  .team-section:not(.bg-alt) .team-grid > .team-card {
+    gap: 16px;
+    padding: 16px 0;
   }
 
   .team-section:not(.bg-alt) .team-card .team-img-wrapper {
-    width: 100% !important;
-    height: 280px !important;
-    flex: none !important;
+    flex: 0 0 130px; /* 固定縮小寬度 */
+    height: 175px;   /* 等比例縮小高度 */
+    border-radius: 8px;
+  }
+
+  .team-section:not(.bg-alt) .team-card .team-name {
+    font-size: 1.15rem;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .team-section:not(.bg-alt) .team-card .team-title-tag {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+  }
+
+  .team-section:not(.bg-alt) .team-card .team-bio {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .team-section:not(.bg-alt) .team-card .team-experience {
+    padding: 10px 12px;
+    border-left-width: 3px;
+  }
+
+  .team-section:not(.bg-alt) .team-card .exp-title {
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+  }
+
+  .team-section:not(.bg-alt) .team-card .team-experience li {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  /* 外聘講師在手機上尺寸縮小、滑動時可露出部分後續卡片 */
+  .expert-scroll-track > .expert-card {
+    flex: 0 0 68%; 
+    min-width: 200px;
+  }
+
+  .bg-alt .team-card .team-img-wrapper {
+    height: 160px;
+  }
+
+  /* 公協會 / 企業夥伴維持 3 個一行，縮減間距與字體以適配窄螢幕 */
+  .partners-grid {
+    gap: 10px;
+  }
+
+  .partner-card {
+    padding: 12px 6px;
+    gap: 8px;
+  }
+
+  .partner-logo {
+    max-height: 32px;
+  }
+
+  .partner-name {
+    font-size: 0.75rem;
+    line-height: 1.3;
   }
 }

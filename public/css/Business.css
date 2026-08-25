@@ -1,3 +1,7 @@
+/* ==========================================================================
+   企業輔導頁面專屬樣式 (Business.css)
+   ========================================================================== */
+
 .page-content {
   background-color: var(--bg-white);
   min-height: calc(100vh - var(--nav-height));
@@ -13,9 +17,9 @@
   text-align: center;
 }
 
-/* 頁首主視覺 Banner */
+/* 1. 頁首主視覺 Banner */
 .business-hero-banner {
-  background: linear-gradient(rgba(15, 39, 29, 0.85), rgba(15, 39, 29, 0.9)), url('/img/bgb.jpg') center/cover;
+  background: linear-gradient(rgba(15, 39, 29, 0.85), rgba(15, 39, 29, 0.9)), url('/img/bgb.jpg') center/cover no-repeat;
   padding: 90px 0;
   color: #ffffff;
 }
@@ -39,13 +43,13 @@
   line-height: 1.8;
 }
 
-/* 通用 Section 規範 */
+/* 2. 通用 Section 規範 */
 .section-block {
-  padding: 96px 0;
+  padding: 80px 0;
 }
 
 .section-header {
-  margin-bottom: 56px;
+  margin-bottom: 48px;
 }
 
 .section-tag {
@@ -67,10 +71,10 @@
 .section-desc {
   font-size: 1.0625rem;
   color: var(--text-muted);
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
-/* 痛點卡片 */
+/* 3. 企業痛點解析 */
 .section-challenges {
   background-color: var(--bg-light-gray);
 }
@@ -83,7 +87,7 @@
 
 .challenge-card {
   background: var(--bg-white);
-  padding: 36px 28px;
+  padding: 32px 24px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   border-top: 4px solid var(--accent-gold);
@@ -92,24 +96,24 @@
 }
 
 .challenge-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: 0 10px 25px rgba(212, 160, 23, 0.12);
 }
 
 .challenge-title {
-  font-size: 1.1875rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 12px;
 }
 
 .challenge-text {
-  font-size: 0.975rem;
+  font-size: 0.95rem;
   color: var(--text-body);
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
-/* 核心輔導方案列表 */
+/* 4. 核心輔導方案列表 */
 .section-solutions {
   background-color: var(--bg-white);
 }
@@ -117,12 +121,12 @@
 .solutions-list {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 28px;
 }
 
 .solution-card {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1.1fr 1.4fr;
   gap: 32px;
   background: var(--bg-light-gray);
   padding: 32px;
@@ -175,186 +179,51 @@
   font-size: 0.9rem;
   color: var(--text-body);
   line-height: 1.8;
+  margin: 0;
 }
 
-/* 六大步驟 */
-.section-process {
-  background-color: var(--bg-light-gray);
-}
-
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.process-step-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: var(--bg-white);
-  padding: 24px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
-  transition: var(--transition);
-}
-
-.process-step-box:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-gold);
-  box-shadow: 0 4px 12px rgba(212, 160, 23, 0.12);
-}
-
-.process-step-num {
-  background: var(--primary-green);
-  color: var(--bg-white);
-  font-weight: 700;
-  font-size: 0.875rem;
-  min-width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.process-step-body h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 4px;
-}
-
-.process-step-body p {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-/* 企業活動專區 */
-.section-business-events {
-  background-color: var(--bg-white);
-}
-
-.business-events-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-
-.biz-event-card {
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 28px;
-  background: var(--bg-white);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-  transition: var(--transition);
-}
-
-.biz-event-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-}
-
-.biz-event-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.biz-badge-gold {
-  background: var(--accent-gold-light);
-  color: var(--accent-gold);
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-
-.biz-badge-blue {
-  background: rgba(2, 132, 199, 0.1);
-  color: var(--accent-blue);
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-
-.biz-event-time {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.biz-event-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 8px;
-}
-
-.biz-event-desc {
-  font-size: 0.925rem;
-  color: var(--text-body);
-  margin-bottom: 16px;
-  line-height: 1.7;
-}
-
-.biz-event-link {
-  color: var(--primary-green);
-  font-weight: 700;
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-
-/* 輔導規劃 */
+/* 5. 輔導規劃區塊 */
 .section-consulting {
   background-color: var(--bg-light-gray);
 }
 
-.consulting-wrapper {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr; 
-  gap: 32px 40px; /* 加大欄位間距 */
-  align-items: start;
-}
-
-.consulting-content {
-  display: contents;
-}
-
 .purpose-highlight {
-  grid-column: 1 / -1; 
   background: var(--bg-white);
-  padding: 28px 32px; /* 增加內部留白 */
+  padding: 28px 32px;
   border-radius: 12px;
   border-left: 5px solid var(--primary-green);
   border-top: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
-  margin-bottom: 12px; /* 拉開與下方 01/02/03 的距離 */
+  margin-bottom: 32px;
 }
 
 .purpose-title {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--primary-green);
-  margin-bottom: 10px; /* 拉開標題與敘述距離 */
+  margin-bottom: 10px;
 }
 
 .purpose-desc {
   font-size: 0.975rem;
   color: var(--text-body);
   line-height: 1.8;
+  margin: 0;
+}
+
+.consulting-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
 }
 
 .feature-steps {
-  grid-column: 1; 
   display: flex;
   flex-direction: column;
-  gap: 16px; /* 加大 01, 02, 03 之間的間距避免黏在一起 */
+  gap: 16px;
 }
 
 .step-item {
@@ -362,8 +231,8 @@
   align-items: center;
   gap: 16px;
   background: var(--bg-white);
-  padding: 16px 20px; /* 加大內部空間 */
-  border-radius: 8px;
+  padding: 18px 20px;
+  border-radius: 10px;
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
   transition: var(--transition);
@@ -379,10 +248,10 @@
   background: var(--primary-green);
   color: var(--bg-white);
   font-weight: 700;
-  font-size: 0.875rem;
-  min-width: 36px;
-  height: 36px;
-  border-radius: 6px;
+  font-size: 0.9rem;
+  min-width: 38px;
+  height: 38px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,25 +259,26 @@
 }
 
 .step-info h4 {
-  font-size: 1rem; 
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 4px;
 }
 
 .step-info p {
-  font-size: 0.875rem; 
+  font-size: 0.875rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.55;
+  margin: 0;
 }
 
 .consulting-image-box {
-  grid-column: 2; 
+  width: 100%;
 }
 
 .image-frame {
   background: var(--bg-white);
-  padding: 18px; /* 加大圖片邊框留白 */
+  padding: 20px;
   border-radius: 14px;
   box-shadow: 0 10px 28px rgba(27, 67, 50, 0.06);
   border: 1px solid var(--border-color);
@@ -419,15 +289,15 @@
 
 .consulting-img {
   width: 100%;
-  height: auto;           
-  max-height: 420px;       
-  object-fit: contain;      
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
   border-radius: 6px;
   display: block;
 }
 
 .image-caption {
-  margin-top: 14px; /* 拉開圖片與文字說明的距離 */
+  margin-top: 14px;
   width: 100%;
   text-align: center;
   display: flex;
@@ -436,7 +306,7 @@
 }
 
 .image-caption strong {
-  font-size: 0.975rem;
+  font-size: 0.95rem;
   color: var(--text-dark);
 }
 
@@ -445,30 +315,84 @@
   color: var(--text-muted);
 }
 
-.biz-event-link:hover {
-  color: var(--accent-gold);
-}
-
-/* RWD 響應式 */
+/* ==========================================================================
+   6. RWD 響應式佈局
+   ========================================================================== */
 @media (max-width: 991px) {
-  .challenges-grid,
-  .process-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .challenges-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
+
   .solution-card {
     grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px;
   }
-  .business-events-grid {
+
+  .consulting-wrapper {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
 }
 
-@media (max-width: 576px) {
-  .section-block {
-    padding: 64px 0;
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
   }
-  .challenges-grid,
-  .process-grid {
-    grid-template-columns: 1fr;
+
+  .business-hero-banner {
+    padding: 60px 0;
+  }
+
+  .banner-title {
+    font-size: 1.75rem;
+  }
+
+  .banner-desc {
+    font-size: 0.95rem;
+  }
+
+  .section-block {
+    padding: 50px 0;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .purpose-highlight {
+    padding: 20px 16px;
+  }
+
+  .purpose-title {
+    font-size: 1.1rem;
+  }
+
+  .step-item {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .step-num {
+    min-width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .step-info h4 {
+    font-size: 0.95rem;
+  }
+
+  .step-info p {
+    font-size: 0.825rem;
+  }
+
+  .image-frame {
+    padding: 12px;
   }
 }

@@ -44,18 +44,18 @@ const serviceEvents = allNews
     </section>
 
     <!-- 最新活動與講座專區 -->
-    <section class="section-block section-events" style="background-color: var(--bg-white);">
+    <section class="section-block section-events">
       <div class="container">
-        <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+        <div class="section-header events-header">
           <div>
             <span class="section-tag">LATEST EVENTS</span>
             <h2 class="section-title">最新永續活動與培訓專區</h2>
             <p class="section-desc">掌握最新法規趨勢、碳管理實務講座與政府補助說明會</p>
           </div>
-          <a href="/News" class="btn-primary-cta" style="background: transparent; color: var(--primary-green); border: 1.5px solid var(--primary-green);">查看所有活動</a>
+          <a href="/News" class="btn-all-events">查看所有活動</a>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+        <div class="events-grid">
           {serviceEvents.map((event) => {
             const { title, date, summary, tags, event_status } = event.data;
             
@@ -69,38 +69,35 @@ const serviceEvents = allNews
               day: '2-digit'
             }).replace(/\//g, '.');
 
-            // 修正：支援 Astro 5 的 post.id 與舊版 slug
+            // 支援 Astro 5 的 post.id 與舊版 slug
             const eventSlug = event.id || (event as any).slug;
             const targetUrl = `/News/${eventSlug}`;
 
             return (
-              <div style="background: var(--bg-white); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column;">
+              <div class="event-card">
                 {/* 頂部標籤 */}
-                <div style="background: var(--primary-green); color: #fff; padding: 8px 16px; font-size: 0.85rem; font-weight: 600; display: inline-block;">
+                <div class="event-badge">
                   【{firstTag}】
                 </div>
 
-                <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
+                <div class="event-body">
                   {/* 活動時間與狀態 */}
-                  <span style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 8px;">
+                  <span class="event-date">
                     {displayStatus}
                   </span>
 
                   {/* 標題 */}
-                  <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.4;">
+                  <h3 class="event-title">
                     {title}
                   </h3>
 
                   {/* 摘要 */}
-                  <p style="font-size: 0.925rem; color: var(--text-body); margin-bottom: 20px; flex-grow: 1;">
+                  <p class="event-summary">
                     {summary}
                   </p>
 
                   {/* 立即線上報名按鈕 */}
-                  <a
-                    href={targetUrl}
-                    style="display: inline-block; text-align: center; background: var(--bg-light-gray); color: var(--primary-green); padding: 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--border-color); text-decoration: none;"
-                  >
+                  <a href={targetUrl} class="event-apply-btn">
                     立即線上報名
                   </a>
                 </div>

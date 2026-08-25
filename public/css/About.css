@@ -73,115 +73,139 @@
   text-align: center;
 }
 
-/* 外層捲動容器：允許在螢幕較小時橫向滑動 */
+/* 外層捲動容器 */
 .timeline-scroll-container {
-    width: 100%;
-    overflow-x: auto;
-    padding: 40px 0 20px 0;
-    scrollbar-width: thin; /* Firefox 捲軸美化 */
-    scrollbar-color: var(--primary-green) var(--border-color);
+  width: 100%;
+  overflow-x: auto;
+  padding: 30px 0 20px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-green) var(--border-color);
 }
 
-/* 自訂 Webkit 瀏覽器捲軸（Chrome, Safari） */
 .timeline-scroll-container::-webkit-scrollbar {
-    height: 6px;
+  height: 6px;
 }
 .timeline-scroll-container::-webkit-scrollbar-track {
-    background: var(--bg-light-gray, #f1f1f1);
-    border-radius: 4px;
+  background: var(--bg-light-gray, #f1f1f1);
+  border-radius: 4px;
 }
 .timeline-scroll-container::-webkit-scrollbar-thumb {
-    background: var(--primary-green);
-    border-radius: 4px;
+  background: var(--primary-green);
+  border-radius: 4px;
 }
 
-/* 橫向時間軸主體 */
+/* 橫向時間軸主體：桌機版置中、設定適當最大寬度與內距 */
 .timeline-horizontal {
-    position: relative;
-    display: flex;
-    gap: 24px;
-    min-width: 900px; /* 確保內容足夠寬時能撐開並出現滑動效果 */
-    padding: 0 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 800px; /* 避免卡片在平板/小筆電過度擠壓 */
+  max-width: 1000px;
+  margin: 0 auto; /* 水平置中 */
+  padding: 0 10px;
 }
 
-/* 貫穿整條時間軸的橫線 */
+/* 貫穿軸線：自動對齊最左至最右的圓點中心 */
 .timeline-axis {
-    position: absolute;
-    top: 24px; /* 需與圓點的垂直位置對齊 */
-    left: 20px;
-    right: 20px;
-    height: 3px;
-    background: var(--primary-green);
-    z-index: 1;
+  position: absolute;
+  top: 24px;
+  left: 50px;
+  right: 50px;
+  height: 3px;
+  background: var(--primary-green);
+  z-index: 1;
 }
 
 /* 單一時間點區塊 */
 .timeline-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
-/* 圓點定位（精準壓在橫線上） */
+/* 圓點定位 */
 .timeline-dot {
-    width: 16px;
-    height: 16px;
-    background: var(--primary-green);
-    border: 3px solid var(--bg-white, #ffffff);
-    border-radius: 50%;
-    margin-top: 16px; /* 控制圓點距離上方的高度 */
-    margin-bottom: 24px; /* 圓點與下方卡片的間距 */
-    box-shadow: 0 0 0 2px var(--primary-green);
+  width: 16px;
+  height: 16px;
+  background: var(--primary-green);
+  border: 3px solid var(--bg-white, #ffffff);
+  border-radius: 50%;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 0 2px var(--primary-green);
+  flex-shrink: 0;
 }
 
-/* 下方說明卡片（結合您原本網站的卡片樣式） */
+/* 下方說明卡片：寬度改為 100% 確保相對於 item 對齊 */
 .timeline-card {
-    width: 80%;
-    background: var(--bg-white);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 20px 16px;
-    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
-    transition: var(--transition);
-    text-align: left; /* 卡片內部標題可維持靠左或置中，若要置中可改 center */
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* 讓每個卡片高度一致 */
+  width: 100%;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px 16px;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+  transition: var(--transition);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .timeline-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(27, 67, 50, 0.08);
-    border-color: var(--primary-green);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(27, 67, 50, 0.08);
+  border-color: var(--primary-green);
 }
 
-/* 年份樣式 */
 .timeline-year {
-    font-weight: 700;
-    color: var(--primary-green);
-    font-size: 1.15rem;
-    margin-bottom: 12px;
-    letter-spacing: 0.5px;
+  font-weight: 700;
+  color: var(--primary-green);
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
 }
 
-/* 標題與內文 */
 .timeline-content h3 {
-    font-size: 1.2rem;
-    color: var(--text-dark);
-    font-weight: 700;
-    margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .timeline-content p {
-    color: var(--text-body);
-    font-size: 1rem;
-    line-height: 1.7;
+  color: var(--text-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+/* ================= RWD 響應式微調 ================= */
+@media (max-width: 991px) {
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+  
+  .service-rows {
+    grid-template-columns: 1fr;
+  }
+
+  .service-rows .service-row-item:nth-child(1) {
+    grid-row: auto;
+    padding: 36px 24px;
+  }
+
+  /* 小螢幕捲動安全設定：移除 margin auto 避免捲動起點裁切 */
+  .timeline-horizontal {
     margin: 0;
-    text-align: justify;
-    text-justify: inter-ideograph;
+    padding: 0 20px;
+  }
 }
 
 /* 核心營運項目區塊 */

@@ -1,3 +1,7 @@
+/* ==========================================================================
+   永續服務頁面專屬樣式 (Service.css)
+   ========================================================================== */
+
 .page-content {
   background-color: var(--bg-white);
   min-height: calc(100vh - var(--nav-height));
@@ -9,105 +13,105 @@
   padding: 0 24px;
 }
 
-/* 輪播圖區塊 */
+/* 1. 輪播圖區塊 */
 .hero-section {
-  padding-top: 50px; 
-  padding-left: 20px;
-  padding-right: 20px;
-  background: var(--bg-light-gray); 
+  padding: 50px 20px 40px;
+  background: var(--bg-light-gray);
 }
 
 .carousel-container {
-  max-width: 1080px; 
-  width: 100%; 
-  margin: 0 auto; 
-  aspect-ratio: 16 / 9; 
-  max-height: calc(100vh - 180px); 
-  position: relative; 
-  overflow: hidden; 
-  border-radius: 16px; 
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); 
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 180px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 .carousel-track {
-  display: flex; 
-  height: 100%; 
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .carousel-slide {
-  min-width: 100%; 
-  height: 100%; 
+  min-width: 100%;
+  height: 100%;
 }
 
 .carousel-slide img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: contain; 
-  object-position: center; 
-  background-color: var(--bg-white); 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background-color: var(--bg-white);
 }
 
 /* 輪播左右按鈕 */
 .carousel-btn {
-  position: absolute; 
-  top: 50%; 
-  transform: translateY(-50%); 
-  background: rgba(15, 39, 29, 0.65); 
-  color: var(--bg-white); 
-  width: 48px; 
-  height: 48px; 
-  border-radius: 50%; 
-  z-index: 10; 
-  font-size: 20px; 
-  backdrop-filter: blur(4px); 
-  transition: var(--transition); 
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 39, 29, 0.65);
+  color: var(--bg-white);
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  z-index: 10;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: var(--transition);
 }
 
 .carousel-btn:hover {
-  background: var(--accent-gold); 
-  transform: translateY(-50%) scale(1.05); 
+  background: var(--accent-gold);
+  transform: translateY(-50%) scale(1.05);
 }
 
-.prev-btn { left: 20px; } 
-.next-btn { right: 20px; } 
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
 
-/* 輪播底部分頁點點 */
+/* 輪播指示點 */
 .carousel-dots {
-  position: absolute; 
-  bottom: 20px; 
-  left: 50%; 
-  transform: translateX(-50%); 
-  display: flex; 
-  gap: 10px; 
-  z-index: 10; 
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
 }
 
 .dot {
-  width: 10px; 
-  height: 10px; 
-  background: rgba(255, 255, 255, 0.5); 
-  border-radius: 50%; 
-  transition: all 0.3s ease; 
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .dot.active {
-  background: var(--accent-gold); 
-  width: 28px; 
-  border-radius: 12px; 
+  background: var(--accent-gold);
+  width: 28px;
+  border-radius: 12px;
 }
 
-/* 通用區塊標題 —— 調整上下透氣感 */
+/* 2. 通用區塊標題 */
 .section-block {
-  padding: 96px 0; /* 加大區塊上下距離，避免太近 */
-}
-
-.section {
-  padding: 96px 0; /* 統一通用 section 距離 */
+  padding: 80px 0;
 }
 
 .section-header {
-  margin-bottom: 56px; /* 加大標題與下方內容的距離 */
+  margin-bottom: 48px;
 }
 
 .section-tag {
@@ -129,25 +133,139 @@
 .section-desc {
   font-size: 1.0625rem;
   color: var(--text-muted);
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
-
-/* AI 數位轉型 */
-.section-transformation {
+/* 3. 最新活動與講座專區 */
+.section-events {
   background-color: var(--bg-white);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn-all-events {
+  display: inline-block;
+  padding: 10px 22px;
+  background: transparent;
+  color: var(--primary-green);
+  border: 1.5px solid var(--primary-green);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-all-events:hover {
+  background: var(--primary-green);
+  color: var(--bg-white);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.event-card {
+  background: var(--bg-white);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(27, 67, 50, 0.08);
+  border-color: var(--primary-green);
+}
+
+.event-badge {
+  background: var(--primary-green);
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  align-self: flex-start;
+  border-bottom-right-radius: 8px;
+}
+
+.event-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.event-date {
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.event-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  line-height: 1.45;
+}
+
+.event-summary {
+  font-size: 0.925rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.event-apply-btn {
+  display: inline-block;
+  text-align: center;
+  background: var(--bg-light-gray);
+  color: var(--primary-green);
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.925rem;
+  border: 1px solid var(--border-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.event-apply-btn:hover {
+  background: var(--primary-green);
+  color: #fff;
+  border-color: var(--primary-green);
+}
+
+/* 4. AI 數位轉型 */
+.section-transformation {
+  background-color: var(--bg-light-gray);
 }
 
 .transformation-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px; /* 加大卡片間距 */
-  margin-bottom: 40px;
+  gap: 24px;
 }
 
 .trans-card {
   background: var(--bg-white);
-  padding: 36px 28px; /* 加大卡片內部留白 */
+  padding: 32px 24px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
@@ -155,34 +273,31 @@
 }
 
 .trans-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-blue);
-  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.1);
+  transform: translateY(-4px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 10px 25px rgba(212, 160, 23, 0.1);
 }
 
 .trans-title {
-  font-size: 1.1875rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-dark);
-  margin-bottom: 12px; /* 拉開標題與內文距離 */
+  margin-bottom: 12px;
 }
 
 .trans-text {
-  font-size: 0.975rem;
+  font-size: 0.95rem;
   color: var(--text-body);
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
-/* RWD 響應式調整 */
+/* ==========================================================================
+   5. RWD 響應式斷點優化
+   ========================================================================== */
 @media (max-width: 991px) {
-  .consulting-wrapper {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  
-  .feature-steps,
-  .consulting-image-box {
-    grid-column: 1;
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
   .transformation-grid {
@@ -191,17 +306,57 @@
   }
 }
 
-@media (max-width: 576px) {
-  .section-block,
-  .section {
-    padding: 64px 0; /* 手機版上下保留適當但不擁擠的空間 */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero-section {
+    padding: 30px 12px 24px;
+  }
+
+  .carousel-container {
+    border-radius: 10px;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+
+  .section-block {
+    padding: 50px 0;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .events-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-all-events {
+    width: 100%;
+    text-align: center;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .transformation-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .credential-intro {
-    margin-bottom: 40px;
+  .event-body {
+    padding: 18px 16px;
   }
 }
