@@ -38,10 +38,10 @@ collections:
         widget: "select"
         multiple: true
         options:
-          - { label: "企業輔導", value: "企業輔導" }
-          - { label: "政府專案", value: "政府專案" }
-          - { label: "光電建置", value: "光電建置" }
-          - { label: "人員培訓", value: "人員培訓" }
+          - { label: "公司消息", value: "公司消息" }
+          - { label: "政府政策", value: "政府政策" }
+          - { label: "課程資訊", value: "課程資訊" }
+          - { label: "新知分享", value: "新知分享" }
           - { label: "其他", value: "其他" }
       - { label: "文章摘要", name: "summary", widget: "text" }    
       - { label: "內文", name: "body", widget: "markdown" }
@@ -53,7 +53,7 @@ collections:
     create: true
     sortable_fields: ['weight', 'title'] # 允許透過 weight 排序
     fields:
-      - { label: "排序權重", name: "weight", widget: "number", default: 0, hint: "數字越小越前面" }
+      - { label: "排序", name: "weight", widget: "number", default: 0, hint: "數字越小越前面" }
       - { label: "標題", name: "title", widget: "string" }
       - { label: "敘述", name: "text", widget: "text" }  
 
@@ -70,8 +70,8 @@ collections:
       - { label: "姓名", name: "name", widget: "string" }
       - { label: "講師圖片", name: "logo", widget: "image" }
       - { label: "講師簡介", name: "bio", widget: "text" }
-      - { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }
-      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false }
+      - { label: "排序", name: "weight", widget: "number", default: 0, value_type: "int" }
+      - { label: "是否隱藏", name: "draft", widget: "boolean", default: false }
 
   # 團隊介紹企業及公協會夥伴
   - name: "corporate_partners"
@@ -93,8 +93,8 @@ collections:
             { label: "公協會合作夥伴", value: "association" }
           ]
         }
-      - { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }
-      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false }
+      - { label: "排序", name: "weight", widget: "number", default: 0, value_type: "int" }
+      - { label: "是否隱藏", name: "draft", widget: "boolean", default: false }
 
   # 永續服務輪播圖
   - name: "service"
@@ -131,7 +131,7 @@ collections:
             { label: "永續課程", value: "courses" }
           ]
         }
-      - { label: "是否隱藏 (勾選後前台不顯示)", name: "hide", widget: "boolean", default: false }
+      - { label: "是否隱藏", name: "hide", widget: "boolean", default: false }
       - { label: "詳細內容 (課程介紹/講師介紹與照片)", name: "body", widget: "markdown", required: false }
 
   # 相關連結
@@ -156,8 +156,7 @@ collections:
             { label: "iPAS 教材專區", value: "ipas" }
           ]
         }
-      - { label: "啟用狀態", name: "draft", widget: "boolean", default: false }
-      # { label: "排序順序", name: "weight", widget: "number", default: 0, value_type: "int" }
+      - { label: "是否隱藏", name: "draft", widget: "boolean", default: false }
 
   # 政府專區
   - name: "government"
@@ -173,4 +172,4 @@ collections:
       - { label: "摘要", name: "summary", widget: "text" }
       - { label: "詳細內文", name: "body", widget: "markdown" }
 
-  # 永續服務課程報名
+  # 永續服務報名

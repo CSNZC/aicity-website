@@ -35,14 +35,14 @@ const formatDate = (date: Date) => {
           <span class="section-subtitle">LATEST UPDATES</span>
           <h1 class="page-title">最新消息</h1>
         </div>
-
+        <!-- 分類標籤及搜尋類 -->
         <div class="news-toolbar">
           <div class="category-filters">
             <button class="filter-btn active" data-tag="all">全部</button>
-            <button class="filter-btn" data-tag="企業輔導">企業輔導</button>
-            <button class="filter-btn" data-tag="政府專案">政府專案</button>
-            <button class="filter-btn" data-tag="光電建置">光電建置</button>
-            <button class="filter-btn" data-tag="人員培訓">人員培訓</button>
+            <button class="filter-btn" data-tag="企業輔導">公司消息</button>
+            <button class="filter-btn" data-tag="政府專案">政府政策</button>
+            <button class="filter-btn" data-tag="光電建置">課程資訊</button>
+            <button class="filter-btn" data-tag="人員培訓">新知分享</button>
             <button class="filter-btn" data-tag="其他">其他</button>
           </div>
 
@@ -60,7 +60,7 @@ const formatDate = (date: Date) => {
         </div>
       </header>
 
-      <!-- 文章卡片列表 (動態渲染 6 筆) -->
+      <!-- 文章卡片列表 -->
       <section class="news-grid" aria-label="最新消息列表">
         {newsList.map((item) => {
           const { title, date, summary, tags, image } = item.data;
