@@ -5,6 +5,7 @@ date_time: 2026/06/06、06/07、06/20，09:00–12:00、13:00–16:00
 location: 新北板橋館 B401、B406 教室（新北市板橋區萬板路101號）
 info: ""
 category: iPAS
+registration_status: closed
 hide: false
 ---
 官方考綱對接 ｜ 系統化培訓與考照實戰演練
