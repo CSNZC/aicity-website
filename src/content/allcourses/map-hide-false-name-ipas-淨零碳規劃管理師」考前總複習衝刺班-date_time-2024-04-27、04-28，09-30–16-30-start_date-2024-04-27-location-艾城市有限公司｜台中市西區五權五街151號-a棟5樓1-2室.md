@@ -7,3 +7,4 @@ price: NT$6,000；通過考證退費 NT$2,000
 category: iPAS
 hide: false
 ---
+考前高效率總複習 ｜ 快速釐清盲點與應試通關秘訣
