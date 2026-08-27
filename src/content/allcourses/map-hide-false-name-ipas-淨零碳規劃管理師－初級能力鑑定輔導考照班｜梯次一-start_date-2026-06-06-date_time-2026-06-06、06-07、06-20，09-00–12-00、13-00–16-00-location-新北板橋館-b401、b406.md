@@ -8,4 +8,4 @@ info: ""
 category: iPAS
 hide: false
 ---
-iPAS 淨零碳規劃管理師｜輔導考照
+官方考綱對接 ｜ 系統化培訓與考照實戰演練
