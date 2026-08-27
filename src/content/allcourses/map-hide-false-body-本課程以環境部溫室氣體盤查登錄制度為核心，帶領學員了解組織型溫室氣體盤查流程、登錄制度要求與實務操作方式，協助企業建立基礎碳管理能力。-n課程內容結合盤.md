@@ -3,7 +3,6 @@ name: 環境部碳盤查登錄實務班
 start_date: 2026-09-12
 date_time: 2026/09/12
 location: 銘傳大學
-price: NT$ 3,500
 url: https://docs.google.com/forms/d/e/1FAIpQLSf1XscEmKA0hwVE-p2xgu0cc-83MeAW0QD6KxMsnHZJIG_7rg/viewform
 category: courses
 hide: false

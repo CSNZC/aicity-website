@@ -2,9 +2,7 @@
 name: 循環經濟與永續轉型解析班
 start_date: 2026-09-05
 date_time: 2026/9/5 09:00-16:00
-deadline: 2026-09-04 23:59
 location: 艾城市有限公司｜台中市西區五權五街151號A棟5樓1-2室
-price: NT$ 3,000
 url: https://forms.gle/DwXm3dpZyWeKUt76A
 category: courses
 hide: false

@@ -2,9 +2,7 @@
 name: 溫室氣體盤查主導稽核員培訓班
 start_date: 2026-08-21
 date_time: 2026/05/10 - 2026/05/12 (共3天)
-deadline: ""
 location: 艾城市有限公司｜台中市西區五權五街151號 A棟5樓1-2室
-price: NT$1200
 info: ""
 category: ISO
 hide: false

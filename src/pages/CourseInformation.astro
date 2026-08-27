@@ -10,10 +10,10 @@ interface Props {
 }
 
 const { category } = Astro.props;
-const now = new Date().getTime();
 
 // 抓取 allcourses Collection
-const allCourses: CollectionEntry<'allcourses'>[] = await getCollection('allcourses');
+const allCourses: CollectionEntry<'allcourses'>[] =
+  await getCollection('allcourses');
 
 // 篩選、排序
 const courses = allCourses
@@ -50,13 +50,6 @@ const renderedCourses = await Promise.all(
 
 <section class="course-catalog">
   {renderedCourses.map((course) => {
-    const deadlineTime = course.data.deadline
-      ? new Date(course.data.deadline).getTime()
-      : null;
-
-    const isExpired =
-      deadlineTime !== null && deadlineTime < now;
-
     const Content = course.Content;
 
     return (
@@ -67,30 +60,16 @@ const renderedCourses = await Promise.all(
         <summary class="course-item-card">
           <div class="course-info">
             <h2>{course.data.name}</h2>
+
             <p class="course-meta">
               <strong>開課日期：</strong>
               {course.data.date_time}
             </p>
+
             <p class="course-meta">
               <strong>授課地點：</strong>
               {course.data.location}
             </p>
-            {course.data.deadline && (
-              <p class="course-meta deadline-text">
-                <strong>報名截止：</strong>
-                {new Date(course.data.deadline).toLocaleDateString(
-                  'zh-TW',
-                  {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false,
-                  }
-                )}
-              </p>
-            )}
 
             {course.data.info && (
               <p class="course-desc">
@@ -104,11 +83,7 @@ const renderedCourses = await Promise.all(
           </div>
 
           <div class="course-action">
-            {isExpired ? (
-              <span class="btn-primary-cta disabled">
-                報名已截止
-              </span>
-            ) : course.data.url ? (
+            {course.data.url ? (
               <a
                 href={course.data.url}
                 target="_blank"
@@ -141,51 +116,3 @@ const renderedCourses = await Promise.all(
     </p>
   )}
 </section>
-
-<!-- 
-            <span class="price">
-              {course.data.price}
-            </span>
-除錯資訊 
-<div
-  style="
-    background:#fef3c7;
-    color:#92400e;
-    padding:12px;
-    border-radius:6px;
-    margin-bottom:16px;
-    font-size:14px;
-  "
->
-  <p><strong>除錯狀態：</strong></p>
-
-  <p>
-    當前組件要求的 Category：
-    <code>{category}</code>
-  </p>
-
-  <p>
-    全部抓到的課程數量：
-    <code>{allCourses.length}</code> 筆
-  </p>
-
-  <p>
-    符合條件的課程數量：
-    <code>{courses.length}</code> 筆
-  </p>
-
-  <pre>
-    {JSON.stringify(
-      allCourses.map((course) => ({
-        file: course.id,
-        name: course.data.name,
-        cat: course.data.category,
-        hide: course.data.hide,
-        start_date: course.data.start_date,
-        deadline: course.data.deadline,
-      })),
-      null,
-      2
-    )}
-  </pre>
-</div>-->

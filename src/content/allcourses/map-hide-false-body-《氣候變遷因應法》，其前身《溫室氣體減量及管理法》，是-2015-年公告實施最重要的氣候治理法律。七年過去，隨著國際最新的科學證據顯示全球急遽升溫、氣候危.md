@@ -3,7 +3,6 @@ name: 邁進台灣『碳元年』－企業領航班
 start_date: 2023-02-19
 date_time: 2023/02/19
 location: 艾城市有限公司｜台中市西區五權五街151號A棟5樓1-2室
-price: "-"
 category: courses
 hide: false
 ---

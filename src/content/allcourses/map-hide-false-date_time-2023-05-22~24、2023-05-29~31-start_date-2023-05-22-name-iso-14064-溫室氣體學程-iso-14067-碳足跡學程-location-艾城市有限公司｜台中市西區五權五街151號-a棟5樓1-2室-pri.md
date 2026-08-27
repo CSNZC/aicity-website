@@ -3,7 +3,6 @@ name: ISO 14064 溫室氣體學程 & ISO 14067 碳足跡學程
 start_date: 2023-05-22
 date_time: 2023/05/22~24、2023/05/29~31
 location: 艾城市有限公司｜台中市西區五權五街151號 A棟5樓1-2室
-price: NT$50,000
 category: ISO
 hide: false
 ---

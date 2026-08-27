@@ -3,7 +3,6 @@ name: 溫室氣體盤查內稽人員進階培訓班
 start_date: 2025-08-01
 date_time: 2025/08/01
 location: 艾城市有限公司｜台中市西區五權五街151號 A棟5樓1-2室
-price: NT$ 6,000
 category: ISO
 hide: false
 ---

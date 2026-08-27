@@ -3,7 +3,6 @@ name: 溫室氣體盤查內稽策略實戰班
 start_date: 2025-08-22
 date_time: 2025/08/22
 location: 艾城市有限公司｜台中市西區五權五街151號 A棟5樓1-2室
-price: NT$ 3,000
 category: ISO
 hide: false
 ---
