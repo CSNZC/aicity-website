@@ -4,6 +4,7 @@ start_date: 2024-04-27
 date_time: 2024/04/27、04/28，09:30–16:30
 location: 艾城市有限公司｜台中市西區五權五街151號 A棟5樓1-2室
 category: iPAS
+registration_status: closed
 hide: false
 ---
 考前高效率總複習 ｜ 快速釐清盲點與應試通關秘訣
