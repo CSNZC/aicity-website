@@ -5,7 +5,7 @@ date_time: 2026/05/10 - 2026/05/12 (共3天)
 deadline: ""
 location: 艾城市有限公司｜台中市西區五權五街151號 A棟5樓1-2室
 price: NT$1200
-info: 帶領學員實際操作組織型溫室氣體盤查與量化計算，結業考試通過者頒發國際認可證書。
+info: ""
 category: ISO
 hide: false
 ---
