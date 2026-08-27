@@ -4,6 +4,7 @@ start_date: 2023-12-25
 date_time: 2023/12/25
 location: 艾城市有限公司｜台中市西區五權五街151號A棟5樓1-2室
 category: courses
+registration_status: closed
 hide: false
 ---
 課程大綱
