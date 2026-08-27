@@ -4,6 +4,7 @@ start_date: 2025-03-22
 date_time: 2025/03/22 - 2025/03/23
 location: 中臺科技大學
 category: iPAS
+registration_status: closed
 hide: false
 ---
 聚焦初級盤查方法 ｜ 掌握計算邏輯與碳管理實務
