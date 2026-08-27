@@ -135,6 +135,27 @@ const government = defineCollection({
   }),
 });
 
+//相關連結
+const links = defineCollection({
+    loader: glob({
+      pattern: "**/*.md",
+      base: "./src/content/links", 
+    }),
+    schema: z.object({
+    name: z.string(),
+    url: z.string().optional(),
+    category: z.enum([
+      'government',
+      'policy',
+      'friendly',
+      'guidelines',
+      'carbon',
+      'ipas'
+    ]),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   news,
   carousel,
@@ -143,4 +164,5 @@ export const collections = {
   partners: partnersCollection, 
   allcourses,
   government,
+  links,
 };

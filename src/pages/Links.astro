@@ -7,10 +7,8 @@ const allLinks: CollectionEntry<'links'>[] = await getCollection(
   'links', 
   (item: CollectionEntry<'links'>) => !item.data.draft
 );
-// 依照 weight 排序（數字越小越前面）
-allLinks.sort((a, b) => a.data.weight - b.data.weight);
 
-// 定義分類對應清單（確保順序與您原本網頁的區塊完全一致）
+// 定義分類對應清單
 const categories = [
   { value: "government", title: "政府資源" },
   { value: "policy", title: "政策" },
@@ -20,7 +18,6 @@ const categories = [
   { value: "ipas", title: "iPAS 教材專區" }
 ];
 ---
-
 <Model title="相關連結" customCss="/css/links.css">
     <main class="page-content links-page">
         <div class="container">
