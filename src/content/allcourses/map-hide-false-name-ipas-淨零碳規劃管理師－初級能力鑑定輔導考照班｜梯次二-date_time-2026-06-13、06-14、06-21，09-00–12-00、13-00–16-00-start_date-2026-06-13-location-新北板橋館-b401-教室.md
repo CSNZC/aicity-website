@@ -7,3 +7,4 @@ price: 符合資格者免費（不含 iPAS 報名費）
 category: iPAS
 hide: false
 ---
+官方考綱對接 ｜ 系統化培訓與考照實戰演練
