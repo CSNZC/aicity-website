@@ -6,6 +6,7 @@ location: 艾城市有限公司｜台中市西區五權五街151號 A棟5樓1-2�
 info: ""
 url: https://forms.gle/pScNJ8gxK3kJE78i6
 category: iPAS
+registration_status: closed
 hide: false
 ---
 重點題型拆解 ｜ 突破中級計算大魔王與考照難關
