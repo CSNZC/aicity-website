@@ -100,12 +100,14 @@ const service = defineCollection({
   }),
 });
 
-//課程資訊
+// 課程資訊
 const allcourses = defineCollection({
+
   loader: glob({
     pattern: "**/*.md",
     base: "./src/content/allcourses",
   }),
+
   schema: z.object({
     name: z.string(),
     start_date: z.coerce.date(),
@@ -114,8 +116,10 @@ const allcourses = defineCollection({
     info: z.string().optional(),
     url: z.string().optional(),
     category: z.enum(["iPAS", "ISO", "courses"]),
+    registration_status: z.enum(["upcoming", "open", "closed"]).default("upcoming"),
     hide: z.boolean().default(false),
   }),
+
 });
 
 //政府專區

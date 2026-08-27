@@ -145,8 +145,19 @@ collections:
           options: [
             { label: "iPAS", value: "iPAS" },
             { label: "ISO", value: "ISO" },
-            { label: "永續課程", value: "courses" }
+            { label: "永續課程", value: "courses" },
           ]
+        }
+      - { 
+          label: "報名狀態", 
+          name: "registration_status", 
+          widget: "select", 
+          options: [
+            { label: "即將開放", value: "upcoming" },
+            { label: "開放報名", value: "open" },
+            { label: "報名截止", value: "closed" }
+          ],
+          default: "upcoming"
         }
       - { label: "是否隱藏", name: "hide", widget: "boolean", default: false }
       - { label: "詳細內容 (課程介紹/講師介紹與照片)", name: "body", widget: "markdown", required: false }

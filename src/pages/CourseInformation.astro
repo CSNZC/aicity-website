@@ -83,7 +83,15 @@ const renderedCourses = await Promise.all(
           </div>
 
           <div class="course-action">
-            {course.data.url ? (
+            {course.data.registration_status === 'closed' ? (
+              <span class="btn-primary-cta disabled">
+                報名已截止
+              </span>
+            ) : course.data.registration_status === 'upcoming' ? (
+              <span class="btn-primary-cta disabled">
+                即將開放
+              </span>
+            ) : course.data.url ? (
               <a
                 href={course.data.url}
                 target="_blank"
