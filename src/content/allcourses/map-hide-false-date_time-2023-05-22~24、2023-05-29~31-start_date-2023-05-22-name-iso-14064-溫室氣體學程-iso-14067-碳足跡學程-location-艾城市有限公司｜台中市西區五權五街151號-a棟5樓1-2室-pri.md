@@ -4,6 +4,7 @@ start_date: 2023-05-22
 date_time: 2023/05/22~24、2023/05/29~31
 location: 艾城市有限公司｜台中市西區五權五街151號 A棟5樓1-2室
 category: ISO
+registration_status: closed
 hide: false
 ---
 學習撰寫溫室氣體排放聲明書,執行第三方意見書評估報告撰寫,瞭解環保暨溫室氣體管理系統能力資格與認證機構之標準要求。
