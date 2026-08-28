@@ -57,7 +57,6 @@ const partnersCollection = defineCollection({
     z.object({
       category: z.literal('lecturer'),
       name: z.string(),
-      title: z.string().optional(), // 職稱/頭銜（選填）
       logo: z.string(),
       summary: z.string().default(''),
       weight: z.number().default(0),
