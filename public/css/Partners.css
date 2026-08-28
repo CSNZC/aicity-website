@@ -288,7 +288,7 @@
   color: var(--text-body);
   margin-bottom: 12px;
   line-height: 1.55;
-  white-space: pre-line; /* 完美保留後台文字輸入的換行格式 */
+  white-space: pre-line; /* 關鍵：強制保留換行符號 */
 }
 
 /* ==========================================================================
