@@ -152,13 +152,7 @@ const associationPartners = allPartners.filter(p => p.data.category === 'associa
                       {name}
                       {title && <span class="team-title-tag">{title}</span>}
                     </h3>
-                    {summary && summary.length > 0 && (
-                      <ul class="team-bio-list">
-                        {summary.map((point: string) => (
-                          <li>{point}</li>
-                        ))}
-                      </ul>
-                    )}
+                    {summary && <p class="team-bio">{summary}</p>}
                   </div>
                 </div>
               );
@@ -167,6 +161,7 @@ const associationPartners = allPartners.filter(p => p.data.category === 'associa
         </div>
       </div>
     </section>
+
     <!-- 合作公協會夥伴 -->
     <section class="partners-section">
       <div class="container">

@@ -179,19 +179,23 @@ const formatDate = (date: Date) => {
     margin: 0;
   }
 
+  /* 調整圖片容器與自適應圖片設定 */
   .article-image-box {
     width: 100%;
+    max-height: 480px;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     background-color: var(--bg-light-gray, #f8f9fa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .article-featured-img {
     width: 100%;
-    height: auto;
-    max-height: 480px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: cover; /* 保持填滿並自動裁切邊緣以適應各種比例 */
     display: block;
   }
 
@@ -204,6 +208,7 @@ const formatDate = (date: Date) => {
     display: block;
   }
 
+  /* 內文排版與分線設計 */
   .article-body-content {
     font-size: 1.0625rem;
     line-height: 1.85;
@@ -214,12 +219,15 @@ const formatDate = (date: Date) => {
     margin-bottom: 1.6em;
   }
 
+  /* 為內文中的標題或段落區塊加入微型分隔線效果 */
   .article-body-content h2,
   .article-body-content h3 {
     color: var(--primary-green, #1b5e20);
-    margin-top: 1.8em;
+    margin-top: 2.2em;
     margin-bottom: 0.8em;
     font-weight: 700;
+    padding-bottom: 0.4em;
+    border-bottom: 1px dashed var(--border-color, #eaeaea); /* 加上柔和的分隔虛線 */
   }
 
   .article-body-content ul,
@@ -332,6 +340,9 @@ const formatDate = (date: Date) => {
     }
     .article-title {
       font-size: 1.6rem;
+    }
+    .article-image-box {
+      max-height: 280px; /* 手機版自動降低圖片的最大高度，避免佔用太多畫面 */
     }
     .form-row-2 {
       grid-template-columns: 1fr;

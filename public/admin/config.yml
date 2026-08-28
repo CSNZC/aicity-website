@@ -78,7 +78,7 @@ collections:
     fields:
       - { label: "講師姓名/名稱", name: "name", widget: "string" }
       - { label: "照片/Logo", name: "logo", widget: "image" }
-      - { label: "個人介紹/經歷條列", name: "summary", widget: "list", default: [""] }
+      - { label: "個人介紹", name: "summary", widget: "text", default: "" }
       - { label: "分類", name: "category", widget: "hidden", default: "lecturer" }
       - { label: "排序權重", name: "weight", widget: "number", default: 0, value_type: "int" }
       - { label: "是否隱藏", name: "draft", widget: "boolean", default: false }
