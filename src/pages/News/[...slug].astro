@@ -20,7 +20,7 @@ const formatDate = (date: Date) => {
 ---
 
 <Model title={`${post.data.title} | 艾城市有限公司`}>
-  <!-- 單一主容器，直接控制寬度與邊距 -->
+  <!-- 原始單一主容器，移除外框，適度放大寬度 -->
   <div class="article-container">
     
     <!-- 返回按鈕 -->
@@ -28,7 +28,7 @@ const formatDate = (date: Date) => {
       <a href="/News" class="back-btn">← 返回最新消息</a>
     </div>
 
-    <!-- 內文核心卡片 -->
+    <!-- 內文核心（無外框） -->
     <main class="article-main">
       <header class="article-header">
         <div class="article-tag-list">
@@ -57,7 +57,7 @@ const formatDate = (date: Date) => {
       </article>
     </main>
 
-    <!-- 獨立於內文外的報名表單卡片 -->
+    <!-- 報名表單（無外框，與下方自然銜接） -->
     {post.data.enable_registration && (
       <section class="event-reg-section">
         <div class="event-reg-header">
@@ -108,15 +108,15 @@ const formatDate = (date: Date) => {
 </Model>
 
 <style>
-  /* 單一頂層容器 */
+  /* 稍微放大容器寬度與邊距 */
   .article-container {
-    max-width: 860px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 40px 20px 80px;
   }
 
   .back-nav {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .back-btn {
@@ -125,7 +125,7 @@ const formatDate = (date: Date) => {
     gap: 6px;
     color: var(--primary-green, #1b5e20);
     font-weight: 600;
-    font-size: 0.9375rem;
+    font-size: 1rem;
     text-decoration: none;
     transition: color 0.2s ease;
   }
@@ -134,14 +134,13 @@ const formatDate = (date: Date) => {
     color: var(--accent-gold, #c5a059);
   }
 
-  /* 文章主體卡片 */
+  /* 移除原本的背景白卡片與邊框陰影，改為純淨無外框流暢排列 */
   .article-main {
-    background: var(--bg-white, #ffffff);
-    border-radius: 12px;
-    border: 1px solid var(--border-color, #eaeaea);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    padding: 48px;
-    margin-bottom: 32px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 48px;
   }
 
   .article-header {
@@ -151,14 +150,14 @@ const formatDate = (date: Date) => {
   .article-tag-list {
     display: flex;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     flex-wrap: wrap;
   }
 
   .article-tag {
     background: var(--accent-gold-light, #fdf8eb);
     color: var(--accent-gold, #c5a059);
-    font-size: 0.8125rem;
+    font-size: 0.85rem;
     font-weight: 600;
     padding: 4px 12px;
     border-radius: 20px;
@@ -170,22 +169,22 @@ const formatDate = (date: Date) => {
     border: 1px solid var(--border-color, #eaeaea);
   }
 
+  /* 稍微放大標題 */
   .article-title {
     font-family: 'Noto Serif TC', serif;
-    font-size: 2.15rem;
+    font-size: 2.35rem;
     font-weight: 700;
     color: var(--primary-green, #1b5e20);
-    line-height: 1.4;
+    line-height: 1.35;
     margin: 0;
   }
 
-  /* 調整圖片容器與自適應圖片設定 */
+  /* 圖片容器：取消裁切，完整顯示並稍微放大 */
   .article-image-box {
     width: 100%;
-    max-height: 480px;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     background-color: var(--bg-light-gray, #f8f9fa);
     display: flex;
     align-items: center;
@@ -194,59 +193,58 @@ const formatDate = (date: Date) => {
 
   .article-featured-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* 保持填滿並自動裁切邊緣以適應各種比例 */
+    height: auto;
+    object-fit: contain;
     display: block;
   }
 
   .article-meta-time {
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     color: var(--text-muted, #757575);
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--border-color, #eaeaea);
     display: block;
   }
 
-  /* 內文排版與分線設計 */
+  /* 放大內文字體與行距，提升長文閱讀舒適度 */
   .article-body-content {
-    font-size: 1.0625rem;
-    line-height: 1.85;
+    font-size: 1.125rem;
+    line-height: 1.95;
     color: var(--text-body, #333333);
   }
 
-  .article-body-content p {
+  .article-body-content :global(p) {
     margin-bottom: 1.6em;
   }
 
-  /* 為內文中的標題或段落區塊加入微型分隔線效果 */
-  .article-body-content h2,
-  .article-body-content h3 {
+  .article-body-content :global(h2),
+  .article-body-content :global(h3) {
     color: var(--primary-green, #1b5e20);
-    margin-top: 2.2em;
+    margin-top: 2.4em;
     margin-bottom: 0.8em;
     font-weight: 700;
     padding-bottom: 0.4em;
-    border-bottom: 1px dashed var(--border-color, #eaeaea); /* 加上柔和的分隔虛線 */
+    border-bottom: 1px dashed var(--border-color, #eaeaea);
   }
 
-  .article-body-content ul,
-  .article-body-content ol {
+  .article-body-content :global(ul),
+  .article-body-content :global(ol) {
     margin-bottom: 1.6em;
     padding-left: 24px;
   }
 
-  .article-body-content li {
+  .article-body-content :global(li) {
     margin-bottom: 8px;
   }
 
-  /* 獨立報名表卡片 */
+  /* 報名表單（移除卡片外框，改用清爽的背景區塊與內距） */
   .event-reg-section {
-    background: var(--bg-white, #ffffff);
+    background: #f9faf9;
     border: 1px solid var(--border-color, #eaeaea);
     border-radius: 12px;
-    padding: 40px 48px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    padding: 48px;
+    box-shadow: none;
   }
 
   .event-reg-header {
@@ -256,14 +254,14 @@ const formatDate = (date: Date) => {
 
   .event-reg-title {
     font-family: 'Noto Serif TC', serif;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 700;
     color: var(--primary-green, #1b5e20);
     margin-bottom: 8px;
   }
 
   .event-reg-subtitle {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     color: var(--text-muted, #666666);
     line-height: 1.5;
   }
@@ -280,7 +278,7 @@ const formatDate = (date: Date) => {
 
   .form-label {
     display: block;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     color: var(--text-dark, #333333);
     margin-bottom: 6px;
@@ -288,8 +286,8 @@ const formatDate = (date: Date) => {
 
   .form-input {
     width: 100%;
-    padding: 10px 14px;
-    font-size: 0.9375rem;
+    padding: 12px 16px;
+    font-size: 1rem;
     border: 1px solid var(--border-color, #dddddd);
     border-radius: 6px;
     background: var(--bg-white, #ffffff);
@@ -309,12 +307,12 @@ const formatDate = (date: Date) => {
 
   .btn-reg-submit {
     width: 100%;
-    padding: 13px;
+    padding: 14px;
     background: var(--primary-green, #1b5e20);
     color: #ffffff;
     border: none;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -334,15 +332,11 @@ const formatDate = (date: Date) => {
     .article-container {
       padding: 24px 16px 60px;
     }
-    .article-main,
     .event-reg-section {
-      padding: 24px 18px;
+      padding: 28px 20px;
     }
     .article-title {
-      font-size: 1.6rem;
-    }
-    .article-image-box {
-      max-height: 280px; /* 手機版自動降低圖片的最大高度，避免佔用太多畫面 */
+      font-size: 1.7rem;
     }
     .form-row-2 {
       grid-template-columns: 1fr;
