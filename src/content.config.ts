@@ -59,7 +59,7 @@ const partnersCollection = defineCollection({
       name: z.string(),
       title: z.string().optional(), // 職稱/頭銜（選填）
       logo: z.string(),
-      bio: z.string().default(''),
+      summary: z.array(z.string()).default([]), // 改為陣列型別
       weight: z.number().default(0),
       draft: z.boolean().default(false),
     }),
