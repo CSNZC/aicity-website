@@ -5,7 +5,7 @@ date_time: 2026/9/5 09:00-16:00
 location: 艾城市有限公司｜台中市西區五權五街151號A棟5樓1-2室
 url: https://forms.gle/DwXm3dpZyWeKUt76A
 category: courses
-registration_status: open
+registration_status: closed
 hide: false
 ---
 ##### 課程亮點
